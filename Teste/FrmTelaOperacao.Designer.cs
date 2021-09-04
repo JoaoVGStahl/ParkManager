@@ -29,12 +29,6 @@ namespace Teste
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 50D);
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 20D);
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTelaOperacao));
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -47,8 +41,11 @@ namespace Teste
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -62,19 +59,21 @@ namespace Teste
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
+            this.panel9 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
+            this.panel9.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -83,14 +82,14 @@ namespace Teste
             this.comboBox1.Items.AddRange(new object[] {
             "Carro",
             "Moto"});
-            this.comboBox1.Location = new System.Drawing.Point(46, 57);
+            this.comboBox1.Location = new System.Drawing.Point(246, 57);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(173, 39);
             this.comboBox1.TabIndex = 0;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(236, 56);
+            this.textBox1.Location = new System.Drawing.Point(39, 57);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(183, 38);
             this.textBox1.TabIndex = 1;
@@ -120,7 +119,7 @@ namespace Teste
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(36, 23);
+            this.label1.Location = new System.Drawing.Point(236, 23);
             this.label1.Name = "label1";
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label1.Size = new System.Drawing.Size(86, 31);
@@ -130,7 +129,7 @@ namespace Teste
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(230, 22);
+            this.label2.Location = new System.Drawing.Point(33, 23);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 31);
             this.label2.TabIndex = 8;
@@ -169,50 +168,61 @@ namespace Teste
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.chart1);
+            this.panel1.Controls.Add(this.label12);
+            this.panel1.Controls.Add(this.panel8);
+            this.panel1.Controls.Add(this.panel7);
             this.panel1.Location = new System.Drawing.Point(12, 133);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(651, 488);
             this.panel1.TabIndex = 12;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(285, 65);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(104, 73);
+            this.label12.TabIndex = 10;
+            this.label12.Text = "25";
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.SystemColors.Desktop;
+            this.panel8.Location = new System.Drawing.Point(-3, 44);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(652, 4);
+            this.panel8.TabIndex = 9;
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel7.Controls.Add(this.pictureBox1);
+            this.panel7.Location = new System.Drawing.Point(15, 154);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(618, 317);
+            this.panel7.TabIndex = 4;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.ImageLocation = "";
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(618, 317);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(197, 12);
+            this.label8.Location = new System.Drawing.Point(216, 12);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(238, 31);
             this.label8.TabIndex = 3;
             this.label8.Text = "Vagas Disponíveis";
-            // 
-            // chart1
-            // 
-            this.chart1.BackColor = System.Drawing.Color.Transparent;
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Enabled = false;
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(129, 63);
-            this.chart1.Name = "chart1";
-            this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            this.chart1.PaletteCustomColors = new System.Drawing.Color[] {
-        System.Drawing.Color.DarkGray,
-        System.Drawing.SystemColors.ActiveCaption};
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            dataPoint1.Label = "DISPONÍVEL";
-            dataPoint2.Label = "OCUPADAS";
-            series1.Points.Add(dataPoint1);
-            series1.Points.Add(dataPoint2);
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(390, 391);
-            this.chart1.TabIndex = 2;
-            this.chart1.Text = "chart1";
-            title1.Name = "CARRO";
-            this.chart1.Titles.Add(title1);
             // 
             // button2
             // 
@@ -245,6 +255,7 @@ namespace Teste
             this.button3.Text = "Encerrar Ticket (F4)";
             this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // panel3
             // 
@@ -281,7 +292,7 @@ namespace Teste
             // textBox4
             // 
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(50, 194);
+            this.textBox4.Location = new System.Drawing.Point(59, 256);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(279, 47);
             this.textBox4.TabIndex = 21;
@@ -290,7 +301,7 @@ namespace Teste
             // textBox5
             // 
             this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(338, 194);
+            this.textBox5.Location = new System.Drawing.Point(347, 256);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(259, 47);
             this.textBox5.TabIndex = 21;
@@ -300,7 +311,7 @@ namespace Teste
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(109, 256);
+            this.label9.Location = new System.Drawing.Point(118, 337);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(426, 55);
             this.label9.TabIndex = 24;
@@ -310,7 +321,7 @@ namespace Teste
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(206, 12);
+            this.label10.Location = new System.Drawing.Point(215, 55);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(257, 31);
             this.label10.TabIndex = 25;
@@ -321,7 +332,6 @@ namespace Teste
             this.panel2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Controls.Add(this.panel4);
-            this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.label10);
             this.panel2.Controls.Add(this.label9);
             this.panel2.Controls.Add(this.textBox5);
@@ -337,7 +347,7 @@ namespace Teste
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Controls.Add(this.label6);
-            this.panel4.Location = new System.Drawing.Point(94, 46);
+            this.panel4.Location = new System.Drawing.Point(103, 105);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(456, 132);
             this.panel4.TabIndex = 27;
@@ -364,22 +374,6 @@ namespace Teste
             this.label11.TabIndex = 26;
             this.label11.Text = "Marca";
             this.label11.Click += new System.EventHandler(this.label11_Click);
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.LightGray;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(230, 359);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(206, 90);
-            this.button1.TabIndex = 21;
-            this.button1.Text = "Visualizar Foto";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button5
             // 
@@ -414,6 +408,8 @@ namespace Teste
             this.button4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button4.BackgroundImage")));
             this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Location = new System.Drawing.Point(11, 15);
             this.button4.Name = "button4";
@@ -454,6 +450,7 @@ namespace Teste
             this.button6.Text = "Tickets";
             this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button7
             // 
@@ -466,30 +463,42 @@ namespace Teste
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(130, 90);
             this.button7.TabIndex = 26;
+            this.button7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button7.UseVisualStyleBackColor = false;
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.panel9.Controls.Add(this.label8);
+            this.panel9.Location = new System.Drawing.Point(14, 133);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(649, 47);
+            this.panel9.TabIndex = 10;
             // 
             // FrmTelaOperacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.ClientSize = new System.Drawing.Size(1366, 745);
+            this.Controls.Add(this.panel9);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.panel6);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.comboBox1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.Name = "FrmTelaOperacao";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -498,7 +507,8 @@ namespace Teste
             this.Load += new System.EventHandler(this.FrmTelaOperacao_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            this.panel7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel4.ResumeLayout(false);
@@ -506,6 +516,8 @@ namespace Teste
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.panel6.ResumeLayout(false);
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -524,7 +536,6 @@ namespace Teste
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label8;
@@ -537,7 +548,6 @@ namespace Teste
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Button button5;
@@ -546,6 +556,11 @@ namespace Teste
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

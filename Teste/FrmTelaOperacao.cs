@@ -86,5 +86,27 @@ namespace Teste
         {
             this.Close();
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            FrmTelaTicket Frm = new FrmTelaTicket();
+            Frm.ShowDialog();
+        }
+
+        private void label12_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket();
+            Frm.Show();
+        }
     }
 }

@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmTelaEncerrarTicket.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTelaEncerrarTicket.Designer.cs">
+      <DependentUpon>FrmTelaEncerrarTicket.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmTelaOperacao.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,13 +65,25 @@
     <Compile Include="FrmTelaLogin.Designer.cs">
       <DependentUpon>FrmTelaLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmTelaTicket.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTelaTicket.Designer.cs">
+      <DependentUpon>FrmTelaTicket.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmTelaEncerrarTicket.resx">
+      <DependentUpon>FrmTelaEncerrarTicket.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmTelaLogin.resx">
       <DependentUpon>FrmTelaLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmTelaOperacao.resx">
       <DependentUpon>FrmTelaOperacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmTelaTicket.resx">
+      <DependentUpon>FrmTelaTicket.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

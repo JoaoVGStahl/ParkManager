@@ -9,3 +9,16 @@ C:\Users\spott\source\repos\Teste\Teste\obj\Debug\Teste.exe
 C:\Users\spott\source\repos\Teste\Teste\obj\Debug\Teste.pdb
 C:\Users\spott\source\repos\Teste\Teste\obj\Debug\Teste.FrmTelaOperacao.resources
 C:\Users\spott\source\repos\Teste\Teste\obj\Debug\Teste.FrmTelaLogin.resources
+C:\Users\spott\source\repos\ParkManagerSys\Teste\bin\Debug\Teste.exe.config
+C:\Users\spott\source\repos\ParkManagerSys\Teste\bin\Debug\Teste.exe
+C:\Users\spott\source\repos\ParkManagerSys\Teste\bin\Debug\Teste.pdb
+C:\Users\spott\source\repos\ParkManagerSys\Teste\obj\Debug\Teste.csproj.AssemblyReference.cache
+C:\Users\spott\source\repos\ParkManagerSys\Teste\obj\Debug\Teste.FrmTelaLogin.resources
+C:\Users\spott\source\repos\ParkManagerSys\Teste\obj\Debug\Teste.FrmTelaOperacao.resources
+C:\Users\spott\source\repos\ParkManagerSys\Teste\obj\Debug\Teste.FrmTelaTicket.resources
+C:\Users\spott\source\repos\ParkManagerSys\Teste\obj\Debug\Teste.Properties.Resources.resources
+C:\Users\spott\source\repos\ParkManagerSys\Teste\obj\Debug\Teste.csproj.GenerateResource.cache
+C:\Users\spott\source\repos\ParkManagerSys\Teste\obj\Debug\Teste.csproj.CoreCompileInputs.cache
+C:\Users\spott\source\repos\ParkManagerSys\Teste\obj\Debug\Teste.exe
+C:\Users\spott\source\repos\ParkManagerSys\Teste\obj\Debug\Teste.pdb
+C:\Users\spott\source\repos\ParkManagerSys\Teste\obj\Debug\Teste.FrmTelaEncerrarTicket.resources

@@ -27,5 +27,10 @@ namespace Teste
             FrmTelaOperacao Frm = new FrmTelaOperacao();
             Frm.ShowDialog();
         }
+
+        private void FrmTelaLogin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
