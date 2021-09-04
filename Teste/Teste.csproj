@@ -47,43 +47,46 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FrmTelaEncerrarTicket.cs">
+    <Compile Include="Classes\Arduino.cs" />
+    <Compile Include="Classes\Banco.cs" />
+    <Compile Include="Formulários\FrmTelaEncerrarTicket.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmTelaEncerrarTicket.Designer.cs">
+    <Compile Include="Formulários\FrmTelaEncerrarTicket.Designer.cs">
       <DependentUpon>FrmTelaEncerrarTicket.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmTelaOperacao.cs">
+    <Compile Include="Formulários\FrmTelaOperacao.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmTelaOperacao.Designer.cs">
+    <Compile Include="Formulários\FrmTelaOperacao.Designer.cs">
       <DependentUpon>FrmTelaOperacao.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmTelaLogin.cs">
+    <Compile Include="Formulários\FrmTelaLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmTelaLogin.Designer.cs">
+    <Compile Include="Formulários\FrmTelaLogin.Designer.cs">
       <DependentUpon>FrmTelaLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmTelaTicket.cs">
+    <Compile Include="Formulários\FrmTelaPesquisaTicket.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmTelaTicket.Designer.cs">
-      <DependentUpon>FrmTelaTicket.cs</DependentUpon>
+    <Compile Include="Formulários\FrmTelaPesquisaTicket.Designer.cs">
+      <DependentUpon>FrmTelaPesquisaTicket.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="Classes\Globais.cs" />
+    <Compile Include="Classes\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FrmTelaEncerrarTicket.resx">
+    <EmbeddedResource Include="Formulários\FrmTelaEncerrarTicket.resx">
       <DependentUpon>FrmTelaEncerrarTicket.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmTelaLogin.resx">
+    <EmbeddedResource Include="Formulários\FrmTelaLogin.resx">
       <DependentUpon>FrmTelaLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmTelaOperacao.resx">
+    <EmbeddedResource Include="Formulários\FrmTelaOperacao.resx">
       <DependentUpon>FrmTelaOperacao.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmTelaTicket.resx">
-      <DependentUpon>FrmTelaTicket.cs</DependentUpon>
+    <EmbeddedResource Include="Formulários\FrmTelaPesquisaTicket.resx">
+      <DependentUpon>FrmTelaPesquisaTicket.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

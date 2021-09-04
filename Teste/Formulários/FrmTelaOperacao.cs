@@ -15,6 +15,8 @@ namespace Teste
         public FrmTelaOperacao()
         {
             InitializeComponent();
+            FrmTelaLogin Frm = new FrmTelaLogin();
+            Frm.ShowDialog();
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -89,7 +91,7 @@ namespace Teste
 
         private void button6_Click(object sender, EventArgs e)
         {
-            FrmTelaTicket Frm = new FrmTelaTicket();
+            FrmTelaPesquisaTicket Frm = new FrmTelaPesquisaTicket();
             Frm.ShowDialog();
         }
 
@@ -107,6 +109,71 @@ namespace Teste
         {
             FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket();
             Frm.Show();
+        }
+
+        private void panel6_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

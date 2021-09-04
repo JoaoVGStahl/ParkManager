@@ -22,3 +22,15 @@ C:\Users\spott\source\repos\ParkManagerSys\Teste\obj\Debug\Teste.csproj.CoreComp
 C:\Users\spott\source\repos\ParkManagerSys\Teste\obj\Debug\Teste.exe
 C:\Users\spott\source\repos\ParkManagerSys\Teste\obj\Debug\Teste.pdb
 C:\Users\spott\source\repos\ParkManagerSys\Teste\obj\Debug\Teste.FrmTelaEncerrarTicket.resources
+C:\Users\Valorant\ParkManager\Teste\bin\Debug\Teste.exe.config
+C:\Users\Valorant\ParkManager\Teste\bin\Debug\Teste.exe
+C:\Users\Valorant\ParkManager\Teste\bin\Debug\Teste.pdb
+C:\Users\Valorant\ParkManager\Teste\obj\Debug\Teste.csprojAssemblyReference.cache
+C:\Users\Valorant\ParkManager\Teste\obj\Debug\Teste.FrmTelaEncerrarTicket.resources
+C:\Users\Valorant\ParkManager\Teste\obj\Debug\Teste.FrmTelaLogin.resources
+C:\Users\Valorant\ParkManager\Teste\obj\Debug\Teste.FrmTelaOperacao.resources
+C:\Users\Valorant\ParkManager\Teste\obj\Debug\Teste.Properties.Resources.resources
+C:\Users\Valorant\ParkManager\Teste\obj\Debug\Teste.csproj.GenerateResource.cache
+C:\Users\Valorant\ParkManager\Teste\obj\Debug\Teste.exe
+C:\Users\Valorant\ParkManager\Teste\obj\Debug\Teste.pdb
+C:\Users\Valorant\ParkManager\Teste\obj\Debug\Teste.FrmTelaPesquisaTicket.resources
