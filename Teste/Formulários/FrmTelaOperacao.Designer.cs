@@ -534,7 +534,7 @@ namespace Teste
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(1366, 745);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.textBox1);
