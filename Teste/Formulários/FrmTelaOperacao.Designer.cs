@@ -557,7 +557,7 @@ namespace Teste
             this.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.Name = "FrmTelaOperacao";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Menu Principal - ParkManager ";
+            this.Text = "0";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmTelaOperacao_Load);
             this.panel1.ResumeLayout(false);
