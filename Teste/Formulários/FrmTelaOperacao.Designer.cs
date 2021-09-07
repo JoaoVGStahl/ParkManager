@@ -66,6 +66,7 @@ namespace Teste
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.label13 = new System.Windows.Forms.Label();
+            this.lblUsername = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -464,7 +465,8 @@ namespace Teste
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
+            this.toolStripStatusLabel1,
+            this.lblUsername});
             this.statusStrip1.Location = new System.Drawing.Point(0, 723);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1366, 22);
@@ -474,9 +476,10 @@ namespace Teste
             // 
             // toolStripStatusLabel1
             // 
+            this.toolStripStatusLabel1.BackColor = System.Drawing.Color.Transparent;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(111, 17);
-            this.toolStripStatusLabel1.Text = "Logado como: João";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(50, 17);
+            this.toolStripStatusLabel1.Text = "Usuário:";
             // 
             // label13
             // 
@@ -489,6 +492,13 @@ namespace Teste
             this.label13.TabIndex = 28;
             this.label13.Text = "* Informações obrigatórias";
             this.label13.Click += new System.EventHandler(this.label13_Click);
+            // 
+            // lblUsername
+            // 
+            this.lblUsername.BackColor = System.Drawing.Color.Transparent;
+            this.lblUsername.Name = "lblUsername";
+            this.lblUsername.Size = new System.Drawing.Size(47, 17);
+            this.lblUsername.Text = "Usuario";
             // 
             // FrmTelaOperacao
             // 
@@ -576,6 +586,7 @@ namespace Teste
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.Label label13;
+        public System.Windows.Forms.ToolStripStatusLabel lblUsername;
     }
 }
 

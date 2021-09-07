@@ -15,7 +15,7 @@ namespace Teste
         public FrmTelaOperacao()
         {
             InitializeComponent();
-            FrmTelaLogin Frm = new FrmTelaLogin();
+            FrmTelaLogin Frm = new FrmTelaLogin(this);
             Frm.ShowDialog();
         }
 
