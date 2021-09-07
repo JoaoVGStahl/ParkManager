@@ -32,6 +32,7 @@ namespace Teste
             if (usuario == "Padmin" && senha == "admin")
             {
                 Frm.lblUsername.Text = "admin";
+                globais.setIdUsuario(Convert.ToInt32(1));
                 globais.setLogin("admin");
                 globais.setNivel(Convert.ToInt32(3));
                 globais.setUserStatus(Convert.ToInt32(1));
@@ -40,7 +41,7 @@ namespace Teste
             }
             string StrConn = @"Server=db-park-manager.ch2qj4cvcflx.us-east-1.rds.amazonaws.com,1433; Database=db_estacionamento; User Id=sa; Password=adminparkmanager";
 
-            string query = "SELECT login,nivel,status FROM tb_usuario WHERE login='" + usuario + "' AND senha='" + senha + "'";
+            string query = "SELECT id_usuario,login,nivel,status FROM tb_usuario WHERE login='" + usuario + "' AND senha='" + senha + "'";
             SqlConnection conexao = new SqlConnection(StrConn);
             SqlCommand cmd = new SqlCommand(query, conexao);
             SqlDataReader reader;
@@ -50,13 +51,15 @@ namespace Teste
                 reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    int status = Convert.ToInt32(reader[2]);
+                    int status = Convert.ToInt32(reader[3]);
                     if (status == 1)
                     {
-                        Frm.lblUsername.Text = Convert.ToString(reader[0]);
-                        globais.setLogin(Convert.ToString(reader[0]));
-                        globais.setNivel(Convert.ToInt32(reader[1]));
-                        globais.setUserStatus(Convert.ToInt32(reader[2]));
+                        globais.RegistrarLog(Convert.ToString(reader[1]) + " efetuou login.");
+                        globais.setIdUsuario(Convert.ToInt32(reader[0]));
+                        globais.setLogin(Convert.ToString(reader[1]));
+                        globais.setNivel(Convert.ToInt32(reader[2]));
+                        globais.setUserStatus(Convert.ToInt32(reader[3]));
+                        Frm.lblUsername.Text = Convert.ToString(reader[1]);
                         this.Close();
                     }
                     else

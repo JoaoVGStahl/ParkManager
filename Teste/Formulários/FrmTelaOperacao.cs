@@ -17,6 +17,10 @@ namespace Teste
             InitializeComponent();
             FrmTelaLogin Frm = new FrmTelaLogin(this);
             Frm.ShowDialog();
+            string DataCompleta = DateTime.Now.ToLongDateString();
+            string Semana = DataCompleta.Substring(0, 1).ToUpper() + DataCompleta.Substring(1, DataCompleta.Length - 1);
+            lblData.Text = Semana;
+            HoraData.Enabled = true;
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -172,6 +176,16 @@ namespace Teste
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void HoraData_Tick(object sender, EventArgs e)
+        {
+            lblHora.Text = DateTime.Now.ToLongTimeString();
+        }
+
+        private void lblUsername_Click(object sender, EventArgs e)
         {
 
         }
