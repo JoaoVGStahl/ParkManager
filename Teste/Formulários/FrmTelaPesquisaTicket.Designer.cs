@@ -298,7 +298,7 @@ namespace Teste
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "FrmTelaPesquisaTicket";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "3333333333333333";
+            this.Text = "Pesquisar Ticket - ParkManager";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmTelaTicket_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

@@ -97,8 +97,8 @@ CREATE TABLE tb_fotos(
 
   
 
-INSERT INTO tb_estacionamento (valor_hr,tolerancia, qtd_vagas, vagas_atuais, status) VALUES
-('6', '00:15:00', '20', '0', '1');
+INSERT INTO tb_estacionamento (valor_hr,tolerancia, qtd_vagas, vagas_atuais,caminho_log, status) VALUES
+('6', '00:15:00', '20', '0','log.dat', '1');
 
 INSERT INTO tb_cliente(nome,telefone,status) VALUES('Convidado','00 12345-6789', 1);
 
@@ -163,6 +163,8 @@ INSERT INTO tb_carro(cliente_id,marca,tipo,placa,status) VALUES(1, 'Audi','Carro
 INSERT INTO tb_ticket(carro_id,status) VALUES(1,0)
 
 INSERT INTO tb_usuario(login,senha,nivel,status) VALUES('admin','admin', 3, 1)
+
+INSERT INTO tb_usuario(login,senha,nivel,status) VALUES('joao.girardi','admin', 1, 1)
 
 INSERT INTO tb_entrada(ticket_id, usuario_id, hr_entrada, data_entrada, status) VALUES (1, 1, '07:20:00', '06-09-2021', 0)
 

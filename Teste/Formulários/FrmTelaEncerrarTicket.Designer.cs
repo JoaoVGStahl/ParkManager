@@ -62,7 +62,7 @@ namespace Teste
             this.MaximizeBox = false;
             this.Name = "FrmTelaEncerrarTicket";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmTelaEncerrarTicket";
+            this.Text = "Confirmar pagamento - Park Manager";
             this.Load += new System.EventHandler(this.FrmTelaEncerrarTicket_Load);
             this.ResumeLayout(false);
 

@@ -65,12 +65,12 @@ namespace Teste
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.lblData = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblHora = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblUsername = new System.Windows.Forms.ToolStripStatusLabel();
             this.label13 = new System.Windows.Forms.Label();
-            this.lblData = new System.Windows.Forms.ToolStripStatusLabel();
             this.HoraData = new System.Windows.Forms.Timer(this.components);
-            this.lblHora = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -480,6 +480,22 @@ namespace Teste
             this.statusStrip1.Text = "statusStrip1";
             this.statusStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusStrip1_ItemClicked);
             // 
+            // lblData
+            // 
+            this.lblData.BackColor = System.Drawing.Color.Transparent;
+            this.lblData.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblData.Name = "lblData";
+            this.lblData.Size = new System.Drawing.Size(42, 20);
+            this.lblData.Text = "Data";
+            // 
+            // lblHora
+            // 
+            this.lblHora.BackColor = System.Drawing.Color.Transparent;
+            this.lblHora.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHora.Name = "lblHora";
+            this.lblHora.Size = new System.Drawing.Size(62, 20);
+            this.lblHora.Text = "Horario";
+            // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.BackColor = System.Drawing.Color.Transparent;
@@ -509,26 +525,10 @@ namespace Teste
             this.label13.Text = "* Informações obrigatórias";
             this.label13.Click += new System.EventHandler(this.label13_Click);
             // 
-            // lblData
-            // 
-            this.lblData.BackColor = System.Drawing.Color.Transparent;
-            this.lblData.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblData.Name = "lblData";
-            this.lblData.Size = new System.Drawing.Size(42, 20);
-            this.lblData.Text = "Data";
-            // 
             // HoraData
             // 
             this.HoraData.Interval = 1000;
             this.HoraData.Tick += new System.EventHandler(this.HoraData_Tick);
-            // 
-            // lblHora
-            // 
-            this.lblHora.BackColor = System.Drawing.Color.Transparent;
-            this.lblHora.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHora.Name = "lblHora";
-            this.lblHora.Size = new System.Drawing.Size(62, 20);
-            this.lblHora.Text = "Horario";
             // 
             // FrmTelaOperacao
             // 
@@ -557,7 +557,7 @@ namespace Teste
             this.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.Name = "FrmTelaOperacao";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Menu Principal - ParkManager ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmTelaOperacao_Load);
             this.panel1.ResumeLayout(false);
