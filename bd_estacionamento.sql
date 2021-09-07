@@ -2,12 +2,14 @@ CREATE DATABASE db_estacionamento
 USE db_estacionamento
 Set Language Português
 
+
 CREATE TABLE tb_estacionamento(
     id INT PRIMARY KEY IDENTITY,
     valor_hr DECIMAL(10,2),
 	tolerancia TIME(0),
 	qtd_vagas INT NOT NULL,
 	vagas_atuais INT NOT NULL,
+	caminho_log varchar(100) NOT NULL,
 	status SMALLINT NOT NULL
 )
 
@@ -61,6 +63,7 @@ CREATE TABLE tb_entrada(
    hr_entrada TIME(7) NOT NULL,
    data_entrada DATE,
    status SMALLINT NOT NULL,
+   FOREIGN KEY(ticket_id) REFERENCES tb_ticket,
    FOREIGN KEY (usuario_id) REFERENCES tb_usuario
 )
 
@@ -89,7 +92,10 @@ CREATE TABLE tb_fotos(
    ticket_id INT,
    foto_caminho VARCHAR(100) UNIQUE
    FOREIGN KEY (ticket_id) REFERENCES tb_ticket
-)
+) 
+
+
+  
 
 INSERT INTO tb_estacionamento (valor_hr,tolerancia, qtd_vagas, vagas_atuais, status) VALUES
 ('6', '00:15:00', '20', '0', '1');
@@ -173,3 +179,41 @@ SELECT * FROM tb_usuario
 Instancia: db-park-manager.ch2qj4cvcflx.us-east-1.rds.amazonaws.com,1433
 User: sa
 Senha: adminparkmanager
+
+
+--Procedure
+USE db_estacionamento
+GO
+
+CREATE PROCEDURE InsertTicket
+(
+@idCarro int output,
+@idCliente int output,
+@idTicket int output,
+@idUsuario int,
+@NomeCliente varchar(80),
+@Telefone varchar(14),
+@placa varchar(7),
+@marca varchar(25),
+@tipo varchar(20),
+@hr_entrada time(7),
+@data_entrada date,
+@caminhoFoto varchar(100)
+) 
+as
+BEGIN
+	SET @idCarro = (SELECT id_carro from tb_carro WHERE placa=@placa AND status=1)
+		IF(@idCarro = null)
+			BEGIN
+				INSERT INTO tb_cliente(nome,telefone,status) VALUES(@NomeCliente,@Telefone,1)
+				SET @idCliente = @@IDENTITY
+
+				INSERT INTO tb_carro(cliente_id,marca,tipo,placa,status) VALUES(@idCliente,@marca,@tipo,@placa, 1)
+				SET @idCarro = @@IDENTITY
+				return @idCarro
+			END
+		END
+	INSERT INTO tb_ticket(carro_id,status) VALUES(@idCarro,1)
+	SET @idTicket = @@IDENTITY
+	INSERT INTO tb_fotos (ticket_id, foto_caminho) VALUES (@idTicket,@caminhoFoto);
+	INSERT INTO tb_entrada(ticket_id, usuario_id, hr_entrada, data_entrada, status) VALUES (@idTicket, @idUsuario,@hr_entrada, @data_entrada, 1)
