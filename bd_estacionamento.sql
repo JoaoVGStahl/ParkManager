@@ -1,5 +1,8 @@
 CREATE DATABASE db_estacionamento
 USE db_estacionamento
+
+CREATE DATABASE db_estacionamento_bkp
+USE db_estacionamento_bkp
 Set Language Português
 
 
@@ -80,7 +83,8 @@ CREATE TABLE tb_saida(
    hr_saida TIME NOT NULL,
    data_saida DATE NOT NULL,
    forma_pgt_id INT NOT NULL,
-   total DECIMAL(10,2),
+   total DECIMAL(10,2) NOT NULL,
+   troco decimal(10,2) NOT NULL,
    status SMALLINT NOT NULL,
    FOREIGN KEY (ticket_id) REFERENCES tb_ticket,
    FOREIGN KEY (usuario_id) REFERENCES tb_usuario,
@@ -94,8 +98,6 @@ CREATE TABLE tb_fotos(
    FOREIGN KEY (ticket_id) REFERENCES tb_ticket
 ) 
 
-
-  
 
 INSERT INTO tb_estacionamento (valor_hr,tolerancia, qtd_vagas, vagas_atuais,caminho_log, status) VALUES
 ('6', '00:15:00', '20', '0','log.dat', '1');
@@ -166,17 +168,13 @@ INSERT INTO tb_usuario(login,senha,nivel,status) VALUES('admin','admin', 3, 1)
 
 INSERT INTO tb_usuario(login,senha,nivel,status) VALUES('joao.girardi','admin', 1, 1)
 
-INSERT INTO tb_entrada(ticket_id, usuario_id, hr_entrada, data_entrada, status) VALUES (1, 1, '07:20:00', '06-09-2021', 0)
+INSERT INTO tb_entrada(ticket_id, usuario_id, hr_entrada, data_entrada, status) VALUES (1, 1, '07:20:00', '06-09-2021', 1)
 
 INSERT INTO tb_forma_pgt (descricao,status) VALUES('PIX', 0)
 
 INSERT INTO tb_saida (ticket_id, usuario_id, hr_saida, data_saida, forma_pgt_id, total, status) VALUES (1, 1, '07:25:00', '06-09-2021', 1, 12, 0)
 
 INSERT INTO tb_fotos (id_fotos, ticket_id, foto_caminho) VALUES (1, 1, 'C:\ParkManager');
-
-SELECT * FROM tb_carro
-
-SELECT * FROM tb_usuario
 
 Instancia: db-park-manager.ch2qj4cvcflx.us-east-1.rds.amazonaws.com,1433
 User: sa
@@ -202,20 +200,20 @@ CREATE PROCEDURE InsertTicket
 @data_entrada date,
 @caminhoFoto varchar(100)
 ) 
+
 as
-BEGIN
-	SET @idCarro = (SELECT id_carro from tb_carro WHERE placa=@placa AND status=1)
-		IF(@idCarro = null)
+SET @idCarro = (SELECT id_carro from tb_carro WHERE placa=@placa AND status=1)
+			IF(@idCarro IS NULL)
 			BEGIN
 				INSERT INTO tb_cliente(nome,telefone,status) VALUES(@NomeCliente,@Telefone,1)
 				SET @idCliente = @@IDENTITY
 
 				INSERT INTO tb_carro(cliente_id,marca,tipo,placa,status) VALUES(@idCliente,@marca,@tipo,@placa, 1)
 				SET @idCarro = @@IDENTITY
-				return @idCarro
-			END
-		END
-	INSERT INTO tb_ticket(carro_id,status) VALUES(@idCarro,1)
-	SET @idTicket = @@IDENTITY
-	INSERT INTO tb_fotos (ticket_id, foto_caminho) VALUES (@idTicket,@caminhoFoto);
-	INSERT INTO tb_entrada(ticket_id, usuario_id, hr_entrada, data_entrada, status) VALUES (@idTicket, @idUsuario,@hr_entrada, @data_entrada, 1)
+			END	
+INSERT INTO tb_ticket(carro_id,status) VALUES(@idCarro,1)
+SET @idTicket = @@IDENTITY
+INSERT INTO tb_fotos (ticket_id, foto_caminho) VALUES (@idTicket,@caminhoFoto);
+INSERT INTO tb_entrada(ticket_id, usuario_id, hr_entrada, data_entrada, status) VALUES (@idTicket, @idUsuario,@hr_entrada, @data_entrada, 1)
+return @idTicket
+
