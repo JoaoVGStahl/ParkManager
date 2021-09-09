@@ -197,9 +197,9 @@ namespace Teste
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(13, 374);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(316, 33);
+            this.label7.Size = new System.Drawing.Size(309, 33);
             this.label7.TabIndex = 58;
-            this.label7.Text = "Horário permanencia:";
+            this.label7.Text = "Tempo permanência:";
             // 
             // button4
             // 
