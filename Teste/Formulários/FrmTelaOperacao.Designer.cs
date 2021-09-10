@@ -71,6 +71,8 @@ namespace Teste
             this.lblUsername = new System.Windows.Forms.ToolStripStatusLabel();
             this.label13 = new System.Windows.Forms.Label();
             this.HoraData = new System.Windows.Forms.Timer(this.components);
+            this.button1 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -330,6 +332,7 @@ namespace Teste
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.label10);
             this.panel2.Controls.Add(this.label9);
@@ -460,7 +463,7 @@ namespace Teste
             this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.button7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.Location = new System.Drawing.Point(1209, 24);
+            this.button7.Location = new System.Drawing.Point(1229, 24);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(130, 90);
             this.button7.TabIndex = 26;
@@ -531,12 +534,35 @@ namespace Teste
             this.HoraData.Interval = 1000;
             this.HoraData.Tick += new System.EventHandler(this.HoraData_Tick);
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(583, 426);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(47, 43);
+            this.button1.TabIndex = 28;
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // button9
+            // 
+            this.button9.BackColor = System.Drawing.Color.Transparent;
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button9.Image = ((System.Drawing.Image)(resources.GetObject("button9.Image")));
+            this.button9.Location = new System.Drawing.Point(1172, 46);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(47, 43);
+            this.button9.TabIndex = 29;
+            this.button9.UseVisualStyleBackColor = false;
+            // 
             // FrmTelaOperacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(1366, 745);
+            this.Controls.Add(this.button9);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label13);
@@ -621,6 +647,8 @@ namespace Teste
         private System.Windows.Forms.ToolStripStatusLabel lblData;
         private System.Windows.Forms.Timer HoraData;
         private System.Windows.Forms.ToolStripStatusLabel lblHora;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button9;
     }
 }
 

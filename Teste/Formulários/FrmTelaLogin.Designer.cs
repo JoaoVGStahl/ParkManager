@@ -43,7 +43,7 @@ namespace Teste
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.BackColor = System.Drawing.Color.Snow;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.txtUsuario);
             this.panel1.Controls.Add(this.txtSenha);
@@ -85,7 +85,7 @@ namespace Teste
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(365, -2);
+            this.button2.Location = new System.Drawing.Point(362, -2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(33, 37);
             this.button2.TabIndex = 6;
