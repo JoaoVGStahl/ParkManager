@@ -16,7 +16,7 @@ namespace Teste
         {
             InitializeComponent();
             FrmTelaLogin Frm = new FrmTelaLogin(this);
-            Frm.ShowDialog();
+            //Frm.ShowDialog();
             string DataCompleta = DateTime.Now.ToLongDateString();
             string Semana = DataCompleta.Substring(0, 1).ToUpper() + DataCompleta.Substring(1, DataCompleta.Length - 1);
             lblData.Text = Semana;
@@ -191,6 +191,17 @@ namespace Teste
         }
 
         private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnConfig_Click(object sender, EventArgs e)
+        {
+            FrmTelaConfig frm = new FrmTelaConfig();
+            frm.Show();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
         {
 
         }
