@@ -417,7 +417,7 @@ namespace Teste
                 //Query a ser executada no banco
                 string query = @"
                    SELECT 
-                        Car.tipo[Tipo], Car.marca[Marca], Car.placa[Placa], Cli.nome[Nome], Cli.telefone[Telefone], Entrada.hr_entrada[Hora Entrada],FORMAT(Entrada.data_entrada,'MM/dd/yyyy') AS[Data Entrada]
+                        Car.tipo[Tipo], Car.marca[Marca], Car.placa[Placa], Cli.nome[Nome], Cli.telefone[Telefone], Entrada.hr_entrada[Hora Entrada],FORMAT(Entrada.data_entrada,'dd/MM/yyyy') AS[Data Entrada]
                    FROM 
                         tb_ticket AS Ticket 
                    INNER JOIN

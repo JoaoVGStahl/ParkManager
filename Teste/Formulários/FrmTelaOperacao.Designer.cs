@@ -222,11 +222,11 @@ namespace Teste
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(209, 73);
+            this.label8.Location = new System.Drawing.Point(216, 3);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(250, 31);
+            this.label8.Size = new System.Drawing.Size(212, 31);
             this.label8.TabIndex = 3;
-            this.label8.Text = "Tickets em Aberto";
+            this.label8.Text = "Ticket Abertos:";
             this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // lblQtdTicket
@@ -234,7 +234,7 @@ namespace Teste
             this.lblQtdTicket.AutoSize = true;
             this.lblQtdTicket.BackColor = System.Drawing.Color.Transparent;
             this.lblQtdTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQtdTicket.Location = new System.Drawing.Point(281, 0);
+            this.lblQtdTicket.Location = new System.Drawing.Point(263, 35);
             this.lblQtdTicket.Name = "lblQtdTicket";
             this.lblQtdTicket.Size = new System.Drawing.Size(104, 73);
             this.lblQtdTicket.TabIndex = 10;
@@ -249,9 +249,9 @@ namespace Teste
             this.btnIniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIniciar.Image = ((System.Drawing.Image)(resources.GetObject("btnIniciar.Image")));
             this.btnIniciar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnIniciar.Location = new System.Drawing.Point(174, 7);
+            this.btnIniciar.Location = new System.Drawing.Point(174, 2);
             this.btnIniciar.Name = "btnIniciar";
-            this.btnIniciar.Size = new System.Drawing.Size(218, 72);
+            this.btnIniciar.Size = new System.Drawing.Size(218, 85);
             this.btnIniciar.TabIndex = 13;
             this.btnIniciar.Text = "Iniciar (F5)";
             this.btnIniciar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -267,9 +267,9 @@ namespace Teste
             this.btnEncerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEncerrar.Image = ((System.Drawing.Image)(resources.GetObject("btnEncerrar.Image")));
             this.btnEncerrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEncerrar.Location = new System.Drawing.Point(427, 7);
+            this.btnEncerrar.Location = new System.Drawing.Point(427, 2);
             this.btnEncerrar.Name = "btnEncerrar";
-            this.btnEncerrar.Size = new System.Drawing.Size(218, 72);
+            this.btnEncerrar.Size = new System.Drawing.Size(218, 85);
             this.btnEncerrar.TabIndex = 14;
             this.btnEncerrar.Text = "Encerrar Ticket (F4)";
             this.btnEncerrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -413,9 +413,9 @@ namespace Teste
             this.btnConfig.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConfig.FlatAppearance.BorderSize = 0;
             this.btnConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConfig.Location = new System.Drawing.Point(1222, 6);
+            this.btnConfig.Location = new System.Drawing.Point(1222, 2);
             this.btnConfig.Name = "btnConfig";
-            this.btnConfig.Size = new System.Drawing.Size(120, 70);
+            this.btnConfig.Size = new System.Drawing.Size(120, 85);
             this.btnConfig.TabIndex = 21;
             this.btnConfig.UseVisualStyleBackColor = false;
             this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
@@ -444,9 +444,10 @@ namespace Teste
             this.btnSair.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSair.FlatAppearance.BorderSize = 0;
             this.btnSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSair.Location = new System.Drawing.Point(12, 6);
+            this.btnSair.Image = ((System.Drawing.Image)(resources.GetObject("btnSair.Image")));
+            this.btnSair.Location = new System.Drawing.Point(12, 2);
             this.btnSair.Name = "btnSair";
-            this.btnSair.Size = new System.Drawing.Size(120, 70);
+            this.btnSair.Size = new System.Drawing.Size(120, 85);
             this.btnSair.TabIndex = 26;
             this.btnSair.UseVisualStyleBackColor = false;
             this.btnSair.Click += new System.EventHandler(this.button4_Click);
@@ -460,9 +461,9 @@ namespace Teste
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
             this.button8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button8.Location = new System.Drawing.Point(974, 7);
+            this.button8.Location = new System.Drawing.Point(974, 2);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(218, 72);
+            this.button8.Size = new System.Drawing.Size(218, 85);
             this.button8.TabIndex = 25;
             this.button8.Text = "Relatórios";
             this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -478,9 +479,9 @@ namespace Teste
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
             this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.Location = new System.Drawing.Point(721, 7);
+            this.button6.Location = new System.Drawing.Point(721, 2);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(218, 72);
+            this.button6.Size = new System.Drawing.Size(218, 85);
             this.button6.TabIndex = 24;
             this.button6.Text = "Tickets";
             this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -495,6 +496,7 @@ namespace Teste
             this.btnPesquisaTicket.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPesquisaTicket.FlatAppearance.BorderSize = 0;
             this.btnPesquisaTicket.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPesquisaTicket.Image = ((System.Drawing.Image)(resources.GetObject("btnPesquisaTicket.Image")));
             this.btnPesquisaTicket.Location = new System.Drawing.Point(1254, 25);
             this.btnPesquisaTicket.Name = "btnPesquisaTicket";
             this.btnPesquisaTicket.Size = new System.Drawing.Size(72, 69);

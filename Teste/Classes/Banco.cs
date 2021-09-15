@@ -70,10 +70,9 @@ namespace Teste
                 cmd.Parameters.AddWithValue("@placa", placa);
                 cmd.Parameters.AddWithValue("@marca", marca);
                 cmd.Parameters.AddWithValue("@tipo", tipo);
-                cmd.Parameters.AddWithValue("@hr_entrada", HoraAtual.ToLongTimeString());
-                cmd.Parameters.AddWithValue("@data_entrada", DataAtual.ToShortDateString());
+                cmd.Parameters.AddWithValue("@hr_entrada", HoraAtual);
+                cmd.Parameters.AddWithValue("@data_entrada", DataAtual);
                 cmd.Parameters.AddWithValue("@caminhoFoto", @"ParkManager\Fotos\008.png");
-                //Por hora mudar manualmente
                 //Retorna o IDTicket que acabou de ser criado
                 var returnParameter = cmd.Parameters.Add("@Return_value", SqlDbType.Int);
                 returnParameter.Direction = ParameterDirection.ReturnValue;
