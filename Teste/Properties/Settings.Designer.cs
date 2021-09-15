@@ -23,14 +23,40 @@ namespace Teste.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=PCSEMIGAMER;Initial Catalog=padoca;Persist Security Info=True;User ID" +
-            "=sa;Password=joaorotivGTA5")]
-        public string padocaConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("Server=db-park-manager.ch2qj4cvcflx.us-east-1.rds.amazonaws.com,1433;Database=db_" +
+            "estacionamento;User Id=sa;Password=adminparkmanager;")]
+        public string StringBanco {
             get {
-                return ((string)(this["padocaConnectionString"]));
+                return ((string)(this["StringBanco"]));
+            }
+            set {
+                this["StringBanco"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("root")]
+        public string UserRoot {
+            get {
+                return ((string)(this["UserRoot"]));
+            }
+            set {
+                this["UserRoot"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("root")]
+        public string SenhaRoot {
+            get {
+                return ((string)(this["SenhaRoot"]));
+            }
+            set {
+                this["SenhaRoot"] = value;
             }
         }
     }

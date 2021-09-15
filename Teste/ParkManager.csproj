@@ -75,6 +75,12 @@
     </Compile>
     <Compile Include="Classes\Globais.cs" />
     <Compile Include="Classes\Program.cs" />
+    <Compile Include="Formulários\FrmTelaConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulários\FrmTelaConfig.Designer.cs">
+      <DependentUpon>FrmTelaConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Formulários\FrmTelaEncerrarTicket.resx">
       <DependentUpon>FrmTelaEncerrarTicket.cs</DependentUpon>
@@ -87,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formulários\FrmTelaPesquisaTicket.resx">
       <DependentUpon>FrmTelaPesquisaTicket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulários\FrmTelaConfig.resx">
+      <DependentUpon>FrmTelaConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
