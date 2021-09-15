@@ -41,8 +41,10 @@ namespace Teste
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.lblQtdTicket = new System.Windows.Forms.Label();
             this.btnIniciar = new System.Windows.Forms.Button();
             this.btnEncerrar = new System.Windows.Forms.Button();
             this.lblPlaca = new System.Windows.Forms.Label();
@@ -58,7 +60,7 @@ namespace Teste
             this.lblMarca = new System.Windows.Forms.Label();
             this.btnConfig = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnSair = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.btnPesquisaTicket = new System.Windows.Forms.Button();
@@ -72,23 +74,21 @@ namespace Teste
             this.btnLimpa = new System.Windows.Forms.Button();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.splitter2 = new System.Windows.Forms.Splitter();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.mskTelefone = new System.Windows.Forms.MaskedTextBox();
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
+            this.panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel7.SuspendLayout();
-            this.panel9.SuspendLayout();
             this.panel10.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -190,13 +190,33 @@ namespace Teste
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.panel9);
             this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.label12);
+            this.panel1.Controls.Add(this.lblQtdTicket);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(661, 468);
             this.panel1.TabIndex = 12;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.pictureBox1);
+            this.panel9.Location = new System.Drawing.Point(3, 111);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(656, 346);
+            this.panel9.TabIndex = 36;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.ImageLocation = "";
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(656, 346);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // label8
             // 
@@ -209,16 +229,16 @@ namespace Teste
             this.label8.Text = "Tickets em Aberto";
             this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
-            // label12
+            // lblQtdTicket
             // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(281, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(104, 73);
-            this.label12.TabIndex = 10;
-            this.label12.Text = "25";
+            this.lblQtdTicket.AutoSize = true;
+            this.lblQtdTicket.BackColor = System.Drawing.Color.Transparent;
+            this.lblQtdTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQtdTicket.Location = new System.Drawing.Point(281, 0);
+            this.lblQtdTicket.Name = "lblQtdTicket";
+            this.lblQtdTicket.Size = new System.Drawing.Size(104, 73);
+            this.lblQtdTicket.TabIndex = 10;
+            this.lblQtdTicket.Text = "25";
             // 
             // btnIniciar
             // 
@@ -403,7 +423,7 @@ namespace Teste
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.Silver;
-            this.panel6.Controls.Add(this.button4);
+            this.panel6.Controls.Add(this.btnSair);
             this.panel6.Controls.Add(this.button8);
             this.panel6.Controls.Add(this.button6);
             this.panel6.Controls.Add(this.btnConfig);
@@ -416,20 +436,20 @@ namespace Teste
             this.panel6.TabIndex = 24;
             this.panel6.Paint += new System.Windows.Forms.PaintEventHandler(this.panel6_Paint);
             // 
-            // button4
+            // btnSair
             // 
-            this.button4.BackColor = System.Drawing.Color.Transparent;
-            this.button4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button4.BackgroundImage")));
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Location = new System.Drawing.Point(12, 6);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(120, 70);
-            this.button4.TabIndex = 26;
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btnSair.BackColor = System.Drawing.Color.Transparent;
+            this.btnSair.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSair.BackgroundImage")));
+            this.btnSair.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnSair.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSair.FlatAppearance.BorderSize = 0;
+            this.btnSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSair.Location = new System.Drawing.Point(12, 6);
+            this.btnSair.Name = "btnSair";
+            this.btnSair.Size = new System.Drawing.Size(120, 70);
+            this.btnSair.TabIndex = 26;
+            this.btnSair.UseVisualStyleBackColor = false;
+            this.btnSair.Click += new System.EventHandler(this.button4_Click);
             // 
             // button8
             // 
@@ -481,6 +501,7 @@ namespace Teste
             this.btnPesquisaTicket.TabIndex = 26;
             this.btnPesquisaTicket.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPesquisaTicket.UseVisualStyleBackColor = false;
+            this.btnPesquisaTicket.Click += new System.EventHandler(this.btnPesquisaTicket_Click);
             // 
             // statusStrip1
             // 
@@ -579,18 +600,6 @@ namespace Teste
             this.splitter2.TabIndex = 31;
             this.splitter2.TabStop = false;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.ImageLocation = "";
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(656, 346);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.DarkBlue;
@@ -649,14 +658,6 @@ namespace Teste
             this.panel8.Size = new System.Drawing.Size(1346, 10);
             this.panel8.TabIndex = 35;
             // 
-            // panel9
-            // 
-            this.panel9.Controls.Add(this.pictureBox1);
-            this.panel9.Location = new System.Drawing.Point(3, 111);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(656, 346);
-            this.panel9.TabIndex = 36;
-            // 
             // panel10
             // 
             this.panel10.BackColor = System.Drawing.Color.White;
@@ -693,6 +694,8 @@ namespace Teste
             this.Load += new System.EventHandler(this.FrmTelaOperacao_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel4.ResumeLayout(false);
@@ -701,10 +704,8 @@ namespace Teste
             this.panel6.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
-            this.panel9.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -740,8 +741,8 @@ namespace Teste
         private System.Windows.Forms.Button btnPesquisaTicket;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button btnSair;
+        private System.Windows.Forms.Label lblQtdTicket;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;

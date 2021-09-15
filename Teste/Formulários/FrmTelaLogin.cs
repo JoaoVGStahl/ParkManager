@@ -13,12 +13,11 @@ namespace Teste
 {
     public partial class FrmTelaLogin : Form
     {
-        Globais globais = new Globais();
         FrmTelaOperacao Frm;
-        public FrmTelaLogin(FrmTelaOperacao F)
+        public FrmTelaLogin()
         {
             InitializeComponent();
-            Frm = F;
+
         }
 
         private void button2_Click(object sender, EventArgs e)
