@@ -111,20 +111,5 @@ namespace Teste
             //Registra no Log que o sistema foi Inicializado
             Globais.RegistrarLog("Sistema foi Inicializado");
         }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void txtUsuario_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtSenha_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

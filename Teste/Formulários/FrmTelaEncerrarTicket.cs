@@ -12,6 +12,7 @@ namespace Teste
 {
     public partial class FrmTelaEncerrarTicket : Form
     {
+        Banco banco = new Banco();
         public FrmTelaEncerrarTicket()
         {
             InitializeComponent();
@@ -19,117 +20,32 @@ namespace Teste
 
         private void FrmTelaEncerrarTicket_Load(object sender, EventArgs e)
         {
-
+            CarregarComboFormaPagamento();
         }
-
-        private void label7_Click(object sender, EventArgs e)
+        private void CarregarComboFormaPagamento()
         {
+            DataTable dt = new DataTable();
+            string query = @"
+            SELECT 
+                id_pgt, descricao 
+            FROM 
+                tb_forma_pgt 
+            WHERE 
+                status=1";
+            dt.Clear();
+            dt = banco.QueryBancoSql(query);
+            cmbFormaPagamento.DataSource = null;
+            cmbFormaPagamento.DataSource = dt;
+            cmbFormaPagamento.ValueMember = "id_pgt";
+            cmbFormaPagamento.DisplayMember = "descricao";
+            cmbFormaPagamento.SelectedItem = null;
 
         }
+
 
         private void button3_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton3_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label13_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void button2_Click(object sender, EventArgs e)

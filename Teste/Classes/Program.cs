@@ -16,7 +16,7 @@ namespace Teste
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmTelaLogin());
+            Application.Run(new FrmTelaOperacao());
         }
     }
 }

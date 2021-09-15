@@ -102,7 +102,6 @@ namespace Teste
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(189, 39);
             this.cmbTipo.TabIndex = 0;
-            this.cmbTipo.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // txtPlaca
             // 
@@ -119,7 +118,6 @@ namespace Teste
             this.cmbMarca.Name = "cmbMarca";
             this.cmbMarca.Size = new System.Drawing.Size(190, 39);
             this.cmbMarca.TabIndex = 2;
-            this.cmbMarca.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // txtNome
             // 
@@ -127,7 +125,6 @@ namespace Teste
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(311, 38);
             this.txtNome.TabIndex = 5;
-            this.txtNome.TextChanged += new System.EventHandler(this.textBox2_TextChanged_1);
             // 
             // label1
             // 
@@ -139,7 +136,6 @@ namespace Teste
             this.label1.Size = new System.Drawing.Size(92, 31);
             this.label1.TabIndex = 7;
             this.label1.Text = "*Tipo:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -150,7 +146,6 @@ namespace Teste
             this.label2.Size = new System.Drawing.Size(108, 31);
             this.label2.TabIndex = 8;
             this.label2.Text = "*Placa:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -161,7 +156,6 @@ namespace Teste
             this.label3.Size = new System.Drawing.Size(99, 31);
             this.label3.TabIndex = 9;
             this.label3.Text = "Nome:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -172,7 +166,6 @@ namespace Teste
             this.label4.Size = new System.Drawing.Size(115, 31);
             this.label4.TabIndex = 10;
             this.label4.Text = "*Marca:";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label5
             // 
@@ -183,7 +176,6 @@ namespace Teste
             this.label5.Size = new System.Drawing.Size(137, 31);
             this.label5.TabIndex = 11;
             this.label5.Text = "Telefone:";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // panel1
             // 
@@ -196,7 +188,6 @@ namespace Teste
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(661, 468);
             this.panel1.TabIndex = 12;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // panel9
             // 
@@ -227,7 +218,6 @@ namespace Teste
             this.label8.Size = new System.Drawing.Size(212, 31);
             this.label8.TabIndex = 3;
             this.label8.Text = "Ticket Abertos:";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // lblQtdTicket
             // 
@@ -286,7 +276,6 @@ namespace Teste
             this.lblPlaca.TabIndex = 15;
             this.lblPlaca.Text = "PLACA";
             this.lblPlaca.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblPlaca.Click += new System.EventHandler(this.label6_Click);
             // 
             // lblTipo
             // 
@@ -299,7 +288,6 @@ namespace Teste
             this.lblTipo.Size = new System.Drawing.Size(67, 29);
             this.lblTipo.TabIndex = 17;
             this.lblTipo.Text = "Tipo";
-            this.lblTipo.Click += new System.EventHandler(this.label7_Click);
             // 
             // txtNomeP
             // 
@@ -330,7 +318,6 @@ namespace Teste
             this.lblHrEntrada.TabIndex = 24;
             this.lblHrEntrada.Text = "Horário de entrada";
             this.lblHrEntrada.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblHrEntrada.Click += new System.EventHandler(this.label9_Click);
             // 
             // label10
             // 
@@ -356,7 +343,6 @@ namespace Teste
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(662, 468);
             this.panel2.TabIndex = 18;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // btnLimpaP
             // 
@@ -368,7 +354,6 @@ namespace Teste
             this.btnLimpaP.Size = new System.Drawing.Size(51, 47);
             this.btnLimpaP.TabIndex = 28;
             this.btnLimpaP.UseVisualStyleBackColor = false;
-            this.btnLimpaP.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // panel4
             // 
@@ -403,7 +388,6 @@ namespace Teste
             this.lblMarca.TabIndex = 26;
             this.lblMarca.Text = "Marca";
             this.lblMarca.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblMarca.Click += new System.EventHandler(this.label11_Click);
             // 
             // btnConfig
             // 
@@ -434,7 +418,6 @@ namespace Teste
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1346, 88);
             this.panel6.TabIndex = 24;
-            this.panel6.Paint += new System.Windows.Forms.PaintEventHandler(this.panel6_Paint);
             // 
             // btnSair
             // 
@@ -518,7 +501,6 @@ namespace Teste
             this.statusStrip1.Size = new System.Drawing.Size(1346, 25);
             this.statusStrip1.TabIndex = 27;
             this.statusStrip1.Text = "statusStrip1";
-            this.statusStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusStrip1_ItemClicked);
             // 
             // lblData
             // 
@@ -551,7 +533,6 @@ namespace Teste
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(63, 20);
             this.lblUsername.Text = "Usuario";
-            this.lblUsername.Click += new System.EventHandler(this.lblUsername_Click);
             // 
             // label13
             // 
@@ -564,7 +545,6 @@ namespace Teste
             this.label13.Size = new System.Drawing.Size(357, 31);
             this.label13.TabIndex = 28;
             this.label13.Text = "* Informações obrigatórias";
-            this.label13.Click += new System.EventHandler(this.label13_Click);
             // 
             // HoraData
             // 

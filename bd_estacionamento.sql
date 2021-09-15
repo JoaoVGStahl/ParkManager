@@ -65,7 +65,7 @@ CREATE TABLE tb_entrada(
    id_entrada INT PRIMARY KEY IDENTITY,
    ticket_id INT NOT NULL,
    usuario_id INT NOT NULL,
-   hr_entrada TIME(7) NOT NULL,
+   hr_entrada TIME NOT NULL,
    data_entrada DATE,
    status SMALLINT NOT NULL,
    FOREIGN KEY(ticket_id) REFERENCES tb_ticket,
@@ -173,6 +173,12 @@ INSERT INTO tb_usuario(login,senha,nivel,status) VALUES('joao.girardi','admin', 
 INSERT INTO tb_entrada(ticket_id, usuario_id, hr_entrada, data_entrada, status) VALUES (1, 1, '07:20:00', '06-09-2021', 0)
 
 INSERT INTO tb_forma_pgt (descricao,status) VALUES('PIX', 1)
+
+INSERT INTO tb_forma_pgt (descricao,status) VALUES('Crédito', 1)
+
+INSERT INTO tb_forma_pgt (descricao,status) VALUES('Débito', 1)
+
+INSERT INTO tb_forma_pgt (descricao,status) VALUES('Dinheiro', 1)
 
 INSERT INTO tb_saida (ticket_id, usuario_id, hr_saida, data_saida, forma_pgt_id, total,troco, status) VALUES (1, 1, '07:25:00', '06-09-2021', 1, 12,0, 0)
 
@@ -302,3 +308,4 @@ ON
 	Car.cliente_id = Cli.id_cliente 
 WHERE Ticket.status=1
 
+SELECT id_pgt, descricao FROM tb_forma_pgt WHERE status=1
