@@ -41,8 +41,10 @@ namespace Teste
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.lblQtdTicket = new System.Windows.Forms.Label();
             this.btnIniciar = new System.Windows.Forms.Button();
             this.btnEncerrar = new System.Windows.Forms.Button();
             this.lblPlaca = new System.Windows.Forms.Label();
@@ -52,13 +54,14 @@ namespace Teste
             this.lblHrEntrada = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblHoraEntradaVisual = new System.Windows.Forms.Label();
             this.btnLimpaP = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.lblMarca = new System.Windows.Forms.Label();
             this.btnConfig = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnSair = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.btnPesquisaTicket = new System.Windows.Forms.Button();
@@ -72,41 +75,39 @@ namespace Teste
             this.btnLimpa = new System.Windows.Forms.Button();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.splitter2 = new System.Windows.Forms.Splitter();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.mskTelefone = new System.Windows.Forms.MaskedTextBox();
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
+            this.panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel7.SuspendLayout();
-            this.panel9.SuspendLayout();
             this.panel10.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmbTipo
             // 
-            this.cmbTipo.FormattingEnabled = true;
-            this.cmbTipo.Items.AddRange(new object[] {
-            "Carro",
-            "Moto"});
+            this.cmbTipo.BackColor = System.Drawing.Color.White;
+            this.cmbTipo.Enabled = false;
             this.cmbTipo.Location = new System.Drawing.Point(222, 41);
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(189, 39);
             this.cmbTipo.TabIndex = 0;
-            this.cmbTipo.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // txtPlaca
             // 
+            this.txtPlaca.BackColor = System.Drawing.Color.White;
+            this.txtPlaca.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPlaca.Location = new System.Drawing.Point(26, 41);
+            this.txtPlaca.MaxLength = 7;
             this.txtPlaca.Name = "txtPlaca";
             this.txtPlaca.Size = new System.Drawing.Size(183, 38);
             this.txtPlaca.TabIndex = 1;
@@ -114,20 +115,24 @@ namespace Teste
             // 
             // cmbMarca
             // 
+            this.cmbMarca.BackColor = System.Drawing.Color.White;
+            this.cmbMarca.Enabled = false;
             this.cmbMarca.FormattingEnabled = true;
+            this.cmbMarca.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.cmbMarca.IntegralHeight = false;
             this.cmbMarca.Location = new System.Drawing.Point(424, 41);
             this.cmbMarca.Name = "cmbMarca";
             this.cmbMarca.Size = new System.Drawing.Size(190, 39);
             this.cmbMarca.TabIndex = 2;
-            this.cmbMarca.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // txtNome
             // 
+            this.txtNome.BackColor = System.Drawing.Color.White;
+            this.txtNome.Enabled = false;
             this.txtNome.Location = new System.Drawing.Point(627, 41);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(311, 38);
             this.txtNome.TabIndex = 5;
-            this.txtNome.TextChanged += new System.EventHandler(this.textBox2_TextChanged_1);
             // 
             // label1
             // 
@@ -139,7 +144,6 @@ namespace Teste
             this.label1.Size = new System.Drawing.Size(92, 31);
             this.label1.TabIndex = 7;
             this.label1.Text = "*Tipo:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -150,7 +154,6 @@ namespace Teste
             this.label2.Size = new System.Drawing.Size(108, 31);
             this.label2.TabIndex = 8;
             this.label2.Text = "*Placa:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -161,7 +164,6 @@ namespace Teste
             this.label3.Size = new System.Drawing.Size(99, 31);
             this.label3.TabIndex = 9;
             this.label3.Text = "Nome:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -172,7 +174,6 @@ namespace Teste
             this.label4.Size = new System.Drawing.Size(115, 31);
             this.label4.TabIndex = 10;
             this.label4.Text = "*Marca:";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label5
             // 
@@ -183,55 +184,73 @@ namespace Teste
             this.label5.Size = new System.Drawing.Size(137, 31);
             this.label5.TabIndex = 11;
             this.label5.Text = "Telefone:";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.panel9);
             this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.label12);
+            this.panel1.Controls.Add(this.lblQtdTicket);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(661, 468);
             this.panel1.TabIndex = 12;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.pictureBox1);
+            this.panel9.Location = new System.Drawing.Point(3, 111);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(656, 346);
+            this.panel9.TabIndex = 36;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.ImageLocation = "";
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(656, 346);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(209, 73);
+            this.label8.Location = new System.Drawing.Point(216, 3);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(250, 31);
+            this.label8.Size = new System.Drawing.Size(212, 31);
             this.label8.TabIndex = 3;
-            this.label8.Text = "Tickets em Aberto";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
+            this.label8.Text = "Ticket Abertos:";
             // 
-            // label12
+            // lblQtdTicket
             // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(281, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(104, 73);
-            this.label12.TabIndex = 10;
-            this.label12.Text = "25";
+            this.lblQtdTicket.AutoSize = true;
+            this.lblQtdTicket.BackColor = System.Drawing.Color.Transparent;
+            this.lblQtdTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQtdTicket.Location = new System.Drawing.Point(263, 35);
+            this.lblQtdTicket.Name = "lblQtdTicket";
+            this.lblQtdTicket.Size = new System.Drawing.Size(104, 73);
+            this.lblQtdTicket.TabIndex = 10;
+            this.lblQtdTicket.Text = "25";
             // 
             // btnIniciar
             // 
             this.btnIniciar.BackColor = System.Drawing.Color.Transparent;
             this.btnIniciar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnIniciar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnIniciar.Enabled = false;
             this.btnIniciar.FlatAppearance.BorderSize = 0;
             this.btnIniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIniciar.Image = ((System.Drawing.Image)(resources.GetObject("btnIniciar.Image")));
             this.btnIniciar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnIniciar.Location = new System.Drawing.Point(174, 7);
+            this.btnIniciar.Location = new System.Drawing.Point(174, 2);
             this.btnIniciar.Name = "btnIniciar";
-            this.btnIniciar.Size = new System.Drawing.Size(218, 72);
+            this.btnIniciar.Size = new System.Drawing.Size(218, 85);
             this.btnIniciar.TabIndex = 13;
             this.btnIniciar.Text = "Iniciar (F5)";
             this.btnIniciar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -242,14 +261,15 @@ namespace Teste
             // 
             this.btnEncerrar.BackColor = System.Drawing.Color.Transparent;
             this.btnEncerrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEncerrar.Enabled = false;
             this.btnEncerrar.FlatAppearance.BorderSize = 0;
             this.btnEncerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEncerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEncerrar.Image = ((System.Drawing.Image)(resources.GetObject("btnEncerrar.Image")));
             this.btnEncerrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEncerrar.Location = new System.Drawing.Point(427, 7);
+            this.btnEncerrar.Location = new System.Drawing.Point(427, 2);
             this.btnEncerrar.Name = "btnEncerrar";
-            this.btnEncerrar.Size = new System.Drawing.Size(218, 72);
+            this.btnEncerrar.Size = new System.Drawing.Size(218, 85);
             this.btnEncerrar.TabIndex = 14;
             this.btnEncerrar.Text = "Encerrar Ticket (F4)";
             this.btnEncerrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -266,7 +286,6 @@ namespace Teste
             this.lblPlaca.TabIndex = 15;
             this.lblPlaca.Text = "PLACA";
             this.lblPlaca.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblPlaca.Click += new System.EventHandler(this.label6_Click);
             // 
             // lblTipo
             // 
@@ -274,15 +293,15 @@ namespace Teste
             this.lblTipo.BackColor = System.Drawing.Color.Transparent;
             this.lblTipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTipo.ForeColor = System.Drawing.Color.White;
-            this.lblTipo.Location = new System.Drawing.Point(6, -1);
+            this.lblTipo.Location = new System.Drawing.Point(-1, -1);
             this.lblTipo.Name = "lblTipo";
             this.lblTipo.Size = new System.Drawing.Size(67, 29);
             this.lblTipo.TabIndex = 17;
             this.lblTipo.Text = "Tipo";
-            this.lblTipo.Click += new System.EventHandler(this.label7_Click);
             // 
             // txtNomeP
             // 
+            this.txtNomeP.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtNomeP.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNomeP.Location = new System.Drawing.Point(70, 238);
             this.txtNomeP.Name = "txtNomeP";
@@ -293,24 +312,24 @@ namespace Teste
             // 
             // txtTelefoneP
             // 
+            this.txtTelefoneP.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtTelefoneP.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTelefoneP.Location = new System.Drawing.Point(335, 238);
             this.txtTelefoneP.Name = "txtTelefoneP";
             this.txtTelefoneP.ReadOnly = true;
             this.txtTelefoneP.Size = new System.Drawing.Size(251, 47);
             this.txtTelefoneP.TabIndex = 21;
-            this.txtTelefoneP.Text = "(17)99163-7409";
+            this.txtTelefoneP.Text = "Telefone";
             // 
             // lblHrEntrada
             // 
             this.lblHrEntrada.Font = new System.Drawing.Font("Microsoft Sans Serif", 27F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHrEntrada.Location = new System.Drawing.Point(96, 303);
+            this.lblHrEntrada.Location = new System.Drawing.Point(97, 304);
             this.lblHrEntrada.Name = "lblHrEntrada";
             this.lblHrEntrada.Size = new System.Drawing.Size(447, 82);
             this.lblHrEntrada.TabIndex = 24;
             this.lblHrEntrada.Text = "Horário de entrada";
             this.lblHrEntrada.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblHrEntrada.Click += new System.EventHandler(this.label9_Click);
             // 
             // label10
             // 
@@ -325,6 +344,7 @@ namespace Teste
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.lblHoraEntradaVisual);
             this.panel2.Controls.Add(this.btnLimpaP);
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.label10);
@@ -336,11 +356,26 @@ namespace Teste
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(662, 468);
             this.panel2.TabIndex = 18;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // lblHoraEntradaVisual
+            // 
+            this.lblHoraEntradaVisual.AutoSize = true;
+            this.lblHoraEntradaVisual.BackColor = System.Drawing.Color.Transparent;
+            this.lblHoraEntradaVisual.Font = new System.Drawing.Font("Microsoft Sans Serif", 27F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHoraEntradaVisual.Location = new System.Drawing.Point(163, 288);
+            this.lblHoraEntradaVisual.Name = "lblHoraEntradaVisual";
+            this.lblHoraEntradaVisual.Size = new System.Drawing.Size(327, 40);
+            this.lblHoraEntradaVisual.TabIndex = 29;
+            this.lblHoraEntradaVisual.Text = "Horário da entrada:";
+            this.lblHoraEntradaVisual.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblHoraEntradaVisual.Visible = false;
             // 
             // btnLimpaP
             // 
             this.btnLimpaP.BackColor = System.Drawing.Color.Transparent;
+            this.btnLimpaP.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLimpaP.Enabled = false;
+            this.btnLimpaP.FlatAppearance.BorderSize = 0;
             this.btnLimpaP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLimpaP.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpaP.Image")));
             this.btnLimpaP.Location = new System.Drawing.Point(570, 137);
@@ -348,7 +383,7 @@ namespace Teste
             this.btnLimpaP.Size = new System.Drawing.Size(51, 47);
             this.btnLimpaP.TabIndex = 28;
             this.btnLimpaP.UseVisualStyleBackColor = false;
-            this.btnLimpaP.Click += new System.EventHandler(this.button1_Click_1);
+            this.btnLimpaP.Click += new System.EventHandler(this.btnLimpaP_Click);
             // 
             // panel4
             // 
@@ -383,7 +418,6 @@ namespace Teste
             this.lblMarca.TabIndex = 26;
             this.lblMarca.Text = "Marca";
             this.lblMarca.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblMarca.Click += new System.EventHandler(this.label11_Click);
             // 
             // btnConfig
             // 
@@ -393,9 +427,9 @@ namespace Teste
             this.btnConfig.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConfig.FlatAppearance.BorderSize = 0;
             this.btnConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConfig.Location = new System.Drawing.Point(1222, 6);
+            this.btnConfig.Location = new System.Drawing.Point(1222, 2);
             this.btnConfig.Name = "btnConfig";
-            this.btnConfig.Size = new System.Drawing.Size(120, 70);
+            this.btnConfig.Size = new System.Drawing.Size(120, 85);
             this.btnConfig.TabIndex = 21;
             this.btnConfig.UseVisualStyleBackColor = false;
             this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
@@ -403,7 +437,7 @@ namespace Teste
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.Silver;
-            this.panel6.Controls.Add(this.button4);
+            this.panel6.Controls.Add(this.btnSair);
             this.panel6.Controls.Add(this.button8);
             this.panel6.Controls.Add(this.button6);
             this.panel6.Controls.Add(this.btnConfig);
@@ -414,22 +448,22 @@ namespace Teste
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1346, 88);
             this.panel6.TabIndex = 24;
-            this.panel6.Paint += new System.Windows.Forms.PaintEventHandler(this.panel6_Paint);
             // 
-            // button4
+            // btnSair
             // 
-            this.button4.BackColor = System.Drawing.Color.Transparent;
-            this.button4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button4.BackgroundImage")));
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Location = new System.Drawing.Point(12, 6);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(120, 70);
-            this.button4.TabIndex = 26;
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btnSair.BackColor = System.Drawing.Color.Transparent;
+            this.btnSair.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSair.BackgroundImage")));
+            this.btnSair.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnSair.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSair.FlatAppearance.BorderSize = 0;
+            this.btnSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSair.Image = ((System.Drawing.Image)(resources.GetObject("btnSair.Image")));
+            this.btnSair.Location = new System.Drawing.Point(12, 2);
+            this.btnSair.Name = "btnSair";
+            this.btnSair.Size = new System.Drawing.Size(120, 85);
+            this.btnSair.TabIndex = 26;
+            this.btnSair.UseVisualStyleBackColor = false;
+            this.btnSair.Click += new System.EventHandler(this.button4_Click);
             // 
             // button8
             // 
@@ -440,9 +474,9 @@ namespace Teste
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
             this.button8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button8.Location = new System.Drawing.Point(974, 7);
+            this.button8.Location = new System.Drawing.Point(974, 2);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(218, 72);
+            this.button8.Size = new System.Drawing.Size(218, 85);
             this.button8.TabIndex = 25;
             this.button8.Text = "Relatórios";
             this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -458,9 +492,9 @@ namespace Teste
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
             this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.Location = new System.Drawing.Point(721, 7);
+            this.button6.Location = new System.Drawing.Point(721, 2);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(218, 72);
+            this.button6.Size = new System.Drawing.Size(218, 85);
             this.button6.TabIndex = 24;
             this.button6.Text = "Tickets";
             this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -473,14 +507,17 @@ namespace Teste
             this.btnPesquisaTicket.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPesquisaTicket.BackgroundImage")));
             this.btnPesquisaTicket.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnPesquisaTicket.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPesquisaTicket.Enabled = false;
             this.btnPesquisaTicket.FlatAppearance.BorderSize = 0;
             this.btnPesquisaTicket.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPesquisaTicket.Image = ((System.Drawing.Image)(resources.GetObject("btnPesquisaTicket.Image")));
             this.btnPesquisaTicket.Location = new System.Drawing.Point(1254, 25);
             this.btnPesquisaTicket.Name = "btnPesquisaTicket";
             this.btnPesquisaTicket.Size = new System.Drawing.Size(72, 69);
             this.btnPesquisaTicket.TabIndex = 26;
             this.btnPesquisaTicket.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPesquisaTicket.UseVisualStyleBackColor = false;
+            this.btnPesquisaTicket.Click += new System.EventHandler(this.btnPesquisaTicket_Click);
             // 
             // statusStrip1
             // 
@@ -495,7 +532,6 @@ namespace Teste
             this.statusStrip1.Size = new System.Drawing.Size(1346, 25);
             this.statusStrip1.TabIndex = 27;
             this.statusStrip1.Text = "statusStrip1";
-            this.statusStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusStrip1_ItemClicked);
             // 
             // lblData
             // 
@@ -528,20 +564,18 @@ namespace Teste
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(63, 20);
             this.lblUsername.Text = "Usuario";
-            this.lblUsername.Click += new System.EventHandler(this.lblUsername_Click);
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.Crimson;
+            this.label13.ForeColor = System.Drawing.Color.Firebrick;
             this.label13.Location = new System.Drawing.Point(10, 79);
             this.label13.Name = "label13";
             this.label13.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label13.Size = new System.Drawing.Size(357, 31);
             this.label13.TabIndex = 28;
             this.label13.Text = "* Informações obrigatórias";
-            this.label13.Click += new System.EventHandler(this.label13_Click);
             // 
             // HoraData
             // 
@@ -551,6 +585,9 @@ namespace Teste
             // btnLimpa
             // 
             this.btnLimpa.BackColor = System.Drawing.Color.Transparent;
+            this.btnLimpa.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLimpa.Enabled = false;
+            this.btnLimpa.FlatAppearance.BorderSize = 0;
             this.btnLimpa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLimpa.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpa.Image")));
             this.btnLimpa.Location = new System.Drawing.Point(1177, 39);
@@ -578,18 +615,6 @@ namespace Teste
             this.splitter2.Size = new System.Drawing.Size(1346, 3);
             this.splitter2.TabIndex = 31;
             this.splitter2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.ImageLocation = "";
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(656, 346);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // panel3
             // 
@@ -624,6 +649,8 @@ namespace Teste
             // 
             // mskTelefone
             // 
+            this.mskTelefone.BackColor = System.Drawing.Color.White;
+            this.mskTelefone.Enabled = false;
             this.mskTelefone.Location = new System.Drawing.Point(951, 41);
             this.mskTelefone.Mask = "(99)00000-0000";
             this.mskTelefone.Name = "mskTelefone";
@@ -648,14 +675,6 @@ namespace Teste
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(1346, 10);
             this.panel8.TabIndex = 35;
-            // 
-            // panel9
-            // 
-            this.panel9.Controls.Add(this.pictureBox1);
-            this.panel9.Location = new System.Drawing.Point(3, 111);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(656, 346);
-            this.panel9.TabIndex = 36;
             // 
             // panel10
             // 
@@ -690,9 +709,12 @@ namespace Teste
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "0";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmTelaOperacao_FormClosing);
             this.Load += new System.EventHandler(this.FrmTelaOperacao_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel4.ResumeLayout(false);
@@ -701,10 +723,8 @@ namespace Teste
             this.panel6.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
-            this.panel9.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -740,8 +760,8 @@ namespace Teste
         private System.Windows.Forms.Button btnPesquisaTicket;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button btnSair;
+        private System.Windows.Forms.Label lblQtdTicket;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
@@ -762,6 +782,7 @@ namespace Teste
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Label lblHoraEntradaVisual;
     }
 }
 

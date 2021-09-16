@@ -2,13 +2,14 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Teste.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="padocaConnectionString" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=PCSEMIGAMER;Initial Catalog=padoca;Persist Security Info=True;User ID=sa;Password=joaorotivGTA5&lt;/ConnectionString&gt;
-  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
-&lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=PCSEMIGAMER;Initial Catalog=padoca;Persist Security Info=True;User ID=sa;Password=joaorotivGTA5</Value>
+    <Setting Name="StringBanco" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Server=db-park-manager.ch2qj4cvcflx.us-east-1.rds.amazonaws.com,1433;Database=db_estacionamento;User Id=sa;Password=adminparkmanager;</Value>
+    </Setting>
+    <Setting Name="UserRoot" Type="System.String" Scope="User">
+      <Value Profile="(Default)">root</Value>
+    </Setting>
+    <Setting Name="SenhaRoot" Type="System.String" Scope="User">
+      <Value Profile="(Default)">root</Value>
     </Setting>
   </Settings>
 </SettingsFile>

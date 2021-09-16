@@ -1,79 +1,105 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.Net;
 
 namespace Teste
 {
-    class Globais
+    public static class Globais
     {
-        private string ConnString { get; set; }
+        //Obtem o id do usuario
+        private static int idusuario;
 
-        private int IdUsuario { get; set; }
-        private string Login { get; set; }
-
-        private int Nivel { get; set; }
-
-        private int UserStatus { get; set; }
-
-        private decimal ValorHora { get; set; }
-
-        private TimeSpan Tolerancia { get; set; }
-
-        private int QuantidadeVagas { get; set; }
-
-        private int VagaAtuais { get; set; }
-
-        private int StatusEstacionamento { get; set; }
-
-        public string CaminhoArquivoLog { get; set; }
-
-        public void setIdUsuario(int IdUsuario)
+        public static int IdUsuario
         {
-            this.IdUsuario = IdUsuario;
+            get { return idusuario; }
+            set { idusuario = value; }
         }
-        public int getIdUsuario(int IdUsuario)
+        //Obtem o Login
+        private static string login = "";
+
+        public static string Login
         {
-            return this.IdUsuario;
+            get { return login; }
+            set { login = value; }
         }
-        public void setLogin(string Login)
+        //Obtem o nivel de acesso do usuario
+        private static int nivel;
+
+        public static int Nivel
         {
-            this.Login = Login;
+            get { return nivel; }
+            set { nivel = value; }
         }
-        public string getLogin(string Login)
+        //Obtem o status do usuario
+        private static int userstatus;
+
+        public static int UserStatus
         {
-            return this.Login;
+            get { return userstatus; }
+            set { userstatus = value; }
         }
-        public void setNivel(int Nivel)
+        //Obtem o Valor da Hora
+        private static decimal valorhora;
+
+        public static decimal ValorHora
         {
-            this.Nivel = Nivel;
+            get { return valorhora; }
+            set { valorhora = value; }
         }
-        public int getNivel(int Nivel)
+        //Obtem o tempo de tolerancia
+        private static TimeSpan tolerancia;
+
+        public static TimeSpan Tolerencia
         {
-            return this.Nivel;
+            get { return tolerancia; }
+            set { tolerancia = value; }
         }
-        public void setUserStatus(int UserStatus)
+        //Obtem a quantidade total de vagas
+        private static int quantidadevagas;
+
+        public static int QuantidadeVagas
         {
-            this.UserStatus = UserStatus;
-        }
-        public int getUserStatus(int UserStatus)
-        {
-            return this.UserStatus;
+            get { return quantidadevagas; }
+            set { quantidadevagas = value; }
         }
 
-        public void RegistrarLog(string Action)
+        private static int vagasatuais;
+
+        public static int VagasAtuais
         {
-            using(StreamWriter outputFile = new StreamWriter("log.dat", true))
+            get { return vagasatuais; }
+            set { vagasatuais = value; }
+        }
+        //Obtem o caminho do arquivo de log
+        private static string caminhoarquivolog;
+
+        public static string CaminhoArquivoLog
+        {
+            get { return caminhoarquivolog; }
+            set { caminhoarquivolog = value; }
+        }
+        private static int idticket;
+
+        public static int IdTicket
+        {
+            get {  return idticket; }
+            set { idticket = value; }
+        }
+        //Função generica para registrar as ações do usuario
+        public static void RegistrarLog(string Action)
+        {
+            //Define o caminho e escreve no arquivp
+            using (StreamWriter outputFile = new StreamWriter("log.dat", true))
             {
+                //Obtem a data atual, hora e a máquina.
                 string data = DateTime.Now.ToShortDateString();
                 string hora = DateTime.Now.ToLongTimeString();
                 string maquina = Dns.GetHostName();
-
-                outputFile.WriteLine(data + " " + hora + " " + "(" + maquina + "): " + Action);
+                //Escreve no arquivo
+                outputFile.WriteLine(data + " " + hora + " " + "(" + maquina + "):" + Action);
             }
         }
     }
 }
+
+

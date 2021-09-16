@@ -1,6 +1,11 @@
 CREATE DATABASE db_estacionamento
 USE db_estacionamento
+
+CREATE DATABASE db_estacionamento_bkp
+USE db_estacionamento_bkp
 Set Language Português
+SELECT @@language
+
 
 
 CREATE TABLE tb_estacionamento(
@@ -37,7 +42,7 @@ CREATE TABLE tb_carro(
 	cliente_id INT NOT NULL,
 	marca VARCHAR(25),
 	tipo VARCHAR(20),
-	placa VARCHAR(7) NOT NULL,
+	placa VARCHAR(8) NOT NULL,
 	status SMALLINT NOT NULL,
 	FOREIGN KEY(cliente_id) REFERENCES tb_cliente,
 )
@@ -60,7 +65,7 @@ CREATE TABLE tb_entrada(
    id_entrada INT PRIMARY KEY IDENTITY,
    ticket_id INT NOT NULL,
    usuario_id INT NOT NULL,
-   hr_entrada TIME(7) NOT NULL,
+   hr_entrada TIME NOT NULL,
    data_entrada DATE,
    status SMALLINT NOT NULL,
    FOREIGN KEY(ticket_id) REFERENCES tb_ticket,
@@ -80,7 +85,8 @@ CREATE TABLE tb_saida(
    hr_saida TIME NOT NULL,
    data_saida DATE NOT NULL,
    forma_pgt_id INT NOT NULL,
-   total DECIMAL(10,2),
+   total DECIMAL(10,2) NOT NULL,
+   troco decimal(10,2) NOT NULL,
    status SMALLINT NOT NULL,
    FOREIGN KEY (ticket_id) REFERENCES tb_ticket,
    FOREIGN KEY (usuario_id) REFERENCES tb_usuario,
@@ -88,14 +94,12 @@ CREATE TABLE tb_saida(
 )
 
 CREATE TABLE tb_fotos(
-   id_fotos INT PRIMARY KEY,
+   id_fotos INT PRIMARY KEY IDENTITY,
    ticket_id INT,
-   foto_caminho VARCHAR(100) UNIQUE
+   foto_caminho VARCHAR(100)
    FOREIGN KEY (ticket_id) REFERENCES tb_ticket
 ) 
 
-
-  
 
 INSERT INTO tb_estacionamento (valor_hr,tolerancia, qtd_vagas, vagas_atuais,caminho_log, status) VALUES
 ('6', '00:15:00', '20', '0','log.dat', '1');
@@ -162,36 +166,45 @@ INSERT INTO tb_carro(cliente_id,marca,tipo,placa,status) VALUES(1, 'Audi','Carro
 
 INSERT INTO tb_ticket(carro_id,status) VALUES(1,0)
 
-INSERT INTO tb_usuario(login,senha,nivel,status) VALUES('admin','admin', 3, 1)
+INSERT INTO tb_usuario(login,senha,nivel,status) VALUES('admin','admin', 3, 0)
 
 INSERT INTO tb_usuario(login,senha,nivel,status) VALUES('joao.girardi','admin', 1, 1)
 
 INSERT INTO tb_entrada(ticket_id, usuario_id, hr_entrada, data_entrada, status) VALUES (1, 1, '07:20:00', '06-09-2021', 0)
 
-INSERT INTO tb_forma_pgt (descricao,status) VALUES('PIX', 0)
+INSERT INTO tb_forma_pgt (descricao,status) VALUES('PIX', 1)
 
-INSERT INTO tb_saida (ticket_id, usuario_id, hr_saida, data_saida, forma_pgt_id, total, status) VALUES (1, 1, '07:25:00', '06-09-2021', 1, 12, 0)
+INSERT INTO tb_forma_pgt (descricao,status) VALUES('Crédito', 1)
 
-INSERT INTO tb_fotos (id_fotos, ticket_id, foto_caminho) VALUES (1, 1, 'C:\ParkManager');
+INSERT INTO tb_forma_pgt (descricao,status) VALUES('Débito', 1)
 
-SELECT * FROM tb_carro
+INSERT INTO tb_forma_pgt (descricao,status) VALUES('Dinheiro', 1)
 
-SELECT * FROM tb_usuario
+INSERT INTO tb_saida (ticket_id, usuario_id, hr_saida, data_saida, forma_pgt_id, total,troco, status) VALUES (1, 1, '07:25:00', '06-09-2021', 1, 12,0, 0)
+
+INSERT INTO tb_fotos (ticket_id, foto_caminho) VALUES (1, 'C:\ParkManager\Fotos\');
+
+SELECT * FROM tb_ticket
+
+SELECT * FROM tb_entrada
 
 Instancia: db-park-manager.ch2qj4cvcflx.us-east-1.rds.amazonaws.com,1433
 User: sa
 Senha: adminparkmanager
 
-
+--StrConnection
+Server=db-park-manager.ch2qj4cvcflx.us-east-1.rds.amazonaws.com,1433;Database=db_estacionamento;User Id=sa;Password=adminparkmanager;
 --Procedure
-USE db_estacionamento
+USE [db_estacionamento]
+GO
+/****** Object:  StoredProcedure [dbo].[InsertTicket]    Script Date: 10/09/2021 09:31:24 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE PROCEDURE InsertTicket
+CREATE PROCEDURE [dbo].[InsertTicket]
 (
-@idCarro int output,
-@idCliente int output,
-@idTicket int output,
 @idUsuario int,
 @NomeCliente varchar(80),
 @Telefone varchar(14),
@@ -202,20 +215,99 @@ CREATE PROCEDURE InsertTicket
 @data_entrada date,
 @caminhoFoto varchar(100)
 ) 
-as
-BEGIN
-	SET @idCarro = (SELECT id_carro from tb_carro WHERE placa=@placa AND status=1)
-		IF(@idCarro = null)
-			BEGIN
-				INSERT INTO tb_cliente(nome,telefone,status) VALUES(@NomeCliente,@Telefone,1)
-				SET @idCliente = @@IDENTITY
+AS 
+DECLARE @idCarro int,
+@idTicket int,
+@idCliente int,
+@NomeClienteTB varchar(80)
 
-				INSERT INTO tb_carro(cliente_id,marca,tipo,placa,status) VALUES(@idCliente,@marca,@tipo,@placa, 1)
-				SET @idCarro = @@IDENTITY
-				return @idCarro
+SET @idCarro = (SELECT id_carro from tb_carro WHERE placa=@placa AND status=1)
+			IF(@idCarro IS NULL)
+			BEGIN
+				IF(@NomeCliente ='Convidado')
+				BEGIN
+					INSERT INTO tb_carro(cliente_id,marca,tipo,placa,status) VALUES(1,@marca,@tipo,@placa, 1)
+					SET @idCarro = @@IDENTITY
+				END
+				ELSE
+				BEGIN
+					INSERT INTO tb_cliente(nome,telefone,status) VALUES(@NomeCliente,@Telefone,1)
+					SET @idCliente = @@IDENTITY
+
+					INSERT INTO tb_carro(cliente_id,marca,tipo,placa,status) VALUES(@idCliente,@marca,@tipo,@placa, 1)
+					SET @idCarro = @@IDENTITY
+				END
+			END	
+			ELSE
+			BEGIN
+			SET @NomeClienteTB = (SELECT Cli.nome[Nome] FROM tb_cliente as Cli INNER JOIN tb_carro as Car ON  Cli.id_cliente = Car.cliente_id AND Car.id_carro=@idCarro)
+				IF(@NomeClienteTB != @NomeCliente)
+				BEGIN
+					UPDATE Cli SET nome=@NomeCliente,telefone=@Telefone FROM tb_cliente as Cli INNER JOIN tb_carro as Car ON Cli.id_cliente = Car.cliente_id AND Car.id_Carro = @idCarro
+				END
 			END
-		END
-	INSERT INTO tb_ticket(carro_id,status) VALUES(@idCarro,1)
-	SET @idTicket = @@IDENTITY
-	INSERT INTO tb_fotos (ticket_id, foto_caminho) VALUES (@idTicket,@caminhoFoto);
-	INSERT INTO tb_entrada(ticket_id, usuario_id, hr_entrada, data_entrada, status) VALUES (@idTicket, @idUsuario,@hr_entrada, @data_entrada, 1)
+INSERT INTO tb_ticket(carro_id,status) VALUES(@idCarro,1)
+SET @idTicket = @@IDENTITY
+INSERT INTO tb_fotos (ticket_id, foto_caminho) VALUES (@idTicket,@caminhoFoto);
+INSERT INTO tb_entrada(ticket_id, usuario_id, hr_entrada, data_entrada, status) VALUES (@idTicket, @idUsuario,@hr_entrada, @data_entrada, 1)
+return @idTicket
+
+--SELECT ComboBox Tipo
+SELECT id_automovel, automovel from tb_automovel ORDER BY  automovel desc
+
+--SELECT ComboBox Marca
+SELECT A.automovel[Tipo], M.marca [Marca] FROM tb_automovel as A INNER JOIN tb_marca as M ON A.id_automovel = M.id_automovel AND A.automovel = 'Carro'
+
+--SELECT Ticket count ticket aberto
+SELECT COUNT(id_ticket) FROM tb_ticket WHERE status=1
+
+SELECT * FROM tb_ticket where status =1
+--Select Ticket para tela de operação
+SELECT Ticket.id_ticket[#Ticket],Car.tipo[Tipo], Car.marca[Marca], Car.placa[Placa], Cli.nome[Nome], Cli.telefone[Telefone], CONVERT(varchar, Entrada.hr_entrada,8) AS [Hora Entrada],CONVERT(varchar,Entrada.data_entrada,103) AS[Data Entrada] FROM tb_ticket AS Ticket INNER JOIN tb_carro AS Car ON Ticket.carro_id = Car.id_Carro INNER JOIN tb_cliente AS Cli ON Car.cliente_id = Cli.id_cliente INNER JOIN tb_entrada AS Entrada ON Entrada.ticket_id = Ticket.id_ticket AND Ticket.status=1
+
+SELECT Ticket.id_ticket[#Ticket], CONVERT(varchar, Entrada.hr_entrada,8) AS [Hora Entrada],CONVERT(varchar,Entrada.data_entrada,103) AS[Data Entrada] FROM tb_ticket AS Ticket  INNER JOIN tb_entrada AS Entrada ON Entrada.ticket_id = Ticket.id_ticket AND Ticket.id_ticket=5
+
+
+SELECT 
+	Ticket.id_ticket[#Ticket], Entrada.hr_entrada[Hora Entrada],Entrada.data_entrada[Data Entrada], Usuario.login[Usuario Entrada], Car.placa[Placa], Car.tipo[Tipo], Car.marca[Marca], Cli.nome[Nome], Cli.Telefone[Telefone], Saida.hr_saida[Hora Saida], Saida.data_saida[Data Saida], Usuario.login[Usuario Saida], Saida.Total[Total] 
+FROM 
+	tb_ticket AS Ticket
+INNER JOIN tb_entrada AS Entrada 
+ON  
+	Entrada.ticket_id = Ticket.id_ticket
+INNER JOIN tb_usuario AS Usuario
+ON
+	Entrada.usuario_id = Usuario.id_usuario
+INNER JOIN tb_carro AS Car
+ON 
+	Ticket.carro_id = Car.id_carro
+INNER JOIN tb_cliente AS Cli
+ON 
+	Car.cliente_id = Cli.id_cliente 
+INNER JOIN tb_saida AS Saida
+ON 
+	Saida.ticket_id = Ticket.id_ticket
+INNER JOIN tb_forma_pgt AS Forma
+ON 
+	Saida.forma_pgt_id = Forma.id_pgt
+WHERE Ticket.id_ticket=1 AND  Car.placa='ABC1234'
+
+SELECT 
+	Ticket.id_ticket[#Ticket], Entrada.hr_entrada[Hora Entrada],Entrada.data_entrada[Data Entrada], Usuario.login[Usuario Entrada], Car.placa[Placa], Car.tipo[Tipo], Car.marca[Marca], Cli.nome[Nome], Cli.Telefone[Telefone]
+FROM
+	tb_ticket AS Ticket
+INNER JOIN tb_entrada AS Entrada 
+ON  
+	Entrada.ticket_id = Ticket.id_ticket
+INNER JOIN tb_usuario AS Usuario
+ON
+	Entrada.usuario_id = Usuario.id_usuario
+INNER JOIN tb_carro AS Car
+ON 
+	Ticket.carro_id = Car.id_carro
+INNER JOIN tb_cliente AS Cli
+ON 
+	Car.cliente_id = Cli.id_cliente 
+WHERE Ticket.status=1
+
+SELECT id_pgt, descricao FROM tb_forma_pgt WHERE status=1
