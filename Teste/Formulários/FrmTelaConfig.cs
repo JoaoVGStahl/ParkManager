@@ -29,7 +29,7 @@ namespace Teste
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            btnDev.Visible = true;
+
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

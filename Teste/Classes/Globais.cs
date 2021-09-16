@@ -78,6 +78,13 @@ namespace Teste
             get { return caminhoarquivolog; }
             set { caminhoarquivolog = value; }
         }
+        private static int idticket;
+
+        public static int IdTicket
+        {
+            get {  return idticket; }
+            set { idticket = value; }
+        }
         //Função generica para registrar as ações do usuario
         public static void RegistrarLog(string Action)
         {

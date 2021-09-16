@@ -40,11 +40,13 @@ namespace Teste
             CarregarBarraStatus();
             PopularComboTipo();
             ContadorTicket();
+            /*
             Globais.IdUsuario = 1;
             Globais.Login = "admin";
             Globais.Nivel = 3;
             Globais.UserStatus = 1;
             lblUsername.Text = Globais.Login;
+            */
         }
         private void CarregarBarraStatus()
         {
@@ -92,18 +94,7 @@ namespace Teste
 
         private void button4_Click(object sender, EventArgs e)
         {
-            string mensagem = "Tem certeza que deseja sair?";
-            string titulo = "Efetuar Logout?";
-            bool escolha = (MessageBox.Show(mensagem, titulo, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button3) == DialogResult.Yes);
-            if (escolha)
-            {
-                //Registra que o Usuário efetuou logout
-                Globais.RegistrarLog(Globais.Login + " Efetuou Logout.");
-                //Destroi o Formulario principal e abre o formulario de login
-                FrmTelaLogin Frm = new FrmTelaLogin();
-                this.Dispose();
-                Frm.ShowDialog();
-            }
+            FecharForm();
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -115,7 +106,7 @@ namespace Teste
         private void button3_Click(object sender, EventArgs e)
         {
             FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket();
-            Frm.Show();
+            Frm.ShowDialog();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -169,7 +160,7 @@ namespace Teste
                    nome,
                    telefone;
             bool caixafill = VerificarCaixas();
-            if (caixafill == true)
+            if (caixafill)
             {
                 if (txtNome.Text == "")
                 {
@@ -204,7 +195,7 @@ namespace Teste
         public bool VerificarCaixas()
         {
             bool caixafill;
-            if (txtPlaca.Text != "" && cmbTipo.SelectedIndex > 0 && cmbTipo.SelectedIndex > 0)
+            if (txtPlaca.Text != "" && cmbTipo.SelectedIndex >= 0 && cmbTipo.SelectedIndex >= 0)
             {
                 return caixafill = true;
             }
@@ -275,7 +266,7 @@ namespace Teste
                 //Query a ser executada no banco
                 string query = @"
                    SELECT 
-                        Car.tipo[Tipo], Car.marca[Marca], Car.placa[Placa], Cli.nome[Nome], Cli.telefone[Telefone], Entrada.hr_entrada[Hora Entrada],FORMAT(Entrada.data_entrada,'dd/MM/yyyy') AS[Data Entrada]
+                        Ticket.id_ticket[#Ticket],Car.tipo[Tipo], Car.marca[Marca], Car.placa[Placa], Cli.nome[Nome], Cli.telefone[Telefone],CONVERT(varchar, Entrada.hr_entrada,8) AS [Hora Entrada],CONVERT(varchar,Entrada.data_entrada,103) AS[Data Entrada]
                    FROM 
                         tb_ticket AS Ticket 
                    INNER JOIN
@@ -309,18 +300,58 @@ namespace Teste
         private void PreencherLabels(DataTable dt)
         {
             //Preenchendo as labels com as informações do banco
-            lblTipo.Text = Convert.ToString(dt.Rows[0].ItemArray[0]); //Tipo
-            lblMarca.Text = Convert.ToString(dt.Rows[0].ItemArray[1]);//Marca
-            lblPlaca.Text = Convert.ToString(dt.Rows[0].ItemArray[2]);//Placa
-            txtNomeP.Text = Convert.ToString(dt.Rows[0].ItemArray[3]);//Nome
-            txtTelefoneP.Text = Convert.ToString(dt.Rows[0].ItemArray[4]);// Telefone
-            lblHrEntrada.Text = Convert.ToString(dt.Rows[0].ItemArray[5]) + " " + Convert.ToString(dt.Rows[0].ItemArray[6]);// Data e Hora
+            Globais.IdTicket = Convert.ToInt32(dt.Rows[0].ItemArray[0]);
+            lblTipo.Text = Convert.ToString(dt.Rows[0].ItemArray[1]); //Tipo
+            lblMarca.Text = Convert.ToString(dt.Rows[0].ItemArray[2]);//Marca
+            lblPlaca.Text = Convert.ToString(dt.Rows[0].ItemArray[3]);//Placa
+            txtNomeP.Text = Convert.ToString(dt.Rows[0].ItemArray[4]);//Nome
+            txtTelefoneP.Text = Convert.ToString(dt.Rows[0].ItemArray[5]);// Telefone
+            lblHrEntrada.Text = Convert.ToString(dt.Rows[0].ItemArray[6]) + " " + Convert.ToString(dt.Rows[0].ItemArray[7]);// Data e Hora
         }
         private void AlinharLabels()
         {
-            lblTipo.Location = new Point(6, -1);
-            lblPlaca.Location = new Point(3, 28);
-            lblHrEntrada.Location = new Point(118, 337);
+            lblTipo.Location = new Point(-1, -1);
+            lblHoraEntradaVisual.Visible = true;
+            btnLimpaP.Enabled = true;
+        }
+
+        private void btnLimpaP_Click(object sender, EventArgs e)
+        {
+            LimparLabels();
+        }
+        private void LimparLabels()
+        {
+            lblTipo.Text = "Tipo";
+            lblMarca.Text = "Marca";
+            lblPlaca.Text = "PLACA";
+            lblHrEntrada.Text = "Horário da entrada";
+            lblHoraEntradaVisual.Visible = false;
+            txtNomeP.Text = "Nome";
+            txtTelefoneP.Text = "Telefone";
+            btnEncerrar.Enabled = false;
+        }
+
+        private void FrmTelaOperacao_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Globais.RegistrarLog(Globais.Login + " Efetuou Logout.");
+            Globais.RegistrarLog("Sistema foi encerrado.");
+            this.Dispose();
+            Application.Exit();
+        }
+        private void FecharForm()
+        {
+            string mensagem = "Tem certeza que deseja sair?";
+            string titulo = "Efetuar Logout?";
+            bool escolha = (MessageBox.Show(mensagem, titulo, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button3) == DialogResult.Yes);
+            if (escolha)
+            {
+                //Registra que o Usuário efetuou logout
+                Globais.RegistrarLog(Globais.Login + " Efetuou Logout.");
+                //Destroi o Formulario principal e abre o formulario de login
+                FrmTelaLogin Frm = new FrmTelaLogin();
+                this.Dispose();
+                Frm.ShowDialog();
+            }
         }
     }
 }

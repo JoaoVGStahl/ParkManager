@@ -54,6 +54,7 @@ namespace Teste
             this.lblHrEntrada = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblHoraEntradaVisual = new System.Windows.Forms.Label();
             this.btnLimpaP = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -94,10 +95,8 @@ namespace Teste
             // 
             // cmbTipo
             // 
-            this.cmbTipo.FormattingEnabled = true;
-            this.cmbTipo.Items.AddRange(new object[] {
-            "Carro",
-            "Moto"});
+            this.cmbTipo.BackColor = System.Drawing.Color.White;
+            this.cmbTipo.Enabled = false;
             this.cmbTipo.Location = new System.Drawing.Point(222, 41);
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(189, 39);
@@ -105,7 +104,10 @@ namespace Teste
             // 
             // txtPlaca
             // 
+            this.txtPlaca.BackColor = System.Drawing.Color.White;
+            this.txtPlaca.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPlaca.Location = new System.Drawing.Point(26, 41);
+            this.txtPlaca.MaxLength = 7;
             this.txtPlaca.Name = "txtPlaca";
             this.txtPlaca.Size = new System.Drawing.Size(183, 38);
             this.txtPlaca.TabIndex = 1;
@@ -113,7 +115,11 @@ namespace Teste
             // 
             // cmbMarca
             // 
+            this.cmbMarca.BackColor = System.Drawing.Color.White;
+            this.cmbMarca.Enabled = false;
             this.cmbMarca.FormattingEnabled = true;
+            this.cmbMarca.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.cmbMarca.IntegralHeight = false;
             this.cmbMarca.Location = new System.Drawing.Point(424, 41);
             this.cmbMarca.Name = "cmbMarca";
             this.cmbMarca.Size = new System.Drawing.Size(190, 39);
@@ -121,6 +127,8 @@ namespace Teste
             // 
             // txtNome
             // 
+            this.txtNome.BackColor = System.Drawing.Color.White;
+            this.txtNome.Enabled = false;
             this.txtNome.Location = new System.Drawing.Point(627, 41);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(311, 38);
@@ -235,6 +243,7 @@ namespace Teste
             this.btnIniciar.BackColor = System.Drawing.Color.Transparent;
             this.btnIniciar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnIniciar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnIniciar.Enabled = false;
             this.btnIniciar.FlatAppearance.BorderSize = 0;
             this.btnIniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIniciar.Image = ((System.Drawing.Image)(resources.GetObject("btnIniciar.Image")));
@@ -252,6 +261,7 @@ namespace Teste
             // 
             this.btnEncerrar.BackColor = System.Drawing.Color.Transparent;
             this.btnEncerrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEncerrar.Enabled = false;
             this.btnEncerrar.FlatAppearance.BorderSize = 0;
             this.btnEncerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEncerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -283,7 +293,7 @@ namespace Teste
             this.lblTipo.BackColor = System.Drawing.Color.Transparent;
             this.lblTipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTipo.ForeColor = System.Drawing.Color.White;
-            this.lblTipo.Location = new System.Drawing.Point(6, -1);
+            this.lblTipo.Location = new System.Drawing.Point(-1, -1);
             this.lblTipo.Name = "lblTipo";
             this.lblTipo.Size = new System.Drawing.Size(67, 29);
             this.lblTipo.TabIndex = 17;
@@ -291,6 +301,7 @@ namespace Teste
             // 
             // txtNomeP
             // 
+            this.txtNomeP.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtNomeP.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNomeP.Location = new System.Drawing.Point(70, 238);
             this.txtNomeP.Name = "txtNomeP";
@@ -301,18 +312,19 @@ namespace Teste
             // 
             // txtTelefoneP
             // 
+            this.txtTelefoneP.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtTelefoneP.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTelefoneP.Location = new System.Drawing.Point(335, 238);
             this.txtTelefoneP.Name = "txtTelefoneP";
             this.txtTelefoneP.ReadOnly = true;
             this.txtTelefoneP.Size = new System.Drawing.Size(251, 47);
             this.txtTelefoneP.TabIndex = 21;
-            this.txtTelefoneP.Text = "(17)99163-7409";
+            this.txtTelefoneP.Text = "Telefone";
             // 
             // lblHrEntrada
             // 
             this.lblHrEntrada.Font = new System.Drawing.Font("Microsoft Sans Serif", 27F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHrEntrada.Location = new System.Drawing.Point(96, 303);
+            this.lblHrEntrada.Location = new System.Drawing.Point(97, 304);
             this.lblHrEntrada.Name = "lblHrEntrada";
             this.lblHrEntrada.Size = new System.Drawing.Size(447, 82);
             this.lblHrEntrada.TabIndex = 24;
@@ -332,6 +344,7 @@ namespace Teste
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.lblHoraEntradaVisual);
             this.panel2.Controls.Add(this.btnLimpaP);
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.label10);
@@ -344,9 +357,25 @@ namespace Teste
             this.panel2.Size = new System.Drawing.Size(662, 468);
             this.panel2.TabIndex = 18;
             // 
+            // lblHoraEntradaVisual
+            // 
+            this.lblHoraEntradaVisual.AutoSize = true;
+            this.lblHoraEntradaVisual.BackColor = System.Drawing.Color.Transparent;
+            this.lblHoraEntradaVisual.Font = new System.Drawing.Font("Microsoft Sans Serif", 27F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHoraEntradaVisual.Location = new System.Drawing.Point(163, 288);
+            this.lblHoraEntradaVisual.Name = "lblHoraEntradaVisual";
+            this.lblHoraEntradaVisual.Size = new System.Drawing.Size(327, 40);
+            this.lblHoraEntradaVisual.TabIndex = 29;
+            this.lblHoraEntradaVisual.Text = "Horário da entrada:";
+            this.lblHoraEntradaVisual.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblHoraEntradaVisual.Visible = false;
+            // 
             // btnLimpaP
             // 
             this.btnLimpaP.BackColor = System.Drawing.Color.Transparent;
+            this.btnLimpaP.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLimpaP.Enabled = false;
+            this.btnLimpaP.FlatAppearance.BorderSize = 0;
             this.btnLimpaP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLimpaP.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpaP.Image")));
             this.btnLimpaP.Location = new System.Drawing.Point(570, 137);
@@ -354,6 +383,7 @@ namespace Teste
             this.btnLimpaP.Size = new System.Drawing.Size(51, 47);
             this.btnLimpaP.TabIndex = 28;
             this.btnLimpaP.UseVisualStyleBackColor = false;
+            this.btnLimpaP.Click += new System.EventHandler(this.btnLimpaP_Click);
             // 
             // panel4
             // 
@@ -477,6 +507,7 @@ namespace Teste
             this.btnPesquisaTicket.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPesquisaTicket.BackgroundImage")));
             this.btnPesquisaTicket.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnPesquisaTicket.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPesquisaTicket.Enabled = false;
             this.btnPesquisaTicket.FlatAppearance.BorderSize = 0;
             this.btnPesquisaTicket.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPesquisaTicket.Image = ((System.Drawing.Image)(resources.GetObject("btnPesquisaTicket.Image")));
@@ -538,7 +569,7 @@ namespace Teste
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.Crimson;
+            this.label13.ForeColor = System.Drawing.Color.Firebrick;
             this.label13.Location = new System.Drawing.Point(10, 79);
             this.label13.Name = "label13";
             this.label13.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -554,6 +585,9 @@ namespace Teste
             // btnLimpa
             // 
             this.btnLimpa.BackColor = System.Drawing.Color.Transparent;
+            this.btnLimpa.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLimpa.Enabled = false;
+            this.btnLimpa.FlatAppearance.BorderSize = 0;
             this.btnLimpa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLimpa.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpa.Image")));
             this.btnLimpa.Location = new System.Drawing.Point(1177, 39);
@@ -615,6 +649,8 @@ namespace Teste
             // 
             // mskTelefone
             // 
+            this.mskTelefone.BackColor = System.Drawing.Color.White;
+            this.mskTelefone.Enabled = false;
             this.mskTelefone.Location = new System.Drawing.Point(951, 41);
             this.mskTelefone.Mask = "(99)00000-0000";
             this.mskTelefone.Name = "mskTelefone";
@@ -673,6 +709,7 @@ namespace Teste
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "0";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmTelaOperacao_FormClosing);
             this.Load += new System.EventHandler(this.FrmTelaOperacao_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -745,6 +782,7 @@ namespace Teste
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Label lblHoraEntradaVisual;
     }
 }
 

@@ -31,12 +31,12 @@ namespace Teste
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTelaConfig));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnSair = new System.Windows.Forms.Button();
+            this.btnGeral = new System.Windows.Forms.Button();
             this.btnDev = new System.Windows.Forms.Button();
             this.btnUsuarios = new System.Windows.Forms.Button();
             this.btnEstacionamento = new System.Windows.Forms.Button();
             this.btnPrecos = new System.Windows.Forms.Button();
-            this.btnGeral = new System.Windows.Forms.Button();
+            this.btnSair = new System.Windows.Forms.Button();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
@@ -72,21 +72,23 @@ namespace Teste
             this.panel1.Size = new System.Drawing.Size(252, 679);
             this.panel1.TabIndex = 0;
             // 
-            // btnSair
+            // btnGeral
             // 
-            this.btnSair.BackColor = System.Drawing.Color.Transparent;
-            this.btnSair.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSair.FlatAppearance.BorderSize = 0;
-            this.btnSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSair.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSair.Image = ((System.Drawing.Image)(resources.GetObject("btnSair.Image")));
-            this.btnSair.Location = new System.Drawing.Point(3, 565);
-            this.btnSair.Name = "btnSair";
-            this.btnSair.Size = new System.Drawing.Size(246, 77);
-            this.btnSair.TabIndex = 21;
-            this.btnSair.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSair.UseVisualStyleBackColor = false;
-            this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
+            this.btnGeral.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnGeral.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGeral.FlatAppearance.BorderSize = 0;
+            this.btnGeral.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGeral.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGeral.Image = ((System.Drawing.Image)(resources.GetObject("btnGeral.Image")));
+            this.btnGeral.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGeral.Location = new System.Drawing.Point(0, 147);
+            this.btnGeral.Name = "btnGeral";
+            this.btnGeral.Size = new System.Drawing.Size(255, 77);
+            this.btnGeral.TabIndex = 15;
+            this.btnGeral.Text = "Geral";
+            this.btnGeral.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnGeral.UseVisualStyleBackColor = false;
+            this.btnGeral.Click += new System.EventHandler(this.btnGeral_Click);
             // 
             // btnDev
             // 
@@ -162,29 +164,27 @@ namespace Teste
             this.btnPrecos.UseVisualStyleBackColor = false;
             this.btnPrecos.Click += new System.EventHandler(this.btnPrecos_Click);
             // 
-            // btnGeral
+            // btnSair
             // 
-            this.btnGeral.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnGeral.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGeral.FlatAppearance.BorderSize = 0;
-            this.btnGeral.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGeral.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGeral.Image = ((System.Drawing.Image)(resources.GetObject("btnGeral.Image")));
-            this.btnGeral.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGeral.Location = new System.Drawing.Point(0, 147);
-            this.btnGeral.Name = "btnGeral";
-            this.btnGeral.Size = new System.Drawing.Size(255, 77);
-            this.btnGeral.TabIndex = 15;
-            this.btnGeral.Text = "Geral";
-            this.btnGeral.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnGeral.UseVisualStyleBackColor = false;
-            this.btnGeral.Click += new System.EventHandler(this.btnGeral_Click);
+            this.btnSair.BackColor = System.Drawing.Color.Transparent;
+            this.btnSair.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSair.FlatAppearance.BorderSize = 0;
+            this.btnSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSair.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSair.Image = ((System.Drawing.Image)(resources.GetObject("btnSair.Image")));
+            this.btnSair.Location = new System.Drawing.Point(3, 565);
+            this.btnSair.Name = "btnSair";
+            this.btnSair.Size = new System.Drawing.Size(246, 77);
+            this.btnSair.TabIndex = 21;
+            this.btnSair.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSair.UseVisualStyleBackColor = false;
+            this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
             // lblUsuario
             // 
             this.lblUsuario.BackColor = System.Drawing.Color.Transparent;
             this.lblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuario.Location = new System.Drawing.Point(3, 101);
+            this.lblUsuario.Location = new System.Drawing.Point(3, 89);
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.Size = new System.Drawing.Size(249, 31);
             this.lblUsuario.TabIndex = 1;
@@ -248,7 +248,6 @@ namespace Teste
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
             this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
-            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancelar.Location = new System.Drawing.Point(370, 20);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(249, 77);
@@ -332,6 +331,7 @@ namespace Teste
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IsMdiContainer = true;
             this.MaximizeBox = false;
             this.Name = "FrmTelaConfig";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

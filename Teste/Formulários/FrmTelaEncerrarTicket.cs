@@ -21,6 +21,7 @@ namespace Teste
         private void FrmTelaEncerrarTicket_Load(object sender, EventArgs e)
         {
             CarregarComboFormaPagamento();
+            CarregarTicket();
         }
         private void CarregarComboFormaPagamento()
         {
@@ -41,16 +42,43 @@ namespace Teste
             cmbFormaPagamento.SelectedItem = null;
 
         }
-
-
-        private void button3_Click(object sender, EventArgs e)
+        private void CarregarTicket()
         {
-            Close();
+            lblHoraSaida.Text = DateTime.Now.ToLongTimeString() + " " + DateTime.Now.ToShortDateString();
+            DataTable dt = new DataTable();
+            string query = @"
+             SELECT 
+                Ticket.id_ticket[#Ticket], CONVERT(varchar, Entrada.hr_entrada,8) AS [Hora Entrada],CONVERT(varchar,Entrada.data_entrada,103) AS[Data Entrada] 
+            FROM 
+                tb_ticket AS Ticket  
+            INNER JOIN 
+                tb_entrada AS Entrada 
+            ON 
+                Entrada.ticket_id = Ticket.id_ticket 
+            AND 
+                Ticket.id_ticket="+ Globais.IdTicket;
+            dt = banco.QueryBancoSql(query);
+            if(dt.Rows.Count > 0)
+            {
+                lblIdTicket.Text ="#" + Convert.ToString(dt.Rows[0].ItemArray[0]);
+                lblHoraEntrada.Text = Convert.ToString(dt.Rows[0].ItemArray[1]) + " " + Convert.ToString(dt.Rows[0].ItemArray[2]);
+                
+            }
+            else
+            {
+                MessageBox.Show("Houve uma falha ao carregar o ticket! \nRealize a pesquisa e tente novamente!","Falha ao carregar Ticket!",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                this.Dispose();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Dispose();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

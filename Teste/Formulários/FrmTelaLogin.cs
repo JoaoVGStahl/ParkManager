@@ -25,6 +25,7 @@ namespace Teste
         {
             //Destroi o form, registra log e encerra a aplicação
             Globais.RegistrarLog("Sistema foi encerrado");
+            Frm.Dispose();
             this.Dispose();
             Application.Exit();
 
@@ -110,6 +111,11 @@ namespace Teste
         {
             //Registra no Log que o sistema foi Inicializado
             Globais.RegistrarLog("Sistema foi Inicializado");
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

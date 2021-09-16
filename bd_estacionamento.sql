@@ -261,9 +261,11 @@ SELECT A.automovel[Tipo], M.marca [Marca] FROM tb_automovel as A INNER JOIN tb_m
 --SELECT Ticket count ticket aberto
 SELECT COUNT(id_ticket) FROM tb_ticket WHERE status=1
 
-
+SELECT * FROM tb_ticket where status =1
 --Select Ticket para tela de operação
-SELECT Car.tipo[Tipo], Car.marca[Marca], Car.placa[Placa], Cli.nome[Nome], Cli.telefone[Telefone], Entrada.hr_entrada[Hora Entrada],FORMAT(Entrada.data_entrada,'dd/MM/yyyy') AS[Data Entrada] FROM tb_ticket AS Ticket INNER JOIN tb_carro AS Car ON Ticket.carro_id = Car.id_Carro INNER JOIN tb_cliente AS Cli ON Car.cliente_id = Cli.id_cliente INNER JOIN tb_entrada AS Entrada ON Entrada.ticket_id = Ticket.id_ticket AND Placa='ABC1234' AND Ticket.status=1
+SELECT Ticket.id_ticket[#Ticket],Car.tipo[Tipo], Car.marca[Marca], Car.placa[Placa], Cli.nome[Nome], Cli.telefone[Telefone], CONVERT(varchar, Entrada.hr_entrada,8) AS [Hora Entrada],CONVERT(varchar,Entrada.data_entrada,103) AS[Data Entrada] FROM tb_ticket AS Ticket INNER JOIN tb_carro AS Car ON Ticket.carro_id = Car.id_Carro INNER JOIN tb_cliente AS Cli ON Car.cliente_id = Cli.id_cliente INNER JOIN tb_entrada AS Entrada ON Entrada.ticket_id = Ticket.id_ticket AND Ticket.status=1
+
+SELECT Ticket.id_ticket[#Ticket], CONVERT(varchar, Entrada.hr_entrada,8) AS [Hora Entrada],CONVERT(varchar,Entrada.data_entrada,103) AS[Data Entrada] FROM tb_ticket AS Ticket  INNER JOIN tb_entrada AS Entrada ON Entrada.ticket_id = Ticket.id_ticket AND Ticket.id_ticket=5
 
 
 SELECT 
@@ -288,7 +290,7 @@ ON
 INNER JOIN tb_forma_pgt AS Forma
 ON 
 	Saida.forma_pgt_id = Forma.id_pgt
-WHERE Ticket.id_ticket=0 AND  Car.placa='GOD3492'AND Entrada.data_entrada='06-09-2021' AND Saida.data_saida='06-09-2021' AND Ticket.status=0
+WHERE Ticket.id_ticket=1 AND  Car.placa='ABC1234'
 
 SELECT 
 	Ticket.id_ticket[#Ticket], Entrada.hr_entrada[Hora Entrada],Entrada.data_entrada[Data Entrada], Usuario.login[Usuario Entrada], Car.placa[Placa], Car.tipo[Tipo], Car.marca[Marca], Cli.nome[Nome], Cli.Telefone[Telefone]
