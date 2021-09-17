@@ -130,6 +130,7 @@ namespace Teste
             this.txtNome.BackColor = System.Drawing.Color.White;
             this.txtNome.Enabled = false;
             this.txtNome.Location = new System.Drawing.Point(627, 41);
+            this.txtNome.MaxLength = 80;
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(311, 38);
             this.txtNome.TabIndex = 5;
@@ -229,14 +230,14 @@ namespace Teste
             // 
             // lblQtdTicket
             // 
-            this.lblQtdTicket.AutoSize = true;
             this.lblQtdTicket.BackColor = System.Drawing.Color.Transparent;
             this.lblQtdTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQtdTicket.Location = new System.Drawing.Point(263, 35);
+            this.lblQtdTicket.Location = new System.Drawing.Point(233, 35);
             this.lblQtdTicket.Name = "lblQtdTicket";
-            this.lblQtdTicket.Size = new System.Drawing.Size(104, 73);
+            this.lblQtdTicket.Size = new System.Drawing.Size(147, 73);
             this.lblQtdTicket.TabIndex = 10;
-            this.lblQtdTicket.Text = "25";
+            this.lblQtdTicket.Text = "0";
+            this.lblQtdTicket.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnIniciar
             // 

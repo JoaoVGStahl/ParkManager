@@ -35,11 +35,16 @@ namespace Teste
 
         private void FrmTelaOperacao_Load(object sender, EventArgs e)
         {
+            if(!(Globais.Login == Properties.Settings.Default.UserRoot))
+            {
+                txtPlaca.Select();
+                CarregarBarraStatus();
+                PopularComboTipo();
+                ContadorTicket();
+                CarregarParametros();
+            }
             //Foca a Caixa de texto da Placa
-            txtPlaca.Select();
-            CarregarBarraStatus();
-            PopularComboTipo();
-            ContadorTicket();
+            
             /*
             Globais.IdUsuario = 1;
             Globais.Login = "admin";
@@ -91,6 +96,10 @@ namespace Teste
             dt = banco.QueryBancoSql(sql);
             lblQtdTicket.Text = Convert.ToString(dt.Rows[0].ItemArray[0]);
         }
+        private void CarregarParametros()
+        {
+
+        }
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -116,13 +125,13 @@ namespace Teste
             if (txtPlaca.TextLength == 7)
             {
                 caixa = true;
-                AtivarFuncoes(caixa);
             }
             else
             {
                 caixa = false;
-                AtivarFuncoes(caixa);
+                
             }
+            AtivarFuncoes(caixa);
         }
         private void AtivarFuncoes(bool caixa)
         {
@@ -152,6 +161,7 @@ namespace Teste
 
         private void button2_Click(object sender, EventArgs e)
         {
+            
             //Obtem as informações das caixa de texto
             int idTicket = 0;
             string placa = txtPlaca.Text,
@@ -160,36 +170,47 @@ namespace Teste
                    nome,
                    telefone;
             bool caixafill = VerificarCaixas();
+            bool ticketopen = VerificarTicket(placa);
+            
             if (caixafill)
             {
-                if (txtNome.Text == "")
+                if (!ticketopen)
                 {
-                    nome = "Convidado";
-                    telefone = "(00)00000-0000";
+                    if (txtNome.Text == "")
+                    {
+                        nome = "Convidado";
+                        telefone = "(00)00000-0000";
+                    }
+                    else
+                    {
+                        nome = txtNome.Text;
+                        telefone = mskTelefone.Text;
+                    }
+                    //Chama a função que executa uma Stored Procedure no banco de dados.
+                    idTicket = banco.ProcedureInserirTicket(placa, tipo, marca, nome, telefone);
+                    //Verifica se houve algum retorno da procedure
+                    if (idTicket > 0)
+                    {
+                        MessageBox.Show("Ticket Iniciado com sucesso! \n #Ticket:" + idTicket, "Ticket Iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                        ContadorTicket();
+                        LimparCaixas();
+                        Globais.RegistrarLog(Globais.Login + " Inicou o Ticket #" + idTicket);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Falha ao iniciar Ticket!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    nome = txtNome.Text;
-                    telefone = mskTelefone.Text;
-                }
-                //Chama a função que executa uma Stored Procedure no banco de dados.
-                idTicket = banco.ProcedureInserirTicket(placa, tipo, marca, nome, telefone);
-                //Verifica se houve algum retorno da procedure
-                if (idTicket > 0)
-                {
-                    MessageBox.Show("Ticket Iniciado com sucesso! \n #Ticket:" + idTicket, "Ticket Iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                    ContadorTicket();
+                    MessageBox.Show("Já existe um ticket em andamento para este veiculo!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     LimparCaixas();
-                    Globais.RegistrarLog(Globais.Login + " Inicou o Ticket #:" + idTicket);
                 }
-                else
-                {
-                    MessageBox.Show("Falha ao iniciar Ticket!", "Ticket não iniciado!", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
-                }
+                
             }
             else
             {
-                MessageBox.Show("Há campos que precisam ser preenchidos!", "Ticket não iniciado!", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                MessageBox.Show("Há campos que precisam ser preenchidos!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public bool VerificarCaixas()
@@ -197,19 +218,46 @@ namespace Teste
             bool caixafill;
             if (txtPlaca.Text != "" && cmbTipo.SelectedIndex >= 0 && cmbTipo.SelectedIndex >= 0)
             {
-                return caixafill = true;
+
+                caixafill = true;
             }
             else
             {
-                return caixafill = false;
+                caixafill = false;
             }
+            return caixafill;
+        }
+        public bool VerificarTicket(string placa)
+        {
+            bool ticketopen;
+            DataTable dt = new DataTable();
+            string query = @"
+            SELECT 
+                    id_ticket 
+            FROM 
+                    tb_ticket AS Ticket 
+            INNER JOIN tb_carro AS Car 
+            ON 
+                    Ticket.carro_id = Car.id_carro 
+            WHERE Car.placa='"+ placa + "' AND Ticket.status=1";
+            dt = banco.QueryBancoSql(query);
+            if(dt.Rows.Count > 0)
+            {
+                 ticketopen = true;
+            }
+            else
+            {
+                ticketopen = false;
+            }
+            return ticketopen;
+            
         }
         private void LimparCaixas()
         {
             bool caixa = false;
             txtPlaca.Clear();
-            cmbTipo.SelectedItem = null;
-            cmbMarca.SelectedItem = null;
+            cmbTipo.SelectedIndex = -1;
+            cmbMarca.SelectedIndex = -1;
             txtNome.Clear();
             mskTelefone.Clear();
             AtivarFuncoes(caixa);
