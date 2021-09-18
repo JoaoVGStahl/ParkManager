@@ -28,7 +28,7 @@ namespace Teste
                 var connection = ConexaoBanco();
                 //Cria o comando
                 var cmd = connection.CreateCommand();
-                //Defini o tipo de comando
+                //Define o tipo de comando
                 cmd.CommandText = sql;
                 //Executa o comando
                 da = new SqlDataAdapter(cmd.CommandText, connection);
@@ -39,13 +39,12 @@ namespace Teste
             }
             catch (Exception ex)
             {
-                throw ex;
-
-
+                throw;
             }
             finally
             {
                 //Fecha a conexao e limpa a variavel sql
+                
                 conexao.Close();
                 sql = "";
             }
@@ -85,7 +84,7 @@ namespace Teste
             catch (Exception ex)
             {
 
-                throw ex;
+                throw ;
             }
             finally
             {
