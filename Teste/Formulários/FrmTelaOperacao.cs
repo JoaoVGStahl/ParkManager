@@ -353,5 +353,11 @@ namespace Teste
                 Frm.ShowDialog();
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FrmTelaCadastros frm = new FrmTelaCadastros();
+            frm.Show();
+        }
     }
 }

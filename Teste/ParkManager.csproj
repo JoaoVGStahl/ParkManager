@@ -81,6 +81,12 @@
     <Compile Include="Formulários\FrmTelaConfig.Designer.cs">
       <DependentUpon>FrmTelaConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmTelaCadastros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTelaCadastros.Designer.cs">
+      <DependentUpon>FrmTelaCadastros.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmTelaDesenvolvedor.cs">
       <SubType>Form</SubType>
     </Compile>
