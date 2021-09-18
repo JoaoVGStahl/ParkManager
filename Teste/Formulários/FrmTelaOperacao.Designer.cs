@@ -97,7 +97,7 @@ namespace Teste
             // 
             this.cmbTipo.BackColor = System.Drawing.Color.White;
             this.cmbTipo.Enabled = false;
-            this.cmbTipo.Location = new System.Drawing.Point(222, 41);
+            this.cmbTipo.Location = new System.Drawing.Point(343, 41);
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(189, 39);
             this.cmbTipo.TabIndex = 0;
@@ -106,7 +106,7 @@ namespace Teste
             // 
             this.txtPlaca.BackColor = System.Drawing.Color.White;
             this.txtPlaca.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtPlaca.Location = new System.Drawing.Point(26, 41);
+            this.txtPlaca.Location = new System.Drawing.Point(147, 41);
             this.txtPlaca.MaxLength = 7;
             this.txtPlaca.Name = "txtPlaca";
             this.txtPlaca.Size = new System.Drawing.Size(183, 38);
@@ -120,7 +120,7 @@ namespace Teste
             this.cmbMarca.FormattingEnabled = true;
             this.cmbMarca.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.cmbMarca.IntegralHeight = false;
-            this.cmbMarca.Location = new System.Drawing.Point(424, 41);
+            this.cmbMarca.Location = new System.Drawing.Point(545, 41);
             this.cmbMarca.Name = "cmbMarca";
             this.cmbMarca.Size = new System.Drawing.Size(190, 39);
             this.cmbMarca.TabIndex = 2;
@@ -129,7 +129,7 @@ namespace Teste
             // 
             this.txtNome.BackColor = System.Drawing.Color.White;
             this.txtNome.Enabled = false;
-            this.txtNome.Location = new System.Drawing.Point(627, 41);
+            this.txtNome.Location = new System.Drawing.Point(748, 41);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(311, 38);
             this.txtNome.TabIndex = 5;
@@ -138,52 +138,52 @@ namespace Teste
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(214, 7);
+            this.label1.Location = new System.Drawing.Point(335, 7);
             this.label1.Name = "label1";
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label1.Size = new System.Drawing.Size(92, 31);
+            this.label1.Size = new System.Drawing.Size(83, 31);
             this.label1.TabIndex = 7;
-            this.label1.Text = "*Tipo:";
+            this.label1.Text = "*Tipo";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(20, 7);
+            this.label2.Location = new System.Drawing.Point(141, 7);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 31);
+            this.label2.Size = new System.Drawing.Size(99, 31);
             this.label2.TabIndex = 8;
-            this.label2.Text = "*Placa:";
+            this.label2.Text = "*Placa";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(620, 7);
+            this.label3.Location = new System.Drawing.Point(741, 7);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(99, 31);
+            this.label3.Size = new System.Drawing.Size(90, 31);
             this.label3.TabIndex = 9;
-            this.label3.Text = "Nome:";
+            this.label3.Text = "Nome";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(419, 7);
+            this.label4.Location = new System.Drawing.Point(540, 7);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(115, 31);
+            this.label4.Size = new System.Drawing.Size(106, 31);
             this.label4.TabIndex = 10;
-            this.label4.Text = "*Marca:";
+            this.label4.Text = "*Marca";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(941, 7);
+            this.label5.Location = new System.Drawing.Point(1062, 7);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(137, 31);
+            this.label5.Size = new System.Drawing.Size(128, 31);
             this.label5.TabIndex = 11;
-            this.label5.Text = "Telefone:";
+            this.label5.Text = "Telefone";
             // 
             // panel1
             // 
@@ -511,7 +511,7 @@ namespace Teste
             this.btnPesquisaTicket.FlatAppearance.BorderSize = 0;
             this.btnPesquisaTicket.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPesquisaTicket.Image = ((System.Drawing.Image)(resources.GetObject("btnPesquisaTicket.Image")));
-            this.btnPesquisaTicket.Location = new System.Drawing.Point(1254, 25);
+            this.btnPesquisaTicket.Location = new System.Drawing.Point(37, 11);
             this.btnPesquisaTicket.Name = "btnPesquisaTicket";
             this.btnPesquisaTicket.Size = new System.Drawing.Size(72, 69);
             this.btnPesquisaTicket.TabIndex = 26;
@@ -590,7 +590,7 @@ namespace Teste
             this.btnLimpa.FlatAppearance.BorderSize = 0;
             this.btnLimpa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLimpa.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpa.Image")));
-            this.btnLimpa.Location = new System.Drawing.Point(1177, 39);
+            this.btnLimpa.Location = new System.Drawing.Point(1288, 36);
             this.btnLimpa.Name = "btnLimpa";
             this.btnLimpa.Size = new System.Drawing.Size(47, 43);
             this.btnLimpa.TabIndex = 29;
@@ -600,6 +600,7 @@ namespace Teste
             // 
             this.splitter1.BackColor = System.Drawing.Color.Silver;
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.splitter1.Enabled = false;
             this.splitter1.Location = new System.Drawing.Point(0, 609);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(1346, 3);
@@ -610,6 +611,7 @@ namespace Teste
             // 
             this.splitter2.BackColor = System.Drawing.Color.Silver;
             this.splitter2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.splitter2.Enabled = false;
             this.splitter2.Location = new System.Drawing.Point(0, 606);
             this.splitter2.Name = "splitter2";
             this.splitter2.Size = new System.Drawing.Size(1346, 3);
@@ -631,16 +633,16 @@ namespace Teste
             this.panel7.Controls.Add(this.mskTelefone);
             this.panel7.Controls.Add(this.cmbTipo);
             this.panel7.Controls.Add(this.cmbMarca);
-            this.panel7.Controls.Add(this.txtNome);
             this.panel7.Controls.Add(this.btnLimpa);
+            this.panel7.Controls.Add(this.txtNome);
             this.panel7.Controls.Add(this.label1);
             this.panel7.Controls.Add(this.label3);
             this.panel7.Controls.Add(this.label4);
             this.panel7.Controls.Add(this.txtPlaca);
+            this.panel7.Controls.Add(this.btnPesquisaTicket);
             this.panel7.Controls.Add(this.label5);
             this.panel7.Controls.Add(this.label13);
             this.panel7.Controls.Add(this.label2);
-            this.panel7.Controls.Add(this.btnPesquisaTicket);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel7.Location = new System.Drawing.Point(0, 0);
             this.panel7.Name = "panel7";
@@ -651,7 +653,7 @@ namespace Teste
             // 
             this.mskTelefone.BackColor = System.Drawing.Color.White;
             this.mskTelefone.Enabled = false;
-            this.mskTelefone.Location = new System.Drawing.Point(951, 41);
+            this.mskTelefone.Location = new System.Drawing.Point(1072, 41);
             this.mskTelefone.Mask = "(99)00000-0000";
             this.mskTelefone.Name = "mskTelefone";
             this.mskTelefone.Size = new System.Drawing.Size(202, 38);
@@ -661,6 +663,7 @@ namespace Teste
             // 
             this.splitter3.BackColor = System.Drawing.Color.Silver;
             this.splitter3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.splitter3.Enabled = false;
             this.splitter3.Location = new System.Drawing.Point(0, 115);
             this.splitter3.Name = "splitter3";
             this.splitter3.Size = new System.Drawing.Size(1346, 3);

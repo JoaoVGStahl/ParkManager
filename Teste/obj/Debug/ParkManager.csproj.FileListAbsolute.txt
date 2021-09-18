@@ -1,0 +1,14 @@
+C:\Users\spott\ParkManager\Teste\bin\Debug\Teste.exe.config
+C:\Users\spott\ParkManager\Teste\bin\Debug\Teste.exe
+C:\Users\spott\ParkManager\Teste\bin\Debug\Teste.pdb
+C:\Users\spott\ParkManager\Teste\obj\Debug\ParkManager.csproj.AssemblyReference.cache
+C:\Users\spott\ParkManager\Teste\obj\Debug\Teste.FrmTelaEncerrarTicket.resources
+C:\Users\spott\ParkManager\Teste\obj\Debug\Teste.FrmTelaLogin.resources
+C:\Users\spott\ParkManager\Teste\obj\Debug\Teste.FrmTelaOperacao.resources
+C:\Users\spott\ParkManager\Teste\obj\Debug\Teste.FrmTelaPesquisaTicket.resources
+C:\Users\spott\ParkManager\Teste\obj\Debug\Teste.FrmTelaConfig.resources
+C:\Users\spott\ParkManager\Teste\obj\Debug\Teste.Properties.Resources.resources
+C:\Users\spott\ParkManager\Teste\obj\Debug\ParkManager.csproj.GenerateResource.cache
+C:\Users\spott\ParkManager\Teste\obj\Debug\ParkManager.csproj.CoreCompileInputs.cache
+C:\Users\spott\ParkManager\Teste\obj\Debug\Teste.exe
+C:\Users\spott\ParkManager\Teste\obj\Debug\Teste.pdb
