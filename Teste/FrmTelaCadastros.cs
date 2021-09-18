@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Teste
 {
-    public partial class FrmTelaCadastros : FrmTelaConfig
+    public partial class FrmTelaCadastros : Form
     {
         public FrmTelaCadastros()
         {

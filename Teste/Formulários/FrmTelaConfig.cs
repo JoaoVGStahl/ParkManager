@@ -76,6 +76,16 @@ namespace Teste
         {
             FundoBotao();
             btnUsuarios.BackColor = Color.DarkBlue;
+
+            FrmTelaUsuario frm = new FrmTelaUsuario();
+
+            AbreFormParent(frm);
+        }
+        private void AbreFormParent(Form Frm)
+        {
+            Frm.MdiParent = this;
+            Frm.Dock = DockStyle.Fill;
+            Frm.Show();
         }
 
         private void btnDev_Click(object sender, EventArgs e)

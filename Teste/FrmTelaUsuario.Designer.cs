@@ -199,7 +199,7 @@ namespace Teste
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(150, 439);
+            this.label6.Location = new System.Drawing.Point(163, 439);
             this.label6.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(57, 24);
@@ -218,7 +218,7 @@ namespace Teste
             "1 - Ativo"});
             this.comboBox1.Location = new System.Drawing.Point(14, 469);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(133, 37);
+            this.comboBox1.Size = new System.Drawing.Size(118, 37);
             this.comboBox1.TabIndex = 13;
             // 
             // numericUpDown1
@@ -227,9 +227,9 @@ namespace Teste
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown1.Location = new System.Drawing.Point(156, 471);
+            this.numericUpDown1.Location = new System.Drawing.Point(167, 471);
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(131, 35);
+            this.numericUpDown1.Size = new System.Drawing.Size(118, 35);
             this.numericUpDown1.TabIndex = 14;
             // 
             // splitter1
@@ -304,7 +304,7 @@ namespace Teste
             this.button8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button8.Location = new System.Drawing.Point(9, 19);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(211, 65);
+            this.button8.Size = new System.Drawing.Size(195, 65);
             this.button8.TabIndex = 26;
             this.button8.Text = "Salvar Alterações";
             this.button8.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -323,7 +323,7 @@ namespace Teste
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.Location = new System.Drawing.Point(226, 19);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(211, 65);
+            this.button1.Size = new System.Drawing.Size(195, 65);
             this.button1.TabIndex = 27;
             this.button1.Text = "Novo Usuário";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -342,7 +342,7 @@ namespace Teste
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.Location = new System.Drawing.Point(443, 19);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(211, 65);
+            this.button2.Size = new System.Drawing.Size(195, 65);
             this.button2.TabIndex = 28;
             this.button2.Text = "Excluir Usuário";
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
