@@ -81,6 +81,18 @@
     <Compile Include="Formulários\FrmTelaConfig.Designer.cs">
       <DependentUpon>FrmTelaConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmTelaDesenvolvedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTelaDesenvolvedor.Designer.cs">
+      <DependentUpon>FrmTelaDesenvolvedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmTelaUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTelaUsuario.Designer.cs">
+      <DependentUpon>FrmTelaUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Formulários\FrmTelaEncerrarTicket.resx">
       <DependentUpon>FrmTelaEncerrarTicket.cs</DependentUpon>
