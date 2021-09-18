@@ -73,7 +73,6 @@ namespace Teste
             this.label13 = new System.Windows.Forms.Label();
             this.HoraData = new System.Windows.Forms.Timer(this.components);
             this.btnLimpa = new System.Windows.Forms.Button();
-            this.splitter1 = new System.Windows.Forms.Splitter();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -195,7 +194,7 @@ namespace Teste
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(661, 468);
+            this.panel1.Size = new System.Drawing.Size(661, 471);
             this.panel1.TabIndex = 12;
             // 
             // panel9
@@ -281,9 +280,9 @@ namespace Teste
             // 
             this.lblPlaca.BackColor = System.Drawing.Color.Transparent;
             this.lblPlaca.Font = new System.Drawing.Font("Microsoft Sans Serif", 68.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlaca.Location = new System.Drawing.Point(-1, 27);
+            this.lblPlaca.Location = new System.Drawing.Point(0, 28);
             this.lblPlaca.Name = "lblPlaca";
-            this.lblPlaca.Size = new System.Drawing.Size(447, 102);
+            this.lblPlaca.Size = new System.Drawing.Size(442, 102);
             this.lblPlaca.TabIndex = 15;
             this.lblPlaca.Text = "PLACA";
             this.lblPlaca.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -304,10 +303,10 @@ namespace Teste
             // 
             this.txtNomeP.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtNomeP.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNomeP.Location = new System.Drawing.Point(70, 238);
+            this.txtNomeP.Location = new System.Drawing.Point(117, 175);
             this.txtNomeP.Name = "txtNomeP";
             this.txtNomeP.ReadOnly = true;
-            this.txtNomeP.Size = new System.Drawing.Size(251, 47);
+            this.txtNomeP.Size = new System.Drawing.Size(448, 47);
             this.txtNomeP.TabIndex = 21;
             this.txtNomeP.Text = "Nome";
             // 
@@ -315,17 +314,17 @@ namespace Teste
             // 
             this.txtTelefoneP.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtTelefoneP.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTelefoneP.Location = new System.Drawing.Point(335, 238);
+            this.txtTelefoneP.Location = new System.Drawing.Point(118, 228);
             this.txtTelefoneP.Name = "txtTelefoneP";
             this.txtTelefoneP.ReadOnly = true;
-            this.txtTelefoneP.Size = new System.Drawing.Size(251, 47);
+            this.txtTelefoneP.Size = new System.Drawing.Size(311, 47);
             this.txtTelefoneP.TabIndex = 21;
             this.txtTelefoneP.Text = "Telefone";
             // 
             // lblHrEntrada
             // 
             this.lblHrEntrada.Font = new System.Drawing.Font("Microsoft Sans Serif", 27F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHrEntrada.Location = new System.Drawing.Point(97, 304);
+            this.lblHrEntrada.Location = new System.Drawing.Point(110, 315);
             this.lblHrEntrada.Name = "lblHrEntrada";
             this.lblHrEntrada.Size = new System.Drawing.Size(447, 82);
             this.lblHrEntrada.TabIndex = 24;
@@ -336,7 +335,7 @@ namespace Teste
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(215, 37);
+            this.label10.Location = new System.Drawing.Point(218, 7);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(275, 31);
             this.label10.TabIndex = 25;
@@ -355,7 +354,7 @@ namespace Teste
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(684, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(662, 468);
+            this.panel2.Size = new System.Drawing.Size(662, 471);
             this.panel2.TabIndex = 18;
             // 
             // lblHoraEntradaVisual
@@ -363,7 +362,7 @@ namespace Teste
             this.lblHoraEntradaVisual.AutoSize = true;
             this.lblHoraEntradaVisual.BackColor = System.Drawing.Color.Transparent;
             this.lblHoraEntradaVisual.Font = new System.Drawing.Font("Microsoft Sans Serif", 27F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHoraEntradaVisual.Location = new System.Drawing.Point(163, 288);
+            this.lblHoraEntradaVisual.Location = new System.Drawing.Point(176, 299);
             this.lblHoraEntradaVisual.Name = "lblHoraEntradaVisual";
             this.lblHoraEntradaVisual.Size = new System.Drawing.Size(327, 40);
             this.lblHoraEntradaVisual.TabIndex = 29;
@@ -379,10 +378,11 @@ namespace Teste
             this.btnLimpaP.FlatAppearance.BorderSize = 0;
             this.btnLimpaP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLimpaP.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpaP.Image")));
-            this.btnLimpaP.Location = new System.Drawing.Point(570, 137);
+            this.btnLimpaP.Location = new System.Drawing.Point(509, 228);
             this.btnLimpaP.Name = "btnLimpaP";
             this.btnLimpaP.Size = new System.Drawing.Size(51, 47);
             this.btnLimpaP.TabIndex = 28;
+            this.btnLimpaP.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLimpaP.UseVisualStyleBackColor = false;
             this.btnLimpaP.Click += new System.EventHandler(this.btnLimpaP_Click);
             // 
@@ -392,7 +392,7 @@ namespace Teste
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Controls.Add(this.lblPlaca);
-            this.panel4.Location = new System.Drawing.Point(103, 87);
+            this.panel4.Location = new System.Drawing.Point(117, 41);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(447, 131);
             this.panel4.TabIndex = 27;
@@ -402,9 +402,9 @@ namespace Teste
             this.panel5.BackColor = System.Drawing.Color.DarkBlue;
             this.panel5.Controls.Add(this.lblMarca);
             this.panel5.Controls.Add(this.lblTipo);
-            this.panel5.Location = new System.Drawing.Point(-1, -2);
+            this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(460, 28);
+            this.panel5.Size = new System.Drawing.Size(447, 28);
             this.panel5.TabIndex = 16;
             // 
             // lblMarca
@@ -412,10 +412,10 @@ namespace Teste
             this.lblMarca.BackColor = System.Drawing.Color.Transparent;
             this.lblMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMarca.ForeColor = System.Drawing.Color.White;
-            this.lblMarca.Location = new System.Drawing.Point(187, 0);
+            this.lblMarca.Location = new System.Drawing.Point(172, 0);
             this.lblMarca.Name = "lblMarca";
             this.lblMarca.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblMarca.Size = new System.Drawing.Size(260, 29);
+            this.lblMarca.Size = new System.Drawing.Size(278, 29);
             this.lblMarca.TabIndex = 26;
             this.lblMarca.Text = "Marca";
             this.lblMarca.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -597,21 +597,11 @@ namespace Teste
             this.btnLimpa.TabIndex = 29;
             this.btnLimpa.UseVisualStyleBackColor = false;
             // 
-            // splitter1
-            // 
-            this.splitter1.BackColor = System.Drawing.Color.Silver;
-            this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter1.Location = new System.Drawing.Point(0, 609);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(1346, 3);
-            this.splitter1.TabIndex = 30;
-            this.splitter1.TabStop = false;
-            // 
             // splitter2
             // 
             this.splitter2.BackColor = System.Drawing.Color.Silver;
             this.splitter2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter2.Location = new System.Drawing.Point(0, 606);
+            this.splitter2.Location = new System.Drawing.Point(0, 609);
             this.splitter2.Name = "splitter2";
             this.splitter2.Size = new System.Drawing.Size(1346, 3);
             this.splitter2.TabIndex = 31;
@@ -621,7 +611,7 @@ namespace Teste
             // 
             this.panel3.BackColor = System.Drawing.Color.DarkBlue;
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 596);
+            this.panel3.Location = new System.Drawing.Point(0, 599);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1346, 10);
             this.panel3.TabIndex = 32;
@@ -685,7 +675,7 @@ namespace Teste
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel10.Location = new System.Drawing.Point(0, 128);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(1346, 468);
+            this.panel10.Size = new System.Drawing.Size(1346, 471);
             this.panel10.TabIndex = 36;
             // 
             // FrmTelaOperacao
@@ -700,7 +690,6 @@ namespace Teste
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.splitter2);
-            this.Controls.Add(this.splitter1);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.statusStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -708,7 +697,7 @@ namespace Teste
             this.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.Name = "FrmTelaOperacao";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "0";
+            this.Text = "Menu Principal - ParkManager";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmTelaOperacao_FormClosing);
             this.Load += new System.EventHandler(this.FrmTelaOperacao_Load);
@@ -773,7 +762,6 @@ namespace Teste
         private System.Windows.Forms.ToolStripStatusLabel lblHora;
         private System.Windows.Forms.Button btnLimpaP;
         private System.Windows.Forms.Button btnLimpa;
-        private System.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.Splitter splitter2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel3;

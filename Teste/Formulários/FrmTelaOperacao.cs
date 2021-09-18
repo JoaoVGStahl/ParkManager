@@ -186,20 +186,29 @@ namespace Teste
                         nome = txtNome.Text;
                         telefone = mskTelefone.Text;
                     }
-                    //Chama a função que executa uma Stored Procedure no banco de dados.
-                    idTicket = banco.ProcedureInserirTicket(placa, tipo, marca, nome, telefone);
-                    //Verifica se houve algum retorno da procedure
-                    if (idTicket > 0)
+                    try
                     {
-                        MessageBox.Show("Ticket Iniciado com sucesso! \n #Ticket:" + idTicket, "Ticket Iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                        ContadorTicket();
-                        LimparCaixas();
-                        Globais.RegistrarLog(Globais.Login + " Inicou o Ticket #" + idTicket);
+                        //Chama a função que executa uma Stored Procedure no banco de dados.
+                        idTicket = banco.ProcedureInserirTicket(placa, tipo, marca, nome, telefone);
+                        //Verifica se houve algum retorno da procedure
+                        if (idTicket > 0)
+                        {
+                            MessageBox.Show("Ticket Iniciado com sucesso! \n #Ticket:" + idTicket, "Ticket Iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                            ContadorTicket();
+                            LimparCaixas();
+                            Globais.RegistrarLog(Globais.Login + " Inicou o Ticket #" + idTicket);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Falha ao iniciar Ticket!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("Falha ao iniciar Ticket!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        MessageBox.Show(ex.Message, "Falha ao iniciar ticket!");
                     }
+                    
                 }
                 else
                 {

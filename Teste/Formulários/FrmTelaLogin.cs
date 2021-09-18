@@ -59,39 +59,51 @@ namespace Teste
                 SELECT 
                     id_usuario,login,nivel,status 
                 FROM 
-                    tb_usuario 
+                    tb_usuario
                 WHERE 
                     login='" + usuario + "' AND senha='" + senha + "'";
                 //Retorno do Banco em um DataTable!
                 DataTable dt = new DataTable();
-                dt = banco.QueryBancoSql(query);
-                //Verifica se a consulta retornou algum valor!
-                if (dt.Rows.Count > 0)
+                try
                 {
-                    //Verifica se o Usuário está Ativo!
-                    int status = Convert.ToInt32(dt.Rows[0].ItemArray[3]);
-                    if (status > 0)
+                    dt = banco.QueryBancoSql(query);
+                    //Verifica se a consulta retornou algum valor!
+                    if (dt.Rows.Count > 0)
                     {
-                        //Atribui os valores do Usuario para Variaveis globais!
-                        PreencherGlobais(dt);
-                        Globais.RegistrarLog(Globais.Login + " Efetuou Login.");
-                        this.Hide();
-                        Frm.ShowDialog();
+                        //Verifica se o Usuário está Ativo!
+                        int status = Convert.ToInt32(dt.Rows[0].ItemArray[3]);
+                        if (status > 0)
+                        {
+                            //Atribui os valores do Usuario para Variaveis globais!
+                            PreencherGlobais(dt);
+                            Globais.RegistrarLog(Globais.Login + " Efetuou Login.");
+                            this.Hide();
+                            Frm.ShowDialog();
 
+                        }
+                        else
+                        {
+                            CaixaAlerta("Este usuário está inativo, contate o administrador do sistema!", "Falha no login!");
+                            txtSenha.Clear();
+                            txtUsuario.Select();
+                        }
                     }
                     else
                     {
-                        CaixaAlerta("Este usuário está inativo, contate o administrador do sistema!", "Falha no login!");
+                        CaixaAlerta("Usuário e/ou senha incorretos ou não existem!", "Falha no login!");
                         txtSenha.Clear();
                         txtUsuario.Select();
                     }
                 }
-                else
+                catch (Exception ex)
                 {
-                    CaixaAlerta("Usuário e/ou senha incorretos ou não existem!", "Falha no login!");
-                    txtSenha.Clear();
-                    txtUsuario.Select();
+                    MessageBox.Show(ex.Message,"Falha no login!");
                 }
+                finally
+                {
+                    dt.Dispose();
+                }
+                
             }
 
         }
