@@ -83,5 +83,10 @@ namespace Teste
             FundoBotao();
             btnDev.BackColor = Color.DarkBlue;
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

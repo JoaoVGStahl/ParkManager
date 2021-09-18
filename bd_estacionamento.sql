@@ -236,7 +236,7 @@ return @idTicket
 SELECT id_automovel, automovel from tb_automovel ORDER BY  automovel desc
 
 --SELECT ComboBox Marca
-SELECT A.automovel[Tipo], M.marca [Marca] FROM tb_automovel as A INNER JOIN tb_marca as M ON A.id_automovel = M.id_automovel AND A.automovel = 'Carro'
+SELECT A.automovel[Tipo], M.marca [Marca] FROM tb_automovel as A INNER JOIN tb_marca as M ON A.id_automovel = M.id_automovel AND A.automovel = 'Carro'AND  M.marca LIKE '%'
 
 --SELECT Ticket count ticket aberto
 SELECT COUNT(id_ticket) FROM tb_ticket WHERE status=1
@@ -278,3 +278,5 @@ Ticket.carro_id = Car.id_carro WHERE Car.placa='ABC1234' AND Ticket.status=1
 
 --SELECT Paramentos
 SELECT * FROM tb_estacionamento WHERE status=1
+
+SELECT id_usuario[ID], login[Login],nivel[Nivel] FROM tb_usuario WHERE status=1

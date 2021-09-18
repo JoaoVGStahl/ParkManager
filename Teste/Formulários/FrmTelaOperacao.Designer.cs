@@ -111,9 +111,11 @@ namespace Teste
             this.txtPlaca.Size = new System.Drawing.Size(183, 38);
             this.txtPlaca.TabIndex = 1;
             this.txtPlaca.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.txtPlaca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPlaca_KeyPress);
             // 
             // cmbMarca
             // 
+            this.cmbMarca.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.cmbMarca.BackColor = System.Drawing.Color.White;
             this.cmbMarca.Enabled = false;
             this.cmbMarca.FormattingEnabled = true;
@@ -123,16 +125,18 @@ namespace Teste
             this.cmbMarca.Name = "cmbMarca";
             this.cmbMarca.Size = new System.Drawing.Size(190, 39);
             this.cmbMarca.TabIndex = 2;
+            this.cmbMarca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbMarca_KeyPress);
             // 
             // txtNome
             // 
             this.txtNome.BackColor = System.Drawing.Color.White;
             this.txtNome.Enabled = false;
             this.txtNome.Location = new System.Drawing.Point(627, 41);
-            this.txtNome.MaxLength = 80;
+            this.txtNome.MaxLength = 50;
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(311, 38);
             this.txtNome.TabIndex = 5;
+            this.txtNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNome_KeyPress);
             // 
             // label1
             // 
@@ -304,6 +308,7 @@ namespace Teste
             this.txtNomeP.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtNomeP.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNomeP.Location = new System.Drawing.Point(117, 175);
+            this.txtNomeP.MaxLength = 32;
             this.txtNomeP.Name = "txtNomeP";
             this.txtNomeP.ReadOnly = true;
             this.txtNomeP.Size = new System.Drawing.Size(448, 47);

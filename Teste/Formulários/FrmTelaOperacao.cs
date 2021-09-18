@@ -35,7 +35,7 @@ namespace Teste
 
         private void FrmTelaOperacao_Load(object sender, EventArgs e)
         {
-            if(!(Globais.Login == Properties.Settings.Default.UserRoot))
+            if (!(Globais.Login == Properties.Settings.Default.UserRoot))
             {
                 txtPlaca.Select();
                 CarregarBarraStatus();
@@ -44,7 +44,7 @@ namespace Teste
                 CarregarParametros();
             }
             //Foca a Caixa de texto da Placa
-            
+
             /*
             Globais.IdUsuario = 1;
             Globais.Login = "admin";
@@ -122,6 +122,7 @@ namespace Teste
         {
             bool caixa;
             //Caso for digitado 7 caracteres na caixa de texto da placa, Ativa algumas funções
+
             if (txtPlaca.TextLength == 7)
             {
                 caixa = true;
@@ -129,7 +130,7 @@ namespace Teste
             else
             {
                 caixa = false;
-                
+
             }
             AtivarFuncoes(caixa);
         }
@@ -161,7 +162,7 @@ namespace Teste
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
+
             //Obtem as informações das caixa de texto
             int idTicket = 0;
             string placa = txtPlaca.Text,
@@ -171,7 +172,7 @@ namespace Teste
                    telefone;
             bool caixafill = VerificarCaixas();
             bool ticketopen = VerificarTicket(placa);
-            
+
             if (caixafill)
             {
                 if (!ticketopen)
@@ -208,14 +209,14 @@ namespace Teste
 
                         MessageBox.Show(ex.Message, "Falha ao iniciar ticket!");
                     }
-                    
+
                 }
                 else
                 {
                     MessageBox.Show("Já existe um ticket em andamento para este veiculo!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     LimparCaixas();
                 }
-                
+
             }
             else
             {
@@ -248,18 +249,18 @@ namespace Teste
             INNER JOIN tb_carro AS Car 
             ON 
                     Ticket.carro_id = Car.id_carro 
-            WHERE Car.placa='"+ placa + "' AND Ticket.status=1";
+            WHERE Car.placa='" + placa + "' AND Ticket.status=1";
             dt = banco.QueryBancoSql(query);
-            if(dt.Rows.Count > 0)
+            if (dt.Rows.Count > 0)
             {
-                 ticketopen = true;
+                ticketopen = true;
             }
             else
             {
                 ticketopen = false;
             }
             return ticketopen;
-            
+
         }
         private void LimparCaixas()
         {
@@ -408,6 +409,59 @@ namespace Teste
                 FrmTelaLogin Frm = new FrmTelaLogin();
                 this.Dispose();
                 Frm.ShowDialog();
+            }
+        }
+
+        private void txtPlaca_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            string caracterespermitidos = "ABCDEFGHIJ0123456789";
+            //Apenas Letras E BackSpace
+            if (txtPlaca.TextLength < 3)
+            {
+                if (!char.IsLetter(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
+                {
+                    e.Handled = true;
+                }
+            }
+            //Apenas Números E BackSpace
+            if (txtPlaca.TextLength == 3)
+            {
+                if (!char.IsNumber(e.KeyChar) && !Char.IsControl(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
+                {
+                    e.Handled = true;
+                }
+            }
+            // Apenas de A-J e 0-9 e BackSpace
+            if (txtPlaca.TextLength == 4 )
+            {
+                if (!(caracterespermitidos.Contains(e.KeyChar.ToString().ToUpper())) && !(e.KeyChar == (char)Keys.Back))
+                {
+                    e.Handled = true;
+                }
+            }
+            //Apenas Números e BackSpace
+            if(txtPlaca.TextLength > 4)
+            {
+                if (!char.IsNumber(e.KeyChar) && !Char.IsControl(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void txtNome_KeyPress(object sender, KeyPressEventArgs e)
+        {
+                if (!char.IsLetter(e.KeyChar) && !(e.KeyChar == (char)Keys.Back) && !(e.KeyChar == (char)Keys.Space))
+                {
+                    e.Handled = true;
+                }
+        }
+
+        private void cmbMarca_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !(e.KeyChar == (char)Keys.Back) && !(e.KeyChar == (char)Keys.Space))
+            {
+                e.Handled = true;
             }
         }
     }
