@@ -12,6 +12,8 @@ namespace Teste
 {
     public partial class FrmTelaUsuario : Form
     {
+        Banco banco = new Banco();
+
         public FrmTelaUsuario()
         {
             InitializeComponent();
@@ -25,6 +27,21 @@ namespace Teste
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void FrmTelaUsuario_Load(object sender, EventArgs e)
+        {
+            PreencherGrid();
+        }
+        private void PreencherGrid()
+        {
+            DataTable dt = new DataTable();
+
+            string query = @"SELECT id_usuario[ID], login[Login],nivel[Nivel] FROM tb_usuario WHERE status=1";
+
+            dt = banco.QueryBancoSql(query);
+
+            dataGridView1.DataSource = dt;
         }
     }
 }
