@@ -12,3 +12,4 @@ C:\Users\spott\ParkManager\Teste\obj\Debug\ParkManager.csproj.GenerateResource.c
 C:\Users\spott\ParkManager\Teste\obj\Debug\ParkManager.csproj.CoreCompileInputs.cache
 C:\Users\spott\ParkManager\Teste\obj\Debug\Teste.exe
 C:\Users\spott\ParkManager\Teste\obj\Debug\Teste.pdb
+C:\Users\spott\ParkManager\Teste\obj\Debug\Teste.FrmTelaCadastros.resources

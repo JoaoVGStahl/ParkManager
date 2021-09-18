@@ -115,6 +115,12 @@
     <EmbeddedResource Include="Formulários\FrmTelaConfig.resx">
       <DependentUpon>FrmTelaConfig.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmTelaCadastros.resx">
+      <DependentUpon>FrmTelaCadastros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmTelaUsuario.resx">
+      <DependentUpon>FrmTelaUsuario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

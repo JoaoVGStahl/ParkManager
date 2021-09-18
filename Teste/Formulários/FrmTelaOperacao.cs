@@ -254,7 +254,7 @@ namespace Teste
         private void btnConfig_Click(object sender, EventArgs e)
         {
             FrmTelaConfig frm = new FrmTelaConfig();
-            frm.Show();
+            frm.ShowDialog();
         }
 
         private void btnPesquisaTicket_Click(object sender, EventArgs e)
@@ -357,7 +357,12 @@ namespace Teste
         private void button1_Click(object sender, EventArgs e)
         {
             FrmTelaCadastros frm = new FrmTelaCadastros();
-            frm.Show();
+            frm.ShowDialog();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
