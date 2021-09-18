@@ -29,6 +29,7 @@ namespace Teste
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTelaUsuario));
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
@@ -46,12 +47,12 @@ namespace Teste
             this.panel3 = new System.Windows.Forms.Panel();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.button8 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -61,9 +62,9 @@ namespace Teste
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.panel5);
             this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.panel5);
             this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.splitter2);
             this.panel1.Controls.Add(this.panel3);
@@ -234,9 +235,10 @@ namespace Teste
             // 
             // splitter1
             // 
+            this.splitter1.BackColor = System.Drawing.Color.Silver;
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.splitter1.Enabled = false;
-            this.splitter1.Location = new System.Drawing.Point(0, 537);
+            this.splitter1.Location = new System.Drawing.Point(0, 543);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(664, 3);
             this.splitter1.TabIndex = 34;
@@ -249,10 +251,11 @@ namespace Teste
             this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.button8);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 540);
+            this.panel2.Location = new System.Drawing.Point(0, 546);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(664, 100);
+            this.panel2.Size = new System.Drawing.Size(664, 94);
             this.panel2.TabIndex = 33;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // panel3
             // 
@@ -265,6 +268,7 @@ namespace Teste
             // 
             // splitter2
             // 
+            this.splitter2.BackColor = System.Drawing.Color.Silver;
             this.splitter2.Dock = System.Windows.Forms.DockStyle.Top;
             this.splitter2.Enabled = false;
             this.splitter2.Location = new System.Drawing.Point(0, 100);
@@ -282,15 +286,6 @@ namespace Teste
             this.panel4.Size = new System.Drawing.Size(664, 10);
             this.panel4.TabIndex = 37;
             // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.DarkBlue;
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(0, 527);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(664, 10);
-            this.panel5.TabIndex = 38;
-            // 
             // button8
             // 
             this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -299,14 +294,16 @@ namespace Teste
             this.button8.BackColor = System.Drawing.Color.Transparent;
             this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.button8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button8.FlatAppearance.BorderSize = 0;
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
             this.button8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button8.Location = new System.Drawing.Point(9, 19);
+            this.button8.Location = new System.Drawing.Point(19, 3);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(195, 65);
+            this.button8.Size = new System.Drawing.Size(195, 88);
             this.button8.TabIndex = 26;
-            this.button8.Text = "Salvar Alterações";
+            this.button8.Text = "Salvar";
             this.button8.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button8.UseVisualStyleBackColor = false;
             // 
@@ -318,33 +315,34 @@ namespace Teste
             this.button1.BackColor = System.Drawing.Color.Transparent;
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(226, 19);
+            this.button1.Location = new System.Drawing.Point(243, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(195, 65);
+            this.button1.Size = new System.Drawing.Size(195, 88);
             this.button1.TabIndex = 27;
-            this.button1.Text = "Novo Usuário";
+            this.button1.Text = "Novo ";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = false;
             // 
             // button2
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.BackColor = System.Drawing.Color.Transparent;
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(443, 19);
+            this.button2.Location = new System.Drawing.Point(459, 3);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(195, 65);
+            this.button2.Size = new System.Drawing.Size(195, 88);
             this.button2.TabIndex = 28;
-            this.button2.Text = "Excluir Usuário";
+            this.button2.Text = "Excluir ";
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button2.UseVisualStyleBackColor = false;
             // 
@@ -373,6 +371,15 @@ namespace Teste
             this.label2.Size = new System.Drawing.Size(166, 24);
             this.label2.TabIndex = 39;
             this.label2.Text = "Confirmar Senha";
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.DarkBlue;
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel5.Location = new System.Drawing.Point(0, 533);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(664, 10);
+            this.panel5.TabIndex = 41;
             // 
             // FrmTelaUsuario
             // 
@@ -410,7 +417,6 @@ namespace Teste
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Splitter splitter2;
         private System.Windows.Forms.Panel panel3;
@@ -419,5 +425,6 @@ namespace Teste
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel5;
     }
 }
