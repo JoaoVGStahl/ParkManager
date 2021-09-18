@@ -87,7 +87,7 @@ namespace Teste
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(218, 90);
             this.button2.TabIndex = 4;
-            this.button2.Text = "Pesquisar Ticket(F6)";
+            this.button2.Text = "Editar Ticket(F7)";
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -139,7 +139,7 @@ namespace Teste
             this.panel3.BackColor = System.Drawing.Color.Transparent;
             this.panel3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel3.BackgroundImage")));
             this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panel3.Location = new System.Drawing.Point(1151, 3);
+            this.panel3.Location = new System.Drawing.Point(1111, 3);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(200, 117);
             this.panel3.TabIndex = 17;
