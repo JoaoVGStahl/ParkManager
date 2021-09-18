@@ -85,7 +85,7 @@ namespace Teste
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.Location = new System.Drawing.Point(693, 16);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(218, 90);
+            this.button2.Size = new System.Drawing.Size(210, 90);
             this.button2.TabIndex = 4;
             this.button2.Text = "Editar Ticket(F7)";
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -118,7 +118,7 @@ namespace Teste
             this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
             this.button5.Location = new System.Drawing.Point(436, 16);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(218, 90);
+            this.button5.Size = new System.Drawing.Size(187, 90);
             this.button5.TabIndex = 19;
             this.button5.Text = "Imprimir";
             this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -156,7 +156,7 @@ namespace Teste
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button3.Location = new System.Drawing.Point(179, 16);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(218, 90);
+            this.button3.Size = new System.Drawing.Size(204, 90);
             this.button3.TabIndex = 16;
             this.button3.Text = "Encerrar Ticket (F4)";
             this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
