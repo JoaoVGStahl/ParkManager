@@ -20,9 +20,9 @@ namespace Teste
         private void AbrirForm(int nivel, Form F)
         {
             //Função Genérica para abrir formulários
-            int UserNivel = Globais.Nivel;
+
             //Verifica se o usuário logado tem nivel suficiente para acessar o form
-            if (UserNivel >= nivel)
+            if (Globais.Nivel >= nivel)
             {
                 //Abre o form
                 F.ShowDialog();
@@ -74,15 +74,22 @@ namespace Teste
                     tb_automovel 
                 ORDER BY  
                     automovel desc";
+            try
+            {
+                dt = banco.QueryBancoSql(sql);
+                cmbTipo.DataSource = null;
+                cmbTipo.DataSource = dt;
+                cmbTipo.ValueMember = "id_automovel";
+                cmbTipo.DisplayMember = "automovel";
+                cmbTipo.SelectedItem = null;
+                cmbTipo.SelectedIndexChanged += cmbTipo_SelectedIndexChanged;
+            }
+            catch (Exception ex)
+            {
 
-            dt.Clear();
-            dt = banco.QueryBancoSql(sql);
-            cmbTipo.DataSource = null;
-            cmbTipo.DataSource = dt;
-            cmbTipo.ValueMember = "id_automovel";
-            cmbTipo.DisplayMember = "automovel";
-            cmbTipo.SelectedItem = null;
-            cmbTipo.SelectedIndexChanged += cmbTipo_SelectedIndexChanged;
+                MessageBox.Show(ex.Message, "Falha ao carregar Tipo de veiculos!");
+            }
+
         }
         private void ContadorTicket()
         {
@@ -93,8 +100,21 @@ namespace Teste
                 FROM 
                     tb_ticket 
                 WHERE status=1";
-            dt = banco.QueryBancoSql(sql);
-            lblQtdTicket.Text = Convert.ToString(dt.Rows[0].ItemArray[0]);
+            try
+            {
+                dt = banco.QueryBancoSql(sql);
+                lblQtdTicket.Text = Convert.ToString(dt.Rows[0].ItemArray[0]);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Falha ao Carregar Contador de Tickets!");
+            }
+            finally
+            {
+                dt.Dispose();
+            }
+
         }
         private void CarregarParametros()
         {
@@ -250,6 +270,7 @@ namespace Teste
             ON 
                     Ticket.carro_id = Car.id_carro 
             WHERE Car.placa='" + placa + "' AND Ticket.status=1";
+
             dt = banco.QueryBancoSql(query);
             if (dt.Rows.Count > 0)
             {
@@ -260,14 +281,13 @@ namespace Teste
                 ticketopen = false;
             }
             return ticketopen;
-
         }
         private void LimparCaixas()
         {
             bool caixa = false;
             txtPlaca.Clear();
-            cmbTipo.SelectedIndex = -1;
             cmbMarca.SelectedIndex = -1;
+            PopularComboTipo();
             txtNome.Clear();
             mskTelefone.Clear();
             AtivarFuncoes(caixa);
@@ -295,16 +315,24 @@ namespace Teste
                 //Limpa o DataTable
                 dt.Clear();
                 //Chama a função que executa a query no banco de dados
-                dt = banco.QueryBancoSql(sql);
-                //Limpar o DataSource do combo
-                cmbMarca.DataSource = null;
-                //Seleciona o DataTable como o DataSoucer do combo
-                cmbMarca.DataSource = dt;
-                //Preenche o ComboBox com o DataTable
-                cmbMarca.ValueMember = "Tipo";
-                cmbMarca.DisplayMember = "Marca";
-                //Desmacar qualquer seleção pré-selecionada
-                cmbMarca.SelectedItem = null;
+                try
+                {
+                    dt = banco.QueryBancoSql(sql);
+                    //Limpar o DataSource do combo
+                    cmbMarca.DataSource = null;
+                    //Seleciona o DataTable como o DataSoucer do combo
+                    cmbMarca.DataSource = dt;
+                    //Preenche o ComboBox com o DataTable
+                    cmbMarca.ValueMember = "Tipo";
+                    cmbMarca.DisplayMember = "Marca";
+                    //Desmacar qualquer seleção pré-selecionada
+                    cmbMarca.SelectedItem = null;
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message, "Falha ao carregar Marcas!");
+                }
             }
 
         }
@@ -335,19 +363,32 @@ namespace Teste
                         tb_entrada AS Entrada ON Entrada.ticket_id = Ticket.id_ticket 
                    AND Placa='" + placa + "' AND Ticket.status=1";
                 //Chamando a função que executa a query no banco e retorna um Data Table
-                dt = banco.QueryBancoSql(query);
-                //Verifica se houve algum retorno no DataTable
-                if (dt.Rows.Count > 0)
+                try
                 {
-                    PreencherLabels(dt);
-                    AlinharLabels();
-                    btnEncerrar.Enabled = true;
-                    btnIniciar.Enabled = false;
+                    dt = banco.QueryBancoSql(query);
+                    //Verifica se houve algum retorno no DataTable
+                    if (dt.Rows.Count > 0)
+                    {
+                        PreencherLabels(dt);
+                        AlinharLabels();
+                        btnEncerrar.Enabled = true;
+                        btnIniciar.Enabled = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Nenhum ticket em aberto encontrado para este veiculo!", "Ticket não existe!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Nenhum ticket em aberto encontrado para este veiculo!", "Ticket não existe!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    MessageBox.Show(ex.Message, "Falha ao relaizar pesquisa!");
                 }
+                finally
+                {
+                    dt.Dispose();
+                }
+
             }
             else
             {
@@ -432,7 +473,7 @@ namespace Teste
                 }
             }
             // Apenas de A-J e 0-9 e BackSpace
-            if (txtPlaca.TextLength == 4 )
+            if (txtPlaca.TextLength == 4)
             {
                 if (!(caracterespermitidos.Contains(e.KeyChar.ToString().ToUpper())) && !(e.KeyChar == (char)Keys.Back))
                 {
@@ -440,7 +481,7 @@ namespace Teste
                 }
             }
             //Apenas Números e BackSpace
-            if(txtPlaca.TextLength > 4)
+            if (txtPlaca.TextLength > 4)
             {
                 if (!char.IsNumber(e.KeyChar) && !Char.IsControl(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
                 {
@@ -451,10 +492,10 @@ namespace Teste
 
         private void txtNome_KeyPress(object sender, KeyPressEventArgs e)
         {
-                if (!char.IsLetter(e.KeyChar) && !(e.KeyChar == (char)Keys.Back) && !(e.KeyChar == (char)Keys.Space))
-                {
-                    e.Handled = true;
-                }
+            if (!char.IsLetter(e.KeyChar) && !(e.KeyChar == (char)Keys.Back) && !(e.KeyChar == (char)Keys.Space))
+            {
+                e.Handled = true;
+            }
         }
 
         private void cmbMarca_KeyPress(object sender, KeyPressEventArgs e)

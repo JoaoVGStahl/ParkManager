@@ -99,7 +99,7 @@ namespace Teste
             this.cmbTipo.Location = new System.Drawing.Point(222, 41);
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(189, 39);
-            this.cmbTipo.TabIndex = 0;
+            this.cmbTipo.TabIndex = 1;
             // 
             // txtPlaca
             // 
@@ -109,7 +109,7 @@ namespace Teste
             this.txtPlaca.MaxLength = 7;
             this.txtPlaca.Name = "txtPlaca";
             this.txtPlaca.Size = new System.Drawing.Size(183, 38);
-            this.txtPlaca.TabIndex = 1;
+            this.txtPlaca.TabIndex = 0;
             this.txtPlaca.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.txtPlaca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPlaca_KeyPress);
             // 
@@ -117,7 +117,6 @@ namespace Teste
             // 
             this.cmbMarca.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.cmbMarca.BackColor = System.Drawing.Color.White;
-            this.cmbMarca.Enabled = false;
             this.cmbMarca.FormattingEnabled = true;
             this.cmbMarca.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.cmbMarca.IntegralHeight = false;
@@ -135,7 +134,7 @@ namespace Teste
             this.txtNome.MaxLength = 50;
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(311, 38);
-            this.txtNome.TabIndex = 5;
+            this.txtNome.TabIndex = 3;
             this.txtNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNome_KeyPress);
             // 
             // label1
@@ -651,7 +650,7 @@ namespace Teste
             this.mskTelefone.Mask = "(99)00000-0000";
             this.mskTelefone.Name = "mskTelefone";
             this.mskTelefone.Size = new System.Drawing.Size(202, 38);
-            this.mskTelefone.TabIndex = 30;
+            this.mskTelefone.TabIndex = 4;
             // 
             // splitter3
             // 

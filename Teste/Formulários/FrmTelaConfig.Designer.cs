@@ -60,7 +60,6 @@ namespace Teste
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(252, 679);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // btnGeral
             // 
@@ -215,6 +214,7 @@ namespace Teste
             this.Name = "FrmTelaConfig";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Configurações - ParkManager";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmTelaConfig_FormClosing);
             this.Load += new System.EventHandler(this.FrmTelaConfig_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

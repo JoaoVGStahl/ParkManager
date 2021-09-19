@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 
 namespace Teste
 {
@@ -97,13 +90,13 @@ namespace Teste
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message,"Falha no login!");
+                    MessageBox.Show(ex.Message, "Falha no login!");
                 }
                 finally
                 {
                     dt.Dispose();
                 }
-                
+
             }
 
         }
@@ -125,9 +118,5 @@ namespace Teste
             Globais.RegistrarLog("Sistema foi Inicializado");
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

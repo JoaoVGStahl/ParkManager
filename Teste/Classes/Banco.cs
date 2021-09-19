@@ -37,14 +37,15 @@ namespace Teste
                 //Retorna o DataTable preenchido
                 return dt;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
             finally
             {
                 //Fecha a conexao e limpa a variavel sql
-                
+                da.Dispose();
+                dt.Dispose();
                 conexao.Close();
                 sql = "";
             }
@@ -81,14 +82,39 @@ namespace Teste
                 int idTicket = Convert.ToInt32(returnParameter.Value);
                 return idTicket;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 throw ;
             }
             finally
             {
+                cmd.Dispose();
                 //Fecha a conexao
+                conexao.Close();
+            }
+        }
+        public int DmlBancoSql(string query)
+        {
+            int result;
+            SqlCommand cmd = new SqlCommand();
+            try
+            {
+                //Abre a conexao
+                var connection = ConexaoBanco();
+                //Cria o comando
+                cmd = new SqlCommand(query, connection);
+                result = cmd.ExecuteNonQuery();
+                return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                cmd.Dispose();
                 conexao.Close();
             }
         }

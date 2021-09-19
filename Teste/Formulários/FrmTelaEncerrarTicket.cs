@@ -34,12 +34,21 @@ namespace Teste
             WHERE 
                 status=1";
             dt.Clear();
-            dt = banco.QueryBancoSql(query);
-            cmbFormaPagamento.DataSource = null;
-            cmbFormaPagamento.DataSource = dt;
-            cmbFormaPagamento.ValueMember = "id_pgt";
-            cmbFormaPagamento.DisplayMember = "descricao";
-            cmbFormaPagamento.SelectedItem = null;
+            try
+            {
+                dt = banco.QueryBancoSql(query);
+                cmbFormaPagamento.DataSource = null;
+                cmbFormaPagamento.DataSource = dt;
+                cmbFormaPagamento.ValueMember = "id_pgt";
+                cmbFormaPagamento.DisplayMember = "descricao";
+                cmbFormaPagamento.SelectedItem = null;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
 
         }
         private void CarregarTicket()

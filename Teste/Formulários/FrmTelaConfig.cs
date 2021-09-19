@@ -16,87 +16,94 @@ namespace Teste
         {
             InitializeComponent();
         }
-
-        private void btnSair_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void btnSalvar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void FrmTelaConfig_Load(object sender, EventArgs e)
-        {
-            if(Globais.Login == Properties.Settings.Default.UserRoot)
-            {
-                btnDev.Visible = true;
-            }
-            lblUsuario.Text = Globais.Login;
-        }
-        private void FundoBotao()
+        private void FundoBotao(Button botao)
         {
             btnGeral.BackColor = Color.WhiteSmoke;
             btnEstacionamento.BackColor = Color.WhiteSmoke;
             btnPrecos.BackColor = Color.WhiteSmoke;
             btnUsuarios.BackColor = Color.WhiteSmoke;
             btnDev.BackColor = Color.WhiteSmoke;
+            botao.BackColor = Color.DarkBlue;
         }
+        private void AbreFormParent(int nivel, Form Frm)
+        {
+            if (Globais.Nivel >= nivel)
+            {
+                Frm.MdiParent = this;
+                Frm.Dock = DockStyle.Fill;
+                Frm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Seu usuário não tem permissão para acessar está area!", "Acesso Negado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+        private void FecharFormulariosFilhos()
+        {
+            // percorre todos os formulários abertos
+            for (int i = Application.OpenForms.Count - 1; i >= 0; i--)
+            {
+                // se o formulário for filho
+                if (Application.OpenForms[i].IsMdiChild)
+                {
+                    // fecha o formulário
+                    Application.OpenForms[i].Close();
+                }
+            }
+        }
+
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
+
+        private void FrmTelaConfig_Load(object sender, EventArgs e)
+        {
+            if (Globais.Login == Properties.Settings.Default.UserRoot)
+            {
+                btnDev.Visible = true;
+            }
+            lblUsuario.Text = Globais.Login;
+        }
+
 
         private void btnGeral_Click(object sender, EventArgs e)
         {
-            FundoBotao();
-            btnGeral.BackColor = Color.DarkBlue;
+            FundoBotao(btnGeral);
         }
 
         private void btnEstacionamento_Click(object sender, EventArgs e)
         {
-            FundoBotao();
-            btnEstacionamento.BackColor = Color.DarkBlue;
+            FundoBotao(btnEstacionamento);
         }
 
         private void btnPrecos_Click(object sender, EventArgs e)
         {
-            FundoBotao();
-            btnPrecos.BackColor = Color.DarkBlue;
+            FundoBotao(btnPrecos);
         }
 
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
-            FundoBotao();
-            btnUsuarios.BackColor = Color.DarkBlue;
-
-            FrmTelaUsuario frm = new FrmTelaUsuario();
-
-            AbreFormParent(frm);
-        }
-        private void AbreFormParent(Form Frm)
-        {
-            Frm.MdiParent = this;
-            Frm.Dock = DockStyle.Fill;
-            Frm.Show();
+            FundoBotao(btnUsuarios);
+            FecharFormulariosFilhos();
+            FrmTelaUsuario Frm = new FrmTelaUsuario();
+            AbreFormParent(2, Frm);
         }
 
         private void btnDev_Click(object sender, EventArgs e)
         {
-            FundoBotao();
-            btnDev.BackColor = Color.DarkBlue;
+            FundoBotao(btnDev);
+            FecharFormulariosFilhos();
+            FrmTelaDesenvolvedor Frm = new FrmTelaDesenvolvedor();
+            AbreFormParent(3, Frm);
+
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void FrmTelaConfig_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            this.Dispose();
         }
+        
     }
 }

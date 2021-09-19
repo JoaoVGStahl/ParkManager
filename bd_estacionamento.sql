@@ -280,3 +280,5 @@ Ticket.carro_id = Car.id_carro WHERE Car.placa='ABC1234' AND Ticket.status=1
 SELECT * FROM tb_estacionamento WHERE status=1
 
 SELECT id_usuario[ID], login[Login],nivel[Nivel] FROM tb_usuario WHERE status=1
+
+SELECT id_usuario[ID] FROM tb_usuario WHERE login='joao.girardi' AND senha='admin'
