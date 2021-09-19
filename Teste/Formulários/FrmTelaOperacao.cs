@@ -129,13 +129,13 @@ namespace Teste
         private void button6_Click(object sender, EventArgs e)
         {
             FrmTelaPesquisaTicket Frm = new FrmTelaPesquisaTicket();
-            Frm.ShowDialog();
+            AbrirForm(0, Frm);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket();
-            Frm.ShowDialog();
+            AbrirForm(0, Frm);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -182,84 +182,22 @@ namespace Teste
 
         private void button2_Click(object sender, EventArgs e)
         {
-
-            //Obtem as informações das caixa de texto
-            int idTicket = 0;
-            string placa = txtPlaca.Text,
-                   tipo = cmbTipo.Text,
-                   marca = cmbMarca.Text,
-                   nome,
-                   telefone;
-            bool caixafill = VerificarCaixas();
-            bool ticketopen = VerificarTicket(placa);
-
-            if (caixafill)
+            VerificarCaixas();
+        }
+        private void VerificarCaixas()
+        {
+            if (txtPlaca.Text != "" && cmbTipo.SelectedIndex >= 0 && cmbTipo.SelectedIndex >= 0)
             {
-                if (!ticketopen)
-                {
-                    if (txtNome.Text == "")
-                    {
-                        nome = "Convidado";
-                        telefone = "(00)00000-0000";
-                    }
-                    else
-                    {
-                        nome = txtNome.Text;
-                        telefone = mskTelefone.Text;
-                    }
-                    try
-                    {
-                        //Chama a função que executa uma Stored Procedure no banco de dados.
-                        idTicket = banco.ProcedureInserirTicket(placa, tipo, marca, nome, telefone);
-                        //Verifica se houve algum retorno da procedure
-                        if (idTicket > 0)
-                        {
-                            MessageBox.Show("Ticket Iniciado com sucesso! \n #Ticket:" + idTicket, "Ticket Iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                            ContadorTicket();
-                            LimparCaixas();
-                            Globais.RegistrarLog(Globais.Login + " Inicou o Ticket #" + idTicket);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Falha ao iniciar Ticket!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
 
-                        MessageBox.Show(ex.Message, "Falha ao iniciar ticket!");
-                    }
-
-                }
-                else
-                {
-                    MessageBox.Show("Já existe um ticket em andamento para este veiculo!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    LimparCaixas();
-                }
-
+                VerificarTicket(txtPlaca.Text);
             }
             else
             {
                 MessageBox.Show("Há campos que precisam ser preenchidos!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public bool VerificarCaixas()
+        private void VerificarTicket(string placa)
         {
-            bool caixafill;
-            if (txtPlaca.Text != "" && cmbTipo.SelectedIndex >= 0 && cmbTipo.SelectedIndex >= 0)
-            {
-
-                caixafill = true;
-            }
-            else
-            {
-                caixafill = false;
-            }
-            return caixafill;
-        }
-        public bool VerificarTicket(string placa)
-        {
-            bool ticketopen;
             DataTable dt = new DataTable();
             string query = @"
             SELECT 
@@ -271,16 +209,64 @@ namespace Teste
                     Ticket.carro_id = Car.id_carro 
             WHERE Car.placa='" + placa + "' AND Ticket.status=1";
 
-            dt = banco.QueryBancoSql(query);
-            if (dt.Rows.Count > 0)
+            try
             {
-                ticketopen = true;
+                dt = banco.QueryBancoSql(query);
+                if (dt.Rows.Count > 0)
+                {
+                    InserirTicket();
+                }
+                else
+                {
+                    MessageBox.Show("Já existe um ticket em andamento para este veiculo!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    LimparCaixas();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Falha ao iniciar ticket!");
+            }
+            
+        }
+        private void InserirTicket()
+        {
+            string placa = txtPlaca.Text, tipo = cmbTipo.Text, marca = cmbMarca.Text;
+            string nome, telefone;
+            int idTicket;
+            
+            if (txtNome.Text == "")
+            {
+                nome = "Convidado";
+                telefone = "(00)00000-0000";
             }
             else
             {
-                ticketopen = false;
+                nome = txtNome.Text;
+                telefone = mskTelefone.Text;
             }
-            return ticketopen;
+            try
+            {
+                //Chama a função que executa uma Stored Procedure no banco de dados.
+                idTicket = banco.ProcedureInserirTicket(placa, tipo, marca, nome, telefone);
+                //Verifica se houve algum retorno da procedure
+                if (idTicket > 0)
+                {
+                    MessageBox.Show("Ticket Iniciado com sucesso! \n #Ticket:" + idTicket, "Ticket Iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    ContadorTicket();
+                    LimparCaixas();
+                    Globais.RegistrarLog(Globais.Login + " Inicou o Ticket #" + idTicket);
+                }
+                else
+                {
+                    MessageBox.Show("Falha ao iniciar Ticket!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Falha ao iniciar ticket!");
+            }
         }
         private void LimparCaixas()
         {
@@ -339,8 +325,8 @@ namespace Teste
 
         private void btnConfig_Click(object sender, EventArgs e)
         {
-            FrmTelaConfig frm = new FrmTelaConfig();
-            frm.Show();
+            FrmTelaConfig Frm = new FrmTelaConfig();
+            AbrirForm(0, Frm);
         }
 
         private void btnPesquisaTicket_Click(object sender, EventArgs e)
@@ -455,8 +441,9 @@ namespace Teste
 
         private void txtPlaca_KeyPress(object sender, KeyPressEventArgs e)
         {
+            //Caracteres permitidos
             string caracterespermitidos = "ABCDEFGHIJ0123456789";
-            //Apenas Letras E BackSpace
+            //Apenas Letras E BackSpace nos 3 primeiros digitos
             if (txtPlaca.TextLength < 3)
             {
                 if (!char.IsLetter(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
@@ -464,7 +451,7 @@ namespace Teste
                     e.Handled = true;
                 }
             }
-            //Apenas Números E BackSpace
+            //Apenas Números E BackSpace no 4º Digito
             if (txtPlaca.TextLength == 3)
             {
                 if (!char.IsNumber(e.KeyChar) && !Char.IsControl(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
@@ -472,7 +459,7 @@ namespace Teste
                     e.Handled = true;
                 }
             }
-            // Apenas de A-J e 0-9 e BackSpace
+            // Apenas letras de A-J e 0-9 e BackSpace no 5º Digito
             if (txtPlaca.TextLength == 4)
             {
                 if (!(caracterespermitidos.Contains(e.KeyChar.ToString().ToUpper())) && !(e.KeyChar == (char)Keys.Back))
@@ -480,7 +467,7 @@ namespace Teste
                     e.Handled = true;
                 }
             }
-            //Apenas Números e BackSpace
+            //Apenas Números e BackSpace nos 6º e 7º Digitos
             if (txtPlaca.TextLength > 4)
             {
                 if (!char.IsNumber(e.KeyChar) && !Char.IsControl(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
@@ -492,6 +479,7 @@ namespace Teste
 
         private void txtNome_KeyPress(object sender, KeyPressEventArgs e)
         {
+            //Apenas letras, espaço e BackSpace
             if (!char.IsLetter(e.KeyChar) && !(e.KeyChar == (char)Keys.Back) && !(e.KeyChar == (char)Keys.Space))
             {
                 e.Handled = true;
@@ -500,6 +488,7 @@ namespace Teste
 
         private void cmbMarca_KeyPress(object sender, KeyPressEventArgs e)
         {
+            //Apenas letras, espaço e BackSpace
             if (!char.IsLetter(e.KeyChar) && !(e.KeyChar == (char)Keys.Back) && !(e.KeyChar == (char)Keys.Space))
             {
                 e.Handled = true;
