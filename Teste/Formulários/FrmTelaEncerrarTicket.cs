@@ -26,27 +26,19 @@ namespace Teste
         private void CarregarComboFormaPagamento()
         {
             DataTable dt = new DataTable();
-            string query = @"
-            SELECT 
-                id_pgt, descricao 
-            FROM 
-                tb_forma_pgt 
-            WHERE 
-                status=1";
-            dt.Clear();
             try
             {
-                dt = banco.QueryBancoSql(query);
+                dt = banco.ProcedureSemParametros(4);
                 cmbFormaPagamento.DataSource = null;
                 cmbFormaPagamento.DataSource = dt;
                 cmbFormaPagamento.ValueMember = "id_pgt";
                 cmbFormaPagamento.DisplayMember = "descricao";
                 cmbFormaPagamento.SelectedItem = null;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                MessageBox.Show(ex.Message, "Houve uma falha ao carregar os Métodos de pagamento!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
 
@@ -55,29 +47,23 @@ namespace Teste
         {
             lblHoraSaida.Text = DateTime.Now.ToLongTimeString() + " " + DateTime.Now.ToShortDateString();
             DataTable dt = new DataTable();
-            string query = @"
-             SELECT 
-                Ticket.id_ticket[#Ticket], CONVERT(varchar, Entrada.hr_entrada,8) AS [Hora Entrada],CONVERT(varchar,Entrada.data_entrada,103) AS[Data Entrada] 
-            FROM 
-                tb_ticket AS Ticket  
-            INNER JOIN 
-                tb_entrada AS Entrada 
-            ON 
-                Entrada.ticket_id = Ticket.id_ticket 
-            AND 
-                Ticket.id_ticket="+ Globais.IdTicket;
-            dt = banco.QueryBancoSql(query);
-            if(dt.Rows.Count > 0)
+            try
             {
-                lblIdTicket.Text ="#" + Convert.ToString(dt.Rows[0].ItemArray[0]);
-                lblHoraEntrada.Text = Convert.ToString(dt.Rows[0].ItemArray[1]) + " " + Convert.ToString(dt.Rows[0].ItemArray[2]);
-                
+                dt = banco.ProcedureCarregarTicket(3,Globais.IdTicket);
+                if (dt.Rows.Count > 0)
+                {
+                    lblIdTicket.Text = "#" + Convert.ToString(dt.Rows[0].ItemArray[0]);//ID Ticket
+                    lblHoraEntrada.Text = Convert.ToString(dt.Rows[0].ItemArray[1]) + " " + Convert.ToString(dt.Rows[0].ItemArray[2]);//Hora - Data Entrada
+
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Houve uma falha ao carregar o ticket! \nRealize a pesquisa e tente novamente!","Falha ao carregar Ticket!",MessageBoxButtons.OK,MessageBoxIcon.Error);
+
+                MessageBox.Show(ex.Message,"Houve uma falha ao carregar o ticket! \nRealize a pesquisa e tente novamente!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Dispose();
             }
+            
         }
 
         private void button2_Click(object sender, EventArgs e)

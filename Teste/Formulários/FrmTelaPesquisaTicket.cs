@@ -31,31 +31,9 @@ namespace Teste
         private void PreencherGrid()
         {
             DataTable dt = new DataTable();
-            string query = @"
-            SELECT 
-                Ticket.id_ticket[#Ticket],CONVERT(varchar,Entrada.data_entrada,103) AS[Data Entrada],CONVERT(varchar, Entrada.hr_entrada,8)AS [Hora Entrada], Usuario.login[Usuario Entrada], Car.placa[Placa], Car.tipo[Tipo], Car.marca[Marca], Cli.nome[Nome], Cli.Telefone[Telefone],Ticket.status[Status Ticket]
-            FROM
-                tb_ticket AS Ticket
-            INNER JOIN 
-                tb_entrada AS Entrada 
-            ON  
-	            Entrada.ticket_id = Ticket.id_ticket
-            INNER JOIN 
-                tb_usuario AS Usuario
-            ON
-	            Entrada.usuario_id = Usuario.id_usuario
-            INNER JOIN 
-                tb_carro AS Car
-            ON 
-	            Ticket.carro_id = Car.id_carro
-            INNER JOIN 
-                tb_cliente AS Cli
-            ON 
-	            Car.cliente_id = Cli.id_cliente 
-            WHERE Ticket.status=1";
             try
             {
-                dt = banco.QueryBancoSql(query);
+                dt = banco.ProcedureSemParametros(6);
                 dataGridView1.DataSource = dt;
             }
             catch (Exception ex)
@@ -69,7 +47,7 @@ namespace Teste
         private void button3_Click(object sender, EventArgs e)
         {
             FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket();
-            Frm.Show();
+            Frm.ShowDialog();
         }
 
         private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)

@@ -67,16 +67,9 @@ namespace Teste
         {
             cmbTipo.SelectedIndexChanged -= cmbTipo_SelectedIndexChanged;
             DataTable dt = new DataTable();
-            string sql = @"
-                SELECT 
-                    id_automovel, automovel 
-                FROM
-                    tb_automovel 
-                ORDER BY  
-                    automovel desc";
             try
             {
-                dt = banco.QueryBancoSql(sql);
+                dt = banco.ProcedureSemParametros(0);
                 cmbTipo.DataSource = null;
                 cmbTipo.DataSource = dt;
                 cmbTipo.ValueMember = "id_automovel";
@@ -94,15 +87,9 @@ namespace Teste
         private void ContadorTicket()
         {
             DataTable dt = new DataTable();
-            string sql = @"
-                SELECT COUNT
-                    (id_ticket) 
-                FROM 
-                    tb_ticket 
-                WHERE status=1";
             try
             {
-                dt = banco.QueryBancoSql(sql);
+                dt = banco.ProcedureSemParametros(2);
                 lblQtdTicket.Text = Convert.ToString(dt.Rows[0].ItemArray[0]);
             }
             catch (Exception ex)
@@ -199,27 +186,18 @@ namespace Teste
         private void VerificarTicket(string placa)
         {
             DataTable dt = new DataTable();
-            string query = @"
-            SELECT 
-                    id_ticket 
-            FROM 
-                    tb_ticket AS Ticket 
-            INNER JOIN tb_carro AS Car 
-            ON 
-                    Ticket.carro_id = Car.id_carro 
-            WHERE Car.placa='" + placa + "' AND Ticket.status=1";
-
             try
             {
-                dt = banco.QueryBancoSql(query);
+                dt = banco.ProcedurePesquisaTicketVeiculo(7,placa);
                 if (dt.Rows.Count > 0)
-                {
-                    InserirTicket();
-                }
-                else
                 {
                     MessageBox.Show("Já existe um ticket em andamento para este veiculo!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     LimparCaixas();
+                    
+                }
+                else
+                {
+                    InserirTicket();
                 }
             }
             catch (Exception ex)
@@ -291,19 +269,12 @@ namespace Teste
             {
                 cmbMarca.Enabled = true;
                 DataTable dt = new DataTable();
-                //Montagem da Query de acordo com o Tipo que foi selecionado na ComboBox
-                string sql = @"
-                   SELECT 
-                        A.automovel[Tipo], M.marca [Marca] FROM tb_automovel as A 
-                   INNER JOIN 
-                        tb_marca as M ON 
-                    A.id_automovel = M.id_automovel AND A.automovel='" + tipo + "'";
                 //Limpa o DataTable
                 dt.Clear();
                 //Chama a função que executa a query no banco de dados
                 try
                 {
-                    dt = banco.QueryBancoSql(sql);
+                    dt = banco.ProcedureMarca(1,tipo,"");
                     //Limpar o DataSource do combo
                     cmbMarca.DataSource = null;
                     //Seleciona o DataTable como o DataSoucer do combo
@@ -335,23 +306,10 @@ namespace Teste
             string placa = txtPlaca.Text;
             if (placa != "")
             {
-                //Query a ser executada no banco
-                string query = @"
-                   SELECT 
-                        Ticket.id_ticket[#Ticket],Car.tipo[Tipo], Car.marca[Marca], Car.placa[Placa], Cli.nome[Nome], Cli.telefone[Telefone],CONVERT(varchar, Entrada.hr_entrada,8) AS [Hora Entrada],CONVERT(varchar,Entrada.data_entrada,103) AS[Data Entrada]
-                   FROM 
-                        tb_ticket AS Ticket 
-                   INNER JOIN
-                        tb_carro AS Car ON Ticket.carro_id = Car.id_Carro 
-                   INNER JOIN 
-                        tb_cliente AS Cli ON Car.cliente_id = Cli.id_cliente 
-                   INNER JOIN 
-                        tb_entrada AS Entrada ON Entrada.ticket_id = Ticket.id_ticket 
-                   AND Placa='" + placa + "' AND Ticket.status=1";
-                //Chamando a função que executa a query no banco e retorna um Data Table
+
                 try
                 {
-                    dt = banco.QueryBancoSql(query);
+                    dt = banco.ProcedurePesquisaTicketVeiculo(7,placa);
                     //Verifica se houve algum retorno no DataTable
                     if (dt.Rows.Count > 0)
                     {
@@ -391,7 +349,7 @@ namespace Teste
             lblPlaca.Text = Convert.ToString(dt.Rows[0].ItemArray[3]);//Placa
             txtNomeP.Text = Convert.ToString(dt.Rows[0].ItemArray[4]);//Nome
             txtTelefoneP.Text = Convert.ToString(dt.Rows[0].ItemArray[5]);// Telefone
-            lblHrEntrada.Text = Convert.ToString(dt.Rows[0].ItemArray[6]) + " " + Convert.ToString(dt.Rows[0].ItemArray[7]);// Data e Hora
+            lblHrEntrada.Text = Convert.ToString(dt.Rows[0].ItemArray[6]) + " " + Convert.ToString(dt.Rows[0].ItemArray[7]);// Hora + Data
         }
         private void AlinharLabels()
         {

@@ -50,7 +50,7 @@ namespace Teste
                 sql = "";
             }
         }
-
+        #region Procedure para inserir um novo Ticket
         public int ProcedureInserirTicket(string placa, string tipo, string marca, string nome, string telefone)
         {
             //Abre a conexao e obtem paramentros restantes
@@ -65,14 +65,14 @@ namespace Teste
             {
                 //Envia os paramentros para o Banco de Dados
                 cmd.Parameters.AddWithValue("@idUsuario", Globais.IdUsuario);
-                cmd.Parameters.AddWithValue("@NomeCliente", nome);
+                cmd.Parameters.AddWithValue("@Nome_Cliente", nome);
                 cmd.Parameters.AddWithValue("@Telefone", telefone);
-                cmd.Parameters.AddWithValue("@placa", placa);
-                cmd.Parameters.AddWithValue("@marca", marca);
-                cmd.Parameters.AddWithValue("@tipo", tipo);
-                cmd.Parameters.AddWithValue("@hr_entrada", HoraAtual);
-                cmd.Parameters.AddWithValue("@data_entrada", DataAtual);
-                cmd.Parameters.AddWithValue("@caminhoFoto", @"ParkManager\Fotos\008.png");
+                cmd.Parameters.AddWithValue("@Placa", placa);
+                cmd.Parameters.AddWithValue("@Marca", marca);
+                cmd.Parameters.AddWithValue("@Tipo", tipo);
+                cmd.Parameters.AddWithValue("@Hr_Entrada", HoraAtual);
+                cmd.Parameters.AddWithValue("@Data_Entrada", DataAtual);
+                cmd.Parameters.AddWithValue("@Caminho_Foto", @"ParkManager\Fotos\008.png");
                 //Retorna o IDTicket que acabou de ser criado
                 var returnParameter = cmd.Parameters.Add("@Return_value", SqlDbType.Int);
                 returnParameter.Direction = ParameterDirection.ReturnValue;
@@ -93,6 +93,170 @@ namespace Teste
                 //Fecha a conexao
                 conexao.Close();
             }
+        }
+        #endregion
+
+        #region Procedure com Flags para realizar consultas sem parametros especificos, ou seja, carregas todas as informações de uma tabela
+        public DataTable ProcedureSemParametros(int flag)
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da;
+            SqlCommand cmd;
+            try
+            {
+                // Cria e Abre a conexao
+                var connection = ConexaoBanco();
+                //Qual será a consulta no Banco de Dados
+                cmd = new SqlCommand("[dbo].[Funcoes_Pesquisa]",connection);
+                //Tipo de Consulta
+                cmd.CommandType = CommandType.StoredProcedure;
+                //Parametros
+                cmd.Parameters.AddWithValue("@Flag", flag);
+                //Preencher DataTable
+                da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                // Destrói os recursos usados da memoria
+                da.Dispose();
+                cmd.Dispose();
+                //Retorna DataTable
+                return dt;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conexao.Close();
+                
+            }
+            
+            //Abre a conexao e obtem paramentros restantes
+            
+        }
+        #endregion
+        #region Procedure que carrega o ComboBox Marca da tela de operação, de acordo com o Tipo Selecionado
+        public DataTable ProcedureMarca(int flag, string tipo,string placa)
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da;
+            SqlCommand cmd;
+            try
+            {
+                // Cria e Abre a conexao
+                var connection = ConexaoBanco();
+                //Qual será a consulta no Banco de Dados
+                cmd = new SqlCommand("[dbo].[Funcoes_Pesquisa]", connection);
+                //Tipo de Consulta
+                cmd.CommandType = CommandType.StoredProcedure;
+                //Parametros
+                cmd.Parameters.AddWithValue("@Flag", flag);
+                cmd.Parameters.AddWithValue("@Tipo", tipo);
+                
+                //Preencher DataTable
+                da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                // Destrói os recursos usados da memoria
+                da.Dispose();
+                cmd.Dispose();
+                //Retorna DataTable
+                return dt;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conexao.Close();
+
+            }
+
+            //Abre a conexao e obtem paramentros restantes
+
+        }
+        #endregion
+        #region Procedure que trás as informações de um ticket sobre um veiculo especifico
+        public DataTable ProcedurePesquisaTicketVeiculo(int flag,string placa)
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da;
+            SqlCommand cmd;
+            try
+            {
+                // Cria e Abre a conexao
+                var connection = ConexaoBanco();
+                //Qual será a consulta no Banco de Dados
+                cmd = new SqlCommand("[dbo].[Funcoes_Pesquisa]", connection);
+                //Tipo de Consulta
+                cmd.CommandType = CommandType.StoredProcedure;
+                //Parametros
+                cmd.Parameters.AddWithValue("@Flag", flag);
+                cmd.Parameters.AddWithValue("@Placa",placa);
+                //Preencher DataTable
+                da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                // Destrói os recursos usados da memoria
+                da.Dispose();
+                cmd.Dispose();
+                //Retorna DataTable
+                return dt;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conexao.Close();
+
+            }
+
+            //Abre a conexao e obtem paramentros restantes
+
+        }
+        #endregion
+        public DataTable ProcedureCarregarTicket(int flag,int idTicket)
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da;
+            SqlCommand cmd;
+            try
+            {
+                // Cria e Abre a conexao
+                var connection = ConexaoBanco();
+                //Qual será a consulta no Banco de Dados
+                cmd = new SqlCommand("[dbo].[Funcoes_Pesquisa]", connection);
+                //Tipo de Consulta
+                cmd.CommandType = CommandType.StoredProcedure;
+                //Parametros
+                cmd.Parameters.AddWithValue("@Flag", flag);
+                cmd.Parameters.AddWithValue("@idTicket", idTicket);
+                //Preencher DataTable
+                da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                // Destrói os recursos usados da memoria
+                da.Dispose();
+                cmd.Dispose();
+                //Retorna DataTable
+                return dt;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conexao.Close();
+
+            }
+
+            //Abre a conexao e obtem paramentros restantes
+
         }
         public int DmlBancoSql(string query)
         {

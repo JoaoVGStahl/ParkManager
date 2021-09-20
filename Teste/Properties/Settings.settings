@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="StringBanco" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Server=db-park-manager.ch2qj4cvcflx.us-east-1.rds.amazonaws.com,1433;Database=db_estacionamento;User Id=sa;Password=adminparkmanager;</Value>
+      <Value Profile="(Default)">Server=PCSEMIGAMER\SQLSERVER;Database=db_estacionamento;User Id=sa;Password=joaorotivGTA5;</Value>
     </Setting>
     <Setting Name="UserRoot" Type="System.String" Scope="User">
       <Value Profile="(Default)">root</Value>

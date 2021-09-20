@@ -6,17 +6,17 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE PROCEDURE [dbo].[InsertTicket]
+ALTER PROCEDURE [dbo].[InsertTicket]
 (
 @idUsuario int,
-@NomeCliente varchar(50),
+@Nome_Cliente varchar(50),
 @Telefone varchar(14),
 @Placa varchar(7),
-@Marca varchar,
-@Tipo varchar,
-@Hr_entrada time(0),
-@Data_entrada date,
-@CaminhoFoto varchar(100)
+@Marca varchar(25),
+@Tipo varchar(20),
+@Hr_Entrada time(0),
+@Data_Entrada date,
+@Caminho_Foto varchar(100)
 ) 
 AS 
 DECLARE @idCarro int,
@@ -25,16 +25,16 @@ DECLARE @idCarro int,
 @idMarca int,
 @idTipo int
 
-	IF(@NomeCliente = 'Convidado')
+	IF(@Nome_Cliente = 'Convidado')
 	BEGIN
 		SET @idCliente = 1
 	END	
 	ELSE
 	BEGIN
-		SET @idCliente = (SELECT id_cliente FROM tb_cliente WHERE nome=@NomeCliente AND telefone=@Telefone)
+		SET @idCliente = (SELECT id_cliente FROM tb_cliente WHERE nome=@Nome_Cliente AND telefone=@Telefone)
 		IF(@idCliente IS NULL)
 		BEGIN
-			INSERT INTO tb_cliente (nome,telefone,status) VALUES (@NomeCliente,@Telefone,1)
+			INSERT INTO tb_cliente (nome,telefone,status) VALUES (@Nome_Cliente,@Telefone,1)
 			SET @idCliente = @@IDENTITY
 		END
 	END	
@@ -48,6 +48,6 @@ DECLARE @idCarro int,
 		END
 	INSERT INTO tb_ticket (cliente_id,carro_id,status) VALUES(@idCliente,@idCarro,1)
 	SET @idTicket = @@IDENTITY
-	INSERT INTO tb_entrada(ticket_id,usuario_id,hr_entrada,data_entrada,status) VALUES(@idTicket,@idUsuario,@Hr_entrada,@Data_entrada,1)
-	INSERT INTO tb_fotos(ticket_id,foto_caminho) VALUES (@idTicket,@CaminhoFoto)
+	INSERT INTO tb_entrada(ticket_id,usuario_id,hr_entrada,data_entrada,status) VALUES(@idTicket,@idUsuario,@Hr_Entrada,@Data_Entrada,1)
+	INSERT INTO tb_fotos(ticket_id,foto_caminho) VALUES (@idTicket,@Caminho_Foto)
 RETURN @idTicket
