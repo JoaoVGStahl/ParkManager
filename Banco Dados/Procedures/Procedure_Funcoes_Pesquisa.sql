@@ -50,4 +50,8 @@ AS
 	BEGIN	
 		SELECT * FROM tb_estacionamento WHERE status=1
 	END
+-- 9 = SELECT de usuario
+    BEGIN
+	   SELECT * FROM tb_usuario
+    END
 
