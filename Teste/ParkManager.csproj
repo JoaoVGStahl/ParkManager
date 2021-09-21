@@ -81,6 +81,24 @@
     <Compile Include="Formulários\FrmTelaConfig.Designer.cs">
       <DependentUpon>FrmTelaConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmTelaCadastros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTelaCadastros.Designer.cs">
+      <DependentUpon>FrmTelaCadastros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmTelaDesenvolvedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTelaDesenvolvedor.Designer.cs">
+      <DependentUpon>FrmTelaDesenvolvedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmTelaUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTelaUsuario.Designer.cs">
+      <DependentUpon>FrmTelaUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Formulários\FrmTelaEncerrarTicket.resx">
       <DependentUpon>FrmTelaEncerrarTicket.cs</DependentUpon>
@@ -96,6 +114,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formulários\FrmTelaConfig.resx">
       <DependentUpon>FrmTelaConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmTelaCadastros.resx">
+      <DependentUpon>FrmTelaCadastros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmTelaUsuario.resx">
+      <DependentUpon>FrmTelaUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

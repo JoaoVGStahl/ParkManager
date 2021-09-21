@@ -20,9 +20,9 @@ namespace Teste
         private void AbrirForm(int nivel, Form F)
         {
             //Função Genérica para abrir formulários
-            int UserNivel = Globais.Nivel;
+
             //Verifica se o usuário logado tem nivel suficiente para acessar o form
-            if (UserNivel >= nivel)
+            if (Globais.Nivel >= nivel)
             {
                 //Abre o form
                 F.ShowDialog();
@@ -35,16 +35,23 @@ namespace Teste
 
         private void FrmTelaOperacao_Load(object sender, EventArgs e)
         {
+            if (!(Globais.Login == Properties.Settings.Default.UserRoot))
+            {
+                txtPlaca.Select();
+                CarregarBarraStatus();
+                PopularComboTipo();
+                ContadorTicket();
+                CarregarParametros();
+            }
             //Foca a Caixa de texto da Placa
-            txtPlaca.Select();
-            CarregarBarraStatus();
-            PopularComboTipo();
-            ContadorTicket();
+
+            /*
             Globais.IdUsuario = 1;
             Globais.Login = "admin";
             Globais.Nivel = 3;
             Globais.UserStatus = 1;
             lblUsername.Text = Globais.Login;
+            */
         }
         private void CarregarBarraStatus()
         {
@@ -60,78 +67,79 @@ namespace Teste
         {
             cmbTipo.SelectedIndexChanged -= cmbTipo_SelectedIndexChanged;
             DataTable dt = new DataTable();
-            string sql = @"
-                SELECT 
-                    id_automovel, automovel 
-                FROM
-                    tb_automovel 
-                ORDER BY  
-                    automovel desc";
+            try
+            {
+                dt = banco.ProcedureSemParametros(0);
+                cmbTipo.DataSource = null;
+                cmbTipo.DataSource = dt;
+                cmbTipo.ValueMember = "id_automovel";
+                cmbTipo.DisplayMember = "automovel";
+                cmbTipo.SelectedItem = null;
+                cmbTipo.SelectedIndexChanged += cmbTipo_SelectedIndexChanged;
+            }
+            catch (Exception ex)
+            {
 
-            dt.Clear();
-            dt = banco.QueryBancoSql(sql);
-            cmbTipo.DataSource = null;
-            cmbTipo.DataSource = dt;
-            cmbTipo.ValueMember = "id_automovel";
-            cmbTipo.DisplayMember = "automovel";
-            cmbTipo.SelectedItem = null;
-            cmbTipo.SelectedIndexChanged += cmbTipo_SelectedIndexChanged;
+                MessageBox.Show(ex.Message, "Falha ao carregar Tipo de veiculos!");
+            }
+
         }
         private void ContadorTicket()
         {
             DataTable dt = new DataTable();
-            string sql = @"
-                SELECT COUNT
-                    (id_ticket) 
-                FROM 
-                    tb_ticket 
-                WHERE status=1";
-            dt = banco.QueryBancoSql(sql);
-            lblQtdTicket.Text = Convert.ToString(dt.Rows[0].ItemArray[0]);
+            try
+            {
+                dt = banco.ProcedureSemParametros(2);
+                lblQtdTicket.Text = Convert.ToString(dt.Rows[0].ItemArray[0]);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Falha ao Carregar Contador de Tickets!");
+            }
+            finally
+            {
+                dt.Dispose();
+            }
+
+        }
+        private void CarregarParametros()
+        {
+
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            string mensagem = "Tem certeza que deseja sair?";
-            string titulo = "Efetuar Logout?";
-            bool escolha = (MessageBox.Show(mensagem, titulo, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button3) == DialogResult.Yes);
-            if (escolha)
-            {
-                //Registra que o Usuário efetuou logout
-                Globais.RegistrarLog(Globais.Login + " Efetuou Logout.");
-                //Destroi o Formulario principal e abre o formulario de login
-                FrmTelaLogin Frm = new FrmTelaLogin();
-                this.Dispose();
-                Frm.ShowDialog();
-            }
+            FecharForm();
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
             FrmTelaPesquisaTicket Frm = new FrmTelaPesquisaTicket();
-            Frm.ShowDialog();
+            AbrirForm(0, Frm);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket();
-            Frm.Show();
+            AbrirForm(0, Frm);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             bool caixa;
             //Caso for digitado 7 caracteres na caixa de texto da placa, Ativa algumas funções
+
             if (txtPlaca.TextLength == 7)
             {
                 caixa = true;
-                AtivarFuncoes(caixa);
             }
             else
             {
                 caixa = false;
-                AtivarFuncoes(caixa);
+
             }
+            AtivarFuncoes(caixa);
         }
         private void AtivarFuncoes(bool caixa)
         {
@@ -161,26 +169,62 @@ namespace Teste
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //Obtem as informações das caixa de texto
-            int idTicket = 0;
-            string placa = txtPlaca.Text,
-                   tipo = cmbTipo.Text,
-                   marca = cmbMarca.Text,
-                   nome,
-                   telefone;
-            bool caixafill = VerificarCaixas();
-            if (caixafill == true)
+            VerificarCaixas();
+        }
+        private void VerificarCaixas()
+        {
+            if (txtPlaca.Text != "" && cmbTipo.SelectedIndex >= 0 && cmbTipo.SelectedIndex >= 0)
             {
-                if (txtNome.Text == "")
+
+                VerificarTicket(txtPlaca.Text);
+            }
+            else
+            {
+                MessageBox.Show("Há campos que precisam ser preenchidos!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void VerificarTicket(string placa)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                dt = banco.ProcedurePesquisaTicketVeiculo(7,placa);
+                if (dt.Rows.Count > 0)
                 {
-                    nome = "Convidado";
-                    telefone = "(00)00000-0000";
+                    MessageBox.Show("Já existe um ticket em andamento para este veiculo!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    LimparCaixas();
+                    
                 }
                 else
                 {
-                    nome = txtNome.Text;
-                    telefone = mskTelefone.Text;
+                    InserirTicket();
                 }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Falha ao iniciar ticket!");
+            }
+            
+        }
+        private void InserirTicket()
+        {
+            string placa = txtPlaca.Text, tipo = cmbTipo.Text, marca = cmbMarca.Text;
+            string nome, telefone;
+            int idTicket;
+            
+            if (txtNome.Text == "")
+            {
+                nome = "Convidado";
+                telefone = "(00)00000-0000";
+            }
+            else
+            {
+                nome = txtNome.Text;
+                telefone = mskTelefone.Text;
+            }
+            try
+            {
                 //Chama a função que executa uma Stored Procedure no banco de dados.
                 idTicket = banco.ProcedureInserirTicket(placa, tipo, marca, nome, telefone);
                 //Verifica se houve algum retorno da procedure
@@ -189,36 +233,25 @@ namespace Teste
                     MessageBox.Show("Ticket Iniciado com sucesso! \n #Ticket:" + idTicket, "Ticket Iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                     ContadorTicket();
                     LimparCaixas();
-                    Globais.RegistrarLog(Globais.Login + " Inicou o Ticket #:" + idTicket);
+                    Globais.RegistrarLog(Globais.Login + " Inicou o Ticket #" + idTicket);
                 }
                 else
                 {
-                    MessageBox.Show("Falha ao iniciar Ticket!", "Ticket não iniciado!", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                    MessageBox.Show("Falha ao iniciar Ticket!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Há campos que precisam ser preenchidos!", "Ticket não iniciado!", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
-            }
-        }
-        public bool VerificarCaixas()
-        {
-            bool caixafill;
-            if (txtPlaca.Text != "" && cmbTipo.SelectedIndex > 0 && cmbTipo.SelectedIndex > 0)
-            {
-                return caixafill = true;
-            }
-            else
-            {
-                return caixafill = false;
+
+                MessageBox.Show(ex.Message, "Falha ao iniciar ticket!");
             }
         }
         private void LimparCaixas()
         {
             bool caixa = false;
             txtPlaca.Clear();
-            cmbTipo.SelectedItem = null;
-            cmbMarca.SelectedItem = null;
+            cmbMarca.SelectedIndex = -1;
+            PopularComboTipo();
             txtNome.Clear();
             mskTelefone.Clear();
             AtivarFuncoes(caixa);
@@ -236,34 +269,35 @@ namespace Teste
             {
                 cmbMarca.Enabled = true;
                 DataTable dt = new DataTable();
-                //Montagem da Query de acordo com o Tipo que foi selecionado na ComboBox
-                string sql = @"
-                   SELECT 
-                        A.automovel[Tipo], M.marca [Marca] FROM tb_automovel as A 
-                   INNER JOIN 
-                        tb_marca as M ON 
-                    A.id_automovel = M.id_automovel AND A.automovel='" + tipo + "'";
                 //Limpa o DataTable
                 dt.Clear();
                 //Chama a função que executa a query no banco de dados
-                dt = banco.QueryBancoSql(sql);
-                //Limpar o DataSource do combo
-                cmbMarca.DataSource = null;
-                //Seleciona o DataTable como o DataSoucer do combo
-                cmbMarca.DataSource = dt;
-                //Preenche o ComboBox com o DataTable
-                cmbMarca.ValueMember = "Tipo";
-                cmbMarca.DisplayMember = "Marca";
-                //Desmacar qualquer seleção pré-selecionada
-                cmbMarca.SelectedItem = null;
+                try
+                {
+                    dt = banco.ProcedureMarca(1,tipo,"");
+                    //Limpar o DataSource do combo
+                    cmbMarca.DataSource = null;
+                    //Seleciona o DataTable como o DataSoucer do combo
+                    cmbMarca.DataSource = dt;
+                    //Preenche o ComboBox com o DataTable
+                    cmbMarca.ValueMember = "Tipo";
+                    cmbMarca.DisplayMember = "Marca";
+                    //Desmacar qualquer seleção pré-selecionada
+                    cmbMarca.SelectedItem = null;
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message, "Falha ao carregar Marcas!");
+                }
             }
 
         }
 
         private void btnConfig_Click(object sender, EventArgs e)
         {
-            FrmTelaConfig frm = new FrmTelaConfig();
-            frm.Show();
+            FrmTelaConfig Frm = new FrmTelaConfig();
+            AbrirForm(0, Frm);
         }
 
         private void btnPesquisaTicket_Click(object sender, EventArgs e)
@@ -272,33 +306,33 @@ namespace Teste
             string placa = txtPlaca.Text;
             if (placa != "")
             {
-                //Query a ser executada no banco
-                string query = @"
-                   SELECT 
-                        Car.tipo[Tipo], Car.marca[Marca], Car.placa[Placa], Cli.nome[Nome], Cli.telefone[Telefone], Entrada.hr_entrada[Hora Entrada],FORMAT(Entrada.data_entrada,'dd/MM/yyyy') AS[Data Entrada]
-                   FROM 
-                        tb_ticket AS Ticket 
-                   INNER JOIN
-                        tb_carro AS Car ON Ticket.carro_id = Car.id_Carro 
-                   INNER JOIN 
-                        tb_cliente AS Cli ON Car.cliente_id = Cli.id_cliente 
-                   INNER JOIN 
-                        tb_entrada AS Entrada ON Entrada.ticket_id = Ticket.id_ticket 
-                   AND Placa='" + placa + "' AND Ticket.status=1";
-                //Chamando a função que executa a query no banco e retorna um Data Table
-                dt = banco.QueryBancoSql(query);
-                //Verifica se houve algum retorno no DataTable
-                if (dt.Rows.Count > 0)
+
+                try
                 {
-                    PreencherLabels(dt);
-                    AlinharLabels();
-                    btnEncerrar.Enabled = true;
-                    btnIniciar.Enabled = false;
+                    dt = banco.ProcedurePesquisaTicketVeiculo(7,placa);
+                    //Verifica se houve algum retorno no DataTable
+                    if (dt.Rows.Count > 0)
+                    {
+                        PreencherLabels(dt);
+                        AlinharLabels();
+                        btnEncerrar.Enabled = true;
+                        btnIniciar.Enabled = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Nenhum ticket em aberto encontrado para este veiculo!", "Ticket não existe!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Nenhum ticket em aberto encontrado para este veiculo!", "Ticket não existe!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    MessageBox.Show(ex.Message, "Falha ao relaizar pesquisa!");
                 }
+                finally
+                {
+                    dt.Dispose();
+                }
+
             }
             else
             {
@@ -309,18 +343,114 @@ namespace Teste
         private void PreencherLabels(DataTable dt)
         {
             //Preenchendo as labels com as informações do banco
-            lblTipo.Text = Convert.ToString(dt.Rows[0].ItemArray[0]); //Tipo
-            lblMarca.Text = Convert.ToString(dt.Rows[0].ItemArray[1]);//Marca
-            lblPlaca.Text = Convert.ToString(dt.Rows[0].ItemArray[2]);//Placa
-            txtNomeP.Text = Convert.ToString(dt.Rows[0].ItemArray[3]);//Nome
-            txtTelefoneP.Text = Convert.ToString(dt.Rows[0].ItemArray[4]);// Telefone
-            lblHrEntrada.Text = Convert.ToString(dt.Rows[0].ItemArray[5]) + " " + Convert.ToString(dt.Rows[0].ItemArray[6]);// Data e Hora
+            Globais.IdTicket = Convert.ToInt32(dt.Rows[0].ItemArray[0]);
+            lblTipo.Text = Convert.ToString(dt.Rows[0].ItemArray[1]); //Tipo
+            lblMarca.Text = Convert.ToString(dt.Rows[0].ItemArray[2]);//Marca
+            lblPlaca.Text = Convert.ToString(dt.Rows[0].ItemArray[3]);//Placa
+            txtNomeP.Text = Convert.ToString(dt.Rows[0].ItemArray[4]);//Nome
+            txtTelefoneP.Text = Convert.ToString(dt.Rows[0].ItemArray[5]);// Telefone
+            lblHrEntrada.Text = Convert.ToString(dt.Rows[0].ItemArray[6]) + " " + Convert.ToString(dt.Rows[0].ItemArray[7]);// Hora + Data
         }
         private void AlinharLabels()
         {
-            lblTipo.Location = new Point(6, -1);
-            lblPlaca.Location = new Point(3, 28);
-            lblHrEntrada.Location = new Point(118, 337);
+            lblTipo.Location = new Point(-1, -1);
+            lblHoraEntradaVisual.Visible = true;
+            btnLimpaP.Enabled = true;
+        }
+
+        private void btnLimpaP_Click(object sender, EventArgs e)
+        {
+            LimparLabels();
+        }
+        private void LimparLabels()
+        {
+            lblTipo.Text = "Tipo";
+            lblMarca.Text = "Marca";
+            lblPlaca.Text = "PLACA";
+            lblHrEntrada.Text = "Horário da entrada";
+            lblHoraEntradaVisual.Visible = false;
+            txtNomeP.Text = "Nome";
+            txtTelefoneP.Text = "Telefone";
+            btnEncerrar.Enabled = false;
+        }
+
+        private void FrmTelaOperacao_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Globais.RegistrarLog(Globais.Login + " Efetuou Logout.");
+            Globais.RegistrarLog("Sistema foi encerrado.");
+            this.Dispose();
+            Application.Exit();
+        }
+        private void FecharForm()
+        {
+            string mensagem = "Tem certeza que deseja sair?";
+            string titulo = "Efetuar Logout?";
+            bool escolha = (MessageBox.Show(mensagem, titulo, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button3) == DialogResult.Yes);
+            if (escolha)
+            {
+                //Registra que o Usuário efetuou logout
+                Globais.RegistrarLog(Globais.Login + " Efetuou Logout.");
+                //Destroi o Formulario principal e abre o formulario de login
+                FrmTelaLogin Frm = new FrmTelaLogin();
+                this.Dispose();
+                Frm.ShowDialog();
+            }
+        }
+
+        private void txtPlaca_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Caracteres permitidos
+            string caracterespermitidos = "ABCDEFGHIJ0123456789";
+            //Apenas Letras E BackSpace nos 3 primeiros digitos
+            if (txtPlaca.TextLength < 3)
+            {
+                if (!char.IsLetter(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
+                {
+                    e.Handled = true;
+                }
+            }
+            //Apenas Números E BackSpace no 4º Digito
+            if (txtPlaca.TextLength == 3)
+            {
+                if (!char.IsNumber(e.KeyChar) && !Char.IsControl(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
+                {
+                    e.Handled = true;
+                }
+            }
+            // Apenas letras de A-J e 0-9 e BackSpace no 5º Digito
+            if (txtPlaca.TextLength == 4)
+            {
+                if (!(caracterespermitidos.Contains(e.KeyChar.ToString().ToUpper())) && !(e.KeyChar == (char)Keys.Back))
+                {
+                    e.Handled = true;
+                }
+            }
+            //Apenas Números e BackSpace nos 6º e 7º Digitos
+            if (txtPlaca.TextLength > 4)
+            {
+                if (!char.IsNumber(e.KeyChar) && !Char.IsControl(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void txtNome_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Apenas letras, espaço e BackSpace
+            if (!char.IsLetter(e.KeyChar) && !(e.KeyChar == (char)Keys.Back) && !(e.KeyChar == (char)Keys.Space))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void cmbMarca_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Apenas letras, espaço e BackSpace
+            if (!char.IsLetter(e.KeyChar) && !(e.KeyChar == (char)Keys.Back) && !(e.KeyChar == (char)Keys.Space))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

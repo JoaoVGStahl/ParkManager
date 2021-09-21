@@ -21,36 +21,59 @@ namespace Teste
         private void FrmTelaEncerrarTicket_Load(object sender, EventArgs e)
         {
             CarregarComboFormaPagamento();
+            CarregarTicket();
         }
         private void CarregarComboFormaPagamento()
         {
             DataTable dt = new DataTable();
-            string query = @"
-            SELECT 
-                id_pgt, descricao 
-            FROM 
-                tb_forma_pgt 
-            WHERE 
-                status=1";
-            dt.Clear();
-            dt = banco.QueryBancoSql(query);
-            cmbFormaPagamento.DataSource = null;
-            cmbFormaPagamento.DataSource = dt;
-            cmbFormaPagamento.ValueMember = "id_pgt";
-            cmbFormaPagamento.DisplayMember = "descricao";
-            cmbFormaPagamento.SelectedItem = null;
+            try
+            {
+                dt = banco.ProcedureSemParametros(4);
+                cmbFormaPagamento.DataSource = null;
+                cmbFormaPagamento.DataSource = dt;
+                cmbFormaPagamento.ValueMember = "id_pgt";
+                cmbFormaPagamento.DisplayMember = "descricao";
+                cmbFormaPagamento.SelectedItem = null;
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Houve uma falha ao carregar os Métodos de pagamento!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
 
         }
-
-
-        private void button3_Click(object sender, EventArgs e)
+        private void CarregarTicket()
         {
-            Close();
+            lblHoraSaida.Text = DateTime.Now.ToLongTimeString() + " " + DateTime.Now.ToShortDateString();
+            DataTable dt = new DataTable();
+            try
+            {
+                dt = banco.ProcedureCarregarTicket(3,Globais.IdTicket);
+                if (dt.Rows.Count > 0)
+                {
+                    lblIdTicket.Text = "#" + Convert.ToString(dt.Rows[0].ItemArray[0]);//ID Ticket
+                    lblHoraEntrada.Text = Convert.ToString(dt.Rows[0].ItemArray[1]) + " " + Convert.ToString(dt.Rows[0].ItemArray[2]);//Hora - Data Entrada
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message,"Houve uma falha ao carregar o ticket! \nRealize a pesquisa e tente novamente!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Dispose();
+            }
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Dispose();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

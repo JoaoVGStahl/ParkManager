@@ -12,6 +12,7 @@ namespace Teste
 {
     public partial class FrmTelaPesquisaTicket : Form
     {
+        Banco banco = new Banco();
         public FrmTelaPesquisaTicket()
         {
             InitializeComponent();
@@ -24,14 +25,29 @@ namespace Teste
 
         private void FrmTelaTicket_Load(object sender, EventArgs e)
         {
+            PreencherGrid();
+
+        }
+        private void PreencherGrid()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                dt = banco.ProcedureSemParametros(6);
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Falha ao carregar as informações!",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            }
 
 
         }
-
         private void button3_Click(object sender, EventArgs e)
         {
             FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket();
-            Frm.Show();
+            Frm.ShowDialog();
         }
 
         private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
