@@ -1,4 +1,4 @@
-ALTER PROCEDURE Funcoes_Pesquisa(
+CREATE PROCEDURE Funcoes_Pesquisa(
 @Flag int,
 @Tipo varchar(20) = null,
 @Placa varchar(7) = null,

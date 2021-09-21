@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
+using System.Collections.Generic;
 using System.Data.SqlClient;
-
 namespace Teste
 {
     class Banco
@@ -50,7 +50,47 @@ namespace Teste
                 sql = "";
             }
         }
-        #region Procedure para inserir um novo Ticket
+        #region Procedure para inserir Dados utilizando Procedures
+        public DataTable InsertData(string NameProcedure, List<SqlParameter> sp = null)
+        {
+            SqlDataAdapter da = null;
+            SqlCommand cmd =null;
+            DataTable dt = new DataTable();
+
+
+            try
+            {
+                var connection = ConexaoBanco();
+                cmd = new SqlCommand(NameProcedure, connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                if(sp != null)
+                {
+                    cmd.Parameters.AddRange(sp.ToArray());
+                    da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    
+                }
+                return dt;
+
+
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conexao.Close();
+                da.Dispose();
+                cmd.Dispose();
+                dt.Dispose();
+                
+                
+            }
+            
+        }
         public int ProcedureInserirTicket(string placa, string tipo, string marca, string nome, string telefone)
         {
             //Abre a conexao e obtem paramentros restantes

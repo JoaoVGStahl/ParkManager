@@ -23,7 +23,7 @@ CREATE TABLE tb_estacionamento(
 	cidade varchar (32) NOT NULL,
 	estado char(2) NOT NULL,
 	cep char(9) NOT NULL,
-	incricao_estadual varchar(15) NOT NULL,
+	inscricao_estadual varchar(15) NOT NULL,
 	telefone varchar(14) NOT NULL,
 	caminho_log varchar(100) NOT NULL,
 	caminho_foto_padrao varchar(50) NOT NULL,
