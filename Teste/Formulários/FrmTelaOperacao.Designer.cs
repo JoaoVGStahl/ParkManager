@@ -75,11 +75,12 @@ namespace Teste
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.btnPesquisaTicket = new System.Windows.Forms.Button();
             this.mskTelefone = new System.Windows.Forms.MaskedTextBox();
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.btnPesquisaTicket = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -144,9 +145,9 @@ namespace Teste
             this.label1.Location = new System.Drawing.Point(302, 7);
             this.label1.Name = "label1";
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label1.Size = new System.Drawing.Size(92, 31);
+            this.label1.Size = new System.Drawing.Size(83, 31);
             this.label1.TabIndex = 7;
-            this.label1.Text = "*Tipo:";
+            this.label1.Text = "*Tipo";
             // 
             // label2
             // 
@@ -154,9 +155,9 @@ namespace Teste
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(108, 7);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 31);
+            this.label2.Size = new System.Drawing.Size(99, 31);
             this.label2.TabIndex = 8;
-            this.label2.Text = "*Placa:";
+            this.label2.Text = "*Placa";
             // 
             // label3
             // 
@@ -164,9 +165,9 @@ namespace Teste
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(708, 7);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(99, 31);
+            this.label3.Size = new System.Drawing.Size(90, 31);
             this.label3.TabIndex = 9;
-            this.label3.Text = "Nome:";
+            this.label3.Text = "Nome";
             // 
             // label4
             // 
@@ -174,9 +175,9 @@ namespace Teste
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(507, 7);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(115, 31);
+            this.label4.Size = new System.Drawing.Size(106, 31);
             this.label4.TabIndex = 10;
-            this.label4.Text = "*Marca:";
+            this.label4.Text = "*Marca";
             // 
             // label5
             // 
@@ -184,9 +185,9 @@ namespace Teste
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(1029, 7);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(137, 31);
+            this.label5.Size = new System.Drawing.Size(128, 31);
             this.label5.TabIndex = 11;
-            this.label5.Text = "Telefone:";
+            this.label5.Text = "Telefone";
             // 
             // panel1
             // 
@@ -251,9 +252,9 @@ namespace Teste
             this.btnIniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIniciar.Image = ((System.Drawing.Image)(resources.GetObject("btnIniciar.Image")));
             this.btnIniciar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnIniciar.Location = new System.Drawing.Point(174, 2);
+            this.btnIniciar.Location = new System.Drawing.Point(142, 2);
             this.btnIniciar.Name = "btnIniciar";
-            this.btnIniciar.Size = new System.Drawing.Size(218, 85);
+            this.btnIniciar.Size = new System.Drawing.Size(220, 85);
             this.btnIniciar.TabIndex = 13;
             this.btnIniciar.Text = "Iniciar (F5)";
             this.btnIniciar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -270,9 +271,9 @@ namespace Teste
             this.btnEncerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEncerrar.Image = ((System.Drawing.Image)(resources.GetObject("btnEncerrar.Image")));
             this.btnEncerrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEncerrar.Location = new System.Drawing.Point(427, 2);
+            this.btnEncerrar.Location = new System.Drawing.Point(372, 2);
             this.btnEncerrar.Name = "btnEncerrar";
-            this.btnEncerrar.Size = new System.Drawing.Size(218, 85);
+            this.btnEncerrar.Size = new System.Drawing.Size(204, 85);
             this.btnEncerrar.TabIndex = 14;
             this.btnEncerrar.Text = "Encerrar Ticket (F4)";
             this.btnEncerrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -432,7 +433,7 @@ namespace Teste
             this.btnConfig.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConfig.FlatAppearance.BorderSize = 0;
             this.btnConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConfig.Location = new System.Drawing.Point(1222, 2);
+            this.btnConfig.Location = new System.Drawing.Point(1217, 2);
             this.btnConfig.Name = "btnConfig";
             this.btnConfig.Size = new System.Drawing.Size(120, 85);
             this.btnConfig.TabIndex = 21;
@@ -442,6 +443,7 @@ namespace Teste
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.Silver;
+            this.panel6.Controls.Add(this.button1);
             this.panel6.Controls.Add(this.btnSair);
             this.panel6.Controls.Add(this.button8);
             this.panel6.Controls.Add(this.button6);
@@ -479,9 +481,9 @@ namespace Teste
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
             this.button8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button8.Location = new System.Drawing.Point(974, 2);
+            this.button8.Location = new System.Drawing.Point(994, 0);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(218, 85);
+            this.button8.Size = new System.Drawing.Size(213, 85);
             this.button8.TabIndex = 25;
             this.button8.Text = "Relatórios";
             this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -497,9 +499,9 @@ namespace Teste
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
             this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.Location = new System.Drawing.Point(721, 2);
+            this.button6.Location = new System.Drawing.Point(586, 0);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(218, 85);
+            this.button6.Size = new System.Drawing.Size(176, 85);
             this.button6.TabIndex = 24;
             this.button6.Text = "Tickets";
             this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -624,6 +626,23 @@ namespace Teste
             this.panel7.Size = new System.Drawing.Size(1346, 115);
             this.panel7.TabIndex = 33;
             // 
+            // btnPesquisaTicket
+            // 
+            this.btnPesquisaTicket.BackColor = System.Drawing.Color.Transparent;
+            this.btnPesquisaTicket.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPesquisaTicket.BackgroundImage")));
+            this.btnPesquisaTicket.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnPesquisaTicket.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPesquisaTicket.Enabled = false;
+            this.btnPesquisaTicket.FlatAppearance.BorderSize = 0;
+            this.btnPesquisaTicket.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPesquisaTicket.Image = ((System.Drawing.Image)(resources.GetObject("btnPesquisaTicket.Image")));
+            this.btnPesquisaTicket.Location = new System.Drawing.Point(23, 10);
+            this.btnPesquisaTicket.Name = "btnPesquisaTicket";
+            this.btnPesquisaTicket.Size = new System.Drawing.Size(72, 69);
+            this.btnPesquisaTicket.TabIndex = 30;
+            this.btnPesquisaTicket.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnPesquisaTicket.UseVisualStyleBackColor = false;
+            // 
             // mskTelefone
             // 
             this.mskTelefone.BackColor = System.Drawing.Color.White;
@@ -664,22 +683,22 @@ namespace Teste
             this.panel10.Size = new System.Drawing.Size(1346, 471);
             this.panel10.TabIndex = 36;
             // 
-            // btnPesquisaTicket
+            // button1
             // 
-            this.btnPesquisaTicket.BackColor = System.Drawing.Color.Transparent;
-            this.btnPesquisaTicket.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPesquisaTicket.BackgroundImage")));
-            this.btnPesquisaTicket.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnPesquisaTicket.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPesquisaTicket.Enabled = false;
-            this.btnPesquisaTicket.FlatAppearance.BorderSize = 0;
-            this.btnPesquisaTicket.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPesquisaTicket.Image = ((System.Drawing.Image)(resources.GetObject("btnPesquisaTicket.Image")));
-            this.btnPesquisaTicket.Location = new System.Drawing.Point(23, 10);
-            this.btnPesquisaTicket.Name = "btnPesquisaTicket";
-            this.btnPesquisaTicket.Size = new System.Drawing.Size(72, 69);
-            this.btnPesquisaTicket.TabIndex = 30;
-            this.btnPesquisaTicket.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnPesquisaTicket.UseVisualStyleBackColor = false;
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(772, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(212, 85);
+            this.button1.TabIndex = 27;
+            this.button1.Text = "Cadastros";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // FrmTelaOperacao
             // 
@@ -775,6 +794,7 @@ namespace Teste
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Label lblHoraEntradaVisual;
         private System.Windows.Forms.Button btnPesquisaTicket;
+        private System.Windows.Forms.Button button1;
     }
 }
 

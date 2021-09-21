@@ -31,7 +31,7 @@ namespace Teste
 
         private void FrmTelaUsuario_Load(object sender, EventArgs e)
         {
-            PreencherGrid();
+            //PreencherGrid();
         }
         private void PreencherGrid()
         {

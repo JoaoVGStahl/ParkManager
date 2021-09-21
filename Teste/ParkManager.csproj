@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -75,10 +76,10 @@
     </Compile>
     <Compile Include="Classes\Globais.cs" />
     <Compile Include="Classes\Program.cs" />
-    <Compile Include="Formulários\FrmTelaConfig.cs">
+    <Compile Include="Formulários\TelaConfig\FrmTelaConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formulários\FrmTelaConfig.Designer.cs">
+    <Compile Include="Formulários\TelaConfig\FrmTelaConfig.Designer.cs">
       <DependentUpon>FrmTelaConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmTelaCadastros.cs">
@@ -87,16 +88,16 @@
     <Compile Include="FrmTelaCadastros.Designer.cs">
       <DependentUpon>FrmTelaCadastros.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmTelaDesenvolvedor.cs">
+    <Compile Include="Formulários\TelaConfig\FrmTelaDesenvolvedor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmTelaDesenvolvedor.Designer.cs">
+    <Compile Include="Formulários\TelaConfig\FrmTelaDesenvolvedor.Designer.cs">
       <DependentUpon>FrmTelaDesenvolvedor.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmTelaUsuario.cs">
+    <Compile Include="Formulários\TelaConfig\FrmTelaUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmTelaUsuario.Designer.cs">
+    <Compile Include="Formulários\TelaConfig\FrmTelaUsuario.Designer.cs">
       <DependentUpon>FrmTelaUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -112,13 +113,16 @@
     <EmbeddedResource Include="Formulários\FrmTelaPesquisaTicket.resx">
       <DependentUpon>FrmTelaPesquisaTicket.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulários\FrmTelaConfig.resx">
+    <EmbeddedResource Include="Formulários\TelaConfig\FrmTelaConfig.resx">
       <DependentUpon>FrmTelaConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulários\TelaConfig\FrmTelaDesenvolvedor.resx">
+      <DependentUpon>FrmTelaDesenvolvedor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmTelaCadastros.resx">
       <DependentUpon>FrmTelaCadastros.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmTelaUsuario.resx">
+    <EmbeddedResource Include="Formulários\TelaConfig\FrmTelaUsuario.resx">
       <DependentUpon>FrmTelaUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
