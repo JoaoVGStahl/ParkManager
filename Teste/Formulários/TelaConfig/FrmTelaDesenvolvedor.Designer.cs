@@ -29,6 +29,7 @@ namespace Teste
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTelaDesenvolvedor));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.splitter2 = new System.Windows.Forms.Splitter();
@@ -50,6 +51,8 @@ namespace Teste
             this.label5 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.btnSalvar = new System.Windows.Forms.Button();
+            this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -66,6 +69,7 @@ namespace Teste
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Silver;
+            this.panel2.Controls.Add(this.btnSalvar);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 555);
             this.panel2.Name = "panel2";
@@ -163,7 +167,6 @@ namespace Teste
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(780, 31);
             this.textBox1.TabIndex = 3;
-            this.textBox1.Text = "db-park-manager.ch2qj4cvcflx.us-east-1.rds.amazonaws.com,1433";
             // 
             // textBox2
             // 
@@ -171,6 +174,7 @@ namespace Teste
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.Location = new System.Drawing.Point(237, 6);
             this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(527, 31);
             this.textBox2.TabIndex = 4;
             // 
@@ -201,6 +205,7 @@ namespace Teste
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(306, 31);
             this.textBox4.TabIndex = 8;
+            this.textBox4.UseSystemPasswordChar = true;
             // 
             // label4
             // 
@@ -226,7 +231,7 @@ namespace Teste
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(15, 102);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(801, 333);
+            this.groupBox1.Size = new System.Drawing.Size(812, 333);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Banco de Dados";
@@ -258,6 +263,7 @@ namespace Teste
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(306, 31);
             this.textBox6.TabIndex = 12;
+            this.textBox6.UseSystemPasswordChar = true;
             // 
             // label6
             // 
@@ -268,6 +274,26 @@ namespace Teste
             this.label6.Size = new System.Drawing.Size(74, 25);
             this.label6.TabIndex = 11;
             this.label6.Text = "Senha";
+            // 
+            // btnSalvar
+            // 
+            this.btnSalvar.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnSalvar.BackColor = System.Drawing.Color.Transparent;
+            this.btnSalvar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnSalvar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSalvar.Enabled = false;
+            this.btnSalvar.FlatAppearance.BorderSize = 0;
+            this.btnSalvar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSalvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalvar.Image = ((System.Drawing.Image)(resources.GetObject("btnSalvar.Image")));
+            this.btnSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSalvar.Location = new System.Drawing.Point(328, 3);
+            this.btnSalvar.Name = "btnSalvar";
+            this.btnSalvar.Size = new System.Drawing.Size(174, 79);
+            this.btnSalvar.TabIndex = 27;
+            this.btnSalvar.Text = "Salvar";
+            this.btnSalvar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSalvar.UseVisualStyleBackColor = false;
             // 
             // FrmTelaDesenvolvedor
             // 
@@ -281,8 +307,10 @@ namespace Teste
             this.Controls.Add(this.splitter2);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmTelaDesenvolvedor";
             this.Text = "FrmTelaDesenvolvedor";
+            this.panel2.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -314,5 +342,6 @@ namespace Teste
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnSalvar;
     }
 }

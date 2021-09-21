@@ -211,6 +211,8 @@ namespace Teste
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1117, 718);
+            this.MinimumSize = new System.Drawing.Size(1117, 718);
             this.Name = "FrmTelaConfig";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Configurações - ParkManager";
