@@ -78,9 +78,10 @@
             this.btnCliente.Name = "btnCliente";
             this.btnCliente.Size = new System.Drawing.Size(255, 77);
             this.btnCliente.TabIndex = 22;
-            this.btnCliente.Text = "Cliente";
+            this.btnCliente.Text = "Clientes";
             this.btnCliente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCliente.UseVisualStyleBackColor = false;
+            this.btnCliente.Click += new System.EventHandler(this.btnCliente_Click);
             // 
             // btnVeiculos
             // 
@@ -144,6 +145,7 @@
             this.ClientSize = new System.Drawing.Size(1101, 679);
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.panel1);
+            this.IsMdiContainer = true;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1117, 718);
             this.MinimumSize = new System.Drawing.Size(1117, 718);

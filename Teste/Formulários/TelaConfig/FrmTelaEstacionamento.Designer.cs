@@ -56,7 +56,6 @@ namespace Teste
             this.label1 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.btnNovo = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -322,7 +321,6 @@ namespace Teste
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Silver;
-            this.panel3.Controls.Add(this.btnNovo);
             this.panel3.Controls.Add(this.button1);
             this.panel3.Controls.Add(this.btnSalvar);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -330,25 +328,6 @@ namespace Teste
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(814, 100);
             this.panel3.TabIndex = 7;
-            // 
-            // btnNovo
-            // 
-            this.btnNovo.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnNovo.BackColor = System.Drawing.Color.Transparent;
-            this.btnNovo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnNovo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNovo.FlatAppearance.BorderSize = 0;
-            this.btnNovo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNovo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNovo.Image = ((System.Drawing.Image)(resources.GetObject("btnNovo.Image")));
-            this.btnNovo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNovo.Location = new System.Drawing.Point(71, 6);
-            this.btnNovo.Name = "btnNovo";
-            this.btnNovo.Size = new System.Drawing.Size(174, 79);
-            this.btnNovo.TabIndex = 30;
-            this.btnNovo.Text = "Novo ";
-            this.btnNovo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnNovo.UseVisualStyleBackColor = false;
             // 
             // button1
             // 
@@ -362,7 +341,7 @@ namespace Teste
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(559, 6);
+            this.button1.Location = new System.Drawing.Point(442, 6);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(174, 79);
             this.button1.TabIndex = 29;
@@ -382,7 +361,7 @@ namespace Teste
             this.btnSalvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalvar.Image = ((System.Drawing.Image)(resources.GetObject("btnSalvar.Image")));
             this.btnSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalvar.Location = new System.Drawing.Point(315, 6);
+            this.btnSalvar.Location = new System.Drawing.Point(198, 6);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(174, 79);
             this.btnSalvar.TabIndex = 28;
@@ -452,6 +431,5 @@ namespace Teste
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btnNovo;
     }
 }

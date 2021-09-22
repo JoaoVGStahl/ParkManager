@@ -19,37 +19,40 @@ namespace Teste
 
         private void FrmTelaCadastros_Load(object sender, EventArgs e)
         {
-            private void FundoBotao(Button botao)
-            {
-                btnVeiculos.BackColor = Color.WhiteSmoke;
-                btnCliente.BackColor = Color.WhiteSmoke;
-                botao.BackColor = Color.DarkBlue;
-            }
-            private void AbreFormParent(int nivel, Form Frm)
-            {
-                if (Globais.Nivel >= nivel)
-                {
-                    Frm.MdiParent = this;
-                    Frm.Dock = DockStyle.Fill;
-                    Frm.Show();
-                }
-                else
-                {
-                    MessageBox.Show("Seu usuário não tem permissão para acessar está area!", "Acesso Negado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            
+        }
 
-            }
-            private void FecharFormulariosFilhos()
+        private void FundoBotao(Button botao)
+        {
+            btnVeiculos.BackColor = Color.WhiteSmoke;
+            btnCliente.BackColor = Color.WhiteSmoke;
+            botao.BackColor = Color.DarkBlue;
+            botao.ForeColor = Color.White;
+        }
+        private void AbreFormParent(int nivel, Form Frm)
+        {
+            if (Globais.Nivel >= nivel)
             {
-                // percorre todos os formulários abertos
-                for (int i = Application.OpenForms.Count - 1; i >= 0; i--)
+                Frm.MdiParent = this;
+                Frm.Dock = DockStyle.Fill;
+                Frm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Seu usuário não tem permissão para acessar está area!", "Acesso Negado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+        private void FecharFormulariosFilhos()
+        {
+            // percorre todos os formulários abertos
+            for (int i = Application.OpenForms.Count - 1; i >= 0; i--)
+            {
+                // se o formulário for filho
+                if (Application.OpenForms[i].IsMdiChild)
                 {
-                    // se o formulário for filho
-                    if (Application.OpenForms[i].IsMdiChild)
-                    {
-                        // fecha o formulário
-                        Application.OpenForms[i].Close();
-                    }
+                    // fecha o formulário
+                    Application.OpenForms[i].Close();
                 }
             }
         }
@@ -57,6 +60,19 @@ namespace Teste
         private void btnVeiculos_Click(object sender, EventArgs e)
         {
             FundoBotao(btnVeiculos);
+
+            FecharFormulariosFilhos();
+            FrmTelaVeiculos Frm = new FrmTelaVeiculos();
+            AbreFormParent(2, Frm);
+        }
+
+        private void btnCliente_Click(object sender, EventArgs e)
+        {
+            FundoBotao(btnCliente);
+
+            FecharFormulariosFilhos();
+            FrmTelaCliente Frm = new FrmTelaCliente();
+            AbreFormParent(2, Frm);
         }
     }
 }
