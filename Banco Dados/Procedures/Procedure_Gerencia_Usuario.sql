@@ -21,4 +21,4 @@ AS
 	BEGIN
 	   UPDATE tb_usuario SET status = 0 WHERE id_usuario = @Id;
 	END
-GO;
+GO
