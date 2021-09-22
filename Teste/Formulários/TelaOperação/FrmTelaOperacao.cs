@@ -481,7 +481,7 @@ namespace Teste
         private void btnCadastros_Click(object sender, EventArgs e)
         {
             FrmTelaCadastros Frm = new FrmTelaCadastros();
-            this.ShowDialog(Frm);
+            AbrirForm(0, Frm);
         }
     }
 }

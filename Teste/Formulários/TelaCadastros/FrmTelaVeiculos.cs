@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Teste
 {
-    public partial class FrmTelaCadastros: Form
+    public partial class FrmTelaVeiculos : Form
     {
-        public FrmTelaCadastros()
+        public FrmTelaVeiculos()
         {
             InitializeComponent();
         }
