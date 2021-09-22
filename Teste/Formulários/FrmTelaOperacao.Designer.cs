@@ -61,6 +61,7 @@ namespace Teste
             this.lblMarca = new System.Windows.Forms.Label();
             this.btnConfig = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.btnCadastros = new System.Windows.Forms.Button();
             this.btnSair = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -80,7 +81,6 @@ namespace Teste
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -443,7 +443,7 @@ namespace Teste
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.Silver;
-            this.panel6.Controls.Add(this.button1);
+            this.panel6.Controls.Add(this.btnCadastros);
             this.panel6.Controls.Add(this.btnSair);
             this.panel6.Controls.Add(this.button8);
             this.panel6.Controls.Add(this.button6);
@@ -455,6 +455,24 @@ namespace Teste
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1346, 88);
             this.panel6.TabIndex = 24;
+            // 
+            // btnCadastros
+            // 
+            this.btnCadastros.BackColor = System.Drawing.Color.Transparent;
+            this.btnCadastros.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnCadastros.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCadastros.FlatAppearance.BorderSize = 0;
+            this.btnCadastros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCadastros.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastros.Image")));
+            this.btnCadastros.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCadastros.Location = new System.Drawing.Point(772, 0);
+            this.btnCadastros.Name = "btnCadastros";
+            this.btnCadastros.Size = new System.Drawing.Size(212, 85);
+            this.btnCadastros.TabIndex = 27;
+            this.btnCadastros.Text = "Cadastros";
+            this.btnCadastros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCadastros.UseVisualStyleBackColor = false;
+            this.btnCadastros.Click += new System.EventHandler(this.btnCadastros_Click);
             // 
             // btnSair
             // 
@@ -683,23 +701,6 @@ namespace Teste
             this.panel10.Size = new System.Drawing.Size(1346, 471);
             this.panel10.TabIndex = 36;
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(772, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(212, 85);
-            this.button1.TabIndex = 27;
-            this.button1.Text = "Cadastros";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = false;
-            // 
             // FrmTelaOperacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
@@ -794,7 +795,7 @@ namespace Teste
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Label lblHoraEntradaVisual;
         private System.Windows.Forms.Button btnPesquisaTicket;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCadastros;
     }
 }
 

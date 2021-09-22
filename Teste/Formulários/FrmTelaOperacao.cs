@@ -452,5 +452,11 @@ namespace Teste
                 e.Handled = true;
             }
         }
+
+        private void btnCadastros_Click(object sender, EventArgs e)
+        {
+            FrmTelaCadastros Frm = new FrmTelaCadastros();
+            this.ShowDialog(Frm);
+        }
     }
 }

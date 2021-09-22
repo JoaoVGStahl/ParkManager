@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace Teste
 {
-    public partial class FrmTelaCadastros : Form
+    public partial class FrmTelaCadastros: Form
     {
         public FrmTelaCadastros()
         {
             InitializeComponent();
-        }
-
-        private void FrmTelaCadastros_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
