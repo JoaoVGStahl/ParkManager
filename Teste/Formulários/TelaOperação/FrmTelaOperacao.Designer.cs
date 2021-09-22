@@ -141,51 +141,51 @@ namespace Teste
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(302, 7);
             this.label1.Name = "label1";
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label1.Size = new System.Drawing.Size(83, 31);
+            this.label1.Size = new System.Drawing.Size(78, 31);
             this.label1.TabIndex = 7;
             this.label1.Text = "*Tipo";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(108, 7);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(99, 31);
+            this.label2.Size = new System.Drawing.Size(93, 31);
             this.label2.TabIndex = 8;
             this.label2.Text = "*Placa";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(708, 7);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(90, 31);
+            this.label3.Size = new System.Drawing.Size(86, 31);
             this.label3.TabIndex = 9;
             this.label3.Text = "Nome";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(507, 7);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(106, 31);
+            this.label4.Size = new System.Drawing.Size(100, 31);
             this.label4.TabIndex = 10;
             this.label4.Text = "*Marca";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(1029, 7);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(128, 31);
+            this.label5.Size = new System.Drawing.Size(120, 31);
             this.label5.TabIndex = 11;
             this.label5.Text = "Telefone";
             // 

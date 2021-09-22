@@ -41,7 +41,6 @@ namespace Teste
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnNovo = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -49,6 +48,7 @@ namespace Teste
             this.label2 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -121,9 +121,9 @@ namespace Teste
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Right;
             this.dataGridView1.GridColor = System.Drawing.Color.WhiteSmoke;
-            this.dataGridView1.Location = new System.Drawing.Point(276, 98);
+            this.dataGridView1.Location = new System.Drawing.Point(280, 98);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(554, 444);
+            this.dataGridView1.Size = new System.Drawing.Size(550, 444);
             this.dataGridView1.TabIndex = 6;
             // 
             // button1
@@ -205,18 +205,6 @@ namespace Teste
             this.btnSalvar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSalvar.UseVisualStyleBackColor = false;
             // 
-            // comboBox4
-            // 
-            this.comboBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Items.AddRange(new object[] {
-            "0 - Inativo",
-            "1 - Ativo"});
-            this.comboBox4.Location = new System.Drawing.Point(18, 178);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(76, 37);
-            this.comboBox4.TabIndex = 22;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -274,7 +262,7 @@ namespace Teste
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.Location = new System.Drawing.Point(18, 270);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(228, 35);
+            this.textBox2.Size = new System.Drawing.Size(248, 35);
             this.textBox2.TabIndex = 23;
             // 
             // maskedTextBox1
@@ -283,8 +271,17 @@ namespace Teste
             this.maskedTextBox1.Location = new System.Drawing.Point(21, 350);
             this.maskedTextBox1.Mask = "(99) 00000-0000";
             this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(225, 35);
+            this.maskedTextBox1.Size = new System.Drawing.Size(245, 35);
             this.maskedTextBox1.TabIndex = 25;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(17, 178);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(67, 35);
+            this.textBox1.TabIndex = 26;
             // 
             // FrmTelaCliente
             // 
@@ -292,9 +289,9 @@ namespace Teste
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(830, 640);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.maskedTextBox1);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.comboBox4);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label4);
@@ -307,6 +304,7 @@ namespace Teste
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmTelaCliente";
             this.Text = "FrmTelaCliente";
             this.panel1.ResumeLayout(false);
@@ -329,7 +327,6 @@ namespace Teste
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Button btnNovo;
         private System.Windows.Forms.Button btnSalvar;
-        private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label4;
@@ -337,5 +334,6 @@ namespace Teste
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
