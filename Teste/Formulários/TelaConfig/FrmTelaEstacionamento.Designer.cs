@@ -29,6 +29,7 @@ namespace Teste
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTelaEstacionamento));
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -56,8 +57,12 @@ namespace Teste
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.btnSalvar = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnNovo = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -317,6 +322,9 @@ namespace Teste
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Silver;
+            this.panel3.Controls.Add(this.btnNovo);
+            this.panel3.Controls.Add(this.button1);
+            this.panel3.Controls.Add(this.btnSalvar);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, 501);
             this.panel3.Name = "panel3";
@@ -331,6 +339,65 @@ namespace Teste
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(814, 10);
             this.panel5.TabIndex = 8;
+            // 
+            // btnSalvar
+            // 
+            this.btnSalvar.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnSalvar.BackColor = System.Drawing.Color.Transparent;
+            this.btnSalvar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnSalvar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSalvar.Enabled = false;
+            this.btnSalvar.FlatAppearance.BorderSize = 0;
+            this.btnSalvar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSalvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalvar.Image = ((System.Drawing.Image)(resources.GetObject("btnSalvar.Image")));
+            this.btnSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSalvar.Location = new System.Drawing.Point(315, 6);
+            this.btnSalvar.Name = "btnSalvar";
+            this.btnSalvar.Size = new System.Drawing.Size(174, 79);
+            this.btnSalvar.TabIndex = 28;
+            this.btnSalvar.Text = "Salvar";
+            this.btnSalvar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSalvar.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.Enabled = false;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(559, 6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(174, 79);
+            this.button1.TabIndex = 29;
+            this.button1.Text = "Editar";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // btnNovo
+            // 
+            this.btnNovo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnNovo.BackColor = System.Drawing.Color.Transparent;
+            this.btnNovo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnNovo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNovo.FlatAppearance.BorderSize = 0;
+            this.btnNovo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNovo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNovo.Image = ((System.Drawing.Image)(resources.GetObject("btnNovo.Image")));
+            this.btnNovo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNovo.Location = new System.Drawing.Point(71, 6);
+            this.btnNovo.Name = "btnNovo";
+            this.btnNovo.Size = new System.Drawing.Size(174, 79);
+            this.btnNovo.TabIndex = 30;
+            this.btnNovo.Text = "Novo ";
+            this.btnNovo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnNovo.UseVisualStyleBackColor = false;
             // 
             // FrmTelaEstacionamento
             // 
@@ -349,6 +416,7 @@ namespace Teste
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel4.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -382,5 +450,8 @@ namespace Teste
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Button btnSalvar;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnNovo;
     }
 }
