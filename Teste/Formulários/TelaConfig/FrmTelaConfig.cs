@@ -76,6 +76,10 @@ namespace Teste
         private void btnEstacionamento_Click(object sender, EventArgs e)
         {
             FundoBotao(btnEstacionamento);
+
+            FecharFormulariosFilhos();
+            FrmTelaEstacionamento Frm = new FrmTelaEstacionamento();
+            AbreFormParent(2, Frm);
         }
 
         private void btnPrecos_Click(object sender, EventArgs e)
@@ -86,6 +90,7 @@ namespace Teste
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
             FundoBotao(btnUsuarios);
+
             FecharFormulariosFilhos();
             FrmTelaUsuario Frm = new FrmTelaUsuario();
             AbreFormParent(2, Frm);

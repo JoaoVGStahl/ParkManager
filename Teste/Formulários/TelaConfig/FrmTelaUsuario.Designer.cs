@@ -30,7 +30,6 @@ namespace Teste
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTelaUsuario));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.txtConfirmSenha = new System.Windows.Forms.TextBox();
@@ -51,9 +50,10 @@ namespace Teste
             this.label4 = new System.Windows.Forms.Label();
             this.txtLogin = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtId = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numNivel)).BeginInit();
@@ -79,7 +79,7 @@ namespace Teste
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.txtLogin);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.txtId);
+            this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.dataGridView1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -94,7 +94,7 @@ namespace Teste
             // 
             this.panel5.BackColor = System.Drawing.Color.DarkBlue;
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(0, 572);
+            this.panel5.Location = new System.Drawing.Point(0, 581);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(846, 10);
             this.panel5.TabIndex = 41;
@@ -131,7 +131,7 @@ namespace Teste
             // 
             this.panel4.BackColor = System.Drawing.Color.DarkBlue;
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 103);
+            this.panel4.Location = new System.Drawing.Point(0, 88);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(846, 10);
             this.panel4.TabIndex = 37;
@@ -141,7 +141,7 @@ namespace Teste
             this.splitter2.BackColor = System.Drawing.Color.Silver;
             this.splitter2.Dock = System.Windows.Forms.DockStyle.Top;
             this.splitter2.Enabled = false;
-            this.splitter2.Location = new System.Drawing.Point(0, 100);
+            this.splitter2.Location = new System.Drawing.Point(0, 85);
             this.splitter2.Name = "splitter2";
             this.splitter2.Size = new System.Drawing.Size(846, 3);
             this.splitter2.TabIndex = 36;
@@ -153,7 +153,7 @@ namespace Teste
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(846, 100);
+            this.panel3.Size = new System.Drawing.Size(846, 85);
             this.panel3.TabIndex = 35;
             // 
             // splitter1
@@ -161,7 +161,7 @@ namespace Teste
             this.splitter1.BackColor = System.Drawing.Color.Silver;
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.splitter1.Enabled = false;
-            this.splitter1.Location = new System.Drawing.Point(0, 582);
+            this.splitter1.Location = new System.Drawing.Point(0, 591);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(846, 3);
             this.splitter1.TabIndex = 34;
@@ -170,18 +170,20 @@ namespace Teste
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Silver;
+            this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.btnExcluir);
             this.panel2.Controls.Add(this.btnNovo);
             this.panel2.Controls.Add(this.btnSalvar);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 585);
+            this.panel2.Location = new System.Drawing.Point(0, 594);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(846, 94);
+            this.panel2.Size = new System.Drawing.Size(846, 85);
             this.panel2.TabIndex = 33;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // btnExcluir
             // 
+            this.btnExcluir.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnExcluir.BackColor = System.Drawing.Color.Transparent;
             this.btnExcluir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnExcluir.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -191,20 +193,17 @@ namespace Teste
             this.btnExcluir.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExcluir.Image = ((System.Drawing.Image)(resources.GetObject("btnExcluir.Image")));
             this.btnExcluir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExcluir.Location = new System.Drawing.Point(603, 3);
+            this.btnExcluir.Location = new System.Drawing.Point(447, 0);
             this.btnExcluir.Name = "btnExcluir";
-            this.btnExcluir.Size = new System.Drawing.Size(174, 88);
+            this.btnExcluir.Size = new System.Drawing.Size(174, 79);
             this.btnExcluir.TabIndex = 28;
             this.btnExcluir.Text = "Excluir ";
             this.btnExcluir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnExcluir.UseVisualStyleBackColor = false;
-            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnNovo
             // 
-            this.btnNovo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNovo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnNovo.BackColor = System.Drawing.Color.Transparent;
             this.btnNovo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnNovo.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -213,9 +212,9 @@ namespace Teste
             this.btnNovo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNovo.Image = ((System.Drawing.Image)(resources.GetObject("btnNovo.Image")));
             this.btnNovo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNovo.Location = new System.Drawing.Point(335, 3);
+            this.btnNovo.Location = new System.Drawing.Point(61, 0);
             this.btnNovo.Name = "btnNovo";
-            this.btnNovo.Size = new System.Drawing.Size(174, 88);
+            this.btnNovo.Size = new System.Drawing.Size(174, 79);
             this.btnNovo.TabIndex = 27;
             this.btnNovo.Text = "Novo ";
             this.btnNovo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -224,9 +223,7 @@ namespace Teste
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSalvar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnSalvar.BackColor = System.Drawing.Color.Transparent;
             this.btnSalvar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnSalvar.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -236,9 +233,9 @@ namespace Teste
             this.btnSalvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalvar.Image = ((System.Drawing.Image)(resources.GetObject("btnSalvar.Image")));
             this.btnSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalvar.Location = new System.Drawing.Point(67, 6);
+            this.btnSalvar.Location = new System.Drawing.Point(254, 0);
             this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(174, 88);
+            this.btnSalvar.Size = new System.Drawing.Size(174, 79);
             this.btnSalvar.TabIndex = 26;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -363,19 +360,18 @@ namespace Teste
             this.label3.TabIndex = 5;
             this.label3.Text = "Login";
             // 
-            // txtId
+            // textBox1
             // 
-            this.txtId.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtId.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtId.Location = new System.Drawing.Point(12, 163);
-            this.txtId.Name = "txtId";
-            this.txtId.ReadOnly = true;
-            this.txtId.Size = new System.Drawing.Size(125, 35);
-            this.txtId.TabIndex = 2;
-            this.txtId.TabStop = false;
+            this.textBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(12, 163);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(125, 35);
+            this.textBox1.TabIndex = 2;
             // 
             // label1
             // 
@@ -399,31 +395,39 @@ namespace Teste
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.Location = new System.Drawing.Point(292, 113);
+            this.dataGridView1.Location = new System.Drawing.Point(292, 98);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.ShowEditingIcon = false;
-            this.dataGridView1.Size = new System.Drawing.Size(554, 459);
+            this.dataGridView1.Size = new System.Drawing.Size(554, 483);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
-            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.Enabled = false;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(640, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(174, 79);
+            this.button1.TabIndex = 29;
+            this.button1.Text = "Limpar";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // FrmTelaUsuario
             // 
@@ -452,7 +456,7 @@ namespace Teste
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.NumericUpDown numNivel;
         private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Label label6;
@@ -472,5 +476,6 @@ namespace Teste
         private System.Windows.Forms.TextBox txtConfirmSenha;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Button button1;
     }
 }
