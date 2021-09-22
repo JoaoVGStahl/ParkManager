@@ -607,6 +607,7 @@ namespace Teste
             // 
             this.splitter2.BackColor = System.Drawing.Color.Silver;
             this.splitter2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.splitter2.Enabled = false;
             this.splitter2.Location = new System.Drawing.Point(0, 609);
             this.splitter2.Name = "splitter2";
             this.splitter2.Size = new System.Drawing.Size(1346, 3);
@@ -675,6 +676,7 @@ namespace Teste
             // 
             this.splitter3.BackColor = System.Drawing.Color.Silver;
             this.splitter3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.splitter3.Enabled = false;
             this.splitter3.Location = new System.Drawing.Point(0, 115);
             this.splitter3.Name = "splitter3";
             this.splitter3.Size = new System.Drawing.Size(1346, 3);
