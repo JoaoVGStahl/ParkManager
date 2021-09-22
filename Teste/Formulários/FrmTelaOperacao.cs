@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace Teste
 {
@@ -188,12 +189,12 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                dt = banco.ProcedurePesquisaTicketVeiculo(7,placa);
+                dt = banco.ProcedurePesquisaTicketVeiculo(7, placa);
                 if (dt.Rows.Count > 0)
                 {
                     MessageBox.Show("Já existe um ticket em andamento para este veiculo!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     LimparCaixas();
-                    
+
                 }
                 else
                 {
@@ -205,14 +206,14 @@ namespace Teste
 
                 MessageBox.Show(ex.Message, "Falha ao iniciar ticket!");
             }
-            
+
         }
         private void InserirTicket()
         {
             string placa = txtPlaca.Text, tipo = cmbTipo.Text, marca = cmbMarca.Text;
             string nome, telefone;
             int idTicket;
-            
+
             if (txtNome.Text == "")
             {
                 nome = "Convidado";
@@ -225,20 +226,44 @@ namespace Teste
             }
             try
             {
-                //Chama a função que executa uma Stored Procedure no banco de dados.
-                idTicket = banco.ProcedureInserirTicket(placa, tipo, marca, nome, telefone);
-                //Verifica se houve algum retorno da procedure
-                if (idTicket > 0)
+                DataTable dt = new DataTable();
+                List<SqlParameter> sp = new List<SqlParameter>()
                 {
-                    MessageBox.Show("Ticket Iniciado com sucesso! \n #Ticket:" + idTicket, "Ticket Iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                    ContadorTicket();
-                    LimparCaixas();
-                    Globais.RegistrarLog(Globais.Login + " Inicou o Ticket #" + idTicket);
+                    new SqlParameter(){ParameterName = "@idUsuario", SqlDbType = SqlDbType.Int, Value = Globais.IdUsuario},
+                    new SqlParameter(){ParameterName = "@Nome_Cliente", SqlDbType = SqlDbType.NVarChar, Value = nome },
+                    new SqlParameter(){ParameterName = "@Telefone", SqlDbType = SqlDbType.NVarChar, Value = telefone },
+                    new SqlParameter(){ParameterName = "@Placa",SqlDbType = SqlDbType.NVarChar, Value = placa },
+                    new SqlParameter(){ParameterName = "@Marca", SqlDbType = SqlDbType.NVarChar, Value = marca },
+                    new SqlParameter(){ParameterName = "@Tipo", SqlDbType = SqlDbType.NVarChar, Value = tipo },
+                    new SqlParameter(){ParameterName = "@Hr_Entrada", SqlDbType = SqlDbType.Time, Value = DateTime.Now.ToLongTimeString() },
+                    new SqlParameter(){ParameterName = "@Data_Entrada", SqlDbType = SqlDbType.DateTime, Value = DateTime.Now.ToShortDateString() },
+                    new SqlParameter(){ParameterName = "@Caminho_Foto", SqlDbType = SqlDbType.NVarChar, Value = @"C:\ParkManager\Fotos" }
+                };
+                dt = banco.InsertData("dbo.InsertTicket", sp);
+                //Verifica se houve algum retorno da procedure
+                if (dt.Rows.Count > 0)
+                {
+                    idTicket = Convert.ToInt32(dt.Rows[0].ItemArray[0]);
+
+                    if (idTicket > 0)
+                    {
+                        MessageBox.Show("Ticket Iniciado com sucesso! \n #Ticket:" + idTicket, "Ticket Iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                        ContadorTicket();
+                        LimparCaixas();
+                        Globais.RegistrarLog(Globais.Login + " Inicou o Ticket #" + idTicket);
+                        dt.Dispose();
+                        sp.Clear();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Falha ao iniciar Ticket!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
                     MessageBox.Show("Falha ao iniciar Ticket!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+
             }
             catch (Exception ex)
             {
@@ -274,7 +299,7 @@ namespace Teste
                 //Chama a função que executa a query no banco de dados
                 try
                 {
-                    dt = banco.ProcedureMarca(1,tipo,"");
+                    dt = banco.ProcedureMarca(1, tipo, "");
                     //Limpar o DataSource do combo
                     cmbMarca.DataSource = null;
                     //Seleciona o DataTable como o DataSoucer do combo
@@ -309,7 +334,7 @@ namespace Teste
 
                 try
                 {
-                    dt = banco.ProcedurePesquisaTicketVeiculo(7,placa);
+                    dt = banco.ProcedurePesquisaTicketVeiculo(7, placa);
                     //Verifica se houve algum retorno no DataTable
                     if (dt.Rows.Count > 0)
                     {
