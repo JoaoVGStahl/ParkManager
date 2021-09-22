@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace Teste
 {
@@ -32,16 +33,18 @@ namespace Teste
         private void FrmTelaUsuario_Load(object sender, EventArgs e)
         {
             PreencherGrid();
+            
         }
         private void PreencherGrid()
         {
             DataTable dt = new DataTable();
-
-            string query = @"SELECT id_usuario[ID], login[Login],nivel[Nivel],status[Status] FROM tb_usuario";
+            List<SqlParameter> sp = new List<SqlParameter>()
+            {
+                new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 9},
+            };
             try
             {
-                dt = banco.QueryBancoSql(query);
-
+                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
                 dataGridView1.DataSource = dt;
             }
             catch (Exception ex)
@@ -53,6 +56,19 @@ namespace Teste
                 dt.Dispose();
             }
 
+        }
+        private void LimparCaixas()
+        {
+            txtId.Clear();
+            txtLogin.Clear();
+            txtSenha.Clear();
+            txtConfirmSenha.Clear();
+            numNivel.Value = 0;
+            cmbStatus.SelectedIndex = -1;
+            dataGridView1.ClearSelection();
+            btnNovo.Enabled = true;
+            btnExcluir.Enabled = false;
+            btnSalvar.Enabled = false;
         }
 
         private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
@@ -111,13 +127,16 @@ namespace Teste
         private void VerificarUsuario()
         {
             DataTable dt = new DataTable();
-            string login = txtLogin.Text;
-            string query = @"SELECT * FROM tb_usuario WHERE login = '" + login + "'";
+            List<SqlParameter> sp = new List<SqlParameter>()
+                {
 
+                    new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 11},
+                    new SqlParameter(){ParameterName = "@Login", SqlDbType = SqlDbType.NVarChar, Value = txtLogin.Text }
+                };
             try
             {
-                dt = banco.QueryBancoSql(query);
-                if(dt.Rows.Count > 0)
+                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                if (dt.Rows.Count > 0)
                 {
                     EditarUsuario();
                 }
@@ -141,34 +160,53 @@ namespace Teste
         private void EditarUsuario()
         {
             int result;
-            string query = @"
-            UPDATE 
-                tb_usuario 
-            SET 
-                login='" + txtLogin.Text + "', senha='" + txtSenha.Text + "', nivel=" + numNivel.Value + ",status=" + cmbStatus.SelectedIndex + "WHERE login='" + txtLogin.Text + "'";
-            result = banco.DmlBancoSql(query);
-            if(result == 1)
+            List<SqlParameter> sp = new List<SqlParameter>()
+                {
+
+                    new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 2},
+                    new SqlParameter(){ParameterName = "@Id", SqlDbType = SqlDbType.Int, Value = txtId.Text },
+                    new SqlParameter(){ParameterName = "@Login", SqlDbType = SqlDbType.NVarChar, Value = txtLogin.Text },
+                    new SqlParameter(){ParameterName = "@Senha", SqlDbType = SqlDbType.NVarChar, Value = txtConfirmSenha.Text },
+                    new SqlParameter(){ParameterName = "@Nivel", SqlDbType = SqlDbType.Int, Value = numNivel.Value },
+                    new SqlParameter(){ParameterName = "@Status", SqlDbType = SqlDbType.Int, Value = cmbStatus.SelectedIndex }
+                };
+
+            result = banco.EditData("dbo.Gerencia_Usuario", sp);
+            if(result > 0)
             {
                 MessageBox.Show("Usuario alterado com sucesso!", "Alteração Salva!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Globais.RegistrarLog(Globais.Login + " Alterou o Usuário ->" + txtLogin.Text);
                 PreencherGrid();
+            }
+            else
+            {
+                MessageBox.Show("Falha ao Alterar Usuário!", "Falha ao Salvar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
         private void SalvarUsuario()
         {
             int result;
-            string query = @"
-            INSERT INTO 
-                tb_usuario(login,senha,nivel,status) 
-            VALUES
-                ('" + txtLogin.Text + "','" + txtConfirmSenha.Text + "'," + numNivel.Value + "," + cmbStatus.SelectedIndex + ")";
-            result = banco.DmlBancoSql(query);
-            if (result == 1)
+            List<SqlParameter> sp = new List<SqlParameter>()
+                {
+
+                    new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 1},
+                    new SqlParameter(){ParameterName = "@Login", SqlDbType = SqlDbType.NVarChar, Value = txtLogin.Text },
+                    new SqlParameter(){ParameterName = "@Senha", SqlDbType = SqlDbType.NVarChar, Value = txtConfirmSenha.Text },
+                    new SqlParameter(){ParameterName = "@Nivel", SqlDbType = SqlDbType.Int, Value = numNivel.Value },
+                    new SqlParameter(){ParameterName = "@Status", SqlDbType = SqlDbType.Int, Value = cmbStatus.SelectedIndex }
+                };
+
+            result = banco.EditData("dbo.Gerencia_Usuario", sp);
+            if (result > 0)
             {
                 MessageBox.Show("Usuario adicionado com sucesso!", "Novo usuário!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Globais.RegistrarLog(Globais.Login + " Adicionou o Usuário ->" + txtLogin.Text);
                 PreencherGrid();
+            }
+            else
+            {
+                MessageBox.Show("Falha ao adicionar Usuário", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -176,6 +214,70 @@ namespace Teste
         private void FrmTelaUsuario_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.Dispose();
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            DataGridView dgv = (DataGridView)sender;
+            int linha = dgv.SelectedRows.Count;
+            if(linha > 0)
+            {
+                string id = dgv.SelectedRows[0].Cells[0].Value.ToString();
+                DataTable dt = new DataTable();
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
+
+                    new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 10},
+                    new SqlParameter(){ParameterName = "@IdUsuario", SqlDbType = SqlDbType.Int, Value = id }
+                };
+                dt = banco.InsertData("dbo.Funcoes_Pesquisa",sp);
+                txtId.Text = dt.Rows[0].ItemArray[0].ToString();
+                txtLogin.Text = dt.Rows[0].ItemArray[1].ToString();
+                cmbStatus.SelectedIndex = Convert.ToInt32(dt.Rows[0].ItemArray[3]);
+                numNivel.Value = Convert.ToInt32(dt.Rows[0].ItemArray[2]);
+
+            }
+            btnExcluir.Enabled = true;
+            btnNovo.Enabled = false;
+            btnSalvar.Enabled = true;
+        }
+
+        private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            DataGridView gridview;
+            gridview = (DataGridView)sender;
+            gridview.ClearSelection();
+            LimparCaixas();
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            int linha = dataGridView1.SelectedRows.Count;
+            int result;
+            if( linha > 0)
+            {
+                string id = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
+
+                    new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 3},
+                    new SqlParameter(){ParameterName = "@Id", SqlDbType = SqlDbType.Int, Value = id }
+                };
+                result = banco.EditData("dbo.Gerencia_Usuario", sp);
+                if(result > 0)
+                {
+                    MessageBox.Show("Usuário Deletado com Sucesso!", "Usuário Deletado!", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    Globais.RegistrarLog(Globais.Login + "Deletou o Usuario:" + dataGridView1.SelectedRows[0].Cells[1].Value.ToString());
+                    PreencherGrid();
+                    LimparCaixas();
+
+                }
+                else
+                {
+                    MessageBox.Show("Falha ao deletar Usuário!", "Falha!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
+            }
         }
     }
 }

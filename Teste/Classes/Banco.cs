@@ -91,49 +91,39 @@ namespace Teste
             }
             
         }
-        public int ProcedureInserirTicket(string placa, string tipo, string marca, string nome, string telefone)
+        public int EditData(string NameProcedure, List<SqlParameter> sp = null)
         {
-            //Abre a conexao e obtem paramentros restantes
-            var connection = ConexaoBanco();
-            DateTime DataAtual = DateTime.Now;
-            DateTime HoraAtual = DateTime.Now;
-            //Define qual procedimento será realizado
-            SqlCommand cmd = new SqlCommand("[dbo].[InsertTicket]", connection);
-            //Define o tipo do comando
-            cmd.CommandType = CommandType.StoredProcedure;
+            SqlCommand cmd = null;
+            int LinesAffected = 0;
             try
             {
-                //Envia os paramentros para o Banco de Dados
-                cmd.Parameters.AddWithValue("@idUsuario", Globais.IdUsuario);
-                cmd.Parameters.AddWithValue("@Nome_Cliente", nome);
-                cmd.Parameters.AddWithValue("@Telefone", telefone);
-                cmd.Parameters.AddWithValue("@Placa", placa);
-                cmd.Parameters.AddWithValue("@Marca", marca);
-                cmd.Parameters.AddWithValue("@Tipo", tipo);
-                cmd.Parameters.AddWithValue("@Hr_Entrada", HoraAtual);
-                cmd.Parameters.AddWithValue("@Data_Entrada", DataAtual);
-                cmd.Parameters.AddWithValue("@Caminho_Foto", @"ParkManager\Fotos\008.png");
-                //Retorna o IDTicket que acabou de ser criado
-                var returnParameter = cmd.Parameters.Add("@Return_value", SqlDbType.Int);
-                returnParameter.Direction = ParameterDirection.ReturnValue;
-                //Executa o comando
-                cmd.ExecuteNonQuery();
-                //Retorna o ID no formato int
-                int idTicket = Convert.ToInt32(returnParameter.Value);
-                return idTicket;
+                var connection = ConexaoBanco();
+                cmd = new SqlCommand(NameProcedure, connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                if (sp != null)
+                {
+                    cmd.Parameters.AddRange(sp.ToArray());
+                    LinesAffected = cmd.ExecuteNonQuery();
+
+                }
+                return LinesAffected;
+
+
+
             }
             catch (Exception)
             {
 
-                throw ;
+                throw;
             }
             finally
             {
-                cmd.Dispose();
-                //Fecha a conexao
                 conexao.Close();
+                cmd.Dispose();
             }
+
         }
+
         #endregion
 
         #region Procedure com Flags para realizar consultas sem parametros especificos, ou seja, carregas todas as informações de uma tabela

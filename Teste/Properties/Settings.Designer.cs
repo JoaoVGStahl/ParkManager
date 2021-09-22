@@ -25,8 +25,8 @@ namespace Teste.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Server=PCSEMIGAMER\\SQLSERVER;Database=db_estacionamento;User Id=sa;Password=joaor" +
-            "otivGTA5;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Server=db-park-manager.ch2qj4cvcflx.us-east-1.rds.amazonaws.com,1433;Database=db_" +
+            "estacionamento;User Id=sa;Password=adminparkmanager;")]
         public string StringBanco {
             get {
                 return ((string)(this["StringBanco"]));
