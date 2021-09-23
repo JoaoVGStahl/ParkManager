@@ -115,5 +115,42 @@ namespace Teste
 
         }
 
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Caracteres permitidos
+            string caracterespermitidos = "ABCDEFGHIJ0123456789";
+            //Apenas Letras E BackSpace nos 3 primeiros digitos
+            if (txtPlaca.TextLength < 3)
+            {
+                if (!char.IsLetter(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
+                {
+                    e.Handled = true;
+                }
+            }
+            //Apenas Números E BackSpace no 4º Digito
+            if (txtPlaca.TextLength == 3)
+            {
+                if (!char.IsNumber(e.KeyChar) && !Char.IsControl(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
+                {
+                    e.Handled = true;
+                }
+            }
+            // Apenas letras de A-J e 0-9 e BackSpace no 5º Digito
+            if (txtPlaca.TextLength == 4)
+            {
+                if (!(caracterespermitidos.Contains(e.KeyChar.ToString().ToUpper())) && !(e.KeyChar == (char)Keys.Back))
+                {
+                    e.Handled = true;
+                }
+            }
+            //Apenas Números e BackSpace nos 6º e 7º Digitos
+            if (txtPlaca.TextLength > 4)
+            {
+                if (!char.IsNumber(e.KeyChar) && !Char.IsControl(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
+                {
+                    e.Handled = true;
+                }
+            }
+        }
     }
 }

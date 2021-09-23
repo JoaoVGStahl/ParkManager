@@ -27,7 +27,6 @@ namespace Teste
             btnVeiculos.BackColor = Color.WhiteSmoke;
             btnCliente.BackColor = Color.WhiteSmoke;
             botao.BackColor = Color.DarkBlue;
-            botao.ForeColor = Color.White;
         }
         private void AbreFormParent(int nivel, Form Frm)
         {

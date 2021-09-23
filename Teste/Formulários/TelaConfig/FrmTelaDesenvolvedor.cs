@@ -19,10 +19,6 @@ namespace Teste
             InitializeComponent();
         }
 
-        private void FrmTelaDesenvolvedor_Load(object sender, EventArgs e)
-        {
-            CarregarInformacoes();
-        }
         private void CarregarInformacoes()
         {
             string StringBanco = Properties.Settings.Default["StringBanco"].ToString();
@@ -63,13 +59,6 @@ namespace Teste
 
         }
 
-
-        private void btnSalvar_Click(object sender, EventArgs e)
-        {
-            btnEditar.Enabled = true;
-            SalvarSettings();
-
-        }
         private void SalvarSettings()
         {
             string servidor = txtServidor.Text;
@@ -122,8 +111,7 @@ namespace Teste
             }
             
         }
-
-        private void btnEditar_Click(object sender, EventArgs e)
+        private void btnEditar_Click_1(object sender, EventArgs e)
         {
             txtCaminho.Enabled = true;
             txtPortaArduino.Enabled = true;
@@ -132,6 +120,17 @@ namespace Teste
             txtUsuario.Enabled = true;
             txtSenha.Enabled = true;
             btnSalvar.Enabled = true;
+        }
+
+        private void btnSalvar_Click_1(object sender, EventArgs e)
+        {
+            btnEditar.Enabled = true;
+            SalvarSettings();
+        }
+
+        private void FrmTelaDesenvolvedor_Load_1(object sender, EventArgs e)
+        {
+            CarregarInformacoes();
         }
     }
 }

@@ -84,7 +84,6 @@ namespace Teste
             this.btnEditar.BackColor = System.Drawing.Color.Transparent;
             this.btnEditar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnEditar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEditar.Enabled = false;
             this.btnEditar.FlatAppearance.BorderSize = 0;
             this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -97,6 +96,7 @@ namespace Teste
             this.btnEditar.Text = "Editar";
             this.btnEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEditar.UseVisualStyleBackColor = false;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click_1);
             // 
             // btnSalvar
             // 
@@ -117,6 +117,7 @@ namespace Teste
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSalvar.UseVisualStyleBackColor = false;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click_1);
             // 
             // splitter2
             // 
@@ -174,6 +175,7 @@ namespace Teste
             // txtPortaArduino
             // 
             this.txtPortaArduino.BackColor = System.Drawing.Color.White;
+            this.txtPortaArduino.Enabled = false;
             this.txtPortaArduino.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPortaArduino.Location = new System.Drawing.Point(234, 53);
             this.txtPortaArduino.Name = "txtPortaArduino";
@@ -202,6 +204,7 @@ namespace Teste
             // txtSenha
             // 
             this.txtSenha.BackColor = System.Drawing.Color.White;
+            this.txtSenha.Enabled = false;
             this.txtSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSenha.Location = new System.Drawing.Point(7, 297);
             this.txtSenha.Name = "txtSenha";
@@ -222,10 +225,11 @@ namespace Teste
             // txtNomeBanco
             // 
             this.txtNomeBanco.BackColor = System.Drawing.Color.White;
+            this.txtNomeBanco.Enabled = false;
             this.txtNomeBanco.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNomeBanco.Location = new System.Drawing.Point(7, 148);
             this.txtNomeBanco.Name = "txtNomeBanco";
-            this.txtNomeBanco.Size = new System.Drawing.Size(420, 31);
+            this.txtNomeBanco.Size = new System.Drawing.Size(543, 31);
             this.txtNomeBanco.TabIndex = 10;
             // 
             // label5
@@ -241,6 +245,7 @@ namespace Teste
             // txtServidor
             // 
             this.txtServidor.BackColor = System.Drawing.Color.White;
+            this.txtServidor.Enabled = false;
             this.txtServidor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtServidor.Location = new System.Drawing.Point(7, 70);
             this.txtServidor.Name = "txtServidor";
@@ -260,6 +265,7 @@ namespace Teste
             // txtUsuario
             // 
             this.txtUsuario.BackColor = System.Drawing.Color.White;
+            this.txtUsuario.Enabled = false;
             this.txtUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsuario.Location = new System.Drawing.Point(7, 223);
             this.txtUsuario.Name = "txtUsuario";
@@ -290,6 +296,7 @@ namespace Teste
             // txtCaminho
             // 
             this.txtCaminho.BackColor = System.Drawing.Color.White;
+            this.txtCaminho.Enabled = false;
             this.txtCaminho.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCaminho.Location = new System.Drawing.Point(234, 6);
             this.txtCaminho.Name = "txtCaminho";
@@ -332,6 +339,7 @@ namespace Teste
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmTelaDesenvolvedor";
             this.Text = "FrmTelaDesenvolvedor";
+            this.Load += new System.EventHandler(this.FrmTelaDesenvolvedor_Load_1);
             this.panel2.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();

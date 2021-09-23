@@ -13,6 +13,7 @@ namespace Teste
     public partial class FrmTelaEncerrarTicket : Form
     {
         Banco banco = new Banco();
+        DateTime DataFormatada;
         public FrmTelaEncerrarTicket()
         {
             InitializeComponent();
@@ -23,7 +24,6 @@ namespace Teste
 
             CarregarComboFormaPagamento();
             CarregarTicket();
-            timer1.Enabled = true;
         }
         private void CarregarComboFormaPagamento()
         {
@@ -47,10 +47,9 @@ namespace Teste
         }
         private void CarregarTicket()
         {
-            DateTime HoraSaida = DateTime.Now;
-            lblHoraSaida.Text = HoraSaida.ToLongTimeString() + " " + HoraSaida.ToShortDateString();
-            TimeSpan Permanencia;
+            DateTime DataEntrada;
             DateTime HoraEntrada;
+            
             DataTable dt = new DataTable();
             try
             {
@@ -59,15 +58,13 @@ namespace Teste
                 {
 
                     lblIdTicket.Text = "#" + Convert.ToString(dt.Rows[0].ItemArray[0]);//ID Ticket
-                    lblHoraEntrada.Text = Convert.ToString(dt.Rows[0].ItemArray[1]) + " " + Convert.ToString(dt.Rows[0].ItemArray[2]);//Hora - Data Entrada
 
-                    HoraEntrada = Convert.ToDateTime(dt.Rows[0].ItemArray[2]);
+                    DataEntrada = Convert.ToDateTime(dt.Rows[0].ItemArray[2]);
                     HoraEntrada = Convert.ToDateTime(dt.Rows[0].ItemArray[1]);
-
-                    Permanencia = HoraSaida - HoraEntrada;
-
-                    lblPermanencia.Text = Permanencia.ToString(@"hh\:mm\:ss");
-                    CalcularPreco(Permanencia);
+                    lblHoraEntrada.Text = HoraEntrada.ToLongTimeString() + " " + DataEntrada.ToShortDateString();
+                    DataFormatada = Convert.ToDateTime(DataEntrada.ToString("dd/MM/yyyy") +" "+ HoraEntrada.ToString("HH:mm:ss"));
+                    timer1.Enabled = true;
+                    CalcularPreco(DataFormatada);
                 }
             }
             catch (Exception ex)
@@ -78,16 +75,26 @@ namespace Teste
             }
             
         }
-        private void CalcularPreco(TimeSpan Tempo)
+        private void CalcularPreco(DateTime DataEntrada)
         {
-            decimal Valor =0;
-            int horas, minutos;
-
-            horas = Convert.ToInt32(Tempo.TotalHours);
-            minutos = Convert.ToInt32(Tempo.Minutes);
-            if(horas > 0)
+            DateTime DataSaida = Convert.ToDateTime(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
+            lblHoraSaida.Text = DataSaida.ToString("HH:mm:ss dd/MM/yyyy");
+            TimeSpan ts;
+            if (DataSaida > DataEntrada)
             {
-                if(minutos > 0 && minutos < 16)
+                ts = DataSaida - DataEntrada;
+            }
+            else
+            {
+                ts = DataEntrada - DataSaida;
+            }
+            lblPermanencia.Text = Convert.ToString(ts);
+            double Valor = 0;
+            int horas = ts.Hours;
+            int minutos = ts.Minutes;
+            if (horas > 0)
+            {
+                if (minutos < 16)
                 {
                     Valor = horas * 6;
                 }
@@ -96,17 +103,17 @@ namespace Teste
                     horas += 1;
                     Valor = horas * 6;
                 }
-                
-            }else if (minutos < 15)
+            }
+            else if(minutos >= 16)
             {
-                Valor = 0;
+                Valor = horas * 6;
             }
             else
             {
-                Valor = 6;
+                Valor = 0;
             }
-            txtTotal.Text = Valor.ToString();
-           
+            txtTotal.Text = Convert.ToString(Valor);
+
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -120,7 +127,7 @@ namespace Teste
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            CarregarTicket();
+            CalcularPreco(DataFormatada);
         }
 
         private void lblHoraSaida_Click(object sender, EventArgs e)

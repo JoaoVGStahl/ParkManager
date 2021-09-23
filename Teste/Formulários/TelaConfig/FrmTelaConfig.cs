@@ -19,10 +19,15 @@ namespace Teste
         private void FundoBotao(Button botao)
         {
             btnGeral.BackColor = Color.WhiteSmoke;
+            btnGeral.ForeColor = Color.Black;
             btnEstacionamento.BackColor = Color.WhiteSmoke;
+            btnEstacionamento.ForeColor = Color.Black;
             btnPrecos.BackColor = Color.WhiteSmoke;
+            btnPrecos.ForeColor = Color.Black;
             btnUsuarios.BackColor = Color.WhiteSmoke;
+            btnUsuarios.ForeColor = Color.Black;
             btnDev.BackColor = Color.WhiteSmoke;
+            btnDev.ForeColor = Color.Black;
             botao.BackColor = Color.DarkBlue;
             botao.ForeColor = Color.White;
         }
@@ -49,7 +54,7 @@ namespace Teste
                 if (Application.OpenForms[i].IsMdiChild)
                 {
                     // fecha o formulário
-                    Application.OpenForms[i].Close();
+                    Application.OpenForms[i].Dispose();
                 }
             }
         }
