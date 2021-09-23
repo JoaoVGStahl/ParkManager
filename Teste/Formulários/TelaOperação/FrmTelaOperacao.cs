@@ -329,12 +329,6 @@ namespace Teste
             FrmTelaConfig Frm = new FrmTelaConfig();
             AbrirForm(0, Frm);
         }
-
-        private void btnPesquisaTicket_Click(object sender, EventArgs e)
-        {
-            
-
-        }
         private void PreencherLabels(DataTable dt)
         {
             //Preenchendo as labels com as informações do banco
@@ -448,7 +442,13 @@ namespace Teste
             }
         }
 
-        private void btnPesquisaTicket_Click_1(object sender, EventArgs e)
+        private void btnCadastros_Click(object sender, EventArgs e)
+        {
+            FrmTelaCadastros Frm = new FrmTelaCadastros();
+            AbrirForm(2, Frm);
+        }
+
+        private void btnPesquisaTicket_Click_2(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
             string placa = txtPlaca.Text;
@@ -489,3 +489,4 @@ namespace Teste
         }
     }
 }
+    

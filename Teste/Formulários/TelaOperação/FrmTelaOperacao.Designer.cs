@@ -661,6 +661,7 @@ namespace Teste
             this.btnPesquisaTicket.TabIndex = 30;
             this.btnPesquisaTicket.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPesquisaTicket.UseVisualStyleBackColor = false;
+            this.btnPesquisaTicket.Click += new System.EventHandler(this.btnPesquisaTicket_Click_2);
             // 
             // mskTelefone
             // 
