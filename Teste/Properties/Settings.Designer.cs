@@ -25,19 +25,6 @@ namespace Teste.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Server=PCSEMIGAMER\\SQLSERVER;Database=db_estacionamento;User Id=sa;Password=joaor" +
-            "otivGTA5;")]
-        public string StringBanco {
-            get {
-                return ((string)(this["StringBanco"]));
-            }
-            set {
-                this["StringBanco"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("root")]
         public string UserRoot {
             get {
@@ -57,6 +44,42 @@ namespace Teste.Properties {
             }
             set {
                 this["SenhaRoot"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ArquivoAuditoria {
+            get {
+                return ((string)(this["ArquivoAuditoria"]));
+            }
+            set {
+                this["ArquivoAuditoria"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PortaArduino {
+            get {
+                return ((string)(this["PortaArduino"]));
+            }
+            set {
+                this["PortaArduino"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string StringBanco {
+            get {
+                return ((string)(this["StringBanco"]));
+            }
+            set {
+                this["StringBanco"] = value;
             }
         }
     }

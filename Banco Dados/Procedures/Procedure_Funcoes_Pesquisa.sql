@@ -2,7 +2,9 @@ ALTER PROCEDURE Funcoes_Pesquisa(
 @Flag int,
 @Tipo varchar(20) = null,
 @Placa varchar(7) = null,
-@idTicket int = null
+@idTicket int = null,
+@IdUsuario int =null,
+@Login varchar(32) = null
 )
 AS
 -- 0 = ComboBox Tipo
@@ -51,7 +53,24 @@ AS
 		SELECT * FROM tb_estacionamento WHERE status=1
 	END
 -- 9 = SELECT de usuario
+	IF(@Flag = 9)
     BEGIN
-	   SELECT * FROM tb_usuario
+	   	SELECT id_usuario[ID], login[Login],nivel[Nivel],status[Status] FROM tb_usuario WHERE status=1
     END
+-- 10 = SELECT Usuario Especifico
+	IF(@Flag = 10)
+	BEGIN
+		SELECT id_usuario[ID], login[Login],nivel[Nivel],status[Status] FROM tb_usuario WHERE id_usuario = @IdUsuario
+	END
+-- 11 = SELECT Usuario pelo Login
+	IF(@Flag = 11)
+	BEGIN
+		SELECT login[Login] FROM tb_usuario WHERE login=@Login
+	END
+-- 12 = SELECT Tela Desenvolvedor
+	IF(@Flag = 12)
+	BEGIN
+		SELECT caminho_log[Caminho Log], porta_arduino[Porta Arduino],string_conn[String Conexão] FROM tb_estacionamento WHERE status =1
+	END
+
 

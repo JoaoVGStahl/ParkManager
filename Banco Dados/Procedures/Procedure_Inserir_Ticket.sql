@@ -6,7 +6,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-ALTER PROCEDURE [dbo].[InsertTicket]
+CREATE PROCEDURE [dbo].[InsertTicket]
 (
 @idUsuario int,
 @Nome_Cliente varchar(50),
