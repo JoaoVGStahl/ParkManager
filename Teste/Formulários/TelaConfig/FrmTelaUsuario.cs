@@ -69,6 +69,12 @@ namespace Teste
             btnNovo.Enabled = true;
             btnExcluir.Enabled = false;
             btnSalvar.Enabled = false;
+            txtId.Enabled = false;
+            txtLogin.Enabled = false;
+            txtSenha.Enabled = false;
+            txtConfirmSenha.Enabled = false;
+            cmbStatus.Enabled = false;
+            numNivel.Enabled = false;
         }
 
         private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
@@ -164,7 +170,6 @@ namespace Teste
                 {
 
                     new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 2},
-                    new SqlParameter(){ParameterName = "@Id", SqlDbType = SqlDbType.Int, Value = txtId.Text },
                     new SqlParameter(){ParameterName = "@Login", SqlDbType = SqlDbType.NVarChar, Value = txtLogin.Text },
                     new SqlParameter(){ParameterName = "@Senha", SqlDbType = SqlDbType.NVarChar, Value = txtConfirmSenha.Text },
                     new SqlParameter(){ParameterName = "@Nivel", SqlDbType = SqlDbType.Int, Value = numNivel.Value },
@@ -216,39 +221,6 @@ namespace Teste
             this.Dispose();
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
-        {
-            DataGridView dgv = (DataGridView)sender;
-            int linha = dgv.SelectedRows.Count;
-            if(linha > 0)
-            {
-                string id = dgv.SelectedRows[0].Cells[0].Value.ToString();
-                DataTable dt = new DataTable();
-                List<SqlParameter> sp = new List<SqlParameter>()
-                {
-
-                    new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 10},
-                    new SqlParameter(){ParameterName = "@IdUsuario", SqlDbType = SqlDbType.Int, Value = id }
-                };
-                dt = banco.InsertData("dbo.Funcoes_Pesquisa",sp);
-                txtId.Text = dt.Rows[0].ItemArray[0].ToString();
-                txtLogin.Text = dt.Rows[0].ItemArray[1].ToString();
-                cmbStatus.SelectedIndex = Convert.ToInt32(dt.Rows[0].ItemArray[3]);
-                numNivel.Value = Convert.ToInt32(dt.Rows[0].ItemArray[2]);
-
-            }
-            btnExcluir.Enabled = true;
-            btnNovo.Enabled = false;
-            btnSalvar.Enabled = true;
-        }
-
-        private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            DataGridView gridview;
-            gridview = (DataGridView)sender;
-            gridview.ClearSelection();
-            LimparCaixas();
-        }
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
@@ -278,6 +250,50 @@ namespace Teste
                 }
                 
             }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            LimparCaixas();
+        }
+
+        private void dataGridView1_SelectionChanged_1(object sender, EventArgs e)
+        {
+            DataGridView dgv = (DataGridView)sender;
+            int linha = dgv.SelectedRows.Count;
+            if (linha > 0)
+            {
+                string id = dgv.SelectedRows[0].Cells[0].Value.ToString();
+                DataTable dt = new DataTable();
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
+
+                    new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 10},
+                    new SqlParameter(){ParameterName = "@IdUsuario", SqlDbType = SqlDbType.Int, Value = id }
+                };
+                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                txtId.Text = dt.Rows[0].ItemArray[0].ToString();
+                txtLogin.Text = dt.Rows[0].ItemArray[1].ToString();
+                cmbStatus.SelectedIndex = Convert.ToInt32(dt.Rows[0].ItemArray[3]);
+                numNivel.Value = Convert.ToInt32(dt.Rows[0].ItemArray[2]);
+
+            }
+            txtLogin.Enabled = true;
+            txtSenha.Enabled = true;
+            txtConfirmSenha.Enabled = true;
+            cmbStatus.Enabled = true;
+            numNivel.Enabled = true;
+            btnExcluir.Enabled = true;
+            btnNovo.Enabled = false;
+            btnSalvar.Enabled = true;
+        }
+
+        private void dataGridView1_DataBindingComplete_1(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            DataGridView gridview;
+            gridview = (DataGridView)sender;
+            gridview.ClearSelection();
+            LimparCaixas();
         }
     }
 }

@@ -20,8 +20,10 @@ namespace Teste
 
         private void FrmTelaEncerrarTicket_Load(object sender, EventArgs e)
         {
+
             CarregarComboFormaPagamento();
             CarregarTicket();
+            timer1.Enabled = true;
         }
         private void CarregarComboFormaPagamento()
         {
@@ -45,16 +47,27 @@ namespace Teste
         }
         private void CarregarTicket()
         {
-            lblHoraSaida.Text = DateTime.Now.ToLongTimeString() + " " + DateTime.Now.ToShortDateString();
+            DateTime HoraSaida = DateTime.Now;
+            lblHoraSaida.Text = HoraSaida.ToLongTimeString() + " " + HoraSaida.ToShortDateString();
+            TimeSpan Permanencia;
+            DateTime HoraEntrada;
             DataTable dt = new DataTable();
             try
             {
                 dt = banco.ProcedureCarregarTicket(3,Globais.IdTicket);
                 if (dt.Rows.Count > 0)
                 {
+
                     lblIdTicket.Text = "#" + Convert.ToString(dt.Rows[0].ItemArray[0]);//ID Ticket
                     lblHoraEntrada.Text = Convert.ToString(dt.Rows[0].ItemArray[1]) + " " + Convert.ToString(dt.Rows[0].ItemArray[2]);//Hora - Data Entrada
 
+                    HoraEntrada = Convert.ToDateTime(dt.Rows[0].ItemArray[2]);
+                    HoraEntrada = Convert.ToDateTime(dt.Rows[0].ItemArray[1]);
+
+                    Permanencia = HoraSaida - HoraEntrada;
+
+                    lblPermanencia.Text = Permanencia.ToString(@"hh\:mm\:ss");
+                    CalcularPreco(Permanencia);
                 }
             }
             catch (Exception ex)
@@ -65,13 +78,54 @@ namespace Teste
             }
             
         }
+        private void CalcularPreco(TimeSpan Tempo)
+        {
+            decimal Valor =0;
+            int horas, minutos;
 
+            horas = Convert.ToInt32(Tempo.TotalHours);
+
+            minutos = Convert.ToInt32(Tempo.Minutes);
+            if(horas > 0)
+            {
+                if(minutos > 0 && minutos < 16)
+                {
+                    horas -= 1;
+                    Valor = horas * 6;
+                }
+                else
+                {
+                    horas += 1;
+                    Valor = horas * 6;
+                }
+                
+            }else if (minutos < 15)
+            {
+                Valor = 0;
+            }
+            else
+            {
+                Valor = 6;
+            }
+            txtTotal.Text = Valor.ToString();
+           
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             this.Dispose();
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            CarregarTicket();
+        }
+
+        private void lblHoraSaida_Click(object sender, EventArgs e)
         {
 
         }

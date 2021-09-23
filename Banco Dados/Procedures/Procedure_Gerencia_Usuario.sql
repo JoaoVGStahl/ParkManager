@@ -1,10 +1,10 @@
-CREATE PROCEDURE Gerencia_Usuario
+ALTER PROCEDURE Gerencia_Usuario
 @Flag INT,
 @Id INT = null,
 @Login VARCHAR(32) = NULL,
 @Senha VARCHAR(32) = NULL,
-@Nivel SMALLINT = null,
-@Status SMALLINT = null
+@Nivel INT = null,
+@Status INT = null
 AS
 --Flag 1 = Criar Usuario
    IF(@Flag = 1)

@@ -273,13 +273,18 @@ namespace Teste
         }
         private void LimparCaixas()
         {
-            bool caixa = false;
             txtPlaca.Clear();
-            cmbMarca.SelectedIndex = -1;
-            PopularComboTipo();
             txtNome.Clear();
+            txtNome.Enabled = false;
             mskTelefone.Clear();
-            AtivarFuncoes(caixa);
+            mskTelefone.Enabled = false;
+            PopularComboTipo();
+            cmbTipo.Enabled = false;
+            cmbMarca.SelectedIndex = -1;
+            cmbMarca.Enabled = false;
+            btnIniciar.Enabled = false;
+            btnEncerrar.Enabled = false;
+            btnPesquisaTicket.Enabled = false;
 
         }
         private void cmbTipo_SelectedIndexChanged(object sender, EventArgs e)
@@ -327,42 +332,7 @@ namespace Teste
 
         private void btnPesquisaTicket_Click(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            string placa = txtPlaca.Text;
-            if (placa != "")
-            {
-
-                try
-                {
-                    dt = banco.ProcedurePesquisaTicketVeiculo(7, placa);
-                    //Verifica se houve algum retorno no DataTable
-                    if (dt.Rows.Count > 0)
-                    {
-                        PreencherLabels(dt);
-                        AlinharLabels();
-                        btnEncerrar.Enabled = true;
-                        btnIniciar.Enabled = false;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Nenhum ticket em aberto encontrado para este veiculo!", "Ticket não existe!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                catch (Exception ex)
-                {
-
-                    MessageBox.Show(ex.Message, "Falha ao relaizar pesquisa!");
-                }
-                finally
-                {
-                    dt.Dispose();
-                }
-
-            }
-            else
-            {
-                MessageBox.Show("Preencha o campo 'Placa'!", "Ticket não existe!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            
 
         }
         private void PreencherLabels(DataTable dt)
@@ -475,6 +445,46 @@ namespace Teste
             if (!char.IsLetter(e.KeyChar) && !(e.KeyChar == (char)Keys.Back) && !(e.KeyChar == (char)Keys.Space))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void btnPesquisaTicket_Click_1(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            string placa = txtPlaca.Text;
+            if (placa != "")
+            {
+
+                try
+                {
+                    dt = banco.ProcedurePesquisaTicketVeiculo(7, placa);
+                    //Verifica se houve algum retorno no DataTable
+                    if (dt.Rows.Count > 0)
+                    {
+                        PreencherLabels(dt);
+                        AlinharLabels();
+                        btnEncerrar.Enabled = true;
+                        btnIniciar.Enabled = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Nenhum ticket em aberto encontrado para este veiculo!", "Ticket não existe!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message, "Falha ao relaizar pesquisa!");
+                }
+                finally
+                {
+                    dt.Dispose();
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Preencha o campo 'Placa'!", "Ticket não existe!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

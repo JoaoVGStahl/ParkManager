@@ -67,4 +67,10 @@ AS
 	BEGIN
 		SELECT login[Login] FROM tb_usuario WHERE login=@Login
 	END
+-- 12 = SELECT Tela Desenvolvedor
+	IF(@Flag = 12)
+	BEGIN
+		SELECT caminho_log[Caminho Log], porta_arduino[Porta Arduino],string_conn[String Conexão] FROM tb_estacionamento WHERE status =1
+	END
+
 

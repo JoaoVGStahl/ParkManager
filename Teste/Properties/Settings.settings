@@ -2,14 +2,20 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Teste.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="StringBanco" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Server=db-park-manager.ch2qj4cvcflx.us-east-1.rds.amazonaws.com,1433;Database=db_estacionamento;User Id=sa;Password=adminparkmanager;</Value>
-    </Setting>
     <Setting Name="UserRoot" Type="System.String" Scope="User">
       <Value Profile="(Default)">root</Value>
     </Setting>
     <Setting Name="SenhaRoot" Type="System.String" Scope="User">
       <Value Profile="(Default)">root</Value>
+    </Setting>
+    <Setting Name="ArquivoAuditoria" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="PortaArduino" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="StringBanco" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>
