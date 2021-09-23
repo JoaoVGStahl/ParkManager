@@ -35,11 +35,11 @@ namespace Teste
             this.label2 = new System.Windows.Forms.Label();
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtTroco = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbFormaPagamento = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtRecebido = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -80,7 +80,6 @@ namespace Teste
             // txtTotal
             // 
             this.txtTotal.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTotal.Location = new System.Drawing.Point(21, 286);
             this.txtTotal.Name = "txtTotal";
@@ -100,17 +99,16 @@ namespace Teste
             this.label4.TabIndex = 49;
             this.label4.Text = "Total (R$)";
             // 
-            // textBox3
+            // txtTroco
             // 
-            this.textBox3.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(369, 286);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(157, 38);
-            this.textBox3.TabIndex = 52;
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTroco.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtTroco.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTroco.Location = new System.Drawing.Point(369, 286);
+            this.txtTroco.Name = "txtTroco";
+            this.txtTroco.ReadOnly = true;
+            this.txtTroco.Size = new System.Drawing.Size(157, 38);
+            this.txtTroco.TabIndex = 52;
+            this.txtTroco.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label5
             // 
@@ -132,9 +130,9 @@ namespace Teste
             "Débito",
             "Dinheiro",
             "Pix"});
-            this.cmbFormaPagamento.Location = new System.Drawing.Point(174, 181);
+            this.cmbFormaPagamento.Location = new System.Drawing.Point(164, 181);
             this.cmbFormaPagamento.Name = "cmbFormaPagamento";
-            this.cmbFormaPagamento.Size = new System.Drawing.Size(198, 41);
+            this.cmbFormaPagamento.Size = new System.Drawing.Size(219, 41);
             this.cmbFormaPagamento.TabIndex = 53;
             // 
             // label3
@@ -147,16 +145,16 @@ namespace Teste
             this.label3.TabIndex = 54;
             this.label3.Text = "Forma Pagamento";
             // 
-            // textBox1
+            // txtRecebido
             // 
-            this.textBox1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(195, 286);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(157, 38);
-            this.textBox1.TabIndex = 56;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtRecebido.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtRecebido.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRecebido.Location = new System.Drawing.Point(195, 286);
+            this.txtRecebido.Name = "txtRecebido";
+            this.txtRecebido.ReadOnly = true;
+            this.txtRecebido.Size = new System.Drawing.Size(157, 38);
+            this.txtRecebido.TabIndex = 56;
+            this.txtRecebido.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label6
             // 
@@ -193,7 +191,7 @@ namespace Teste
             this.lblPermanencia.Name = "lblPermanencia";
             this.lblPermanencia.Size = new System.Drawing.Size(247, 29);
             this.lblPermanencia.TabIndex = 61;
-            this.lblPermanencia.Text = "02:15:10";
+            this.lblPermanencia.Text = "13:00:00";
             this.lblPermanencia.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblHoraEntrada
@@ -204,7 +202,7 @@ namespace Teste
             this.lblHoraEntrada.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblHoraEntrada.Size = new System.Drawing.Size(251, 29);
             this.lblHoraEntrada.TabIndex = 62;
-            this.lblHoraEntrada.Text = "09/09/2021 13:00:00";
+            this.lblHoraEntrada.Text = "10:00:00 22/09/2021 ";
             this.lblHoraEntrada.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblHoraSaida
@@ -214,7 +212,7 @@ namespace Teste
             this.lblHoraSaida.Name = "lblHoraSaida";
             this.lblHoraSaida.Size = new System.Drawing.Size(253, 29);
             this.lblHoraSaida.TabIndex = 63;
-            this.lblHoraSaida.Text = "09/09/2021 15:15:45";
+            this.lblHoraSaida.Text = "23:00:00 22/09/2021 ";
             this.lblHoraSaida.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblHoraSaida.Click += new System.EventHandler(this.lblHoraSaida_Click);
             // 
@@ -304,11 +302,11 @@ namespace Teste
             this.Controls.Add(this.lblPermanencia);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtRecebido);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cmbFormaPagamento);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtTroco);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtTotal);
             this.Controls.Add(this.label4);
@@ -333,11 +331,11 @@ namespace Teste
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtTotal;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtTroco;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmbFormaPagamento;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtRecebido;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel1;

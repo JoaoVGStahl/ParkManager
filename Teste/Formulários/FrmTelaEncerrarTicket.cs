@@ -84,13 +84,11 @@ namespace Teste
             int horas, minutos;
 
             horas = Convert.ToInt32(Tempo.TotalHours);
-
             minutos = Convert.ToInt32(Tempo.Minutes);
             if(horas > 0)
             {
                 if(minutos > 0 && minutos < 16)
                 {
-                    horas -= 1;
                     Valor = horas * 6;
                 }
                 else
