@@ -105,13 +105,14 @@ namespace Teste
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtConfirmSenha.Enabled = false;
-            this.txtConfirmSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtConfirmSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtConfirmSenha.Location = new System.Drawing.Point(12, 393);
             this.txtConfirmSenha.MaxLength = 32;
             this.txtConfirmSenha.Name = "txtConfirmSenha";
-            this.txtConfirmSenha.Size = new System.Drawing.Size(269, 35);
+            this.txtConfirmSenha.Size = new System.Drawing.Size(269, 31);
             this.txtConfirmSenha.TabIndex = 40;
             this.txtConfirmSenha.UseSystemPasswordChar = true;
+            this.txtConfirmSenha.TextChanged += new System.EventHandler(this.txtConfirmSenha_TextChanged);
             // 
             // label2
             // 
@@ -119,11 +120,11 @@ namespace Teste
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(10, 361);
             this.label2.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(166, 24);
+            this.label2.Size = new System.Drawing.Size(173, 25);
             this.label2.TabIndex = 39;
             this.label2.Text = "Confirmar Senha";
             // 
@@ -200,7 +201,6 @@ namespace Teste
             this.button1.Text = "Limpar";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // btnExcluir
             // 
@@ -269,7 +269,7 @@ namespace Teste
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.numNivel.Enabled = false;
-            this.numNivel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numNivel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numNivel.Location = new System.Drawing.Point(196, 471);
             this.numNivel.Maximum = new decimal(new int[] {
             3,
@@ -277,8 +277,9 @@ namespace Teste
             0,
             0});
             this.numNivel.Name = "numNivel";
-            this.numNivel.Size = new System.Drawing.Size(85, 35);
+            this.numNivel.Size = new System.Drawing.Size(85, 31);
             this.numNivel.TabIndex = 14;
+            this.numNivel.ValueChanged += new System.EventHandler(this.numNivel_ValueChanged);
             // 
             // cmbStatus
             // 
@@ -287,15 +288,16 @@ namespace Teste
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbStatus.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbStatus.Enabled = false;
-            this.cmbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbStatus.FormattingEnabled = true;
             this.cmbStatus.Items.AddRange(new object[] {
             "0 - Inativo",
             "1 - Ativo"});
             this.cmbStatus.Location = new System.Drawing.Point(13, 469);
             this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(163, 37);
+            this.cmbStatus.Size = new System.Drawing.Size(163, 33);
             this.cmbStatus.TabIndex = 13;
+            this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.cmbStatus_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -303,13 +305,14 @@ namespace Teste
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(192, 439);
             this.label6.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(57, 24);
+            this.label6.Size = new System.Drawing.Size(60, 25);
             this.label6.TabIndex = 11;
             this.label6.Text = "Nível";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label5
             // 
@@ -317,13 +320,14 @@ namespace Teste
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(9, 439);
             this.label5.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(66, 24);
+            this.label5.Size = new System.Drawing.Size(73, 25);
             this.label5.TabIndex = 9;
             this.label5.Text = "Status";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // txtSenha
             // 
@@ -331,11 +335,11 @@ namespace Teste
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSenha.Enabled = false;
-            this.txtSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSenha.Location = new System.Drawing.Point(11, 312);
             this.txtSenha.MaxLength = 32;
             this.txtSenha.Name = "txtSenha";
-            this.txtSenha.Size = new System.Drawing.Size(270, 35);
+            this.txtSenha.Size = new System.Drawing.Size(270, 31);
             this.txtSenha.TabIndex = 8;
             this.txtSenha.UseSystemPasswordChar = true;
             // 
@@ -345,13 +349,14 @@ namespace Teste
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(9, 280);
             this.label4.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(70, 24);
+            this.label4.Size = new System.Drawing.Size(74, 25);
             this.label4.TabIndex = 7;
             this.label4.Text = "Senha";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // txtLogin
             // 
@@ -359,11 +364,11 @@ namespace Teste
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtLogin.Enabled = false;
-            this.txtLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLogin.Location = new System.Drawing.Point(12, 241);
             this.txtLogin.MaxLength = 32;
             this.txtLogin.Name = "txtLogin";
-            this.txtLogin.Size = new System.Drawing.Size(269, 35);
+            this.txtLogin.Size = new System.Drawing.Size(269, 31);
             this.txtLogin.TabIndex = 6;
             this.txtLogin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
             // 
@@ -373,13 +378,14 @@ namespace Teste
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(8, 209);
             this.label3.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 24);
+            this.label3.Size = new System.Drawing.Size(65, 25);
             this.label3.TabIndex = 5;
             this.label3.Text = "Login";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // txtId
             // 
@@ -387,11 +393,11 @@ namespace Teste
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtId.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtId.Location = new System.Drawing.Point(12, 163);
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
-            this.txtId.Size = new System.Drawing.Size(125, 35);
+            this.txtId.Size = new System.Drawing.Size(67, 31);
             this.txtId.TabIndex = 2;
             // 
             // label1
@@ -400,13 +406,14 @@ namespace Teste
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(7, 134);
             this.label1.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(29, 24);
+            this.label1.Size = new System.Drawing.Size(32, 25);
             this.label1.TabIndex = 1;
             this.label1.Text = "ID";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // dataGridView1
             // 
@@ -429,8 +436,6 @@ namespace Teste
             this.dataGridView1.Size = new System.Drawing.Size(554, 483);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete_1);
-            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged_1);
             // 
             // FrmTelaUsuario
             // 
