@@ -26,6 +26,15 @@ namespace Teste
         private void FrmTelaTicket_Load(object sender, EventArgs e)
         {
             PreencherGrid();
+            dataGridView1.Columns[0].Width = 60;
+            dataGridView1.Columns[1].Width = 95;
+            dataGridView1.Columns[2].Width = 95;
+            dataGridView1.Columns[3].Width = 168;
+            dataGridView1.Columns[4].Width = 75;
+            dataGridView1.Columns[5].Width = 110;
+            dataGridView1.Columns[6].Width = 140;
+            dataGridView1.Columns[7].Width = 225;
+            dataGridView1.Columns[8].Width = 325;
 
         }
         private void PreencherGrid()
