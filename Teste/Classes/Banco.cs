@@ -55,8 +55,6 @@ namespace Teste
             SqlDataAdapter da = null;
             SqlCommand cmd =null;
             DataTable dt = new DataTable();
-
-
             try
             {
                 var connection = ConexaoBanco();
@@ -66,13 +64,9 @@ namespace Teste
                 {
                     cmd.Parameters.AddRange(sp.ToArray());
                     da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-                    
+                    da.Fill(dt);                    
                 }
                 return dt;
-
-
-
             }
             catch (Exception)
             {

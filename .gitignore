@@ -1,0 +1,9 @@
+.vs/*
+
+Teste/bin/*
+
+Teste/obj/*
+
+.vs/ParkManager/v16/Server/sqlite3/storage.ide-shm
+
+.vs/ParkManager/v16/Server/sqlite3/storage.ide-wal

@@ -1,5 +1,0 @@
-.vs/*
-
-Teste/bin/*
-
-Teste/obj/*

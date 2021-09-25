@@ -523,9 +523,10 @@ namespace Teste
                     {
                         PreencherLabels(dt);
                         AlinharLabels();
+                        LimparCaixas();
                         btnEncerrar.Enabled = true;
                         btnIniciar.Enabled = false;
-                        LimparCaixas();
+                        
                     }
                     else
                     {

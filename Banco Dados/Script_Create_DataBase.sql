@@ -90,6 +90,12 @@ CREATE TABLE tb_entrada(
    FOREIGN KEY (usuario_id) REFERENCES tb_usuario
 )
 
+CREATE TABLE tb_forma_pgt(
+   id_pgt INT PRIMARY KEY IDENTITY,
+   descricao VARCHAR(32),
+   status SMALLINT
+)
+
 CREATE TABLE tb_saida(
    id_saida INT PRIMARY KEY IDENTITY NOT NULL,
    entrada_id INT UNIQUE NOT NULL,
@@ -106,12 +112,6 @@ CREATE TABLE tb_saida(
    FOREIGN KEY (forma_pgt_id) REFERENCES tb_forma_pgt
 )
 
-CREATE TABLE tb_forma_pgt(
-   id_pgt INT PRIMARY KEY IDENTITY,
-   descricao VARCHAR(32),
-   status SMALLINT
-)
-
 CREATE TABLE tb_fotos(
    id_fotos INT PRIMARY KEY IDENTITY,
    ticket_id INT UNIQUE,
@@ -119,7 +119,7 @@ CREATE TABLE tb_fotos(
    FOREIGN KEY (ticket_id) REFERENCES tb_ticket
 ) 
 
-INSERT INTO tb_estacionamento(valor_hr,tolerancia,cnpj,razao_social,endereco,bairro,numero,cidade,estado,cep,incricao_estadual,telefone,caminho_log,caminho_foto_padrao,porta_arduino,string_conn,status) VALUES
+INSERT INTO tb_estacionamento(valor_hr,tolerancia,cnpj,razao_social,endereco,bairro,numero,cidade,estado,cep,inscricao_estadual,telefone,caminho_log,caminho_foto_padrao,porta_arduino,string_conn,status) VALUES
 (6.00,'00:15:00','23.934.793/0001-11','Estacionamento São José Ltda','Avenida Raul Furquim','Centro',1234,'Bebedouro','SP','14700-000','123.908.064.656','(17)3343-1234','C:\ParkManager\log\log.dat','C:\ParkManager\Fotos\','COM3','Server=db-park-manager.ch2qj4cvcflx.us-east-1.rds.amazonaws.com,1433;Database=db_estacionamento;User Id=sa;Password=adminparkmanager;',1)
 
 INSERT INTO tb_forma_pgt (descricao,status) VALUES
