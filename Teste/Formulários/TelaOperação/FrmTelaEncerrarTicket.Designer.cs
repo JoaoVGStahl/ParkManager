@@ -134,6 +134,7 @@ namespace Teste
             this.cmbFormaPagamento.Name = "cmbFormaPagamento";
             this.cmbFormaPagamento.Size = new System.Drawing.Size(219, 41);
             this.cmbFormaPagamento.TabIndex = 53;
+            this.cmbFormaPagamento.SelectedIndexChanged += new System.EventHandler(this.cmbFormaPagamento_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -155,6 +156,9 @@ namespace Teste
             this.txtRecebido.Size = new System.Drawing.Size(157, 38);
             this.txtRecebido.TabIndex = 56;
             this.txtRecebido.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtRecebido.TextChanged += new System.EventHandler(this.txtRecebido_TextChanged);
+            this.txtRecebido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRecebido_KeyPress);
+            this.txtRecebido.Leave += new System.EventHandler(this.txtRecebido_Leave);
             // 
             // label6
             // 
@@ -282,10 +286,11 @@ namespace Teste
             this.btnEncerrar.Text = "Encerrar Ticket (F4)";
             this.btnEncerrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEncerrar.UseVisualStyleBackColor = false;
+            this.btnEncerrar.Click += new System.EventHandler(this.btnEncerrar_Click);
             // 
             // timer1
             // 
-            this.timer1.Interval = 60000;
+            this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // FrmTelaEncerrarTicket

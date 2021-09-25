@@ -19,13 +19,15 @@ namespace Teste
 
         private void FrmTelaCadastros_Load(object sender, EventArgs e)
         {
-            
+            lblUsuario.Text = Globais.Login;
         }
 
         private void FundoBotao(Button botao)
         {
             btnVeiculos.BackColor = Color.WhiteSmoke;
+            btnVeiculos.ForeColor = Color.Black;
             btnCliente.BackColor = Color.WhiteSmoke;
+            btnCliente.ForeColor = Color.Black;
             botao.BackColor = Color.DarkBlue;
             botao.ForeColor = Color.White;
         }
@@ -60,7 +62,6 @@ namespace Teste
         private void btnVeiculos_Click(object sender, EventArgs e)
         {
             FundoBotao(btnVeiculos);
-
             FecharFormulariosFilhos();
             FrmTelaVeiculos Frm = new FrmTelaVeiculos();
             AbreFormParent(2, Frm);
@@ -69,10 +70,14 @@ namespace Teste
         private void btnCliente_Click(object sender, EventArgs e)
         {
             FundoBotao(btnCliente);
-
             FecharFormulariosFilhos();
             FrmTelaCliente Frm = new FrmTelaCliente();
             AbreFormParent(2, Frm);
+        }
+
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

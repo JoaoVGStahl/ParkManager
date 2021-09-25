@@ -112,7 +112,6 @@ namespace Teste
             this.txtConfirmSenha.Size = new System.Drawing.Size(269, 31);
             this.txtConfirmSenha.TabIndex = 40;
             this.txtConfirmSenha.UseSystemPasswordChar = true;
-            this.txtConfirmSenha.TextChanged += new System.EventHandler(this.txtConfirmSenha_TextChanged);
             // 
             // label2
             // 
@@ -279,7 +278,6 @@ namespace Teste
             this.numNivel.Name = "numNivel";
             this.numNivel.Size = new System.Drawing.Size(85, 31);
             this.numNivel.TabIndex = 14;
-            this.numNivel.ValueChanged += new System.EventHandler(this.numNivel_ValueChanged);
             // 
             // cmbStatus
             // 
@@ -297,7 +295,6 @@ namespace Teste
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(163, 33);
             this.cmbStatus.TabIndex = 13;
-            this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.cmbStatus_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -312,7 +309,6 @@ namespace Teste
             this.label6.Size = new System.Drawing.Size(60, 25);
             this.label6.TabIndex = 11;
             this.label6.Text = "Nível";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label5
             // 
@@ -327,7 +323,6 @@ namespace Teste
             this.label5.Size = new System.Drawing.Size(73, 25);
             this.label5.TabIndex = 9;
             this.label5.Text = "Status";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // txtSenha
             // 
@@ -356,7 +351,6 @@ namespace Teste
             this.label4.Size = new System.Drawing.Size(74, 25);
             this.label4.TabIndex = 7;
             this.label4.Text = "Senha";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // txtLogin
             // 
@@ -385,7 +379,6 @@ namespace Teste
             this.label3.Size = new System.Drawing.Size(65, 25);
             this.label3.TabIndex = 5;
             this.label3.Text = "Login";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // txtId
             // 
@@ -413,14 +406,12 @@ namespace Teste
             this.label1.Size = new System.Drawing.Size(32, 25);
             this.label1.TabIndex = 1;
             this.label1.Text = "ID";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -430,6 +421,7 @@ namespace Teste
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.ShowEditingIcon = false;

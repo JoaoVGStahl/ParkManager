@@ -15,7 +15,7 @@ namespace Teste
             set { idusuario = value; }
         }
         //Obtem o Login
-        private static string login = "";
+        private static string login;
 
         public static string Login
         {
@@ -47,36 +47,12 @@ namespace Teste
             set { valorhora = value; }
         }
         //Obtem o tempo de tolerancia
-        private static decimal tolerancia;
+        private static TimeSpan tolerancia;
 
-        public static decimal Tolerencia
+        public static TimeSpan Tolerencia
         {
             get { return tolerancia; }
             set { tolerancia = value; }
-        }
-        //Obtem a quantidade total de vagas
-        private static int quantidadevagas;
-
-        public static int QuantidadeVagas
-        {
-            get { return quantidadevagas; }
-            set { quantidadevagas = value; }
-        }
-
-        private static int vagasatuais;
-
-        public static int VagasAtuais
-        {
-            get { return vagasatuais; }
-            set { vagasatuais = value; }
-        }
-        //Obtem o caminho do arquivo de log
-        private static string caminhoarquivolog;
-
-        public static string CaminhoArquivoLog
-        {
-            get { return caminhoarquivolog; }
-            set { caminhoarquivolog = value; }
         }
         private static int idticket;
 
@@ -88,16 +64,21 @@ namespace Teste
         //Função generica para registrar as ações do usuario
         public static void RegistrarLog(string Action)
         {
-            //Define o caminho e escreve no arquivp
-            using (StreamWriter outputFile = new StreamWriter("log.dat", true))
+            string caminho = Properties.Settings.Default["ArquivoAuditoria"].ToString();
+            if (caminho != "")
             {
-                //Obtem a data atual, hora e a máquina.
-                string data = DateTime.Now.ToShortDateString();
-                string hora = DateTime.Now.ToLongTimeString();
-                string maquina = Dns.GetHostName();
-                //Escreve no arquivo
-                outputFile.WriteLine(data + " " + hora + " " + "(" + maquina + "):" + Action);
+                //Define o caminho e escreve no arquivp
+                using (StreamWriter outputFile = new StreamWriter(Properties.Settings.Default.ArquivoAuditoria, true))
+                {
+                    //Obtem a data atual, hora e a máquina.
+                    string data = DateTime.Now.ToShortDateString();
+                    string hora = DateTime.Now.ToLongTimeString();
+                    string maquina = Dns.GetHostName();
+                    //Escreve no arquivo
+                    outputFile.WriteLine(data + " " + hora + " " + "(" + maquina + "):" + Action);
+                }
             }
+            
         }
     }
 }

@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace Teste
 {
     public partial class FrmTelaEncerrarTicket : Form
     {
         Banco banco = new Banco();
+        DateTime DataFormatada;
         public FrmTelaEncerrarTicket()
         {
             InitializeComponent();
@@ -20,10 +22,10 @@ namespace Teste
 
         private void FrmTelaEncerrarTicket_Load(object sender, EventArgs e)
         {
-
+            cmbFormaPagamento.SelectedIndexChanged -= cmbFormaPagamento_SelectedIndexChanged;
             CarregarComboFormaPagamento();
             CarregarTicket();
-            timer1.Enabled = true;
+            cmbFormaPagamento.SelectedIndexChanged += cmbFormaPagamento_SelectedIndexChanged;
         }
         private void CarregarComboFormaPagamento()
         {
@@ -42,71 +44,87 @@ namespace Teste
 
                 MessageBox.Show(ex.Message, "Houve uma falha ao carregar os Métodos de pagamento!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
 
         }
         private void CarregarTicket()
         {
-            DateTime HoraSaida = DateTime.Now;
-            lblHoraSaida.Text = HoraSaida.ToLongTimeString() + " " + HoraSaida.ToShortDateString();
-            TimeSpan Permanencia;
+            DateTime DataEntrada;
             DateTime HoraEntrada;
+
             DataTable dt = new DataTable();
             try
             {
-                dt = banco.ProcedureCarregarTicket(3,Globais.IdTicket);
+                dt = banco.ProcedureCarregarTicket(3, Globais.IdTicket);
                 if (dt.Rows.Count > 0)
                 {
 
                     lblIdTicket.Text = "#" + Convert.ToString(dt.Rows[0].ItemArray[0]);//ID Ticket
-                    lblHoraEntrada.Text = Convert.ToString(dt.Rows[0].ItemArray[1]) + " " + Convert.ToString(dt.Rows[0].ItemArray[2]);//Hora - Data Entrada
 
-                    HoraEntrada = Convert.ToDateTime(dt.Rows[0].ItemArray[2]);
+                    DataEntrada = Convert.ToDateTime(dt.Rows[0].ItemArray[2]);
                     HoraEntrada = Convert.ToDateTime(dt.Rows[0].ItemArray[1]);
-
-                    Permanencia = HoraSaida - HoraEntrada;
-
-                    lblPermanencia.Text = Permanencia.ToString(@"hh\:mm\:ss");
-                    CalcularPreco(Permanencia);
+                    lblHoraEntrada.Text = HoraEntrada.ToLongTimeString() + " " + DataEntrada.ToShortDateString();
+                    DataFormatada = Convert.ToDateTime(DataEntrada.ToString("dd/MM/yyyy") + " " + HoraEntrada.ToString("HH:mm:ss"));
+                    timer1.Enabled = true;
+                    CalcularPreco(DataFormatada);
                 }
             }
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.Message,"Houve uma falha ao carregar o ticket! \nRealize a pesquisa e tente novamente!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Houve uma falha ao carregar o ticket! \nRealize a pesquisa e tente novamente!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Dispose();
             }
-            
-        }
-        private void CalcularPreco(TimeSpan Tempo)
-        {
-            decimal Valor =0;
-            int horas, minutos;
 
-            horas = Convert.ToInt32(Tempo.TotalHours);
-            minutos = Convert.ToInt32(Tempo.Minutes);
-            if(horas > 0)
+        }
+        private void CalcularPreco(DateTime DataEntrada)
+        {
+            DateTime DataSaida = Convert.ToDateTime(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
+            lblHoraSaida.Text = DataSaida.ToString("HH:mm:ss dd/MM/yyyy");
+            TimeSpan ts;
+            if (DataSaida > DataEntrada)
             {
-                if(minutos > 0 && minutos < 16)
-                {
-                    Valor = horas * 6;
-                }
-                else
-                {
-                    horas += 1;
-                    Valor = horas * 6;
-                }
-                
-            }else if (minutos < 15)
-            {
-                Valor = 0;
+                ts = DataSaida - DataEntrada;
             }
             else
             {
-                Valor = 6;
+                ts = DataEntrada - DataSaida;
             }
-            txtTotal.Text = Valor.ToString();
-           
+
+            decimal Total = 0, Valor = Globais.ValorHora;
+            int dias = ts.Days;
+            int horas = ts.Hours;
+            int minutos = ts.Minutes;
+            int tolerancia = Globais.Tolerencia.Minutes;
+
+            if (dias > 0)
+            {
+                horas += (dias * 24);
+            }
+            if (horas > 0)
+            {
+                if (minutos > tolerancia)
+                {
+                    horas += 1;
+                    Total = horas * Valor;
+                }
+                else
+                {
+                    Total = horas * Valor;
+                }
+            }
+            else if (minutos > tolerancia)
+            {
+                horas += 1;
+                Total = horas * Valor;
+            }
+            else
+            {
+                Total = 0;
+            }
+            txtTotal.Text = Total.ToString("N2");
+            lblPermanencia.Text = horas.ToString() + ":" + minutos.ToString() + ":" + ts.Seconds.ToString();
+
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -120,12 +138,101 @@ namespace Teste
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            CarregarTicket();
+            CalcularPreco(DataFormatada);
         }
 
         private void lblHoraSaida_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cmbFormaPagamento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            decimal Valor = Convert.ToDecimal(txtTotal.Text);
+            if (cmbFormaPagamento.Text == "Dinheiro")
+            {
+                txtRecebido.Focus();
+                txtRecebido.ReadOnly = false;
+
+            }
+            else
+            {
+                txtRecebido.ReadOnly = true;
+                txtRecebido.Text = Valor.ToString();
+                txtTroco.Text = "0";
+            }
+        }
+
+        private void txtRecebido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if ((e.KeyChar < '0' || e.KeyChar > '9') &&
+               (e.KeyChar != ',' && e.KeyChar != '.' &&
+                e.KeyChar != (Char)13 && e.KeyChar != (Char)8))
+            {
+                e.KeyChar = (Char)0;
+            }
+            else
+            {
+                if (e.KeyChar == '.' || e.KeyChar == ',')
+                {
+                    if (!txtRecebido.Text.Contains(','))
+                    {
+                        e.KeyChar = ',';
+                    }
+                    else
+                    {
+                        e.KeyChar = (Char)0;
+                    }
+                }
+            }
+        }
+
+        private void txtRecebido_TextChanged(object sender, EventArgs e)
+        {
+            decimal troco;
+            if (txtRecebido.TextLength >= 1)
+            {
+                decimal Total = Convert.ToDecimal(txtTotal.Text), Recebido = Convert.ToDecimal(txtRecebido.Text);
+                if (Recebido > Total)
+                {
+                    troco = Recebido - Total;
+                    txtTroco.Text = Convert.ToDecimal(troco).ToString("N2");
+                }
+                else
+                {
+                    troco = Recebido - Total;
+                    txtTroco.Text = Convert.ToDecimal(troco).ToString("N2");
+                }
+            }
+            else
+            {
+                troco = 0;
+                txtTroco.Text = Convert.ToDecimal(troco).ToString("N2");
+            }
+
+        }
+
+        private void txtRecebido_Leave(object sender, EventArgs e)
+        {
+            if (txtRecebido.TextLength >= 1)
+            {
+                txtRecebido.Text = Convert.ToDecimal(txtRecebido.Text).ToString("N2");
+            }
+
+        }
+
+        private void btnEncerrar_Click(object sender, EventArgs e)
+        {
+            decimal total = Convert.ToDecimal(txtTotal.Text), troco = Convert.ToDecimal(txtTroco.Text);
+            if(troco < 0)
+            {
+                MessageBox.Show("Não é possivel encerrar este ticket porque está faltando parte do pagamento!","Falha ao encerrar ticket!",MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("Ticket Encerrado com sucesso!", "Ticket Encerrardo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }
