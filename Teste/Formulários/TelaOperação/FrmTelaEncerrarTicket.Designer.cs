@@ -286,6 +286,7 @@ namespace Teste
             this.btnEncerrar.Text = "Encerrar Ticket (F4)";
             this.btnEncerrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEncerrar.UseVisualStyleBackColor = false;
+            this.btnEncerrar.Click += new System.EventHandler(this.btnEncerrar_Click);
             // 
             // timer1
             // 

@@ -33,7 +33,11 @@ namespace Teste
         private void FrmTelaUsuario_Load(object sender, EventArgs e)
         {
             PreencherGrid();
-            
+            dataGridView1.Columns[0].Width = 50;
+            dataGridView1.Columns[1].Width = 300;
+            dataGridView1.Columns[2].Width = 83;
+            dataGridView1.Columns[3].Width = 96;
+
         }
         private void PreencherGrid()
         {

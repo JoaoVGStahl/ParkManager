@@ -90,31 +90,40 @@ namespace Teste
             {
                 ts = DataEntrada - DataSaida;
             }
-            lblPermanencia.Text = Convert.ToString(ts);
-            double Valor = 0;
+
+            decimal Total = 0, Valor = Globais.ValorHora;
+            int dias = ts.Days;
             int horas = ts.Hours;
             int minutos = ts.Minutes;
+            int tolerancia = Globais.Tolerencia.Minutes;
+
+            if (dias > 0)
+            {
+                horas += (dias * 24);
+            }
             if (horas > 0)
             {
-                if (minutos < 16)
+                if (minutos > tolerancia)
                 {
-                    Valor = horas * 6;
+                    horas += 1;
+                    Total = horas * Valor;
                 }
                 else
                 {
-                    horas += 1;
-                    Valor = horas * 6;
+                    Total = horas * Valor;
                 }
             }
-            else if (minutos >= 16)
+            else if (minutos > tolerancia)
             {
-                Valor = horas * 6;
+                horas += 1;
+                Total = horas * Valor;
             }
             else
             {
-                Valor = 0;
+                Total = 0;
             }
-            txtTotal.Text = Convert.ToString(Valor);
+            txtTotal.Text = Total.ToString("N2");
+            lblPermanencia.Text = horas.ToString() + ":" + minutos.ToString() + ":" + ts.Seconds.ToString();
 
         }
         private void button2_Click(object sender, EventArgs e)
@@ -140,7 +149,7 @@ namespace Teste
         private void cmbFormaPagamento_SelectedIndexChanged(object sender, EventArgs e)
         {
             decimal Valor = Convert.ToDecimal(txtTotal.Text);
-            if(cmbFormaPagamento.Text == "Dinheiro")
+            if (cmbFormaPagamento.Text == "Dinheiro")
             {
                 txtRecebido.Focus();
                 txtRecebido.ReadOnly = false;
@@ -156,7 +165,7 @@ namespace Teste
 
         private void txtRecebido_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+
             if ((e.KeyChar < '0' || e.KeyChar > '9') &&
                (e.KeyChar != ',' && e.KeyChar != '.' &&
                 e.KeyChar != (Char)13 && e.KeyChar != (Char)8))
@@ -181,36 +190,49 @@ namespace Teste
 
         private void txtRecebido_TextChanged(object sender, EventArgs e)
         {
-            double troco;
-            if(txtRecebido.TextLength >= 1)
+            decimal troco;
+            if (txtRecebido.TextLength >= 1)
             {
-                double Total = Convert.ToDouble(txtTotal.Text), Recebido = Convert.ToDouble(txtRecebido.Text);
-                if(Recebido > Total)
+                decimal Total = Convert.ToDecimal(txtTotal.Text), Recebido = Convert.ToDecimal(txtRecebido.Text);
+                if (Recebido > Total)
                 {
                     troco = Recebido - Total;
-                    txtTroco.Text = Convert.ToDouble(troco).ToString("N2");
+                    txtTroco.Text = Convert.ToDecimal(troco).ToString("N2");
                 }
                 else
                 {
-                    troco = 0;
-                    txtTroco.Text = Convert.ToDouble(troco).ToString("N2");
+                    troco = Recebido - Total;
+                    txtTroco.Text = Convert.ToDecimal(troco).ToString("N2");
                 }
             }
             else
             {
                 troco = 0;
-                txtTroco.Text = Convert.ToDouble(troco).ToString("N2");
+                txtTroco.Text = Convert.ToDecimal(troco).ToString("N2");
             }
-            
+
         }
 
         private void txtRecebido_Leave(object sender, EventArgs e)
         {
-            if(txtRecebido.TextLength >= 1)
+            if (txtRecebido.TextLength >= 1)
             {
-                txtRecebido.Text = Convert.ToDouble(txtRecebido.Text).ToString("N2");
+                txtRecebido.Text = Convert.ToDecimal(txtRecebido.Text).ToString("N2");
             }
-            
+
+        }
+
+        private void btnEncerrar_Click(object sender, EventArgs e)
+        {
+            decimal total = Convert.ToDecimal(txtTotal.Text), troco = Convert.ToDecimal(txtTroco.Text);
+            if(troco < 0)
+            {
+                MessageBox.Show("Não é possivel encerrar este ticket porque está faltando parte do pagamento!","Falha ao encerrar ticket!",MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("Ticket Encerrado com sucesso!", "Ticket Encerrardo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }
