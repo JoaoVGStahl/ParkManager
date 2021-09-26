@@ -1,4 +1,14 @@
-ALTER PROCEDURE Funcoes_Pesquisa(
+USE [db_estacionamento]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Funcoes_Pesquisa]    Script Date: 26/09/2021 00:41:39 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE OR ALTER PROCEDURE [dbo].[Funcoes_Pesquisa](
 @Flag int,
 @Tipo varchar(20) = null,
 @Placa varchar(7) = null,
@@ -72,5 +82,23 @@ AS
 	BEGIN
 		SELECT caminho_log[Caminho Log], porta_arduino[Porta Arduino],string_conn[String Conexão] FROM tb_estacionamento WHERE status =1
 	END
+-- 13 = Pesquisa informações d eum veiculo pela placa
+	IF(@Flag = 13)
+	BEGIN
+		SELECT Car.placa[Placa], A.automovel[Tipo], M.marca FROM tb_carro AS Car INNER JOIN tb_automovel AS A ON Car.tipo_id = A.id_automovel INNER JOIN tb_marca AS M ON Car.marca_id = M.id_marca WHERE Car.placa = @Placa
+	END
+--14 = SELECT Parametros do Sistema
+	IF(@Flag = 14)
+	BEGIN
+		SELECT valor_hr[Valor Hora], tolerancia[Tolerancia], caminho_log[Caminho Log] FROM tb_estacionamento WHERE status=1
+	END
+--15 = SELECT Tela de Cadastro Veiculos
+	IF(@Flag = 15)
+	BEGIN
+		SELECT Car.id_carro [ID],Car.placa[Placa], A.automovel[Tipo], M.marca, Car.status[Status] FROM tb_carro AS Car INNER JOIN tb_automovel AS A ON Car.tipo_id = A.id_automovel INNER JOIN tb_marca AS M ON Car.marca_id = M.id_marca
+	END
+
+
+GO
 
 

@@ -25,6 +25,7 @@ namespace Teste
 
         private void FrmTelaTicket_Load(object sender, EventArgs e)
         {
+            cmbStatus.SelectedIndex = 1;
             PreencherGrid();
             dataGridView1.Columns[0].Width = 60;
             dataGridView1.Columns[1].Width = 95;
@@ -55,8 +56,10 @@ namespace Teste
         }
         private void button3_Click(object sender, EventArgs e)
         {
+            Globais.IdTicket = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
             FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket();
             Frm.ShowDialog();
+            
         }
 
         private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -121,7 +124,11 @@ namespace Teste
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            if(cmbStatus.SelectedIndex == 1)
+            {
+                btnEncerrar.Enabled = true;
+            }
+            
         }
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
@@ -160,6 +167,11 @@ namespace Teste
                     e.Handled = true;
                 }
             }
+        }
+
+        private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dataGridView1.ClearSelection();
         }
     }
 }

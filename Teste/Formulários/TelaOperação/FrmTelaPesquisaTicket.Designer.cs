@@ -37,7 +37,7 @@ namespace Teste
             this.button5 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnEncerrar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -47,7 +47,7 @@ namespace Teste
             this.label5 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.button4 = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -100,7 +100,7 @@ namespace Teste
             this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.button3);
+            this.panel1.Controls.Add(this.btnEncerrar);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -147,24 +147,24 @@ namespace Teste
             this.panel3.Size = new System.Drawing.Size(123, 90);
             this.panel3.TabIndex = 17;
             // 
-            // button3
+            // btnEncerrar
             // 
-            this.button3.BackColor = System.Drawing.Color.Transparent;
-            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.Enabled = false;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(179, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(218, 90);
-            this.button3.TabIndex = 16;
-            this.button3.Text = "Encerrar Ticket (F4)";
-            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btnEncerrar.BackColor = System.Drawing.Color.Transparent;
+            this.btnEncerrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEncerrar.Enabled = false;
+            this.btnEncerrar.FlatAppearance.BorderSize = 0;
+            this.btnEncerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEncerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEncerrar.Image = ((System.Drawing.Image)(resources.GetObject("btnEncerrar.Image")));
+            this.btnEncerrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEncerrar.Location = new System.Drawing.Point(179, 3);
+            this.btnEncerrar.Name = "btnEncerrar";
+            this.btnEncerrar.Size = new System.Drawing.Size(218, 90);
+            this.btnEncerrar.TabIndex = 16;
+            this.btnEncerrar.Text = "Encerrar Ticket (F4)";
+            this.btnEncerrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEncerrar.UseVisualStyleBackColor = false;
+            this.btnEncerrar.Click += new System.EventHandler(this.button3_Click);
             // 
             // label1
             // 
@@ -260,18 +260,18 @@ namespace Teste
             this.dateTimePicker2.TabIndex = 22;
             this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
             // 
-            // comboBox1
+            // cmbStatus
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cmbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbStatus.FormattingEnabled = true;
+            this.cmbStatus.Items.AddRange(new object[] {
             "Encerrado",
             "Aberto"});
-            this.comboBox1.Location = new System.Drawing.Point(881, 54);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(166, 39);
-            this.comboBox1.TabIndex = 23;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.cmbStatus.Location = new System.Drawing.Point(881, 54);
+            this.cmbStatus.Name = "cmbStatus";
+            this.cmbStatus.Size = new System.Drawing.Size(166, 39);
+            this.cmbStatus.TabIndex = 23;
+            this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // button4
             // 
@@ -295,7 +295,7 @@ namespace Teste
             this.panel4.Controls.Add(this.label1);
             this.panel4.Controls.Add(this.button4);
             this.panel4.Controls.Add(this.label2);
-            this.panel4.Controls.Add(this.comboBox1);
+            this.panel4.Controls.Add(this.cmbStatus);
             this.panel4.Controls.Add(this.label5);
             this.panel4.Controls.Add(this.textBox1);
             this.panel4.Controls.Add(this.dateTimePicker2);
@@ -336,6 +336,7 @@ namespace Teste
             this.dataGridView1.Size = new System.Drawing.Size(1316, 464);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
             // 
             // panel2
             // 
@@ -395,7 +396,7 @@ namespace Teste
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnEncerrar;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label1;
@@ -407,7 +408,7 @@ namespace Teste
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Panel panel4;

@@ -58,7 +58,7 @@ namespace Teste
 
         public static int IdTicket
         {
-            get {  return idticket; }
+            get { return idticket; }
             set { idticket = value; }
         }
         //Função generica para registrar as ações do usuario
@@ -67,7 +67,7 @@ namespace Teste
             string caminho = Properties.Settings.Default["ArquivoAuditoria"].ToString();
             if (caminho != "")
             {
-                //Define o caminho e escreve no arquivp
+                //Define o caminho e escreve no arquivo
                 using (StreamWriter outputFile = new StreamWriter(Properties.Settings.Default.ArquivoAuditoria, true))
                 {
                     //Obtem a data atual, hora e a máquina.
@@ -76,9 +76,11 @@ namespace Teste
                     string maquina = Dns.GetHostName();
                     //Escreve no arquivo
                     outputFile.WriteLine(data + " " + hora + " " + "(" + maquina + "):" + Action);
+
+
                 }
+
             }
-            
         }
     }
 }
