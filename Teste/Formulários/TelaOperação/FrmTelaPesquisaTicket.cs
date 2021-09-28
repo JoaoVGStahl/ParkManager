@@ -25,6 +25,7 @@ namespace Teste
 
         private void FrmTelaTicket_Load(object sender, EventArgs e)
         {
+            dataGridView1.SelectionChanged -= dataGridView1_SelectionChanged;
             cmbStatus.SelectedIndex = 1;
             PreencherGrid();
             dataGridView1.Columns[0].Width = 60;
@@ -36,6 +37,7 @@ namespace Teste
             dataGridView1.Columns[6].Width = 140;
             dataGridView1.Columns[7].Width = 225;
             dataGridView1.Columns[8].Width = 325;
+            dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
 
         }
         private void PreencherGrid()
@@ -124,10 +126,6 @@ namespace Teste
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(cmbStatus.SelectedIndex == 1)
-            {
-                btnEncerrar.Enabled = true;
-            }
             
         }
 
@@ -172,6 +170,13 @@ namespace Teste
         private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             dataGridView1.ClearSelection();
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            if (cmbStatus.SelectedIndex == 1){
+                btnEncerrar.Enabled = true;
+            }
         }
     }
 }

@@ -160,6 +160,8 @@ namespace Teste
 
             if (txtPlaca.TextLength == 7)
             {
+                txtNome.Enabled = true;
+                mskTelefone.Enabled = true;
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
                     new SqlParameter(){ParameterName= "@Flag", SqlDbType = SqlDbType.Int, Value = 13 },
@@ -387,7 +389,7 @@ namespace Teste
         private void btnConfig_Click(object sender, EventArgs e)
         {
             FrmTelaConfig Frm = new FrmTelaConfig();
-            AbrirForm(0, Frm);
+            AbrirForm(2, Frm);
         }
         private void PreencherLabels(DataTable dt)
         {

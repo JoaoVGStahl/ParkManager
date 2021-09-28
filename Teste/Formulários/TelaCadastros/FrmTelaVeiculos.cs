@@ -23,8 +23,9 @@ namespace Teste
         {
             cmbTipo.SelectedIndexChanged -= cmbTipo_SelectedIndexChanged;
             PreencherGrid();
-            CarregarCombo();
-            cmbTipo.SelectedIndexChanged += cmbTipo_SelectedIndexChanged;
+            //CarregarCombo();
+
+
         }
         private void PreencherGrid()
         {
@@ -55,14 +56,15 @@ namespace Teste
                     new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 0}
                 };
                 dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
-                if(dt.Rows.Count > 0)
+                if (dt.Rows.Count > 0)
                 {
                     cmbTipo.DataSource = null;
                     cmbTipo.DataSource = dt;
                     cmbTipo.ValueMember = "id_automovel";
                     cmbTipo.DisplayMember = "automovel";
                     cmbTipo.SelectedIndex = -1;
-                }else
+                }
+                else
                 {
                     MessageBox.Show("Tipos de veiculos não encontrados!", "Falha ao Carregar Informações!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -125,9 +127,13 @@ namespace Teste
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            if(txtId.Text == "")
+            if (txtId.Text == "")
             {
                 SalvarVeiculo();
+            }
+            else
+            {
+                EditarVeiculo();
             }
         }
         private void SalvarVeiculo()
@@ -144,11 +150,12 @@ namespace Teste
                     new SqlParameter(){ParameterName="@Status", SqlDbType = SqlDbType.Int, Value = cmbStatus.SelectedIndex}
                 };
                 LinhasAfetadas = banco.EditData("dbo.Gerencia_Veiculo", sp);
-                if(LinhasAfetadas > 0)
+                if (LinhasAfetadas > 0)
                 {
                     MessageBox.Show("Veiculo Adicionado com Sucesso!", "Veiculo Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     PreencherGrid();
-                }else
+                }
+                else
                 {
                     MessageBox.Show("Falha ao Adiconar Veiculo!", "Veiculo não adicionado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -159,10 +166,42 @@ namespace Teste
                 MessageBox.Show(ex.Message, "Falha ao Adiconar Veiculo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void EditarVeiculo()
+        {
+            int LinhaAfetadas;
+            try
+            {
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
+                    new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 1},
+                    new SqlParameter(){ParameterName = "@idCarro", SqlDbType = SqlDbType.Int, Value = txtId.Text},
+                    new SqlParameter(){ParameterName = "@Placa", SqlDbType = SqlDbType.VarChar, Value = txtPlaca.Text },
+                    new SqlParameter(){ParameterName ="@Tipo", SqlDbType = SqlDbType.VarChar, Value = cmbTipo.Text},
+                    new SqlParameter(){ParameterName="@Marca", SqlDbType = SqlDbType.VarChar, Value = cmbMarca.Text},
+                    new SqlParameter(){ParameterName="@Status", SqlDbType = SqlDbType.Int, Value = cmbStatus.SelectedIndex}
+                };
+                LinhaAfetadas = banco.EditData("dbo.Gerencia_Veiculo", sp);
+                if (LinhaAfetadas > 0)
+                {
+
+                    MessageBox.Show("Veiculo Alterado com sucesso!", "Alteração concluida!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    PreencherGrid();
+                }
+                else
+                {
+                    MessageBox.Show("Houve um problema e não foi realizado a alteração!", "Falha ao realizar alteração!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Falha ao realizar alteração!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         private void cmbTipo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            PopularComboMarca();
+            //PopularComboMarca();
         }
         private void PopularComboMarca()
         {
@@ -175,7 +214,7 @@ namespace Teste
                     new SqlParameter(){ParameterName ="@Tipo", SqlDbType = SqlDbType.VarChar, Value = cmbTipo.Text}
                 };
                 dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
-                if(dt.Rows.Count > 0)
+                if (dt.Rows.Count > 0)
                 {
                     cmbMarca.DataSource = null;
                     cmbMarca.DataSource = dt;
@@ -183,7 +222,8 @@ namespace Teste
                     cmbMarca.DisplayMember = "Marca";
                     cmbMarca.SelectedIndex = -1;
                     cmbMarca.Enabled = true;
-                }else
+                }
+                else
                 {
                     MessageBox.Show("Este tipo de Veiculo não tem marcas cadastradas!", "Falha ao carregas Marcas!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -194,5 +234,61 @@ namespace Teste
                 MessageBox.Show(ex.Message, "Falha ao carregas Marcas!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            DataGridView dgv = (DataGridView)sender;
+            MessageBox.Show("Antes do IF");
+            if (dgv.SelectedRows.Count == 1)
+            {
+                MessageBox.Show("Depois do If, Antes do Try");
+                try
+                {
+                    string id = dgv.SelectedRows[0].Cells[0].Value.ToString();
+                    DataTable dt = new DataTable();
+                    List<SqlParameter> sp = new List<SqlParameter>()
+                    {
+                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 15},
+                    new SqlParameter(){ParameterName="@idCarro",SqlDbType = SqlDbType.Int, Value = id}
+                    };
+                    MessageBox.Show("Depois da Consulta" + id);
+                    dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                    if (dt.Rows.Count > 0)
+                    {
+                        MessageBox.Show("Depois If DataTable");
+                        txtId.Text = dt.Rows[0].ItemArray[0].ToString();
+                        txtPlaca.Text = dt.Rows[0].ItemArray[1].ToString();
+                        //cmbTipo.SelectedText = dt.Rows[0].ItemArray[2].ToString();
+                        /*
+                        PopularComboMarca();
+                        if(cmbMarca.Items.Count > 0)
+                        {
+                            cmbMarca.SelectedText = dt.Rows[0].ItemArray[3].ToString();
+                        }
+                        
+                        //cmbStatus.SelectedIndex = Convert.ToInt32(dt.Rows[0].ItemArray[4]);
+                        */
+                    }
+                    else
+                    {
+                        MessageBox.Show("Falha ao carregar Veiculo!", "Falha!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message, "Falha!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+        }
+
+        private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            DataGridView gridview;
+            gridview = (DataGridView)sender;
+            gridview.ClearSelection();
+        }
+
     }
 }
