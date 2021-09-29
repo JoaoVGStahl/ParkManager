@@ -21,11 +21,9 @@ namespace Teste
 
         private void FrmTelaVeiculos_Load(object sender, EventArgs e)
         {
+            dataGridView1.SelectionChanged -= dataGridView1_SelectionChanged;
             cmbTipo.SelectedIndexChanged -= cmbTipo_SelectedIndexChanged;
             PreencherGrid();
-            //CarregarCombo();
-
-
         }
         private void PreencherGrid()
         {
@@ -237,37 +235,43 @@ namespace Teste
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            DataGridView dgv = (DataGridView)sender;
-            MessageBox.Show("Antes do IF");
-            if (dgv.SelectedRows.Count == 1)
+            SelecaoGrid();
+        }
+        private void SelecaoGrid()
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
             {
-                MessageBox.Show("Depois do If, Antes do Try");
                 try
                 {
-                    string id = dgv.SelectedRows[0].Cells[0].Value.ToString();
+
+                    string id = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
                     DataTable dt = new DataTable();
                     List<SqlParameter> sp = new List<SqlParameter>()
                     {
-                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 15},
+                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 16},
                     new SqlParameter(){ParameterName="@idCarro",SqlDbType = SqlDbType.Int, Value = id}
                     };
-                    MessageBox.Show("Depois da Consulta" + id);
                     dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
                     if (dt.Rows.Count > 0)
                     {
-                        MessageBox.Show("Depois If DataTable");
+
                         txtId.Text = dt.Rows[0].ItemArray[0].ToString();
                         txtPlaca.Text = dt.Rows[0].ItemArray[1].ToString();
-                        //cmbTipo.SelectedText = dt.Rows[0].ItemArray[2].ToString();
-                        /*
-                        PopularComboMarca();
-                        if(cmbMarca.Items.Count > 0)
+                        CarregarCombo();
+                        if(cmbTipo.Items.Count > 0)
                         {
-                            cmbMarca.SelectedText = dt.Rows[0].ItemArray[3].ToString();
+
+                            cmbTipo.Text = dt.Rows[0].ItemArray[2].ToString();
+                            cmbTipo.Enabled = true;
+                            if(cmbTipo.SelectedIndex != -1)
+                            {
+                                PopularComboMarca();
+                                cmbMarca.Text = dt.Rows[0].ItemArray[3].ToString();
+                                cmbMarca.Enabled = true;
+                            }
                         }
-                        
-                        //cmbStatus.SelectedIndex = Convert.ToInt32(dt.Rows[0].ItemArray[4]);
-                        */
+                        cmbStatus.SelectedIndex = Convert.ToInt32(dt.Rows[0].ItemArray[4].ToString());
+                        cmbStatus.Enabled = true;
                     }
                     else
                     {
@@ -290,5 +294,13 @@ namespace Teste
             gridview.ClearSelection();
         }
 
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (txtId.Text == "")
+            {
+                dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
+                SelecaoGrid();
+            }
+        }
     }
 }

@@ -1,19 +1,21 @@
 USE [db_estacionamento]
 GO
 
-/****** Object:  StoredProcedure [dbo].[Funcoes_Pesquisa]    Script Date: 26/09/2021 00:41:39 ******/
+/****** Object:  StoredProcedure [dbo].[Funcoes_Pesquisa]    Script Date: 28/09/2021 15:31:33 ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE OR ALTER PROCEDURE [dbo].[Funcoes_Pesquisa](
+
+CREATE OR ALTER   PROCEDURE [dbo].[Funcoes_Pesquisa](
 @Flag int,
 @Tipo varchar(20) = null,
 @Placa varchar(7) = null,
 @idTicket int = null,
 @IdUsuario int =null,
+@idCarro int = null,
 @Login varchar(32) = null
 )
 AS
@@ -97,7 +99,11 @@ AS
 	BEGIN
 		SELECT Car.id_carro [ID],Car.placa[Placa], A.automovel[Tipo], M.marca, Car.status[Status] FROM tb_carro AS Car INNER JOIN tb_automovel AS A ON Car.tipo_id = A.id_automovel INNER JOIN tb_marca AS M ON Car.marca_id = M.id_marca
 	END
-
+--16 = SELECT VEICULO ESPECIFICO
+	IF(@Flag = 16)
+	BEGIN
+		SELECT Car.id_carro [ID],Car.placa[Placa], A.automovel[Tipo], M.marca, Car.status[Status] FROM tb_carro AS Car INNER JOIN tb_automovel AS A ON Car.tipo_id = A.id_automovel INNER JOIN tb_marca AS M ON Car.marca_id = M.id_marca WHERE Car.id_carro = 8
+	END
 
 GO
 

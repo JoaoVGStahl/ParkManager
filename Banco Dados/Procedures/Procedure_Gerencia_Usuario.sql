@@ -1,4 +1,4 @@
-ALTER PROCEDURE Gerencia_Usuario
+CREATE OR ALTER PROCEDURE Gerencia_Usuario
 @Flag INT,
 @Id INT = null,
 @Login VARCHAR(32) = NULL,

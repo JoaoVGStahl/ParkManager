@@ -1,4 +1,4 @@
-ALTER PROCEDURE Parametros(
+CREATE OR ALTER PROCEDURE Parametros(
 @Flag int,
 @Caminho varchar(100) = null,
 @Porta_Arduino varchar(4) = null,
