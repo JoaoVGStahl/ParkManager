@@ -47,7 +47,6 @@ namespace Teste
                 da.Dispose();
                 dt.Dispose();
                 conexao.Close();
-                sql = "";
             }
         }
         #region Procedure para inserir Dados utilizando Procedures
@@ -159,6 +158,7 @@ namespace Teste
             finally
             {
                 conexao.Close();
+                dt.Dispose();
                 
             }
             

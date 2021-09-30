@@ -47,9 +47,9 @@ namespace Teste
             set { valorhora = value; }
         }
         //Obtem o tempo de tolerancia
-        private static TimeSpan tolerancia;
+        private static decimal tolerancia;
 
-        public static TimeSpan Tolerencia
+        public static decimal Tolerencia
         {
             get { return tolerancia; }
             set { tolerancia = value; }
