@@ -43,6 +43,7 @@ namespace Teste
                 PopularComboTipo();
                 ContadorTicket();
                 CarregarParametros();
+
             }
             //Foca a Caixa de texto da Placa
 
@@ -106,7 +107,33 @@ namespace Teste
         }
         private void CarregarParametros()
         {
+            try
+            {
+                DataTable dt = new DataTable();
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
+                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 14}
+                };
+                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                if(dt.Rows.Count > 0)
+                {
+                    DateTime aux = Convert.ToDateTime("00:00:00");
+                    Globais.ValorHora = Convert.ToDecimal(dt.Rows[0].ItemArray[0]);
+                    DateTime tempo = Convert.ToDateTime(dt.Rows[0].ItemArray[1].ToString());
+                    TimeSpan ts = tempo - aux;
+                    Globais.Tolerencia = ts;
+                    Properties.Settings.Default["ArquivoAuditoria"] = dt.Rows[0].ItemArray[2].ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Parametros não Encontrados!", "Falha ao Carregar Parametros!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
 
+                MessageBox.Show(ex.Message, "Falha ao carregar as informações!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -133,14 +160,49 @@ namespace Teste
 
             if (txtPlaca.TextLength == 7)
             {
-                caixa = true;
+                txtNome.Enabled = true;
+                mskTelefone.Enabled = true;
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
+                    new SqlParameter(){ParameterName= "@Flag", SqlDbType = SqlDbType.Int, Value = 13 },
+                    new SqlParameter(){ParameterName= "@Placa", SqlDbType = SqlDbType.VarChar, Value = txtPlaca.Text}
+                };
+                try
+                {
+                    DataTable dt = new DataTable();
+                    dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                    if(dt.Rows.Count > 0)
+                    {
+                        cmbTipo.Text = dt.Rows[0].ItemArray[1].ToString();
+                        cmbMarca.Text = dt.Rows[0].ItemArray[2].ToString();
+                        cmbTipo.Enabled = false;
+                        cmbMarca.Enabled = false;
+                        btnPesquisaTicket.Enabled = true;
+                    }
+                    else
+                    {
+                        caixa = true;
+                        AtivarFuncoes(caixa);
+                    }
+                    dt.Dispose();
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message, "Falha ao Consultar a placa do veiculo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                caixa = false;
+                cmbTipo.SelectedIndex = -1;
+                cmbTipo.Enabled = false;
+                cmbMarca.SelectedIndex = -1;
+                cmbMarca.Enabled = false;
+                txtNome.Enabled = false;
+                mskTelefone.Enabled = false;
 
             }
-            AtivarFuncoes(caixa);
+            
         }
         private void AtivarFuncoes(bool caixa)
         {
@@ -278,10 +340,10 @@ namespace Teste
             txtNome.Enabled = false;
             mskTelefone.Clear();
             mskTelefone.Enabled = false;
-            PopularComboTipo();
-            cmbTipo.Enabled = false;
             cmbMarca.SelectedIndex = -1;
             cmbMarca.Enabled = false;
+            cmbTipo.SelectedIndex = -1;
+            cmbTipo.Enabled = false;
             btnIniciar.Enabled = false;
             btnEncerrar.Enabled = false;
             btnPesquisaTicket.Enabled = false;
@@ -327,7 +389,7 @@ namespace Teste
         private void btnConfig_Click(object sender, EventArgs e)
         {
             FrmTelaConfig Frm = new FrmTelaConfig();
-            AbrirForm(0, Frm);
+            AbrirForm(2, Frm);
         }
         private void PreencherLabels(DataTable dt)
         {
@@ -463,8 +525,10 @@ namespace Teste
                     {
                         PreencherLabels(dt);
                         AlinharLabels();
+                        LimparCaixas();
                         btnEncerrar.Enabled = true;
                         btnIniciar.Enabled = false;
+                        
                     }
                     else
                     {

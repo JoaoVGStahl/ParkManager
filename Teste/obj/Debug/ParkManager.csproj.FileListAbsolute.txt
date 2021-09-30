@@ -33,3 +33,7 @@ C:\Users\spott\ParkManager\Teste\obj\Debug\Teste.FrmTelaDesenvolvedor.resources
 C:\Users\spott\ParkManager\Teste\obj\Debug\Teste.FrmTelaEstacionamento.resources
 C:\Users\spott\ParkManager\Teste\obj\Debug\Teste.FrmTelaCliente.resources
 C:\Users\spott\ParkManager\Teste\obj\Debug\Teste.FrmTelaVeiculos.resources
+C:\Users\Valorant\ParkManager\Teste\obj\Debug\Teste.FrmTelaCliente.resources
+C:\Users\Valorant\ParkManager\Teste\obj\Debug\Teste.FrmTelaVeiculos.resources
+C:\Users\Valorant\ParkManager\Teste\obj\Debug\Teste.FrmTelaDesenvolvedor.resources
+C:\Users\Valorant\ParkManager\Teste\obj\Debug\Teste.FrmTelaEstacionamento.resources

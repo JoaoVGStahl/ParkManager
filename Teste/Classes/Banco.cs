@@ -84,9 +84,7 @@ namespace Teste
                 conexao.Close();
                 da.Dispose();
                 cmd.Dispose();
-                dt.Dispose();
-                
-                
+                dt.Dispose(); 
             }
             
         }

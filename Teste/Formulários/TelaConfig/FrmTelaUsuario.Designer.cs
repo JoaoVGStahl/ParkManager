@@ -200,6 +200,7 @@ namespace Teste
             this.button1.Text = "Limpar";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click_2);
             // 
             // btnExcluir
             // 
@@ -220,6 +221,7 @@ namespace Teste
             this.btnExcluir.Text = "Excluir ";
             this.btnExcluir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnExcluir.UseVisualStyleBackColor = false;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click_1);
             // 
             // btnNovo
             // 
@@ -278,7 +280,6 @@ namespace Teste
             this.numNivel.Name = "numNivel";
             this.numNivel.Size = new System.Drawing.Size(85, 31);
             this.numNivel.TabIndex = 14;
-
             // 
             // cmbStatus
             // 
@@ -286,6 +287,7 @@ namespace Teste
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbStatus.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStatus.Enabled = false;
             this.cmbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbStatus.FormattingEnabled = true;
@@ -296,7 +298,6 @@ namespace Teste
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(163, 33);
             this.cmbStatus.TabIndex = 13;
-
             // 
             // label6
             // 
@@ -311,7 +312,6 @@ namespace Teste
             this.label6.Size = new System.Drawing.Size(60, 25);
             this.label6.TabIndex = 11;
             this.label6.Text = "Nível";
-
             // 
             // label5
             // 
@@ -326,7 +326,6 @@ namespace Teste
             this.label5.Size = new System.Drawing.Size(73, 25);
             this.label5.TabIndex = 9;
             this.label5.Text = "Status";
-
             // 
             // txtSenha
             // 
@@ -355,7 +354,6 @@ namespace Teste
             this.label4.Size = new System.Drawing.Size(74, 25);
             this.label4.TabIndex = 7;
             this.label4.Text = "Senha";
-
             // 
             // txtLogin
             // 
@@ -384,7 +382,6 @@ namespace Teste
             this.label3.Size = new System.Drawing.Size(65, 25);
             this.label3.TabIndex = 5;
             this.label3.Text = "Login";
-
             // 
             // txtId
             // 
@@ -412,14 +409,12 @@ namespace Teste
             this.label1.Size = new System.Drawing.Size(32, 25);
             this.label1.TabIndex = 1;
             this.label1.Text = "ID";
-
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -429,12 +424,15 @@ namespace Teste
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.ShowEditingIcon = false;
             this.dataGridView1.Size = new System.Drawing.Size(554, 483);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // FrmTelaUsuario
             // 

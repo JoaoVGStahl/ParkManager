@@ -1,9 +1,21 @@
-ALTER PROCEDURE Funcoes_Pesquisa(
+USE [db_estacionamento]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Funcoes_Pesquisa]    Script Date: 28/09/2021 15:31:33 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE OR ALTER   PROCEDURE [dbo].[Funcoes_Pesquisa](
 @Flag int,
 @Tipo varchar(20) = null,
 @Placa varchar(7) = null,
 @idTicket int = null,
 @IdUsuario int =null,
+@idCarro int = null,
 @Login varchar(32) = null
 )
 AS
@@ -47,10 +59,10 @@ AS
 	BEGIN
 		SELECT Ticket.id_ticket[#Ticket], A.automovel[Tipo],M.marca[Marca],Car.placa[Placa],Cli.nome[Nome Cliente], Cli.telefone[Telefone],CONVERT(varchar, Entrada.hr_entrada,8) AS [Hora Entrada],CONVERT(varchar,Entrada.data_entrada,103) AS [Data Entrada] FROM tb_ticket AS Ticket INNER JOIN tb_carro as Car ON Ticket.carro_id = Car.id_carro INNER JOIN tb_cliente AS Cli ON Ticket.cliente_id = Cli.id_cliente INNER JOIN tb_automovel AS A ON Car.tipo_id = A.id_automovel INNER JOIN tb_marca AS M ON Car.marca_id = M.id_marca INNER JOIN tb_entrada AS Entrada ON Entrada.ticket_id = Ticket.id_ticket WHERE Ticket.Status=1 AND Car.placa=@Placa  
 	END
--- 8 = SELECT Parametros do Sistema
+-- 8 = SELECT Identificação do estacionamento
 	IF(@Flag = 8)
 	BEGIN	
-		SELECT * FROM tb_estacionamento WHERE status=1
+		SELECT cnpj[CNPJ], razao_social[Razão Social], endereco[Encereço],bairro[Bairro], numero[Número], cidade[Cidade],estado[Estado] , cep[CEP], inscricao_estadual[Inscrição Estadual], telefone[Telefone] FROM tb_estacionamento WHERE status=1
 	END
 -- 9 = SELECT de usuario
 	IF(@Flag = 9)
@@ -72,5 +84,27 @@ AS
 	BEGIN
 		SELECT caminho_log[Caminho Log], porta_arduino[Porta Arduino],string_conn[String Conexão] FROM tb_estacionamento WHERE status =1
 	END
+-- 13 = Pesquisa informações d eum veiculo pela placa
+	IF(@Flag = 13)
+	BEGIN
+		SELECT Car.placa[Placa], A.automovel[Tipo], M.marca FROM tb_carro AS Car INNER JOIN tb_automovel AS A ON Car.tipo_id = A.id_automovel INNER JOIN tb_marca AS M ON Car.marca_id = M.id_marca WHERE Car.placa = @Placa
+	END
+--14 = SELECT Parametros do Sistema
+	IF(@Flag = 14)
+	BEGIN
+		SELECT valor_hr[Valor Hora], tolerancia[Tolerancia], caminho_log[Caminho Log] FROM tb_estacionamento WHERE status=1
+	END
+--15 = SELECT Tela de Cadastro Veiculos
+	IF(@Flag = 15)
+	BEGIN
+		SELECT Car.id_carro [ID],Car.placa[Placa], A.automovel[Tipo], M.marca, Car.status[Status] FROM tb_carro AS Car INNER JOIN tb_automovel AS A ON Car.tipo_id = A.id_automovel INNER JOIN tb_marca AS M ON Car.marca_id = M.id_marca
+	END
+--16 = SELECT VEICULO ESPECIFICO
+	IF(@Flag = 16)
+	BEGIN
+		SELECT Car.id_carro [ID],Car.placa[Placa], A.automovel[Tipo], M.marca, Car.status[Status] FROM tb_carro AS Car INNER JOIN tb_automovel AS A ON Car.tipo_id = A.id_automovel INNER JOIN tb_marca AS M ON Car.marca_id = M.id_marca WHERE Car.id_carro = 8
+	END
+
+GO
 
 

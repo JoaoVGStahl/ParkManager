@@ -118,5 +118,14 @@ namespace Teste
             Globais.RegistrarLog("Sistema foi Inicializado");
         }
 
+        private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            string caracterespermitidos = "ABCDEFGHIJKLMNOPQRSTUVWXYZ.";
+            //Apenas Letras E BackSpace
+            if (!(caracterespermitidos.Contains(e.KeyChar.ToString().ToUpper())) && !(e.KeyChar == (char)Keys.Back))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

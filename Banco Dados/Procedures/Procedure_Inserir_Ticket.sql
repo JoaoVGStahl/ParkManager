@@ -1,12 +1,15 @@
 USE [db_estacionamento]
 GO
-/****** Object:  StoredProcedure [dbo].[InsertTicket]    Script Date: 10/09/2021 09:31:24 ******/
+
+/****** Object:  StoredProcedure [dbo].[InsertTicket]    Script Date: 26/09/2021 02:38:10 ******/
 SET ANSI_NULLS ON
 GO
+
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE PROCEDURE [dbo].[InsertTicket]
+
+CREATE OR ALTER PROCEDURE [dbo].[InsertTicket]
 (
 @idUsuario int,
 @Nome_Cliente varchar(50),
@@ -42,7 +45,7 @@ DECLARE @idCarro int,
 		IF(@idCarro IS NULL)
 		BEGIN
 			SET @idTipo = (SELECT id_automovel FROM tb_automovel WHERE automovel=@Tipo)
-			SET @idMarca = (SELECT id_marca FROM tb_marca AS M INNER JOIN tb_automovel AS A ON M.automovel_id = A.id_automovel AND A.id_automovel=@idTipo AND marca=@Marca)
+			SET @idMarca = (SELECT id_marca FROM tb_marca AS M INNER JOIN tb_automovel AS A ON M.automovel_id = A.id_automovel AND A.id_automovel=@idTipo AND M.marca=@Marca)
 			INSERT INTO tb_carro (placa,marca_id,tipo_id,status) VALUES(@Placa,@idMarca,@idTipo,1)
 			SET @idCarro = @@IDENTITY
 		END
@@ -50,4 +53,7 @@ DECLARE @idCarro int,
 	SET @idTicket = @@IDENTITY
 	INSERT INTO tb_entrada(ticket_id,usuario_id,hr_entrada,data_entrada,status) VALUES(@idTicket,@idUsuario,@Hr_Entrada,@Data_Entrada,1)
 	INSERT INTO tb_fotos(ticket_id,foto_caminho) VALUES (@idTicket,@Caminho_Foto)
-RETURN @idTicket
+	SELECT id_ticket FROM tb_ticket WHERE id_ticket=@idTicket
+GO
+
+
