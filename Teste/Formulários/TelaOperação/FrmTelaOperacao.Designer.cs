@@ -118,6 +118,7 @@ namespace Teste
             // 
             this.cmbMarca.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.cmbMarca.BackColor = System.Drawing.Color.White;
+            this.cmbMarca.Enabled = false;
             this.cmbMarca.FormattingEnabled = true;
             this.cmbMarca.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.cmbMarca.IntegralHeight = false;

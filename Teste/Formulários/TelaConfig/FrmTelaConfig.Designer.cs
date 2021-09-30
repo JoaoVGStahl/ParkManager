@@ -68,6 +68,7 @@ namespace Teste
             this.btnGeral.FlatAppearance.BorderSize = 0;
             this.btnGeral.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGeral.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGeral.ForeColor = System.Drawing.Color.Black;
             this.btnGeral.Image = ((System.Drawing.Image)(resources.GetObject("btnGeral.Image")));
             this.btnGeral.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnGeral.Location = new System.Drawing.Point(0, 147);
@@ -87,6 +88,7 @@ namespace Teste
             this.btnDev.FlatAppearance.BorderSize = 0;
             this.btnDev.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDev.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDev.ForeColor = System.Drawing.Color.Black;
             this.btnDev.Image = ((System.Drawing.Image)(resources.GetObject("btnDev.Image")));
             this.btnDev.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDev.Location = new System.Drawing.Point(0, 455);
@@ -106,6 +108,7 @@ namespace Teste
             this.btnUsuarios.FlatAppearance.BorderSize = 0;
             this.btnUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUsuarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUsuarios.ForeColor = System.Drawing.Color.Black;
             this.btnUsuarios.Image = ((System.Drawing.Image)(resources.GetObject("btnUsuarios.Image")));
             this.btnUsuarios.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnUsuarios.Location = new System.Drawing.Point(0, 378);
@@ -124,6 +127,7 @@ namespace Teste
             this.btnEstacionamento.FlatAppearance.BorderSize = 0;
             this.btnEstacionamento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEstacionamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEstacionamento.ForeColor = System.Drawing.Color.Black;
             this.btnEstacionamento.Image = ((System.Drawing.Image)(resources.GetObject("btnEstacionamento.Image")));
             this.btnEstacionamento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEstacionamento.Location = new System.Drawing.Point(0, 224);
@@ -142,6 +146,7 @@ namespace Teste
             this.btnPrecos.FlatAppearance.BorderSize = 0;
             this.btnPrecos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrecos.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrecos.ForeColor = System.Drawing.Color.Black;
             this.btnPrecos.Image = ((System.Drawing.Image)(resources.GetObject("btnPrecos.Image")));
             this.btnPrecos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPrecos.Location = new System.Drawing.Point(0, 301);
