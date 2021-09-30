@@ -35,7 +35,7 @@ CREATE TABLE tb_estacionamento(
 CREATE TABLE tb_cliente(
     id_cliente INT PRIMARY KEY IDENTITY,
 	nome VARCHAR(50) not null,
-	telefone VARCHAR(14) UNIQUE,
+	telefone VARCHAR(14),
 	status SMALLINT NOT NULL
 )
 
@@ -54,7 +54,7 @@ CREATE TABLE tb_marca(
 
 CREATE TABLE tb_carro(
     id_carro INT PRIMARY KEY IDENTITY,
-	placa VARCHAR(7) UNIQUE NOT NULL,
+	placa VARCHAR(7) NOT NULL,
 	marca_id INT,
 	tipo_id INT,
 	status SMALLINT NOT NULL,
@@ -98,7 +98,7 @@ CREATE TABLE tb_forma_pgt(
 
 CREATE TABLE tb_saida(
    id_saida INT PRIMARY KEY IDENTITY NOT NULL,
-   entrada_id INT UNIQUE NOT NULL,
+   entrada_id INT  NOT NULL,
    usuario_id INT NOT NULL,
    hr_saida TIME NOT NULL,
    data_saida DATE NOT NULL,
@@ -115,7 +115,7 @@ CREATE TABLE tb_saida(
 
 CREATE TABLE tb_fotos(
    id_fotos INT PRIMARY KEY IDENTITY,
-   ticket_id INT UNIQUE,
+   ticket_id INT ,
    foto_caminho VARCHAR(100)--UNIQUE
    FOREIGN KEY (ticket_id) REFERENCES tb_ticket
 ) 
