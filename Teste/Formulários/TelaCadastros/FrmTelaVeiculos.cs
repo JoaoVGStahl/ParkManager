@@ -239,8 +239,13 @@ namespace Teste
         }
         private void SelecaoGrid()
         {
+            
             if (dataGridView1.SelectedRows.Count > 0)
             {
+                txtPlaca.Enabled = true;
+                btnSalvar.Enabled = true;
+                btnLimpar.Enabled = true;
+                btnNovo.Enabled = false;
                 try
                 {
 
@@ -300,6 +305,21 @@ namespace Teste
             {
                 dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
                 SelecaoGrid();
+            }
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            btnNovo.Enabled = false;
+            btnLimpar.Enabled = true;
+            btnSalvar.Enabled = false;
+            if(txtId.Text != "")
+            {
+                
+            }
+            else
+            {
+                MessageBox.Show("Selecione um veiculo ao lado para Excluir!","Falha na Exclusão!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
