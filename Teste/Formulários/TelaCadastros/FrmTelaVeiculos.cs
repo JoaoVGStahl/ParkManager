@@ -43,8 +43,9 @@ namespace Teste
 
                 throw;
             }
+            LimparCaixas();
         }
-        private void CarregarCombo()
+        private void CarregarComboTipo()
         {
             DataTable dt = new DataTable();
             try
@@ -83,6 +84,8 @@ namespace Teste
             btnSalvar.Enabled = true;
             btnLimpar.Enabled = true;
             cmbStatus.SelectedIndex = 1;
+            CarregarComboTipo();
+            cmbTipo.SelectedIndexChanged += cmbTipo_SelectedIndexChanged;
         }
 
         private void txtPlaca_KeyPress(object sender, KeyPressEventArgs e)
@@ -131,7 +134,35 @@ namespace Teste
             }
             else
             {
-                EditarVeiculo();
+                VerificarVeiculo(); 
+            }
+            LimparCaixas();
+        }
+        private void VerificarVeiculo()
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
+                    new SqlParameter(){ParameterName="@Flag",SqlDbType = SqlDbType.Int, Value = 17},
+                    new SqlParameter(){ParameterName="@idCarro", SqlDbType = SqlDbType.Int, Value = Convert.ToInt32(txtId.Text)}
+                };
+                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                if (dt.Rows.Count > 0)
+                {
+                    MessageBox.Show("Este veiculo possui um Ticket em aberto! \nEncerre-o e tente novamente!", "Falha ao editar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    EditarVeiculo();
+                }
+                
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Falha ao editar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void SalvarVeiculo()
@@ -152,6 +183,7 @@ namespace Teste
                 {
                     MessageBox.Show("Veiculo Adicionado com Sucesso!", "Veiculo Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     PreencherGrid();
+                    
                 }
                 else
                 {
@@ -184,6 +216,7 @@ namespace Teste
 
                     MessageBox.Show("Veiculo Alterado com sucesso!", "Alteração concluida!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     PreencherGrid();
+                    
                 }
                 else
                 {
@@ -199,7 +232,7 @@ namespace Teste
 
         private void cmbTipo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //PopularComboMarca();
+            PopularComboMarca();
         }
         private void PopularComboMarca()
         {
@@ -242,6 +275,7 @@ namespace Teste
             
             if (dataGridView1.SelectedRows.Count > 0)
             {
+                cmbTipo.SelectedIndexChanged -= cmbTipo_SelectedIndexChanged;
                 txtPlaca.Enabled = true;
                 btnSalvar.Enabled = true;
                 btnLimpar.Enabled = true;
@@ -262,7 +296,7 @@ namespace Teste
 
                         txtId.Text = dt.Rows[0].ItemArray[0].ToString();
                         txtPlaca.Text = dt.Rows[0].ItemArray[1].ToString();
-                        CarregarCombo();
+                        CarregarComboTipo();
                         if(cmbTipo.Items.Count > 0)
                         {
 
@@ -273,6 +307,7 @@ namespace Teste
                                 PopularComboMarca();
                                 cmbMarca.Text = dt.Rows[0].ItemArray[3].ToString();
                                 cmbMarca.Enabled = true;
+                                cmbTipo.SelectedIndexChanged += cmbTipo_SelectedIndexChanged;
                             }
                         }
                         cmbStatus.SelectedIndex = Convert.ToInt32(dt.Rows[0].ItemArray[4].ToString());
@@ -321,6 +356,29 @@ namespace Teste
             {
                 MessageBox.Show("Selecione um veiculo ao lado para Excluir!","Falha na Exclusão!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            LimparCaixas();
+        }
+        private void LimparCaixas(){
+            cmbTipo.SelectedIndexChanged -= cmbTipo_SelectedIndexChanged;
+            txtPlaca.Clear();
+            txtPlaca.Enabled = false;
+            cmbTipo.SelectedIndex = -1;
+            cmbTipo.Enabled = false;
+            cmbMarca.SelectedIndex = -1;
+            cmbMarca.Enabled = false;
+            cmbStatus.SelectedIndex = -1;
+            cmbStatus.Enabled = false;
+            txtId.Clear();
+            btnLimpar.Enabled = false;
+            btnExcluir.Enabled = false;
+            btnSalvar.Enabled = false;
+            btnNovo.Enabled = true;
+            dataGridView1.SelectionChanged -= dataGridView1_SelectionChanged;
+
         }
     }
 }
