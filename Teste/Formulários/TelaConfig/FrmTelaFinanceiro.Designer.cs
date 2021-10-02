@@ -35,6 +35,7 @@ namespace Teste
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // panel1
@@ -93,11 +94,22 @@ namespace Teste
             this.panel4.Size = new System.Drawing.Size(814, 10);
             this.panel4.TabIndex = 5;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(32, 123);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 29);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "label1";
+            // 
             // FrmTelaFinanceiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(814, 601);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.splitter2);
@@ -107,6 +119,7 @@ namespace Teste
             this.Name = "FrmTelaFinanceiro";
             this.Text = "FrmTelaFinanceiro";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -118,5 +131,6 @@ namespace Teste
         private System.Windows.Forms.Splitter splitter2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label label1;
     }
 }
