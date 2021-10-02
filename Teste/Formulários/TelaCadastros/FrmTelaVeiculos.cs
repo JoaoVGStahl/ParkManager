@@ -307,11 +307,12 @@ namespace Teste
                                 PopularComboMarca();
                                 cmbMarca.Text = dt.Rows[0].ItemArray[3].ToString();
                                 cmbMarca.Enabled = true;
-                                cmbTipo.SelectedIndexChanged += cmbTipo_SelectedIndexChanged;
+
                             }
                         }
                         cmbStatus.SelectedIndex = Convert.ToInt32(dt.Rows[0].ItemArray[4].ToString());
                         cmbStatus.Enabled = true;
+                        cmbTipo.SelectedIndexChanged += cmbTipo_SelectedIndexChanged;
                     }
                     else
                     {
