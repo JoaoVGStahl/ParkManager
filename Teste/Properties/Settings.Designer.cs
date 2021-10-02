@@ -50,18 +50,6 @@ namespace Teste.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string ArquivoAuditoria {
-            get {
-                return ((string)(this["ArquivoAuditoria"]));
-            }
-            set {
-                this["ArquivoAuditoria"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string PortaArduino {
             get {
                 return ((string)(this["PortaArduino"]));
@@ -80,6 +68,18 @@ namespace Teste.Properties {
             }
             set {
                 this["StringBanco"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ArquivoAuditoria {
+            get {
+                return ((string)(this["ArquivoAuditoria"]));
+            }
+            set {
+                this["ArquivoAuditoria"] = value;
             }
         }
     }
