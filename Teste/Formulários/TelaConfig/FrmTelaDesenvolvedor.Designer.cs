@@ -54,9 +54,17 @@ namespace Teste
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -160,17 +168,18 @@ namespace Teste
             // 
             // panel5
             // 
+            this.panel5.AutoScroll = true;
             this.panel5.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel5.Controls.Add(this.groupBox2);
             this.panel5.Controls.Add(this.txtPortaArduino);
             this.panel5.Controls.Add(this.groupBox1);
             this.panel5.Controls.Add(this.btnSelecionar);
             this.panel5.Controls.Add(this.txtCaminho);
             this.panel5.Controls.Add(this.label1);
             this.panel5.Controls.Add(this.label3);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(0, 98);
+            this.panel5.Location = new System.Drawing.Point(0, 94);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(830, 444);
+            this.panel5.Size = new System.Drawing.Size(830, 452);
             this.panel5.TabIndex = 7;
             // 
             // txtPortaArduino
@@ -332,6 +341,70 @@ namespace Teste
             // 
             this.folderBrowserDialog1.SelectedPath = "C:\\";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.textBox3);
+            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.groupBox2.Location = new System.Drawing.Point(15, 441);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(815, 127);
+            this.groupBox2.TabIndex = 10;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Conta Desenvolvedor";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(338, 79);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(223, 31);
+            this.textBox1.TabIndex = 0;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(12, 79);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(301, 31);
+            this.textBox2.TabIndex = 1;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(586, 79);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(223, 31);
+            this.textBox3.TabIndex = 2;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(334, 51);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(74, 25);
+            this.label7.TabIndex = 3;
+            this.label7.Text = "Senha";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(581, 51);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(173, 25);
+            this.label8.TabIndex = 4;
+            this.label8.Text = "Confirmar Senha";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(7, 51);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(86, 25);
+            this.label9.TabIndex = 5;
+            this.label9.Text = "Usuário";
+            // 
             // FrmTelaDesenvolvedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -353,6 +426,8 @@ namespace Teste
             this.panel5.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -383,5 +458,12 @@ namespace Teste
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
