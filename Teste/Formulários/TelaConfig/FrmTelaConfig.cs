@@ -93,6 +93,10 @@ namespace Teste
         private void btnPrecos_Click(object sender, EventArgs e)
         {
             FundoBotao(btnPrecos);
+
+            FecharFormulariosFilhos();
+            FrmTelaFinanceiro Frm = new FrmTelaFinanceiro();
+            AbreFormParent(2, Frm);
         }
 
         private void btnUsuarios_Click(object sender, EventArgs e)
