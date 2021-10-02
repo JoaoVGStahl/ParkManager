@@ -41,7 +41,7 @@ namespace Teste
             this.label1 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtPrecoHora = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -49,8 +49,13 @@ namespace Teste
             this.label6 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.splitter3 = new System.Windows.Forms.Splitter();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -116,6 +121,7 @@ namespace Teste
             // 
             this.splitter1.BackColor = System.Drawing.Color.Silver;
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.splitter1.Enabled = false;
             this.splitter1.Location = new System.Drawing.Point(0, 85);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(814, 3);
@@ -126,6 +132,7 @@ namespace Teste
             // 
             this.splitter2.BackColor = System.Drawing.Color.Silver;
             this.splitter2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.splitter2.Enabled = false;
             this.splitter2.Location = new System.Drawing.Point(0, 513);
             this.splitter2.Name = "splitter2";
             this.splitter2.Size = new System.Drawing.Size(814, 3);
@@ -163,13 +170,13 @@ namespace Teste
             // checkBox1
             // 
             this.checkBox1.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox1.Location = new System.Drawing.Point(276, 414);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(130, 35);
             this.checkBox1.TabIndex = 7;
             this.checkBox1.Text = "Desativado";
+            this.checkBox1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // label2
@@ -182,13 +189,13 @@ namespace Teste
             this.label2.TabIndex = 8;
             this.label2.Text = "Cobrança Mínima";
             // 
-            // textBox1
+            // txtPrecoHora
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(27, 190);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(232, 38);
-            this.textBox1.TabIndex = 9;
+            this.txtPrecoHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrecoHora.Location = new System.Drawing.Point(27, 190);
+            this.txtPrecoHora.Name = "txtPrecoHora";
+            this.txtPrecoHora.Size = new System.Drawing.Size(232, 38);
+            this.txtPrecoHora.TabIndex = 9;
             // 
             // textBox2
             // 
@@ -201,40 +208,40 @@ namespace Teste
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(536, 179);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(37, 36);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(236, 33);
+            this.label3.Size = new System.Drawing.Size(194, 29);
             this.label3.TabIndex = 11;
             this.label3.Text = "Preço Hora Atual";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(536, 373);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(36, 276);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(247, 31);
+            this.label4.Size = new System.Drawing.Size(196, 29);
             this.label4.TabIndex = 12;
-            this.label4.Text = "Preço Mínimo Atual";
+            this.label4.Text = "Valor Único Atual";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(601, 230);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(68, 94);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(107, 29);
+            this.label5.Size = new System.Drawing.Size(132, 33);
             this.label5.TabIndex = 13;
             this.label5.Text = "R$ 00,00";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(601, 422);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(68, 334);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(107, 29);
+            this.label6.Size = new System.Drawing.Size(132, 33);
             this.label6.TabIndex = 14;
             this.label6.Text = "R$ 00,00";
             // 
@@ -256,13 +263,59 @@ namespace Teste
             this.label7.TabIndex = 15;
             this.label7.Text = "Valor Único";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(68, 214);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(132, 33);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "R$ 00,00";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(24, 156);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(221, 29);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "Preço Mínimo Atual";
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Controls.Add(this.label3);
+            this.panel6.Controls.Add(this.label8);
+            this.panel6.Controls.Add(this.label5);
+            this.panel6.Controls.Add(this.label6);
+            this.panel6.Controls.Add(this.label9);
+            this.panel6.Controls.Add(this.label4);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel6.Location = new System.Drawing.Point(543, 98);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(271, 405);
+            this.panel6.TabIndex = 20;
+            // 
+            // splitter3
+            // 
+            this.splitter3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.splitter3.Location = new System.Drawing.Point(540, 98);
+            this.splitter3.Name = "splitter3";
+            this.splitter3.Size = new System.Drawing.Size(3, 405);
+            this.splitter3.TabIndex = 21;
+            this.splitter3.TabStop = false;
+            // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.DarkBlue;
-            this.panel5.Location = new System.Drawing.Point(490, 97);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel5.Location = new System.Drawing.Point(530, 98);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(10, 410);
-            this.panel5.TabIndex = 17;
+            this.panel5.Size = new System.Drawing.Size(10, 405);
+            this.panel5.TabIndex = 22;
             // 
             // FrmTelaFinanceiro
             // 
@@ -271,14 +324,12 @@ namespace Teste
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(814, 601);
             this.Controls.Add(this.panel5);
+            this.Controls.Add(this.splitter3);
+            this.Controls.Add(this.panel6);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtPrecoHora);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label1);
@@ -291,6 +342,8 @@ namespace Teste
             this.Name = "FrmTelaFinanceiro";
             this.Text = "FrmTelaFinanceiro";
             this.panel2.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -307,7 +360,7 @@ namespace Teste
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtPrecoHora;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -317,6 +370,10 @@ namespace Teste
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Splitter splitter3;
         private System.Windows.Forms.Panel panel5;
     }
 }
