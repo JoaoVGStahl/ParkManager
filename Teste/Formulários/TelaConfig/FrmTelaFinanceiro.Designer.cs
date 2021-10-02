@@ -42,12 +42,12 @@ namespace Teste
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtPrecoHora = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtCobrancaMinima = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtValorUnico = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -191,25 +191,25 @@ namespace Teste
             // 
             // txtPrecoHora
             // 
-            this.txtPrecoHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrecoHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPrecoHora.Location = new System.Drawing.Point(27, 190);
             this.txtPrecoHora.Name = "txtPrecoHora";
-            this.txtPrecoHora.Size = new System.Drawing.Size(232, 38);
+            this.txtPrecoHora.Size = new System.Drawing.Size(232, 44);
             this.txtPrecoHora.TabIndex = 9;
             // 
-            // textBox2
+            // txtCobrancaMinima
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(27, 306);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(259, 38);
-            this.textBox2.TabIndex = 10;
+            this.txtCobrancaMinima.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCobrancaMinima.Location = new System.Drawing.Point(27, 306);
+            this.txtCobrancaMinima.Name = "txtCobrancaMinima";
+            this.txtCobrancaMinima.Size = new System.Drawing.Size(232, 44);
+            this.txtCobrancaMinima.TabIndex = 10;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(37, 36);
+            this.label3.Location = new System.Drawing.Point(37, 17);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(194, 29);
             this.label3.TabIndex = 11;
@@ -219,7 +219,7 @@ namespace Teste
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(36, 276);
+            this.label4.Location = new System.Drawing.Point(36, 295);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(196, 29);
             this.label4.TabIndex = 12;
@@ -228,30 +228,32 @@ namespace Teste
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(68, 94);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(56, 51);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(132, 33);
+            this.label5.Size = new System.Drawing.Size(156, 39);
             this.label5.TabIndex = 13;
             this.label5.Text = "R$ 00,00";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(68, 334);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(56, 332);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(132, 33);
+            this.label6.Size = new System.Drawing.Size(156, 39);
             this.label6.TabIndex = 14;
             this.label6.Text = "R$ 00,00";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox3
+            // txtValorUnico
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(27, 411);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(232, 38);
-            this.textBox3.TabIndex = 16;
+            this.txtValorUnico.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtValorUnico.Location = new System.Drawing.Point(27, 411);
+            this.txtValorUnico.Name = "txtValorUnico";
+            this.txtValorUnico.Size = new System.Drawing.Size(232, 44);
+            this.txtValorUnico.TabIndex = 16;
             // 
             // label7
             // 
@@ -266,18 +268,19 @@ namespace Teste
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(68, 214);
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(56, 192);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(132, 33);
+            this.label8.Size = new System.Drawing.Size(156, 39);
             this.label8.TabIndex = 19;
             this.label8.Text = "R$ 00,00";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(24, 156);
+            this.label9.Location = new System.Drawing.Point(24, 155);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(221, 29);
             this.label9.TabIndex = 18;
@@ -286,7 +289,7 @@ namespace Teste
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel6.Controls.Add(this.label3);
             this.panel6.Controls.Add(this.label8);
             this.panel6.Controls.Add(this.label5);
@@ -302,6 +305,7 @@ namespace Teste
             // splitter3
             // 
             this.splitter3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.splitter3.Enabled = false;
             this.splitter3.Location = new System.Drawing.Point(540, 98);
             this.splitter3.Name = "splitter3";
             this.splitter3.Size = new System.Drawing.Size(3, 405);
@@ -326,9 +330,9 @@ namespace Teste
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.splitter3);
             this.Controls.Add(this.panel6);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtValorUnico);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtCobrancaMinima);
             this.Controls.Add(this.txtPrecoHora);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.checkBox1);
@@ -339,6 +343,7 @@ namespace Teste
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmTelaFinanceiro";
             this.Text = "FrmTelaFinanceiro";
             this.panel2.ResumeLayout(false);
@@ -361,14 +366,14 @@ namespace Teste
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtPrecoHora;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtCobrancaMinima;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnSalvar;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtValorUnico;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
