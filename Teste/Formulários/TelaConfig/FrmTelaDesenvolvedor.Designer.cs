@@ -39,6 +39,13 @@ namespace Teste
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtConfirmSenhaRoot = new System.Windows.Forms.TextBox();
+            this.txtUserRoot = new System.Windows.Forms.TextBox();
+            this.txtSenhaRoot = new System.Windows.Forms.TextBox();
             this.txtPortaArduino = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtSenha = new System.Windows.Forms.TextBox();
@@ -54,17 +61,10 @@ namespace Teste
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -182,6 +182,73 @@ namespace Teste
             this.panel5.Size = new System.Drawing.Size(830, 452);
             this.panel5.TabIndex = 7;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.txtConfirmSenhaRoot);
+            this.groupBox2.Controls.Add(this.txtUserRoot);
+            this.groupBox2.Controls.Add(this.txtSenhaRoot);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.groupBox2.Location = new System.Drawing.Point(15, 441);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(812, 235);
+            this.groupBox2.TabIndex = 10;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Usuário Root";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(7, 34);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(86, 25);
+            this.label9.TabIndex = 5;
+            this.label9.Text = "Usuário";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(7, 158);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(173, 25);
+            this.label8.TabIndex = 4;
+            this.label8.Text = "Confirmar Senha";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(7, 96);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(74, 25);
+            this.label7.TabIndex = 3;
+            this.label7.Text = "Senha";
+            // 
+            // txtConfirmSenhaRoot
+            // 
+            this.txtConfirmSenhaRoot.Location = new System.Drawing.Point(12, 186);
+            this.txtConfirmSenhaRoot.Name = "txtConfirmSenhaRoot";
+            this.txtConfirmSenhaRoot.Size = new System.Drawing.Size(649, 31);
+            this.txtConfirmSenhaRoot.TabIndex = 2;
+            // 
+            // txtUserRoot
+            // 
+            this.txtUserRoot.Location = new System.Drawing.Point(12, 62);
+            this.txtUserRoot.Name = "txtUserRoot";
+            this.txtUserRoot.ReadOnly = true;
+            this.txtUserRoot.Size = new System.Drawing.Size(168, 31);
+            this.txtUserRoot.TabIndex = 1;
+            // 
+            // txtSenhaRoot
+            // 
+            this.txtSenhaRoot.Location = new System.Drawing.Point(12, 124);
+            this.txtSenhaRoot.MaxLength = 32;
+            this.txtSenhaRoot.Name = "txtSenhaRoot";
+            this.txtSenhaRoot.Size = new System.Drawing.Size(649, 31);
+            this.txtSenhaRoot.TabIndex = 0;
+            this.txtSenhaRoot.TextChanged += new System.EventHandler(this.txtSenhaRoot_TextChanged);
+            // 
             // txtPortaArduino
             // 
             this.txtPortaArduino.BackColor = System.Drawing.Color.White;
@@ -222,6 +289,7 @@ namespace Teste
             this.txtSenha.Size = new System.Drawing.Size(306, 31);
             this.txtSenha.TabIndex = 12;
             this.txtSenha.UseSystemPasswordChar = true;
+            this.txtSenha.TextChanged += new System.EventHandler(this.txtSenha_TextChanged);
             // 
             // label6
             // 
@@ -341,70 +409,6 @@ namespace Teste
             // 
             this.folderBrowserDialog1.SelectedPath = "C:\\";
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.textBox3);
-            this.groupBox2.Controls.Add(this.textBox2);
-            this.groupBox2.Controls.Add(this.textBox1);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
-            this.groupBox2.Location = new System.Drawing.Point(15, 441);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(815, 127);
-            this.groupBox2.TabIndex = 10;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Conta Desenvolvedor";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(338, 79);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(223, 31);
-            this.textBox1.TabIndex = 0;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(12, 79);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(301, 31);
-            this.textBox2.TabIndex = 1;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(586, 79);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(223, 31);
-            this.textBox3.TabIndex = 2;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(334, 51);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(74, 25);
-            this.label7.TabIndex = 3;
-            this.label7.Text = "Senha";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(581, 51);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(173, 25);
-            this.label8.TabIndex = 4;
-            this.label8.Text = "Confirmar Senha";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(7, 51);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(86, 25);
-            this.label9.TabIndex = 5;
-            this.label9.Text = "Usuário";
-            // 
             // FrmTelaDesenvolvedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -424,10 +428,10 @@ namespace Teste
             this.panel2.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -462,8 +466,8 @@ namespace Teste
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtConfirmSenhaRoot;
+        private System.Windows.Forms.TextBox txtUserRoot;
+        private System.Windows.Forms.TextBox txtSenhaRoot;
     }
 }

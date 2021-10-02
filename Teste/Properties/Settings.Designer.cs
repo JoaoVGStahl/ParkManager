@@ -82,5 +82,17 @@ namespace Teste.Properties {
                 this["ArquivoAuditoria"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ModoUnico {
+            get {
+                return ((bool)(this["ModoUnico"]));
+            }
+            set {
+                this["ModoUnico"] = value;
+            }
+        }
     }
 }

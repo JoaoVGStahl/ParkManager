@@ -45,15 +45,7 @@ namespace Teste
                 CarregarParametros();
 
             }
-            //Foca a Caixa de texto da Placa
-
-            /*
-            Globais.IdUsuario = 1;
-            Globais.Login = "admin";
-            Globais.Nivel = 3;
-            Globais.UserStatus = 1;
-            lblUsername.Text = Globais.Login;
-            */
+           
         }
         private void CarregarBarraStatus()
         {
@@ -119,10 +111,12 @@ namespace Teste
                 {
                     DateTime aux = Convert.ToDateTime("00:00:00");
                     Globais.ValorHora = Convert.ToDecimal(dt.Rows[0].ItemArray[0]);
-                    DateTime tempo = Convert.ToDateTime(dt.Rows[0].ItemArray[1].ToString());
+                    Globais.ValorMinimo = Convert.ToDecimal(dt.Rows[0].ItemArray[1]);
+                    Globais.ValorUnico = Convert.ToDecimal(dt.Rows[0].ItemArray[2]);
+                    DateTime tempo = Convert.ToDateTime(dt.Rows[0].ItemArray[3].ToString());
                     TimeSpan ts = tempo - aux;
                     Globais.Tolerencia = ts;
-                    Properties.Settings.Default["ArquivoAuditoria"] = dt.Rows[0].ItemArray[2].ToString();
+                    Properties.Settings.Default["ArquivoAuditoria"] = dt.Rows[0].ItemArray[4].ToString();
                     Properties.Settings.Default.Save();
                 }
                 else
@@ -548,6 +542,17 @@ namespace Teste
             {
                 MessageBox.Show("Preencha o campo 'Placa'!", "Ticket não existe!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void txtPlaca_MouseHover(object sender, EventArgs e)
+        {
+           
+            
+        }
+
+        private void txtPlaca_MouseUp(object sender, MouseEventArgs e)
+        {
+            
         }
     }
 }
