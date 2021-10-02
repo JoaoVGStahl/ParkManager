@@ -68,7 +68,9 @@ namespace Teste
         {
             if (Globais.Login == Properties.Settings.Default.UserRoot)
             {
+                
                 btnDev.Visible = true;
+                btnDev.PerformClick();
             }
             lblUsuario.Text = Globais.Login;
         }
@@ -113,7 +115,19 @@ namespace Teste
 
         private void FrmTelaConfig_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.Dispose();
+            if (Globais.Login == Properties.Settings.Default.UserRoot)
+            {
+
+                FrmTelaLogin Frm = new FrmTelaLogin();
+                Frm.ShowDialog();
+                this.Dispose();
+            }
+            else
+            {
+                this.Dispose();
+            }
+
+            
         }
         
     }

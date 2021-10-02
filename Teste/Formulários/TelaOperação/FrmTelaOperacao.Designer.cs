@@ -284,10 +284,11 @@ namespace Teste
             // lblPlaca
             // 
             this.lblPlaca.BackColor = System.Drawing.Color.Transparent;
-            this.lblPlaca.Font = new System.Drawing.Font("Microsoft Sans Serif", 68.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlaca.Location = new System.Drawing.Point(0, 28);
+            this.lblPlaca.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlaca.Location = new System.Drawing.Point(-12, 37);
             this.lblPlaca.Name = "lblPlaca";
-            this.lblPlaca.Size = new System.Drawing.Size(442, 102);
+            this.lblPlaca.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblPlaca.Size = new System.Drawing.Size(472, 82);
             this.lblPlaca.TabIndex = 15;
             this.lblPlaca.Text = "PLACA";
             this.lblPlaca.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

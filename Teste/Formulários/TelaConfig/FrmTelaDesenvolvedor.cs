@@ -79,6 +79,7 @@ namespace Teste
                 StrConn = "";
                 Properties.Settings.Default["StringBanco"] = StrConn;
             }
+            Properties.Settings.Default["ArquivoAuditoria"] = txtCaminho.Text;
             Properties.Settings.Default.Save();
 
         }
@@ -88,7 +89,7 @@ namespace Teste
             List<SqlParameter> sp = new List<SqlParameter>()
             {
                 new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value =1},
-                new SqlParameter(){ParameterName = "@Caminho", SqlDbType = SqlDbType.NVarChar, Value = txtCaminho.Text + @"\log.dat"},
+                new SqlParameter(){ParameterName = "@Caminho", SqlDbType = SqlDbType.NVarChar, Value = txtCaminho.Text},
                 new SqlParameter(){ParameterName = "@Porta_Arduino", SqlDbType = SqlDbType.NVarChar, Value = txtPortaArduino.Text},
                 new SqlParameter(){ParameterName = "@String_Conn", SqlDbType = SqlDbType.NVarChar, Value = StrConn}
             };

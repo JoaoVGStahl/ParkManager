@@ -1,10 +1,7 @@
 --Informações conexao
-Instancia: db-park-manager.ch2qj4cvcflx.us-east-1.rds.amazonaws.com,1433
-User: sa
-Senha: adminparkmanager
-
---StrConnection
-Server=db-park-manager.ch2qj4cvcflx.us-east-1.rds.amazonaws.com,1433;Database=db_estacionamento;User Id=sa;Password=adminparkmanager;
+Instancia: park-manager.database.windows.net
+User: parkmanager
+Senha: @admin3ds
 
 CREATE DATABASE db_estacionamento
 USE db_estacionamento
@@ -14,6 +11,7 @@ Set Language Português
 CREATE TABLE tb_estacionamento(
     id INT PRIMARY KEY IDENTITY,
     valor_hr DECIMAL(10,2),
+	valor_minimo DECIMAL(10,2),
 	tolerancia TIME(0),
 	cnpj varchar(18) UNIQUE NOT NULL,
 	razao_social varchar (32) NOT NULL,
