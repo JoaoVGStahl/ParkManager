@@ -123,6 +123,7 @@ namespace Teste
                     TimeSpan ts = tempo - aux;
                     Globais.Tolerencia = ts;
                     Properties.Settings.Default["ArquivoAuditoria"] = dt.Rows[0].ItemArray[2].ToString();
+                    Properties.Settings.Default.Save();
                 }
                 else
                 {
@@ -160,6 +161,8 @@ namespace Teste
 
             if (txtPlaca.TextLength == 7)
             {
+                txtNome.Enabled = true;
+                mskTelefone.Enabled = true;
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
                     new SqlParameter(){ParameterName= "@Flag", SqlDbType = SqlDbType.Int, Value = 13 },
@@ -387,7 +390,7 @@ namespace Teste
         private void btnConfig_Click(object sender, EventArgs e)
         {
             FrmTelaConfig Frm = new FrmTelaConfig();
-            AbrirForm(0, Frm);
+            AbrirForm(2, Frm);
         }
         private void PreencherLabels(DataTable dt)
         {
@@ -425,8 +428,7 @@ namespace Teste
 
         private void FrmTelaOperacao_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Globais.RegistrarLog(Globais.Login + " Efetuou Logout.");
-            Globais.RegistrarLog("Sistema foi encerrado.");
+            Globais.RegistrarLog(Globais.Login + " Efetuou logout.");
             this.Dispose();
             Application.Exit();
         }
@@ -437,8 +439,6 @@ namespace Teste
             bool escolha = (MessageBox.Show(mensagem, titulo, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button3) == DialogResult.Yes);
             if (escolha)
             {
-                //Registra que o Usuário efetuou logout
-                Globais.RegistrarLog(Globais.Login + " Efetuou Logout.");
                 //Destroi o Formulario principal e abre o formulario de login
                 FrmTelaLogin Frm = new FrmTelaLogin();
                 this.Dispose();

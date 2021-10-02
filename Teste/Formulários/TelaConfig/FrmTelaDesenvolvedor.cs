@@ -22,7 +22,7 @@ namespace Teste
         private void CarregarInformacoes()
         {
             string StringBanco = Properties.Settings.Default["StringBanco"].ToString();
-            if ( StringBanco == "")
+            if (StringBanco == "")
             {
                 btnSalvar.Enabled = true;
             }
@@ -36,12 +36,12 @@ namespace Teste
                         new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 12}
                         };
                     dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
-                    if(dt.Rows.Count > 0)
+                    if (dt.Rows.Count > 0)
                     {
                         txtCaminho.Text = dt.Rows[0].ItemArray[0].ToString();
                         txtPortaArduino.Text = dt.Rows[0].ItemArray[1].ToString();
                         string Connection = dt.Rows[0].ItemArray[2].ToString();
-                        var array = Connection.Split(new string[] { "Server=", "Database=","User Id=", "Password=", ";" },StringSplitOptions.RemoveEmptyEntries);
+                        var array = Connection.Split(new string[] { "Server=", "Database=", "User Id=", "Password=", ";" }, StringSplitOptions.RemoveEmptyEntries);
                         txtServidor.Text = array[0];
                         txtNomeBanco.Text = array[1];
                         txtUsuario.Text = array[2];
@@ -79,8 +79,9 @@ namespace Teste
                 StrConn = "";
                 Properties.Settings.Default["StringBanco"] = StrConn;
             }
+            Properties.Settings.Default["ArquivoAuditoria"] = txtCaminho.Text;
             Properties.Settings.Default.Save();
-            
+
         }
         private void SalvarBanco(string StrConn)
         {
@@ -109,7 +110,7 @@ namespace Teste
 
                 MessageBox.Show(ex.Message, "Configurações NÃO Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
         private void btnEditar_Click_1(object sender, EventArgs e)
         {
@@ -120,17 +121,34 @@ namespace Teste
             txtUsuario.Enabled = true;
             txtSenha.Enabled = true;
             btnSalvar.Enabled = true;
+            btnSelecionar.Enabled = true;
         }
 
         private void btnSalvar_Click_1(object sender, EventArgs e)
         {
-            btnEditar.Enabled = true;
+            
             SalvarSettings();
+            btnEditar.Enabled = true;
+            btnSalvar.Enabled = false;
         }
 
         private void FrmTelaDesenvolvedor_Load_1(object sender, EventArgs e)
         {
             CarregarInformacoes();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                txtCaminho.Text = folderBrowserDialog1.SelectedPath;
+                
+            }
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

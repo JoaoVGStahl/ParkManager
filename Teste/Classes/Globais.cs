@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using System.Net;
 
 namespace Teste
@@ -58,29 +59,43 @@ namespace Teste
 
         public static int IdTicket
         {
-            get {  return idticket; }
+            get { return idticket; }
             set { idticket = value; }
         }
         //Função generica para registrar as ações do usuario
         public static void RegistrarLog(string Action)
         {
-            string caminho = Properties.Settings.Default["ArquivoAuditoria"].ToString();
-            if (caminho != "")
+            if (Properties.Settings.Default["ArquivoAuditoria"].ToString() != "")
             {
-                //Define o caminho e escreve no arquivp
-                using (StreamWriter outputFile = new StreamWriter(Properties.Settings.Default.ArquivoAuditoria, true))
+                string data = DateTime.Now.ToShortDateString();
+                string hora = DateTime.Now.ToLongTimeString();
+                string maquina = Dns.GetHostName();
+                //Escreve no arquivo
+                string texto = data + " " + hora + " " + "(" + maquina + "):" + Action;
+
+                string arquivo = Properties.Settings.Default["ArquivoAuditoria"].ToString() + @"\" + data.Replace("/", "-") + ".dat";
+
+                if (File.Exists(arquivo))
                 {
-                    //Obtem a data atual, hora e a máquina.
-                    string data = DateTime.Now.ToShortDateString();
-                    string hora = DateTime.Now.ToLongTimeString();
-                    string maquina = Dns.GetHostName();
-                    //Escreve no arquivo
-                    outputFile.WriteLine(data + " " + hora + " " + "(" + maquina + "):" + Action);
+                    using (StreamWriter tw = new StreamWriter(arquivo, true))
+                    {
+                        byte[] utf8String = Encoding.UTF8.GetBytes(texto);
+                        tw.WriteLine(BitConverter.ToString(utf8String));
+                        tw.Close();
+                    }
+                }
+                else
+                {
+                    using (StreamWriter tw = new StreamWriter(arquivo))
+                    {
+                        byte[] utf8String = Encoding.UTF8.GetBytes(texto);
+                        tw.WriteLine(BitConverter.ToString(utf8String));
+                        tw.Close();
+                    }
                 }
             }
             
         }
+
     }
 }
-
-

@@ -403,6 +403,7 @@ namespace Teste
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmTelaEstacionamento";
             this.Text = " ";
             this.Load += new System.EventHandler(this.FrmTelaEstacionamento_Load);

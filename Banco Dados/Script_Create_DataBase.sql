@@ -1,10 +1,7 @@
 --Informações conexao
-Instancia: db-park-manager.ch2qj4cvcflx.us-east-1.rds.amazonaws.com,1433
-User: sa
-Senha: adminparkmanager
-
---StrConnection
-Server=db-park-manager.ch2qj4cvcflx.us-east-1.rds.amazonaws.com,1433;Database=db_estacionamento;User Id=sa;Password=adminparkmanager;
+Instancia: park-manager.database.windows.net
+User: parkmanager
+Senha: @admin3ds
 
 CREATE DATABASE db_estacionamento
 USE db_estacionamento
@@ -14,6 +11,7 @@ Set Language Português
 CREATE TABLE tb_estacionamento(
     id INT PRIMARY KEY IDENTITY,
     valor_hr DECIMAL(10,2),
+	valor_minimo DECIMAL(10,2),
 	tolerancia TIME(0),
 	cnpj varchar(18) UNIQUE NOT NULL,
 	razao_social varchar (32) NOT NULL,
@@ -35,7 +33,7 @@ CREATE TABLE tb_estacionamento(
 CREATE TABLE tb_cliente(
     id_cliente INT PRIMARY KEY IDENTITY,
 	nome VARCHAR(50) not null,
-	telefone VARCHAR(14) UNIQUE,
+	telefone VARCHAR(14),
 	status SMALLINT NOT NULL
 )
 
@@ -54,7 +52,7 @@ CREATE TABLE tb_marca(
 
 CREATE TABLE tb_carro(
     id_carro INT PRIMARY KEY IDENTITY,
-	placa VARCHAR(7) UNIQUE NOT NULL,
+	placa VARCHAR(7) NOT NULL,
 	marca_id INT,
 	tipo_id INT,
 	status SMALLINT NOT NULL,
@@ -98,7 +96,7 @@ CREATE TABLE tb_forma_pgt(
 
 CREATE TABLE tb_saida(
    id_saida INT PRIMARY KEY IDENTITY NOT NULL,
-   entrada_id INT UNIQUE NOT NULL,
+   entrada_id INT  NOT NULL,
    usuario_id INT NOT NULL,
    hr_saida TIME NOT NULL,
    data_saida DATE NOT NULL,
@@ -112,9 +110,10 @@ CREATE TABLE tb_saida(
    FOREIGN KEY (forma_pgt_id) REFERENCES tb_forma_pgt
 )
 
+
 CREATE TABLE tb_fotos(
    id_fotos INT PRIMARY KEY IDENTITY,
-   ticket_id INT UNIQUE,
+   ticket_id INT ,
    foto_caminho VARCHAR(100)--UNIQUE
    FOREIGN KEY (ticket_id) REFERENCES tb_ticket
 ) 

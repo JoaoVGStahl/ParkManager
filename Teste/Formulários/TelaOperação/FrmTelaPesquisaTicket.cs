@@ -25,7 +25,10 @@ namespace Teste
 
         private void FrmTelaTicket_Load(object sender, EventArgs e)
         {
+            dataGridView1.SelectionChanged -= dataGridView1_SelectionChanged;
+            cmbStatus.SelectedIndex = 1;
             PreencherGrid();
+            dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
 
         }
         private void PreencherGrid()
@@ -35,6 +38,15 @@ namespace Teste
             {
                 dt = banco.ProcedureSemParametros(6);
                 dataGridView1.DataSource = dt;
+                dataGridView1.Columns[0].Width = 60;
+                dataGridView1.Columns[1].Width = 95;
+                dataGridView1.Columns[2].Width = 95;
+                dataGridView1.Columns[3].Width = 168;
+                dataGridView1.Columns[4].Width = 75;
+                dataGridView1.Columns[5].Width = 110;
+                dataGridView1.Columns[6].Width = 140;
+                dataGridView1.Columns[7].Width = 225;
+                dataGridView1.Columns[8].Width = 325;
             }
             catch (Exception ex)
             {
@@ -46,8 +58,10 @@ namespace Teste
         }
         private void button3_Click(object sender, EventArgs e)
         {
+            Globais.IdTicket = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
             FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket();
             Frm.ShowDialog();
+            
         }
 
         private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -112,7 +126,7 @@ namespace Teste
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            
         }
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
@@ -150,6 +164,18 @@ namespace Teste
                 {
                     e.Handled = true;
                 }
+            }
+        }
+
+        private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dataGridView1.ClearSelection();
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            if (cmbStatus.SelectedIndex == 1){
+                btnEncerrar.Enabled = true;
             }
         }
     }

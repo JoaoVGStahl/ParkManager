@@ -65,9 +65,8 @@ namespace Teste
                     HoraEntrada = Convert.ToDateTime(dt.Rows[0].ItemArray[1]);
                     lblHoraEntrada.Text = HoraEntrada.ToLongTimeString() + " " + DataEntrada.ToShortDateString();
                     DataFormatada = Convert.ToDateTime(DataEntrada.ToString("dd/MM/yyyy") + " " + HoraEntrada.ToString("HH:mm:ss"));
-                    CalcularPreco(DataFormatada);
                     timer1.Enabled = true;
-
+                    CalcularPreco(DataFormatada);
                 }
             }
             catch (Exception ex)
@@ -96,7 +95,6 @@ namespace Teste
             int dias = ts.Days;
             int horas = ts.Hours;
             int minutos = ts.Minutes;
-            int segundos = ts.Seconds;
             int tolerancia = Globais.Tolerencia.Minutes;
 
             if (dias > 0)
@@ -125,10 +123,12 @@ namespace Teste
                 Total = 0;
             }
             txtTotal.Text = Total.ToString("N2");
-            FormatarLabelPermanencia(ts);
+            PreencherLabelTempoPermanencia(ts);
+
         }
-        private void FormatarLabelPermanencia(TimeSpan ts)
+        private void PreencherLabelTempoPermanencia(TimeSpan ts)
         {
+            lblPermanencia.Text = "";
             int dias = ts.Days;
             int horas = ts.Hours;
             int minutos = ts.Minutes;
@@ -137,11 +137,11 @@ namespace Teste
             {
                 if (dias < 10)
                 {
-                    lblPermanencia.Text = "0" + ts.Days.ToString() + ":";
+                    lblPermanencia.Text += "0" + ts.Days.ToString() + ":";
                 }
                 else
                 {
-                    lblPermanencia.Text = ts.Days.ToString() + ":";
+                    lblPermanencia.Text += ts.Days.ToString() + ":";
                 }
 
             }
@@ -153,7 +153,7 @@ namespace Teste
             {
                 lblPermanencia.Text += ts.Hours.ToString() + ":";
             }
-            if (minutos < 10)
+            if(minutos < 10)
             {
                 lblPermanencia.Text += "0" + ts.Minutes.ToString() + ":";
             }
@@ -161,7 +161,7 @@ namespace Teste
             {
                 lblPermanencia.Text += ts.Minutes.ToString() + ":";
             }
-            if (segundos < 10)
+            if(segundos < 10)
             {
                 lblPermanencia.Text += "0" + ts.Seconds.ToString();
             }
@@ -170,9 +170,10 @@ namespace Teste
                 lblPermanencia.Text += ts.Seconds.ToString();
             }
         }
+
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            this.Close();
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)

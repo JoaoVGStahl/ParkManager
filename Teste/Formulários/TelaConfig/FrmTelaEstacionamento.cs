@@ -39,10 +39,10 @@ namespace Teste
                     PreencherCampos(dt);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                MessageBox.Show(ex.Message, "Falha ao carregar a identificação!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void PreencherCampos(DataTable dt)
@@ -60,6 +60,10 @@ namespace Teste
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
+        {
+            AtivarCaixas();
+        }
+        private void AtivarCaixas()
         {
             btnSalvar.Enabled = true;
             txtRazaoSocial.Enabled = true;
@@ -139,6 +143,8 @@ namespace Teste
                 LinhasAfetadas = banco.EditData("dbo.Parametros", sp);
                 if(LinhasAfetadas > 0)
                 {
+                    DesativarCaixas();
+                    btnEditar.Enabled = true;
                     MessageBox.Show("Alterações Salvas com Sucesso!", "Salvamento Concluído!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
@@ -151,6 +157,20 @@ namespace Teste
 
                 MessageBox.Show(ex.Message, "Falha ao Salvar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        private void DesativarCaixas()
+        {
+            btnSalvar.Enabled = false;
+            txtRazaoSocial.Enabled = false;
+            mskCnpj.Enabled = false;
+            mskInscricao.Enabled = false;
+            mskTelefone.Enabled = false;
+            mskCEP.Enabled = false;
+            txtNumero.Enabled = false;
+            txtEndereco.Enabled = false;
+            txtBairro.Enabled = false;
+            txtCidade.Enabled = false;
+            txtEstado.Enabled = false;
         }
     }
 }

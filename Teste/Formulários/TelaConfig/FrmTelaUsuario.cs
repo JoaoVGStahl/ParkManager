@@ -226,42 +226,7 @@ namespace Teste
         }
 
 
-        private void btnExcluir_Click(object sender, EventArgs e)
-        {
-            int linha = dataGridView1.SelectedRows.Count;
-            int result;
-            if( linha > 0)
-            {
-                string id = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
-                List<SqlParameter> sp = new List<SqlParameter>()
-                {
-
-                    new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 3},
-                    new SqlParameter(){ParameterName = "@Id", SqlDbType = SqlDbType.Int, Value = id }
-                };
-                result = banco.EditData("dbo.Gerencia_Usuario", sp);
-                if(result > 0)
-                {
-                    MessageBox.Show("Usuário Deletado com Sucesso!", "Usuário Deletado!", MessageBoxButtons.OK,MessageBoxIcon.Information);
-                    Globais.RegistrarLog(Globais.Login + "Deletou o Usuario:" + dataGridView1.SelectedRows[0].Cells[1].Value.ToString());
-                    PreencherGrid();
-                    LimparCaixas();
-
-                }
-                else
-                {
-                    MessageBox.Show("Falha ao deletar Usuário!", "Falha!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                
-            }
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            LimparCaixas();
-        }
-
-        private void dataGridView1_SelectionChanged_1(object sender, EventArgs e)
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             DataGridView dgv = (DataGridView)sender;
             int linha = dgv.SelectedRows.Count;
@@ -292,12 +257,47 @@ namespace Teste
             btnSalvar.Enabled = true;
         }
 
-        private void dataGridView1_DataBindingComplete_1(object sender, DataGridViewBindingCompleteEventArgs e)
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            LimparCaixas();
+        }
+
+        private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             DataGridView gridview;
             gridview = (DataGridView)sender;
             gridview.ClearSelection();
             LimparCaixas();
+        }
+
+        private void btnExcluir_Click_1(object sender, EventArgs e)
+        {
+            int linha = dataGridView1.SelectedRows.Count;
+            int result;
+            if (linha > 0)
+            {
+                string id = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
+
+                    new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 3},
+                    new SqlParameter(){ParameterName = "@Id", SqlDbType = SqlDbType.Int, Value = id }
+                };
+                result = banco.EditData("dbo.Gerencia_Usuario", sp);
+                if (result > 0)
+                {
+                    MessageBox.Show("Usuário Deletado com Sucesso!", "Usuário Deletado!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Globais.RegistrarLog(Globais.Login + "Deletou o Usuario:" + dataGridView1.SelectedRows[0].Cells[1].Value.ToString());
+                    PreencherGrid();
+                    LimparCaixas();
+
+                }
+                else
+                {
+                    MessageBox.Show("Falha ao deletar Usuário!", "Falha!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
         }
     }
 }
