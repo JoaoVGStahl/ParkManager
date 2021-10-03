@@ -173,6 +173,7 @@ namespace Teste
                         cmbTipo.Enabled = false;
                         cmbMarca.Enabled = false;
                         btnPesquisaTicket.Enabled = true;
+                        btnIniciar.Enabled = true;
                     }
                     else
                     {
