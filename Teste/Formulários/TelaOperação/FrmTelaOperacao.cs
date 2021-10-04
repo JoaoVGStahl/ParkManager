@@ -45,7 +45,7 @@ namespace Teste
                 CarregarParametros();
 
             }
-           
+
         }
         private void CarregarBarraStatus()
         {
@@ -107,7 +107,7 @@ namespace Teste
                     new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 14}
                 };
                 dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
-                if(dt.Rows.Count > 0)
+                if (dt.Rows.Count > 0)
                 {
                     DateTime aux = Convert.ToDateTime("00:00:00");
                     Globais.ValorHora = Convert.ToDecimal(dt.Rows[0].ItemArray[0]);
@@ -166,7 +166,7 @@ namespace Teste
                 {
                     DataTable dt = new DataTable();
                     dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
-                    if(dt.Rows.Count > 0)
+                    if (dt.Rows.Count > 0)
                     {
                         cmbTipo.Text = dt.Rows[0].ItemArray[1].ToString();
                         cmbMarca.Text = dt.Rows[0].ItemArray[2].ToString();
@@ -198,7 +198,7 @@ namespace Teste
                 mskTelefone.Enabled = false;
 
             }
-            
+
         }
         private void AtivarFuncoes(bool caixa)
         {
@@ -280,7 +280,48 @@ namespace Teste
             else
             {
                 nome = txtNome.Text;
-                telefone = mskTelefone.Text;
+
+                if (mskTelefone.Text.Length == 14)
+                {
+
+                    int DDD = Convert.ToInt32(mskTelefone.Text.Substring(1, 2));
+                    if (DDD >= 11 && DDD <= 99)
+                    {
+                        if (mskTelefone.Text[4] == '9' || mskTelefone.Text[4] == '0')
+                        {
+                            for (int i = 0; i <= (mskTelefone.Text.Length - 1); i++)
+                            {
+                                if (mskTelefone.Text[i] == ' ')
+                                {
+                                    MessageBox.Show("Prrenche todos o números do Telefone!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    mskTelefone.Focus();
+                                    return;
+
+                                }
+                            }
+                            telefone = mskTelefone.Text;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Telefone Inválido", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            mskTelefone.Focus();
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Código de área (DDD) inválido!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        mskTelefone.Focus();
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Preencha o Campo Telefone por completo!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    mskTelefone.Focus();
+                    return;
+
+                }
             }
             try
             {
@@ -521,7 +562,7 @@ namespace Teste
                         LimparCaixas();
                         btnEncerrar.Enabled = true;
                         btnIniciar.Enabled = false;
-                        
+
                     }
                     else
                     {
@@ -547,14 +588,19 @@ namespace Teste
 
         private void txtPlaca_MouseHover(object sender, EventArgs e)
         {
-           
-            
+
+
         }
 
         private void txtPlaca_MouseUp(object sender, MouseEventArgs e)
         {
-            
+
+        }
+
+        private void mskTelefone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
         }
     }
 }
-    
+

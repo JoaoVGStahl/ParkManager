@@ -682,10 +682,11 @@ namespace Teste
             this.mskTelefone.Enabled = false;
             this.mskTelefone.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mskTelefone.Location = new System.Drawing.Point(1137, 41);
-            this.mskTelefone.Mask = "(99)00000-0000";
+            this.mskTelefone.Mask = "(00)00000-0000";
             this.mskTelefone.Name = "mskTelefone";
             this.mskTelefone.Size = new System.Drawing.Size(202, 35);
             this.mskTelefone.TabIndex = 4;
+            this.mskTelefone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mskTelefone_KeyPress);
             // 
             // splitter3
             // 
