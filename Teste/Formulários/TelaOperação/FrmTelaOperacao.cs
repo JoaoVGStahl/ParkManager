@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 namespace Teste
 {
@@ -43,7 +44,6 @@ namespace Teste
                 PopularComboTipo();
                 ContadorTicket();
                 CarregarParametros();
-
             }
 
         }
@@ -232,17 +232,120 @@ namespace Teste
         }
         private void VerificarCaixas()
         {
-            if (txtPlaca.Text != "" && cmbTipo.SelectedIndex >= 0 && cmbTipo.SelectedIndex >= 0)
+            string placa;
+            string nome = txtNome.Text, telefone = mskTelefone.Text;
+            bool PlacaV;
+            //Verifica se as caixas possuem texto
+            if (txtPlaca.Text != "" && cmbTipo.SelectedIndex >= 0 && cmbMarca.SelectedIndex >= 0)
             {
+                //3 Primeiros Caracteres São Letras
+                placa = txtPlaca.Text.Substring(0, 3);
+                if (Regex.IsMatch(placa, "^[A-Z]"))
+                {
+                    // 4º Caractere é 1 Número
+                    placa = txtPlaca.Text.Substring(3,1);
+                    if(Regex.IsMatch(placa, "^[0-9]")){
+                        //5º Caractere uma letra ou número
+                        placa = txtPlaca.Text.Substring(4,1);
+                        if(Regex.IsMatch(placa, "^[A-Z0-9]"))
+                        {
+                            //2 Ultimos Caracteres São Números
+                            placa = txtPlaca.Text.Substring(5,2);
+                            if (Regex.IsMatch(placa, "^[0-9]"))
+                            {
+                                PlacaV = true;
+                                placa = txtPlaca.Text;
+                            }
+                            else
+                            {
+                                PlacaV = false;
+                            }
+                        }
+                        else
+                        {
+                            PlacaV = false;
+                        }
+                    }
+                    else
+                    {
+                        PlacaV = false;
+                    }
+                }
+                else
+                {
+                    PlacaV = false;
+                }
+                if (PlacaV)
+                {
+                    //Verifica se o nome e telefone está vazio.
+                    if (nome == "" && telefone == "(  )     -")
+                    {
+                        nome = "Convidado";
+                        telefone = "(00)00000-0000";
+                        VerificarTicket(placa, nome, telefone);
+                    }
+                    else
+                    {
+                        if (nome == "")
+                        {
+                            MessageBox.Show("Prrenche o Campo Nome!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        else
+                        {
+                            if (mskTelefone.Text.Length == 14)
+                            {
 
-                VerificarTicket(txtPlaca.Text);
+                                int DDD = Convert.ToInt32(mskTelefone.Text.Substring(1, 2));
+                                if (DDD >= 11 && DDD <= 99)
+                                {
+                                    if (mskTelefone.Text[4] == '9' || mskTelefone.Text[4] == '0')
+                                    {
+                                        for (int i = 0; i <= (mskTelefone.Text.Length - 1); i++)
+                                        {
+                                            if (mskTelefone.Text[i] == ' ')
+                                            {
+                                                MessageBox.Show("Prrenche todos o números do Telefone!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                mskTelefone.Focus();
+                                                return;
+                                            }
+                                        }
+                                        telefone = mskTelefone.Text;
+                                        VerificarTicket(placa, nome, telefone);
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Telefone Inválido", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        mskTelefone.Focus();
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Código de área (DDD) inválido!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    mskTelefone.Focus();
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Preencha o Campo Telefone por completo!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                mskTelefone.Focus();
+                            }
+                        }
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Placa Inválida!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtPlaca.Focus();
+                }
             }
             else
             {
                 MessageBox.Show("Há campos que precisam ser preenchidos!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void VerificarTicket(string placa)
+        private void VerificarTicket(string placa, string nome, string telefone)
         {
             DataTable dt = new DataTable();
             try
@@ -256,7 +359,7 @@ namespace Teste
                 }
                 else
                 {
-                    InserirTicket();
+                    InserirTicket(placa, nome, telefone);
                 }
             }
             catch (Exception ex)
@@ -266,65 +369,12 @@ namespace Teste
             }
 
         }
-        private void InserirTicket()
+        private void InserirTicket(string placa, string nome, string telefone)
         {
-            string placa = txtPlaca.Text, tipo = cmbTipo.Text, marca = cmbMarca.Text;
-            string nome, telefone;
-            int idTicket;
-
-            if (txtNome.Text == "")
-            {
-                nome = "Convidado";
-                telefone = "(00)00000-0000";
-            }
-            else
-            {
-                nome = txtNome.Text;
-
-                if (mskTelefone.Text.Length == 14)
-                {
-
-                    int DDD = Convert.ToInt32(mskTelefone.Text.Substring(1, 2));
-                    if (DDD >= 11 && DDD <= 99)
-                    {
-                        if (mskTelefone.Text[4] == '9' || mskTelefone.Text[4] == '0')
-                        {
-                            for (int i = 0; i <= (mskTelefone.Text.Length - 1); i++)
-                            {
-                                if (mskTelefone.Text[i] == ' ')
-                                {
-                                    MessageBox.Show("Prrenche todos o números do Telefone!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    mskTelefone.Focus();
-                                    return;
-
-                                }
-                            }
-                            telefone = mskTelefone.Text;
-                        }
-                        else
-                        {
-                            MessageBox.Show("Telefone Inválido", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            mskTelefone.Focus();
-                            return;
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Código de área (DDD) inválido!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        mskTelefone.Focus();
-                        return;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Preencha o Campo Telefone por completo!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    mskTelefone.Focus();
-                    return;
-
-                }
-            }
+            string marca = cmbMarca.Text, tipo = cmbTipo.Text;
             try
             {
+                int idTicket;
                 DataTable dt = new DataTable();
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
@@ -485,7 +535,7 @@ namespace Teste
         private void txtPlaca_KeyPress(object sender, KeyPressEventArgs e)
         {
             //Caracteres permitidos
-            string caracterespermitidos = "ABCDEFGHIJ0123456789";
+            string caracterespermitidos = "ABCDEFGHIJKLMNOPQRTUVWXYZ0123456789";
             //Apenas Letras E BackSpace nos 3 primeiros digitos
             if (txtPlaca.TextLength < 3)
             {
@@ -502,7 +552,7 @@ namespace Teste
                     e.Handled = true;
                 }
             }
-            // Apenas letras de A-J e 0-9 e BackSpace no 5º Digito
+            // Apenas letras de A-Z e 0-9 e BackSpace no 5º Digito
             if (txtPlaca.TextLength == 4)
             {
                 if (!(caracterespermitidos.Contains(e.KeyChar.ToString().ToUpper())) && !(e.KeyChar == (char)Keys.Back))

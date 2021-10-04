@@ -91,7 +91,7 @@ namespace Teste
         private void txtPlaca_KeyPress(object sender, KeyPressEventArgs e)
         {
             //Caracteres permitidos
-            string caracterespermitidos = "ABCDEFGHIJ0123456789";
+            string caracterespermitidos = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             //Apenas Letras E BackSpace nos 3 primeiros digitos
             if (txtPlaca.TextLength < 3)
             {
