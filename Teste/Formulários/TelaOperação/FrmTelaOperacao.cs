@@ -232,52 +232,14 @@ namespace Teste
         }
         private void VerificarCaixas()
         {
-            string placa;
+            string placa = txtPlaca.Text;
             string nome = txtNome.Text, telefone = mskTelefone.Text;
-            bool PlacaV;
             //Verifica se as caixas possuem texto
-            if (txtPlaca.Text != "" && cmbTipo.SelectedIndex >= 0 && cmbMarca.SelectedIndex >= 0)
+            if (placa != "" && cmbTipo.SelectedIndex >= 0 && cmbMarca.SelectedIndex >= 0)
             {
-                //3 Primeiros Caracteres São Letras
-                placa = txtPlaca.Text.Substring(0, 3);
-                if (Regex.IsMatch(placa, "^[A-Z]"))
+                //Regex para validar a placa do veiculo
+                if (Regex.IsMatch(placa, "^[A-Z]{3}[0-9]{1}[A-Z0-9]{1}[0-9]{2}"))
                 {
-                    // 4º Caractere é 1 Número
-                    placa = txtPlaca.Text.Substring(3,1);
-                    if(Regex.IsMatch(placa, "^[0-9]")){
-                        //5º Caractere uma letra ou número
-                        placa = txtPlaca.Text.Substring(4,1);
-                        if(Regex.IsMatch(placa, "^[A-Z0-9]"))
-                        {
-                            //2 Ultimos Caracteres São Números
-                            placa = txtPlaca.Text.Substring(5,2);
-                            if (Regex.IsMatch(placa, "^[0-9]"))
-                            {
-                                PlacaV = true;
-                                placa = txtPlaca.Text;
-                            }
-                            else
-                            {
-                                PlacaV = false;
-                            }
-                        }
-                        else
-                        {
-                            PlacaV = false;
-                        }
-                    }
-                    else
-                    {
-                        PlacaV = false;
-                    }
-                }
-                else
-                {
-                    PlacaV = false;
-                }
-                if (PlacaV)
-                {
-                    //Verifica se o nome e telefone está vazio.
                     if (nome == "" && telefone == "(  )     -")
                     {
                         nome = "Convidado";
@@ -288,50 +250,23 @@ namespace Teste
                     {
                         if (nome == "")
                         {
-                            MessageBox.Show("Prrenche o Campo Nome!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("O Nome neste caso, precisa estar preenchido!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            txtNome.Focus();
                             return;
                         }
                         else
                         {
-                            if (mskTelefone.Text.Length == 14)
+                            //Regex para validar Telefone.
+                            if (Regex.IsMatch(telefone,"^[(]{1}[11-99]{2}[)]{1}[0|9]{1}[0-9]{4}-[0-9]{4}"))
                             {
-
-                                int DDD = Convert.ToInt32(mskTelefone.Text.Substring(1, 2));
-                                if (DDD >= 11 && DDD <= 99)
-                                {
-                                    if (mskTelefone.Text[4] == '9' || mskTelefone.Text[4] == '0')
-                                    {
-                                        for (int i = 0; i <= (mskTelefone.Text.Length - 1); i++)
-                                        {
-                                            if (mskTelefone.Text[i] == ' ')
-                                            {
-                                                MessageBox.Show("Prrenche todos o números do Telefone!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                                mskTelefone.Focus();
-                                                return;
-                                            }
-                                        }
-                                        telefone = mskTelefone.Text;
-                                        VerificarTicket(placa, nome, telefone);
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("Telefone Inválido", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                        mskTelefone.Focus();
-                                    }
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Código de área (DDD) inválido!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    mskTelefone.Focus();
-                                }
+                                VerificarTicket(placa, nome, telefone);
                             }
                             else
                             {
-                                MessageBox.Show("Preencha o Campo Telefone por completo!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("O Telefone inválido!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 mskTelefone.Focus();
                             }
                         }
-
                     }
                 }
                 else
