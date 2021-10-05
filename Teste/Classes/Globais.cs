@@ -47,6 +47,20 @@ namespace Teste
             get { return valorhora; }
             set { valorhora = value; }
         }
+        private static decimal valorminmo;
+
+        public static decimal ValorMinimo
+        {
+            get { return valorminmo; }
+            set { valorminmo = value; }
+        }
+        private static decimal valorunico;
+
+        public static decimal ValorUnico
+        {
+            get { return valorunico; }
+            set { valorunico = value; }
+        }
         //Obtem o tempo de tolerancia
         private static TimeSpan tolerancia;
 
@@ -62,6 +76,15 @@ namespace Teste
             get { return idticket; }
             set { idticket = value; }
         }
+        private static bool modounico;
+
+        public static bool ModoUnico
+        {
+            get { return modounico; }
+            set { modounico = value; }
+        }
+        
+
         //Função generica para registrar as ações do usuario
         public static void RegistrarLog(string Action)
         {
@@ -74,25 +97,22 @@ namespace Teste
                 string texto = data + " " + hora + " " + "(" + maquina + "):" + Action;
 
                 string arquivo = Properties.Settings.Default["ArquivoAuditoria"].ToString() + @"\" + data.Replace("/", "-") + ".dat";
-
+                bool modo = false;
                 if (File.Exists(arquivo))
                 {
-                    using (StreamWriter tw = new StreamWriter(arquivo, true))
-                    {
-                        byte[] utf8String = Encoding.UTF8.GetBytes(texto);
-                        tw.WriteLine(BitConverter.ToString(utf8String));
-                        tw.Close();
-                    }
+                    modo = true;
                 }
                 else
                 {
-                    using (StreamWriter tw = new StreamWriter(arquivo))
-                    {
-                        byte[] utf8String = Encoding.UTF8.GetBytes(texto);
-                        tw.WriteLine(BitConverter.ToString(utf8String));
-                        tw.Close();
-                    }
+                    modo = false;
                 }
+                using (StreamWriter tw = new StreamWriter(arquivo, modo))
+                {
+                    byte[] utf8String = Encoding.UTF8.GetBytes(texto);
+                    tw.WriteLine(BitConverter.ToString(utf8String));
+                    tw.Close();
+                }
+
             }
             
         }

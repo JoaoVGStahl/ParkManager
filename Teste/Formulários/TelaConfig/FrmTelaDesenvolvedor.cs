@@ -126,7 +126,6 @@ namespace Teste
 
         private void btnSalvar_Click_1(object sender, EventArgs e)
         {
-            
             SalvarSettings();
             btnEditar.Enabled = true;
             btnSalvar.Enabled = false;
@@ -149,6 +148,15 @@ namespace Teste
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtSenha_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSenhaRoot_TextChanged(object sender, EventArgs e)
+        {
         }
     }
 }
