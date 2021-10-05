@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 namespace Teste
 {
@@ -118,7 +119,50 @@ namespace Teste
             }
             else
             {
-                SalvarIdentificacao();
+                if(Regex.IsMatch(mskCnpj.Text, @"^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$"))
+                {
+                    if(Regex.IsMatch(mskInscricao.Text, @"/^\d{3}\.\d{3}\.\d{3}\.\d{3}/"))
+                    {
+                        if(Regex.IsMatch(mskTelefone.Text, @"/^\([11 - 99]{2}\)[0 | 9]\d{4}\-\d{4}/"))
+                        {
+                            if(Regex.IsMatch(mskCEP.Text, @"/\d{5}\-\d{3}/"))
+                            {
+                                if(Regex.IsMatch(txtNumero.Text, @"/\d+/"))
+                                {
+                                    if(Regex.IsMatch(txtCidade.Text, @"/\D+/"))
+                                    {
+                                        SalvarIdentificacao();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Cidade Inválida!", "Falha ao Salvar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                    
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Número Inválido!", "Falha ao Salvar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("CEP Inválido!", "Falha ao Salvar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Telefone Inválido!", "Falha ao Salvar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Inscrição Estadual Inválida!", "Falha ao Salvar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("CNPJ Inválido!", "Falha ao Salvar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
         private void SalvarIdentificacao()
@@ -171,6 +215,16 @@ namespace Teste
             txtBairro.Enabled = false;
             txtCidade.Enabled = false;
             txtEstado.Enabled = false;
+        }
+
+        private void txtRazaoSocial_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtEndereco_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

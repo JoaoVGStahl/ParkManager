@@ -192,6 +192,7 @@ namespace Teste
             this.txtRazaoSocial.Name = "txtRazaoSocial";
             this.txtRazaoSocial.Size = new System.Drawing.Size(688, 38);
             this.txtRazaoSocial.TabIndex = 15;
+            this.txtRazaoSocial.TextChanged += new System.EventHandler(this.txtRazaoSocial_TextChanged);
             // 
             // label8
             // 
@@ -218,6 +219,7 @@ namespace Teste
             this.txtNumero.Enabled = false;
             this.txtNumero.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNumero.Location = new System.Drawing.Point(208, 325);
+            this.txtNumero.MaxLength = 6;
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(169, 38);
             this.txtNumero.TabIndex = 11;
@@ -241,6 +243,7 @@ namespace Teste
             this.txtEndereco.Name = "txtEndereco";
             this.txtEndereco.Size = new System.Drawing.Size(688, 38);
             this.txtEndereco.TabIndex = 9;
+            this.txtEndereco.TextChanged += new System.EventHandler(this.txtEndereco_TextChanged);
             // 
             // label5
             // 
@@ -267,6 +270,7 @@ namespace Teste
             this.txtEstado.Enabled = false;
             this.txtEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEstado.Location = new System.Drawing.Point(442, 554);
+            this.txtEstado.MaxLength = 2;
             this.txtEstado.Name = "txtEstado";
             this.txtEstado.Size = new System.Drawing.Size(108, 38);
             this.txtEstado.TabIndex = 5;
