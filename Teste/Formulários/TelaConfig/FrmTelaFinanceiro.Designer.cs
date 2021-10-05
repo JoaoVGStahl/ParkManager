@@ -211,7 +211,6 @@ namespace Teste
             this.txtPrecoHora.Size = new System.Drawing.Size(232, 44);
             this.txtPrecoHora.TabIndex = 9;
             this.txtPrecoHora.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtPrecoHora.TextChanged += new System.EventHandler(this.txtPrecoHora_TextChanged);
             this.txtPrecoHora.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecoHora_KeyPress);
             this.txtPrecoHora.Leave += new System.EventHandler(this.txtPrecoHora_Leave);
             // 

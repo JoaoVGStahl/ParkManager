@@ -59,11 +59,6 @@ namespace Teste
             }
         }
 
-        private void txtPrecoHora_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void txtPrecoHora_KeyPress(object sender, KeyPressEventArgs e)
         {
             if ((e.KeyChar < '0' || e.KeyChar > '9') &&

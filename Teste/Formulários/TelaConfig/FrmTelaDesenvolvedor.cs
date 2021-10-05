@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 namespace Teste
 {
@@ -21,6 +22,8 @@ namespace Teste
 
         private void CarregarInformacoes()
         {
+            txtSenhaRoot.Text = Properties.Settings.Default["SenhaRoot"].ToString();
+            txtConfirmSenhaRoot.Text = Properties.Settings.Default["SenhaRoot"].ToString();
             string StringBanco = Properties.Settings.Default["StringBanco"].ToString();
             if (StringBanco == "")
             {
@@ -67,20 +70,12 @@ namespace Teste
             string senha = txtSenha.Text;
             string StrConn;
 
-            if (servidor != "" && nomebanco != "" && usuario != "" && senha != "")
-            {
-                StrConn = "Server=" + servidor + ";Database=" + nomebanco + ";User Id=" + usuario + ";Password=" + senha + ";";
-                Properties.Settings.Default["StringBanco"] = StrConn;
-                SalvarBanco(StrConn);
-
-            }
-            else
-            {
-                StrConn = "";
-                Properties.Settings.Default["StringBanco"] = StrConn;
-            }
+            StrConn = "Server=" + servidor + ";Database=" + nomebanco + ";User Id=" + usuario + ";Password=" + senha + ";";
+            Properties.Settings.Default["StringBanco"] = StrConn;
             Properties.Settings.Default["ArquivoAuditoria"] = txtCaminho.Text;
+            Properties.Settings.Default["SenhaRoot"] = txtConfirmSenhaRoot.Text;
             Properties.Settings.Default.Save();
+            SalvarBanco(StrConn);
 
         }
         private void SalvarBanco(string StrConn)
@@ -99,6 +94,16 @@ namespace Teste
                 if (result > 0)
                 {
                     MessageBox.Show("Parâmetros Editado com Sucesso!", "Configurações Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtCaminho.Enabled = false;
+                    txtPortaArduino.Enabled = false;
+                    txtServidor.Enabled = false;
+                    txtNomeBanco.Enabled = false;
+                    txtUsuario.Enabled = false;
+                    txtSenha.Enabled = false;
+                    txtSenhaRoot.Enabled = false;
+                    txtConfirmSenhaRoot.Enabled = false;
+                    btnSalvar.Enabled = false;
+                    btnSelecionar.Enabled = false;
                 }
                 else
                 {
@@ -120,15 +125,56 @@ namespace Teste
             txtNomeBanco.Enabled = true;
             txtUsuario.Enabled = true;
             txtSenha.Enabled = true;
+            txtSenhaRoot.Enabled = true;
+            txtConfirmSenhaRoot.Enabled = true;
             btnSalvar.Enabled = true;
             btnSelecionar.Enabled = true;
         }
 
         private void btnSalvar_Click_1(object sender, EventArgs e)
         {
-            SalvarSettings();
+            ValidarCaixas();
             btnEditar.Enabled = true;
             btnSalvar.Enabled = false;
+        }
+        private void ValidarCaixas()
+        {
+            if (Regex.IsMatch(txtPortaArduino.Text, "^[A-Z]{3}[0-9]{1}"))
+            {
+                if (Regex.IsMatch(txtServidor.Text, @"^[\S]+$"))
+                {
+                    if (Regex.IsMatch(txtNomeBanco.Text, @"^[\S]+$"))
+                    {
+                        if (Regex.IsMatch(txtUsuario.Text, @"^[\S]+$"))
+                        {
+                            if (txtSenhaRoot.Text == txtConfirmSenhaRoot.Text)
+                            {
+                                SalvarSettings();
+                            }
+                            else
+                            {
+                                MessageBox.Show("As senhas root são diferentes!", "Configurações NÃO Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Nome de Usuário Inválido!", "Configurações NÃO Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Banco de Dados Inválido!", "Configurações NÃO Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Servidor Inválido!", "Configurações NÃO Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Porta Arduino Inválida!", "Configurações NÃO Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void FrmTelaDesenvolvedor_Load_1(object sender, EventArgs e)
@@ -141,7 +187,7 @@ namespace Teste
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
                 txtCaminho.Text = folderBrowserDialog1.SelectedPath;
-                
+
             }
         }
 
@@ -157,6 +203,31 @@ namespace Teste
 
         private void txtSenhaRoot_TextChanged(object sender, EventArgs e)
         {
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtServidor_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCaminho_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNomeBanco_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
