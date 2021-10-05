@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace Teste
 {
@@ -29,6 +30,7 @@ namespace Teste
             cmbStatus.SelectedIndex = 1;
             PreencherGrid();
             dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
+            dtpEntrada.Value = DateTime.Today.AddDays(-7);
 
         }
         private void PreencherGrid()
@@ -51,7 +53,7 @@ namespace Teste
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.Message, "Falha ao carregar as informações!",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, "Falha ao carregar as informações!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
 
@@ -61,7 +63,7 @@ namespace Teste
             Globais.IdTicket = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
             FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket();
             Frm.ShowDialog();
-            
+
         }
 
         private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -121,12 +123,20 @@ namespace Teste
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if(cmbStatus.SelectedIndex == 1)
+            {
+                dtpSaida.Enabled = false;
+            }
+            else
+            {
+                dtpSaida.Enabled = true;
+                btnEncerrar.Enabled = false;
+            }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
         }
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
@@ -170,13 +180,52 @@ namespace Teste
         private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             dataGridView1.ClearSelection();
+            btnEncerrar.Enabled = false;
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            if (cmbStatus.SelectedIndex == 1){
+            if (cmbStatus.SelectedIndex == 1)
+            {
                 btnEncerrar.Enabled = true;
             }
+            else
+            {
+                btnEncerrar.Enabled = false;
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            string DataEntrada = dtpEntrada.Value.ToString("dd/MM/yyyy");
+            string DataSaida = dtpSaida.Value.ToString("dd/MM/yyyy");
+            int idticket =0;
+            if (txtIdTicket.Text != "")
+            {
+                idticket = Convert.ToInt32(txtIdTicket.Text);
+            }
+
+            try
+            {
+                List<SqlParameter> sp = new List<SqlParameter>()
+            {
+                new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 18},
+                new SqlParameter(){ParameterName="@idTicket", SqlDbType = SqlDbType.Int, Value = idticket},
+                new SqlParameter(){ParameterName="@Placa", SqlDbType = SqlDbType.VarChar, Value = txtPlaca.Text},
+                new SqlParameter(){ParameterName="@DataEntrada", SqlDbType = SqlDbType.DateTime, Value = DataEntrada},
+                new SqlParameter(){ParameterName="@DataSaida", SqlDbType = SqlDbType.DateTime, Value = DataSaida},
+                new SqlParameter(){ParameterName = "@Status", SqlDbType = SqlDbType.Int, Value = cmbStatus.SelectedIndex}
+            };
+                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Erro!");
+            }
+
         }
     }
 }

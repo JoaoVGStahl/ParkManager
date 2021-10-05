@@ -21,3 +21,28 @@ EXEC sp_addrolemember 'db_securityadmin', 'SEU LOGIN';
 
 -- Permissão Public (Nenhuma)
 EXEC sp_addrolemember 'db_public', 'SEU LOGIN';
+
+USE db_estacionamento;   
+GRANT EXECUTE ON OBJECT::dbo.Parametros 
+    TO ParkManagerSystem;  
+GO  
+
+USE db_estacionamento;   
+GRANT EXECUTE ON OBJECT::dbo.Funcoes_Pesquisa 
+    TO ParkManagerSystem;  
+GO  
+
+USE db_estacionamento;   
+GRANT EXECUTE ON OBJECT::dbo.Gerencia_Usuario
+    TO ParkManagerSystem; 
+GO  
+
+USE db_estacionamento;   
+GRANT EXECUTE ON OBJECT::dbo.Gerencia_Veiculo 
+    TO ParkManagerSystem;  
+GO  
+
+USE db_estacionamento;   
+GRANT EXECUTE ON OBJECT::dbo.InsertTicket 
+    TO ParkManagerSystem;  
+GO  

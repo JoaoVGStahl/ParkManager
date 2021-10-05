@@ -81,6 +81,7 @@ namespace Teste
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             this.panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -96,6 +97,7 @@ namespace Teste
             // cmbTipo
             // 
             this.cmbTipo.BackColor = System.Drawing.Color.White;
+            this.cmbTipo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipo.Enabled = false;
             this.cmbTipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -103,6 +105,7 @@ namespace Teste
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(189, 37);
             this.cmbTipo.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.cmbTipo, "Selecione um tipo de veiculo!");
             // 
             // txtPlaca
             // 
@@ -114,13 +117,17 @@ namespace Teste
             this.txtPlaca.Name = "txtPlaca";
             this.txtPlaca.Size = new System.Drawing.Size(183, 35);
             this.txtPlaca.TabIndex = 0;
+            this.toolTip1.SetToolTip(this.txtPlaca, "Insira uma Placa!");
             this.txtPlaca.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.txtPlaca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPlaca_KeyPress);
+            this.txtPlaca.MouseHover += new System.EventHandler(this.txtPlaca_MouseHover);
+            this.txtPlaca.MouseUp += new System.Windows.Forms.MouseEventHandler(this.txtPlaca_MouseUp);
             // 
             // cmbMarca
             // 
             this.cmbMarca.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.cmbMarca.BackColor = System.Drawing.Color.White;
+            this.cmbMarca.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.cmbMarca.Enabled = false;
             this.cmbMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbMarca.FormattingEnabled = true;
@@ -130,6 +137,8 @@ namespace Teste
             this.cmbMarca.Name = "cmbMarca";
             this.cmbMarca.Size = new System.Drawing.Size(240, 37);
             this.cmbMarca.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.cmbMarca, "Selecione um Marca do veiculo!");
+            this.cmbMarca.UseWaitCursor = true;
             this.cmbMarca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbMarca_KeyPress);
             // 
             // txtNome
@@ -526,6 +535,7 @@ namespace Teste
             this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button8.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button6
             // 
@@ -673,10 +683,11 @@ namespace Teste
             this.mskTelefone.Enabled = false;
             this.mskTelefone.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mskTelefone.Location = new System.Drawing.Point(1137, 41);
-            this.mskTelefone.Mask = "(99)00000-0000";
+            this.mskTelefone.Mask = "(00)00000-0000";
             this.mskTelefone.Name = "mskTelefone";
             this.mskTelefone.Size = new System.Drawing.Size(202, 35);
             this.mskTelefone.TabIndex = 4;
+            this.mskTelefone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mskTelefone_KeyPress);
             // 
             // splitter3
             // 
@@ -708,6 +719,13 @@ namespace Teste
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(1346, 471);
             this.panel10.TabIndex = 36;
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.IsBalloon = true;
+            this.toolTip1.ShowAlways = true;
+            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTip1.ToolTipTitle = "Dica:";
             // 
             // FrmTelaOperacao
             // 
@@ -804,6 +822,7 @@ namespace Teste
         private System.Windows.Forms.Button btnPesquisaTicket;
         private System.Windows.Forms.Button btnCadastros;
         private System.Windows.Forms.Label lblPlacal1;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 
