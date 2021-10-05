@@ -337,9 +337,9 @@ namespace Teste
             this.panel3.Controls.Add(this.btnEditar);
             this.panel3.Controls.Add(this.btnSalvar);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 501);
+            this.panel3.Location = new System.Drawing.Point(0, 516);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(814, 100);
+            this.panel3.Size = new System.Drawing.Size(814, 85);
             this.panel3.TabIndex = 7;
             // 
             // btnEditar
@@ -387,7 +387,7 @@ namespace Teste
             // 
             this.panel5.BackColor = System.Drawing.Color.DarkBlue;
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(0, 491);
+            this.panel5.Location = new System.Drawing.Point(0, 506);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(814, 10);
             this.panel5.TabIndex = 8;
