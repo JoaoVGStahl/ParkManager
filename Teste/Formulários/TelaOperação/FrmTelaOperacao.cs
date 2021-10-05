@@ -549,6 +549,12 @@ namespace Teste
                 MessageBox.Show("Preencha o campo 'Placa'!", "Ticket não existe!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            FrmTelaRelatorios Frm = new FrmTelaRelatorios();
+            AbrirForm(2, Frm);
+        }
     }
 }
     
