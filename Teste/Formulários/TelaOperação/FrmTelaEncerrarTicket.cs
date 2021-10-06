@@ -127,8 +127,7 @@ namespace Teste
             else
             {
                 Total += ValorUnico;
-            }
-            
+            } 
             txtTotal.Text = Total.ToString("N2");
             PreencherLabelTempoPermanencia(ts);
 
@@ -205,7 +204,6 @@ namespace Teste
             {
                 txtRecebido.Focus();
                 txtRecebido.ReadOnly = false;
-
             }
             else
             {

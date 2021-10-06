@@ -98,9 +98,9 @@ namespace Teste.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public string ModoUnico {
+        public bool ModoUnico {
             get {
-                return ((string)(this["ModoUnico"]));
+                return ((bool)(this["ModoUnico"]));
             }
             set {
                 this["ModoUnico"] = value;

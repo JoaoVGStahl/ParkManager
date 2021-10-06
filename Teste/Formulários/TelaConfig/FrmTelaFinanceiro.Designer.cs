@@ -54,6 +54,7 @@ namespace Teste
             this.panel6 = new System.Windows.Forms.Panel();
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel6.SuspendLayout();
             this.SuspendLayout();
@@ -117,6 +118,7 @@ namespace Teste
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSalvar.UseVisualStyleBackColor = false;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // splitter1
             // 
@@ -174,6 +176,7 @@ namespace Teste
             this.ckValorUnico.BackColor = System.Drawing.Color.DarkGray;
             this.ckValorUnico.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ckValorUnico.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ckValorUnico.Enabled = false;
             this.ckValorUnico.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.ckValorUnico.FlatAppearance.BorderSize = 2;
             this.ckValorUnico.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkBlue;
@@ -182,7 +185,7 @@ namespace Teste
             this.ckValorUnico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ckValorUnico.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ckValorUnico.ForeColor = System.Drawing.Color.Black;
-            this.ckValorUnico.Location = new System.Drawing.Point(276, 416);
+            this.ckValorUnico.Location = new System.Drawing.Point(328, 415);
             this.ckValorUnico.Name = "ckValorUnico";
             this.ckValorUnico.Size = new System.Drawing.Size(135, 35);
             this.ckValorUnico.TabIndex = 7;
@@ -205,6 +208,7 @@ namespace Teste
             // 
             // txtPrecoHora
             // 
+            this.txtPrecoHora.Enabled = false;
             this.txtPrecoHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPrecoHora.Location = new System.Drawing.Point(27, 190);
             this.txtPrecoHora.Name = "txtPrecoHora";
@@ -216,6 +220,7 @@ namespace Teste
             // 
             // txtCobrancaMinima
             // 
+            this.txtCobrancaMinima.Enabled = false;
             this.txtCobrancaMinima.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCobrancaMinima.Location = new System.Drawing.Point(27, 306);
             this.txtCobrancaMinima.Name = "txtCobrancaMinima";
@@ -268,6 +273,7 @@ namespace Teste
             // 
             // txtValorUnico
             // 
+            this.txtValorUnico.Enabled = false;
             this.txtValorUnico.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtValorUnico.Location = new System.Drawing.Point(27, 411);
             this.txtValorUnico.Name = "txtValorUnico";
@@ -342,12 +348,23 @@ namespace Teste
             this.panel5.Size = new System.Drawing.Size(10, 405);
             this.panel5.TabIndex = 22;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(324, 383);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(143, 29);
+            this.label5.TabIndex = 20;
+            this.label5.Text = "Modo Unico";
+            // 
             // FrmTelaFinanceiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(814, 601);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.splitter3);
             this.Controls.Add(this.panel6);
@@ -403,5 +420,6 @@ namespace Teste
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Splitter splitter3;
         private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label label5;
     }
 }

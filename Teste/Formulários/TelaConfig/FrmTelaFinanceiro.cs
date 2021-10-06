@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 namespace Teste
 {
@@ -52,10 +53,10 @@ namespace Teste
                     lblPrecoUnico.Text = PrecoUnico.ToString("C");
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                MessageBox.Show(ex.Message, "Falha carregar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -183,20 +184,13 @@ namespace Teste
             ckValorUnico.FlatAppearance.MouseOverBackColor = Color.DarkBlue;
             ckValorUnico.BackColor = Color.DarkBlue;
             ckValorUnico.Text = "Ativado";
-            Properties.Settings.Default["ModoUnico"] = true;
-            Globais.ModoUnico = true;
-            Properties.Settings.Default.Save();
         }
         private void DesativarModoUnico()
         {
             ckValorUnico.ForeColor = Color.Black;
             ckValorUnico.Text = "Desativado";
             ckValorUnico.FlatAppearance.MouseOverBackColor = Color.Silver;
-            ckValorUnico.BackColor = Color.DarkGray;
-            Properties.Settings.Default["ModoUnico"] = false;
-            Globais.ModoUnico = false;
-            Properties.Settings.Default.Save();
-            
+            ckValorUnico.BackColor = Color.DarkGray;   
         }
 
         private void FrmTelaFinanceiro_FormClosing(object sender, FormClosingEventArgs e)
@@ -206,7 +200,122 @@ namespace Teste
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
- 
+            txtPrecoHora.Enabled = true;
+            txtCobrancaMinima.Enabled = true;
+            txtValorUnico.Enabled = true;
+            btnSalvar.Enabled = true;
+            btnEditar.Enabled = true;
+            ckValorUnico.Enabled = true;
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            VerificarCaixas();
+        }
+        private void VerificarCaixas()
+        {
+            decimal PHora =0, CMinima =0, VUnico =0;
+            if(txtPrecoHora.Text != "")
+            {
+                if(Regex.IsMatch(txtPrecoHora.Text, @"^\d+,\d{2}"))
+                {
+                    PHora = Convert.ToDecimal(txtPrecoHora.Text);
+                }
+                else
+                {
+                    MessageBox.Show("Preço Hora Inválido!", "Falha carregar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            if(txtCobrancaMinima.Text != "")
+            {
+                if(Regex.IsMatch(txtCobrancaMinima.Text, @"^\d+,\d{2}"))
+                {
+                    CMinima = Convert.ToDecimal(txtCobrancaMinima.Text);
+                }
+                else
+                {
+                    MessageBox.Show("Cobrança Minima Inválido!", "Falha carregar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            if(txtValorUnico.Text != "")
+            {
+                if (Regex.IsMatch(txtValorUnico.Text, @"^\d+,\d{2}"))
+                {
+                    VUnico = Convert.ToDecimal(txtValorUnico.Text);
+                }
+                else
+                {
+                    MessageBox.Show("Valor Unico Inválido!", "Falha carregar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            if(PHora != 0 || CMinima != 0 || VUnico != 0)
+            {
+                SalvarValores(PHora, CMinima, VUnico);
+            }
+            else
+            {
+                MessageBox.Show("Não Há alterações a serem salvas!", "Falha carregar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void SalvarValores(decimal PHora, decimal CMinimo, decimal VUnico)
+        {
+            try
+            {
+                int LinhasAfetadas;
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
+                    new SqlParameter(){ParameterName="@Valor_Hora", SqlDbType = SqlDbType.Decimal, Value = PHora},
+                    new SqlParameter(){ParameterName="@Valor_Minimo", SqlDbType = SqlDbType.Decimal, Value = CMinimo},
+                    new SqlParameter(){ParameterName="@Valor_Unico", SqlDbType = SqlDbType.Decimal, Value = VUnico}
+                };
+                LinhasAfetadas = banco.EditData("dbo.Salvar_Valor", sp);
+                if(LinhasAfetadas > 0)
+                {
+                    try
+                    {
+                        AttModoUnico();
+                        Globais.RegistrarLog(Globais.Login + " Alterou os preços e/ou Modo Unico.");
+                        MessageBox.Show("Alterações Salvas com sucesso!", "Salvamento concluido!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CarregarValores();
+                        txtPrecoHora.Enabled = false;
+                        txtCobrancaMinima.Enabled = false;
+                        txtValorUnico.Enabled = false;
+                        ckValorUnico.Enabled = false;
+                        btnSalvar.Enabled = false;
+                        btnEditar.Enabled = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Falha ao Salvar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Alterações não Salvas!", "Falha ao Salvar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Falha ao Salvar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void AttModoUnico()
+        {
+            if(ckValorUnico.Text == "Ativado")
+            {
+                Properties.Settings.Default["ModoUnico"] = true;
+                Globais.ModoUnico = true;
+                Properties.Settings.Default.Save();
+            }else if (ckValorUnico.Text == "Desativado")
+            {
+                Properties.Settings.Default["ModoUnico"] = false;
+                Globais.ModoUnico = false;
+                Properties.Settings.Default.Save();
+            }
         }
     }
 }
