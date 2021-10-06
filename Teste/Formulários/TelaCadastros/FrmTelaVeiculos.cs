@@ -313,6 +313,7 @@ namespace Teste
                         cmbStatus.SelectedIndex = Convert.ToInt32(dt.Rows[0].ItemArray[4].ToString());
                         cmbStatus.Enabled = true;
                         cmbTipo.SelectedIndexChanged += cmbTipo_SelectedIndexChanged;
+                        ContadorTicket();
                     }
                     else
                     {
@@ -325,6 +326,34 @@ namespace Teste
                     MessageBox.Show(ex.Message, "Falha!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
+            }
+        }
+        private void ContadorTicket()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
+                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 5},
+                    new SqlParameter(){ParameterName ="@Placa", SqlDbType = SqlDbType.VarChar, Value = txtPlaca.Text}
+                };
+                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                if (dt.Rows.Count > 0)
+                {
+                    lblTicket.Text = dt.Rows[0].ItemArray[0].ToString();
+                    lblTicket.Visible = true;
+                    lblCaptionTicket.Visible = true;
+                }
+                else
+                {
+                    MessageBox.Show("Falha ao carregar quantidade de tickets para este veiculo!", "Falha ao carregas Tickets", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Falha ao carregas Tickets!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -378,7 +407,19 @@ namespace Teste
             btnExcluir.Enabled = false;
             btnSalvar.Enabled = false;
             btnNovo.Enabled = true;
+            lblCaptionTicket.Visible = false;
+            lblTicket.Visible = false;
             dataGridView1.SelectionChanged -= dataGridView1_SelectionChanged;
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
 
         }
     }

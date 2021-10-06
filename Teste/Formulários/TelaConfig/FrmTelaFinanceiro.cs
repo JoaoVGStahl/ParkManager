@@ -255,10 +255,16 @@ namespace Teste
             {
                 SalvarValores(PHora, CMinima, VUnico);
             }
+            else if(ckValorUnico.Checked != Convert.ToBoolean(Properties.Settings.Default["ModoUnico"]))
+            {
+                AttModoUnico();
+                MessageBox.Show("Modo Unico" + ckValorUnico.Text + "!", "Alteração!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             else
             {
                 MessageBox.Show("Não Há alterações a serem salvas!", "Falha carregar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            DesativarCaixas();
         }
         private void SalvarValores(decimal PHora, decimal CMinimo, decimal VUnico)
         {
@@ -277,15 +283,10 @@ namespace Teste
                     try
                     {
                         AttModoUnico();
-                        Globais.RegistrarLog(Globais.Login + " Alterou os preços e/ou Modo Unico.");
+                        Globais.RegistrarLog(Globais.Login + " Alterou os Valores.");
                         MessageBox.Show("Alterações Salvas com sucesso!", "Salvamento concluido!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         CarregarValores();
-                        txtPrecoHora.Enabled = false;
-                        txtCobrancaMinima.Enabled = false;
-                        txtValorUnico.Enabled = false;
-                        ckValorUnico.Enabled = false;
-                        btnSalvar.Enabled = false;
-                        btnEditar.Enabled = true;
+                        DesativarCaixas();
                     }
                     catch (Exception ex)
                     {
@@ -305,17 +306,27 @@ namespace Teste
         }
         private void AttModoUnico()
         {
-            if(ckValorUnico.Text == "Ativado")
+            if(ckValorUnico.Checked)
             {
                 Properties.Settings.Default["ModoUnico"] = true;
                 Globais.ModoUnico = true;
                 Properties.Settings.Default.Save();
-            }else if (ckValorUnico.Text == "Desativado")
+            }else if (!ckValorUnico.Checked)
             {
                 Properties.Settings.Default["ModoUnico"] = false;
                 Globais.ModoUnico = false;
                 Properties.Settings.Default.Save();
             }
+            Globais.RegistrarLog(Globais.Login + " Atualizou Modo Unico para " + ckValorUnico.Text + ".");
+        }
+        private void DesativarCaixas()
+        {
+            txtPrecoHora.Enabled = false;
+            txtCobrancaMinima.Enabled = false;
+            txtValorUnico.Enabled = false;
+            ckValorUnico.Enabled = false;
+            btnSalvar.Enabled = false;
+            btnEditar.Enabled = true;
         }
     }
 }

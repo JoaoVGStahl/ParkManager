@@ -41,7 +41,7 @@ namespace Teste
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -206,18 +206,18 @@ namespace Teste
             this.label5.TabIndex = 21;
             this.label5.Text = "ID";
             // 
-            // comboBox1
+            // cmbStatus
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbStatus.FormattingEnabled = true;
+            this.cmbStatus.Items.AddRange(new object[] {
             "Inativo",
             "Ativo"});
-            this.comboBox1.Location = new System.Drawing.Point(653, 110);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(163, 37);
-            this.comboBox1.TabIndex = 18;
+            this.cmbStatus.Location = new System.Drawing.Point(653, 110);
+            this.cmbStatus.Name = "cmbStatus";
+            this.cmbStatus.Size = new System.Drawing.Size(163, 37);
+            this.cmbStatus.TabIndex = 18;
             // 
             // label4
             // 
@@ -251,6 +251,7 @@ namespace Teste
             // 
             // textBox2
             // 
+            this.textBox2.Enabled = false;
             this.textBox2.Font = new System.Drawing.Font("Arial Narrow", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.Location = new System.Drawing.Point(98, 32);
             this.textBox2.MaxLength = 32;
@@ -260,6 +261,7 @@ namespace Teste
             // 
             // maskedTextBox1
             // 
+            this.maskedTextBox1.Enabled = false;
             this.maskedTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.maskedTextBox1.Location = new System.Drawing.Point(100, 110);
             this.maskedTextBox1.Mask = "(99) 00000-0000";
@@ -285,7 +287,7 @@ namespace Teste
             this.panel5.Controls.Add(this.textBox2);
             this.panel5.Controls.Add(this.label2);
             this.panel5.Controls.Add(this.label4);
-            this.panel5.Controls.Add(this.comboBox1);
+            this.panel5.Controls.Add(this.cmbStatus);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(0, 98);
             this.panel5.Name = "panel5";
@@ -339,6 +341,7 @@ namespace Teste
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmTelaCliente";
             this.Text = "FrmTelaCliente";
+            this.Load += new System.EventHandler(this.FrmTelaCliente_Load);
             this.panel1.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
@@ -360,7 +363,7 @@ namespace Teste
         private System.Windows.Forms.Button btnNovo;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;

@@ -48,7 +48,7 @@ namespace Teste
             this.dtpEntrada = new System.Windows.Forms.DateTimePicker();
             this.dtpSaida = new System.Windows.Forms.DateTimePicker();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnPesquisa = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -276,28 +276,28 @@ namespace Teste
             this.cmbStatus.TabIndex = 23;
             this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // button4
+            // btnPesquisa
             // 
-            this.button4.BackColor = System.Drawing.Color.Transparent;
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
-            this.button4.Location = new System.Drawing.Point(1086, 12);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(218, 90);
-            this.button4.TabIndex = 24;
-            this.button4.Text = "Pesquisar Ticket(F6)";
-            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btnPesquisa.BackColor = System.Drawing.Color.Transparent;
+            this.btnPesquisa.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPesquisa.FlatAppearance.BorderSize = 0;
+            this.btnPesquisa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPesquisa.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPesquisa.Image = ((System.Drawing.Image)(resources.GetObject("btnPesquisa.Image")));
+            this.btnPesquisa.Location = new System.Drawing.Point(1086, 12);
+            this.btnPesquisa.Name = "btnPesquisa";
+            this.btnPesquisa.Size = new System.Drawing.Size(218, 90);
+            this.btnPesquisa.TabIndex = 24;
+            this.btnPesquisa.Text = "Pesquisar Ticket(F6)";
+            this.btnPesquisa.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnPesquisa.UseVisualStyleBackColor = false;
+            this.btnPesquisa.Click += new System.EventHandler(this.button4_Click);
             // 
             // panel4
             // 
             this.panel4.Controls.Add(this.label3);
             this.panel4.Controls.Add(this.label1);
-            this.panel4.Controls.Add(this.button4);
+            this.panel4.Controls.Add(this.btnPesquisa);
             this.panel4.Controls.Add(this.label2);
             this.panel4.Controls.Add(this.cmbStatus);
             this.panel4.Controls.Add(this.label5);
@@ -414,7 +414,7 @@ namespace Teste
         private System.Windows.Forms.DateTimePicker dtpEntrada;
         private System.Windows.Forms.DateTimePicker dtpSaida;
         private System.Windows.Forms.ComboBox cmbStatus;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnPesquisa;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.DataGridView dataGridView1;

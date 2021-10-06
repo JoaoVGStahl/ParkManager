@@ -147,7 +147,7 @@ namespace Teste
             this.txtNome.Enabled = false;
             this.txtNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNome.Location = new System.Drawing.Point(732, 41);
-            this.txtNome.MaxLength = 50;
+            this.txtNome.MaxLength = 45;
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(397, 35);
             this.txtNome.TabIndex = 3;
@@ -322,12 +322,12 @@ namespace Teste
             // txtNomeP
             // 
             this.txtNomeP.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtNomeP.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNomeP.Location = new System.Drawing.Point(25, 182);
-            this.txtNomeP.MaxLength = 32;
+            this.txtNomeP.Font = new System.Drawing.Font("Arial Narrow", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNomeP.Location = new System.Drawing.Point(3, 182);
+            this.txtNomeP.MaxLength = 45;
             this.txtNomeP.Name = "txtNomeP";
             this.txtNomeP.ReadOnly = true;
-            this.txtNomeP.Size = new System.Drawing.Size(617, 35);
+            this.txtNomeP.Size = new System.Drawing.Size(673, 34);
             this.txtNomeP.TabIndex = 21;
             this.txtNomeP.Text = "Nome";
             this.txtNomeP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -335,11 +335,11 @@ namespace Teste
             // txtTelefoneP
             // 
             this.txtTelefoneP.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtTelefoneP.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTelefoneP.Location = new System.Drawing.Point(178, 228);
+            this.txtTelefoneP.Font = new System.Drawing.Font("Arial Narrow", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTelefoneP.Location = new System.Drawing.Point(184, 228);
             this.txtTelefoneP.Name = "txtTelefoneP";
             this.txtTelefoneP.ReadOnly = true;
-            this.txtTelefoneP.Size = new System.Drawing.Size(311, 35);
+            this.txtTelefoneP.Size = new System.Drawing.Size(311, 34);
             this.txtTelefoneP.TabIndex = 21;
             this.txtTelefoneP.Text = "Telefone";
             this.txtTelefoneP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -347,7 +347,7 @@ namespace Teste
             // lblHrEntrada
             // 
             this.lblHrEntrada.Font = new System.Drawing.Font("Microsoft Sans Serif", 27F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHrEntrada.Location = new System.Drawing.Point(110, 315);
+            this.lblHrEntrada.Location = new System.Drawing.Point(116, 315);
             this.lblHrEntrada.Name = "lblHrEntrada";
             this.lblHrEntrada.Size = new System.Drawing.Size(447, 82);
             this.lblHrEntrada.TabIndex = 24;
@@ -358,7 +358,7 @@ namespace Teste
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(196, 7);
+            this.label10.Location = new System.Drawing.Point(202, 7);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(275, 31);
             this.label10.TabIndex = 25;
@@ -375,9 +375,9 @@ namespace Teste
             this.panel2.Controls.Add(this.txtTelefoneP);
             this.panel2.Controls.Add(this.txtNomeP);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(684, 0);
+            this.panel2.Location = new System.Drawing.Point(667, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(662, 471);
+            this.panel2.Size = new System.Drawing.Size(679, 471);
             this.panel2.TabIndex = 18;
             // 
             // lblHoraEntradaVisual
@@ -385,7 +385,7 @@ namespace Teste
             this.lblHoraEntradaVisual.AutoSize = true;
             this.lblHoraEntradaVisual.BackColor = System.Drawing.Color.Transparent;
             this.lblHoraEntradaVisual.Font = new System.Drawing.Font("Microsoft Sans Serif", 27F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHoraEntradaVisual.Location = new System.Drawing.Point(170, 299);
+            this.lblHoraEntradaVisual.Location = new System.Drawing.Point(176, 299);
             this.lblHoraEntradaVisual.Name = "lblHoraEntradaVisual";
             this.lblHoraEntradaVisual.Size = new System.Drawing.Size(327, 40);
             this.lblHoraEntradaVisual.TabIndex = 29;
@@ -416,7 +416,7 @@ namespace Teste
             this.panel4.Controls.Add(this.lblPlaca);
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Controls.Add(this.lblPlacal1);
-            this.panel4.Location = new System.Drawing.Point(98, 41);
+            this.panel4.Location = new System.Drawing.Point(104, 41);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(471, 131);
             this.panel4.TabIndex = 27;
