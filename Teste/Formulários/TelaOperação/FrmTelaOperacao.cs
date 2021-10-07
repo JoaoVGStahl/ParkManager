@@ -257,15 +257,24 @@ namespace Teste
                         else
                         {
                             //Regex para validar Telefone.
-                            if (Regex.IsMatch(telefone,"^[(]{1}[11-99]{2}[)]{1}[0|9]{1}[0-9]{4}-[0-9]{4}"))
+                            if(Regex.IsMatch(nome, @"^[A-Za-záàâãéèêíïóôõöúçÁÀÂÃÉÈÍÏÓÔÕÖÚÇ ]+$"))
                             {
-                                VerificarTicket(placa, nome, telefone);
+                                if (Regex.IsMatch(telefone, "^[(]{1}[11-99]{2}[)]{1}[0|9]{1}[0-9]{4}-[0-9]{4}"))
+                                {
+                                    VerificarTicket(placa, nome, telefone);
+                                }
+                                else
+                                {
+                                    MessageBox.Show("O Telefone inválido!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    mskTelefone.Focus();
+                                }
                             }
                             else
                             {
-                                MessageBox.Show("O Telefone inválido!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                mskTelefone.Focus();
+                                MessageBox.Show("Nome inválido!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                txtNome.Focus();
                             }
+                            
                         }
                     }
                 }

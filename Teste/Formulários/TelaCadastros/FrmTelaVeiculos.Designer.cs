@@ -41,6 +41,8 @@ namespace Teste
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.lblTicket = new System.Windows.Forms.Label();
+            this.lblCaptionTicket = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbMarca = new System.Windows.Forms.ComboBox();
@@ -52,8 +54,6 @@ namespace Teste
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblCaptionTicket = new System.Windows.Forms.Label();
-            this.lblTicket = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -224,6 +224,30 @@ namespace Teste
             this.panel5.Size = new System.Drawing.Size(830, 444);
             this.panel5.TabIndex = 6;
             // 
+            // lblTicket
+            // 
+            this.lblTicket.AutoSize = true;
+            this.lblTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTicket.Location = new System.Drawing.Point(109, 378);
+            this.lblTicket.Name = "lblTicket";
+            this.lblTicket.Size = new System.Drawing.Size(68, 73);
+            this.lblTicket.TabIndex = 14;
+            this.lblTicket.Text = "0";
+            this.lblTicket.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTicket.Visible = false;
+            this.lblTicket.Click += new System.EventHandler(this.label7_Click);
+            // 
+            // lblCaptionTicket
+            // 
+            this.lblCaptionTicket.AutoSize = true;
+            this.lblCaptionTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCaptionTicket.Location = new System.Drawing.Point(12, 354);
+            this.lblCaptionTicket.Name = "lblCaptionTicket";
+            this.lblCaptionTicket.Size = new System.Drawing.Size(261, 24);
+            this.lblCaptionTicket.TabIndex = 13;
+            this.lblCaptionTicket.Text = "Ticket\'s abertos deste veiculo:";
+            this.lblCaptionTicket.Visible = false;
+            // 
             // txtId
             // 
             this.txtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -300,8 +324,8 @@ namespace Teste
             this.cmbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbStatus.FormattingEnabled = true;
             this.cmbStatus.Items.AddRange(new object[] {
-            "0 - Inativo",
-            "1 - Ativo"});
+            "Inativo",
+            "Ativo"});
             this.cmbStatus.Location = new System.Drawing.Point(23, 305);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(163, 37);
@@ -359,30 +383,6 @@ namespace Teste
             this.label1.Size = new System.Drawing.Size(73, 29);
             this.label1.TabIndex = 0;
             this.label1.Text = "Placa";
-            // 
-            // lblCaptionTicket
-            // 
-            this.lblCaptionTicket.AutoSize = true;
-            this.lblCaptionTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCaptionTicket.Location = new System.Drawing.Point(12, 354);
-            this.lblCaptionTicket.Name = "lblCaptionTicket";
-            this.lblCaptionTicket.Size = new System.Drawing.Size(261, 24);
-            this.lblCaptionTicket.TabIndex = 13;
-            this.lblCaptionTicket.Text = "Ticket\'s abertos deste veiculo:";
-            this.lblCaptionTicket.Visible = false;
-            // 
-            // lblTicket
-            // 
-            this.lblTicket.AutoSize = true;
-            this.lblTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTicket.Location = new System.Drawing.Point(109, 378);
-            this.lblTicket.Name = "lblTicket";
-            this.lblTicket.Size = new System.Drawing.Size(68, 73);
-            this.lblTicket.TabIndex = 14;
-            this.lblTicket.Text = "0";
-            this.lblTicket.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblTicket.Visible = false;
-            this.lblTicket.Click += new System.EventHandler(this.label7_Click);
             // 
             // FrmTelaVeiculos
             // 
