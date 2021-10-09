@@ -18,6 +18,7 @@ namespace Teste
         public FrmTelaOperacao()
         {
             InitializeComponent();
+            CarregarCores();
         }
         private void AbrirForm(int nivel, Form F)
         {
@@ -39,12 +40,18 @@ namespace Teste
         {
             if (!(Globais.Login == Properties.Settings.Default.UserRoot))
             {
+                
                 txtPlaca.Select();
                 CarregarBarraStatus();
                 PopularComboTipo();
                 ContadorTicket();
                 CarregarParametros();
+                
             }
+
+        }
+        private void CarregarCores()
+        {
 
         }
         private void CarregarBarraStatus()
@@ -78,7 +85,7 @@ namespace Teste
             }
 
         }
-        private void ContadorTicket()
+        public void ContadorTicket()
         {
             DataTable dt = new DataTable();
             try
@@ -138,13 +145,14 @@ namespace Teste
 
         private void button6_Click(object sender, EventArgs e)
         {
-            FrmTelaPesquisaTicket Frm = new FrmTelaPesquisaTicket();
+
+            FrmTelaPesquisaTicket Frm = new FrmTelaPesquisaTicket(this);
             AbrirForm(0, Frm);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket();
+            FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket(this);
             AbrirForm(0, Frm);
         }
 
@@ -466,7 +474,7 @@ namespace Teste
         {
             string mensagem = "Tem certeza que deseja sair?";
             string titulo = "Efetuar Logout?";
-            bool escolha = (MessageBox.Show(mensagem, titulo, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button3) == DialogResult.Yes);
+            bool escolha = (MessageBox.Show(mensagem, titulo, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes);
             if (escolha)
             {
                 //Destroi o Formulario principal e abre o formulario de login
@@ -540,8 +548,11 @@ namespace Teste
 
         private void btnPesquisaTicket_Click_2(object sender, EventArgs e)
         {
+            PesquisaTicket(txtPlaca.Text);
+        }
+        public void PesquisaTicket(string placa)
+        {
             DataTable dt = new DataTable();
-            string placa = txtPlaca.Text;
             if (placa != "")
             {
 
@@ -578,22 +589,6 @@ namespace Teste
             {
                 MessageBox.Show("Preencha o campo 'Placa'!", "Ticket não existe!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void txtPlaca_MouseHover(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void txtPlaca_MouseUp(object sender, MouseEventArgs e)
-        {
-
-        }
-
-        private void mskTelefone_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
         }
     }
 }

@@ -121,15 +121,15 @@ namespace Teste
             {
                 if(Regex.IsMatch(mskCnpj.Text, @"^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$"))
                 {
-                    if(Regex.IsMatch(mskInscricao.Text, @"/^\d{3}\.\d{3}\.\d{3}\.\d{3}/"))
+                    if(Regex.IsMatch(mskInscricao.Text, @"^\d{3}\.\d{3}\.\d{3}\.\d{3}"))
                     {
-                        if(Regex.IsMatch(mskTelefone.Text, @"/^\([11 - 99]{2}\)[0 | 9]\d{4}\-\d{4}/"))
+                        if(Regex.IsMatch(mskTelefone.Text, @"^\([11 - 99]{2}\)[0 | 9]\d{4}\-\d{4}"))
                         {
-                            if(Regex.IsMatch(mskCEP.Text, @"/\d{5}\-\d{3}/"))
+                            if(Regex.IsMatch(mskCEP.Text, @"^\d{5}\-\d{3}"))
                             {
-                                if(Regex.IsMatch(txtNumero.Text, @"/\d+/"))
+                                if(Regex.IsMatch(txtNumero.Text, @"^\d+"))
                                 {
-                                    if(Regex.IsMatch(txtCidade.Text, @"/\D+/"))
+                                    if(Regex.IsMatch(txtCidade.Text, @"^\D+"))
                                     {
                                         SalvarIdentificacao();
                                     }

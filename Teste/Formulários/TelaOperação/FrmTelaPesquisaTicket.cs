@@ -14,10 +14,14 @@ namespace Teste
     public partial class FrmTelaPesquisaTicket : Form
     {
         Banco banco = new Banco();
-        public FrmTelaPesquisaTicket()
+        FrmTelaOperacao form;
+        public FrmTelaPesquisaTicket(FrmTelaOperacao form)
         {
             InitializeComponent();
+            this.form = form;
+           
         }
+        
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -38,7 +42,7 @@ namespace Teste
         private void button3_Click(object sender, EventArgs e)
         {
             Globais.IdTicket = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
-            FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket();
+            FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket(form);
             Frm.ShowDialog();
 
         }
@@ -203,6 +207,12 @@ namespace Teste
                 MessageBox.Show(ex.Message, "Erro!");
             }
 
+        }
+        
+        private void dataGridView1_DoubleClick(object sender, EventArgs e)
+        {
+            form.PesquisaTicket(dataGridView1.SelectedRows[0].Cells[4].Value.ToString());
+            this.Dispose();
         }
     }
 }

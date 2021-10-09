@@ -85,18 +85,6 @@ namespace Teste.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("DarkBlue")]
-        public global::System.Drawing.Color CorFundoBotao {
-            get {
-                return ((global::System.Drawing.Color)(this["CorFundoBotao"]));
-            }
-            set {
-                this["CorFundoBotao"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool ModoUnico {
             get {

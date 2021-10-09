@@ -416,22 +416,29 @@ namespace Teste
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
+
             if (txtId.Text != "")
             {
-                DataTable dt = new DataTable();
-                dt = ContadorTicket();
-                if (dt.Rows.Count > 0)
+                string mensagem = "Tem Certeza que deseja excluir este veiculo?";
+                string titulo = "Excluir Veiculo?";
+                bool escolha = (MessageBox.Show(mensagem, titulo, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes);
+                if (escolha)
                 {
-                    if (Convert.ToInt32(dt.Rows[0].ItemArray[0]) == 0)
+                    DataTable dt = new DataTable();
+                    dt = ContadorTicket();
+                    if (dt.Rows.Count > 0)
                     {
-                        ExcluirVeiculo();
-                        PreencherGrid();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Não é possivel excluir este veiculo pois há um Ticket em andamento, encerre-o e tente novamente!", "Falha ao excluir!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        if (Convert.ToInt32(dt.Rows[0].ItemArray[0]) == 0)
+                        {
+                            ExcluirVeiculo();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Não é possivel excluir este veiculo pois há um Ticket em andamento, encerre-o e tente novamente!", "Falha ao excluir!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
+                
             }
             else
             {
@@ -453,6 +460,7 @@ namespace Teste
                 if (LinhasAfetadas > 0)
                 {
                     MessageBox.Show("Veiculo Excluido com sucesso!", "Exclusão bem sucedida!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    PreencherGrid();
                 }
                 else
                 {

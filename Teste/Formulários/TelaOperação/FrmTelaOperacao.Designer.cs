@@ -41,10 +41,11 @@ namespace Teste
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
             this.lblQtdTicket = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnIniciar = new System.Windows.Forms.Button();
             this.btnEncerrar = new System.Windows.Forms.Button();
             this.lblPlaca = new System.Windows.Forms.Label();
@@ -62,16 +63,15 @@ namespace Teste
             this.lblPlacal1 = new System.Windows.Forms.Label();
             this.btnConfig = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.btnCadastros = new System.Windows.Forms.Button();
             this.btnSair = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.btnCadastros = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblData = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblHora = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblUsername = new System.Windows.Forms.ToolStripStatusLabel();
-            this.label13 = new System.Windows.Forms.Label();
             this.HoraData = new System.Windows.Forms.Timer(this.components);
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -120,8 +120,6 @@ namespace Teste
             this.toolTip1.SetToolTip(this.txtPlaca, "Insira uma Placa!");
             this.txtPlaca.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.txtPlaca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPlaca_KeyPress);
-            this.txtPlaca.MouseHover += new System.EventHandler(this.txtPlaca_MouseHover);
-            this.txtPlaca.MouseUp += new System.Windows.Forms.MouseEventHandler(this.txtPlaca_MouseUp);
             // 
             // cmbMarca
             // 
@@ -207,40 +205,22 @@ namespace Teste
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.panel9);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.lblQtdTicket);
+            this.panel1.Controls.Add(this.label13);
+            this.panel1.Controls.Add(this.panel9);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(661, 471);
+            this.panel1.Size = new System.Drawing.Size(661, 498);
             this.panel1.TabIndex = 12;
-            // 
-            // panel9
-            // 
-            this.panel9.Controls.Add(this.pictureBox1);
-            this.panel9.Location = new System.Drawing.Point(3, 111);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(656, 346);
-            this.panel9.TabIndex = 36;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.ImageLocation = "";
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(656, 346);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(216, 3);
+            this.label8.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label8.Location = new System.Drawing.Point(212, 38);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(212, 31);
             this.label8.TabIndex = 3;
@@ -249,13 +229,45 @@ namespace Teste
             // lblQtdTicket
             // 
             this.lblQtdTicket.BackColor = System.Drawing.Color.Transparent;
-            this.lblQtdTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQtdTicket.Location = new System.Drawing.Point(233, 35);
+            this.lblQtdTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 54F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQtdTicket.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lblQtdTicket.Location = new System.Drawing.Point(242, 56);
             this.lblQtdTicket.Name = "lblQtdTicket";
             this.lblQtdTicket.Size = new System.Drawing.Size(147, 73);
             this.lblQtdTicket.TabIndex = 10;
             this.lblQtdTicket.Text = "0";
             this.lblQtdTicket.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.Firebrick;
+            this.label13.Location = new System.Drawing.Point(0, 0);
+            this.label13.Name = "label13";
+            this.label13.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label13.Size = new System.Drawing.Size(357, 31);
+            this.label13.TabIndex = 28;
+            this.label13.Text = "* Informações obrigatórias";
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.pictureBox1);
+            this.panel9.Location = new System.Drawing.Point(3, 150);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(656, 307);
+            this.panel9.TabIndex = 36;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.ImageLocation = "";
+            this.pictureBox1.Location = new System.Drawing.Point(0, -8);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(656, 350);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // btnIniciar
             // 
@@ -267,7 +279,7 @@ namespace Teste
             this.btnIniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIniciar.Image = ((System.Drawing.Image)(resources.GetObject("btnIniciar.Image")));
             this.btnIniciar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnIniciar.Location = new System.Drawing.Point(142, 2);
+            this.btnIniciar.Location = new System.Drawing.Point(123, 2);
             this.btnIniciar.Name = "btnIniciar";
             this.btnIniciar.Size = new System.Drawing.Size(220, 85);
             this.btnIniciar.TabIndex = 13;
@@ -286,9 +298,9 @@ namespace Teste
             this.btnEncerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEncerrar.Image = ((System.Drawing.Image)(resources.GetObject("btnEncerrar.Image")));
             this.btnEncerrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEncerrar.Location = new System.Drawing.Point(372, 2);
+            this.btnEncerrar.Location = new System.Drawing.Point(343, 2);
             this.btnEncerrar.Name = "btnEncerrar";
-            this.btnEncerrar.Size = new System.Drawing.Size(204, 85);
+            this.btnEncerrar.Size = new System.Drawing.Size(220, 85);
             this.btnEncerrar.TabIndex = 14;
             this.btnEncerrar.Text = "Encerrar Ticket (F4)";
             this.btnEncerrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -377,7 +389,7 @@ namespace Teste
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(667, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(679, 471);
+            this.panel2.Size = new System.Drawing.Size(679, 498);
             this.panel2.TabIndex = 18;
             // 
             // lblHoraEntradaVisual
@@ -462,7 +474,7 @@ namespace Teste
             this.btnConfig.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConfig.FlatAppearance.BorderSize = 0;
             this.btnConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConfig.Location = new System.Drawing.Point(1217, 2);
+            this.btnConfig.Location = new System.Drawing.Point(1223, 2);
             this.btnConfig.Name = "btnConfig";
             this.btnConfig.Size = new System.Drawing.Size(120, 85);
             this.btnConfig.TabIndex = 21;
@@ -472,36 +484,18 @@ namespace Teste
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.Silver;
-            this.panel6.Controls.Add(this.btnCadastros);
             this.panel6.Controls.Add(this.btnSair);
-            this.panel6.Controls.Add(this.button8);
+            this.panel6.Controls.Add(this.btnIniciar);
+            this.panel6.Controls.Add(this.btnEncerrar);
             this.panel6.Controls.Add(this.button6);
             this.panel6.Controls.Add(this.btnConfig);
-            this.panel6.Controls.Add(this.btnEncerrar);
-            this.panel6.Controls.Add(this.btnIniciar);
+            this.panel6.Controls.Add(this.button8);
+            this.panel6.Controls.Add(this.btnCadastros);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel6.Location = new System.Drawing.Point(0, 612);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1346, 88);
             this.panel6.TabIndex = 24;
-            // 
-            // btnCadastros
-            // 
-            this.btnCadastros.BackColor = System.Drawing.Color.Transparent;
-            this.btnCadastros.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnCadastros.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCadastros.FlatAppearance.BorderSize = 0;
-            this.btnCadastros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCadastros.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastros.Image")));
-            this.btnCadastros.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCadastros.Location = new System.Drawing.Point(772, 0);
-            this.btnCadastros.Name = "btnCadastros";
-            this.btnCadastros.Size = new System.Drawing.Size(212, 85);
-            this.btnCadastros.TabIndex = 27;
-            this.btnCadastros.Text = "Cadastros";
-            this.btnCadastros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCadastros.UseVisualStyleBackColor = false;
-            this.btnCadastros.Click += new System.EventHandler(this.btnCadastros_Click);
             // 
             // btnSair
             // 
@@ -511,30 +505,12 @@ namespace Teste
             this.btnSair.FlatAppearance.BorderSize = 0;
             this.btnSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSair.Image = ((System.Drawing.Image)(resources.GetObject("btnSair.Image")));
-            this.btnSair.Location = new System.Drawing.Point(8, 2);
+            this.btnSair.Location = new System.Drawing.Point(3, 2);
             this.btnSair.Name = "btnSair";
             this.btnSair.Size = new System.Drawing.Size(120, 85);
             this.btnSair.TabIndex = 26;
             this.btnSair.UseVisualStyleBackColor = false;
             this.btnSair.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button8
-            // 
-            this.button8.BackColor = System.Drawing.Color.Transparent;
-            this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button8.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button8.FlatAppearance.BorderSize = 0;
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
-            this.button8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button8.Location = new System.Drawing.Point(994, 0);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(213, 85);
-            this.button8.TabIndex = 25;
-            this.button8.Text = "Relatórios";
-            this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button8.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button8.UseVisualStyleBackColor = false;
             // 
             // button6
             // 
@@ -545,14 +521,50 @@ namespace Teste
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
             this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.Location = new System.Drawing.Point(586, 0);
+            this.button6.Location = new System.Drawing.Point(563, 2);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(176, 85);
+            this.button6.Size = new System.Drawing.Size(220, 85);
             this.button6.TabIndex = 24;
             this.button6.Text = "Tickets";
             this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.Color.Transparent;
+            this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button8.FlatAppearance.BorderSize = 0;
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
+            this.button8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button8.Location = new System.Drawing.Point(1003, 2);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(220, 85);
+            this.button8.TabIndex = 25;
+            this.button8.Text = "Relatórios";
+            this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button8.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button8.UseVisualStyleBackColor = false;
+            // 
+            // btnCadastros
+            // 
+            this.btnCadastros.BackColor = System.Drawing.Color.Transparent;
+            this.btnCadastros.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnCadastros.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCadastros.FlatAppearance.BorderSize = 0;
+            this.btnCadastros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCadastros.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastros.Image")));
+            this.btnCadastros.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCadastros.Location = new System.Drawing.Point(783, 2);
+            this.btnCadastros.Name = "btnCadastros";
+            this.btnCadastros.Size = new System.Drawing.Size(220, 85);
+            this.btnCadastros.TabIndex = 27;
+            this.btnCadastros.Text = "Cadastros";
+            this.btnCadastros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCadastros.UseVisualStyleBackColor = false;
+            this.btnCadastros.Click += new System.EventHandler(this.btnCadastros_Click);
             // 
             // statusStrip1
             // 
@@ -600,18 +612,6 @@ namespace Teste
             this.lblUsername.Size = new System.Drawing.Size(63, 20);
             this.lblUsername.Text = "Usuario";
             // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.Firebrick;
-            this.label13.Location = new System.Drawing.Point(5, 79);
-            this.label13.Name = "label13";
-            this.label13.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label13.Size = new System.Drawing.Size(357, 31);
-            this.label13.TabIndex = 28;
-            this.label13.Text = "* Informações obrigatórias";
-            // 
             // HoraData
             // 
             this.HoraData.Interval = 1000;
@@ -650,12 +650,11 @@ namespace Teste
             this.panel7.Controls.Add(this.label4);
             this.panel7.Controls.Add(this.txtPlaca);
             this.panel7.Controls.Add(this.label5);
-            this.panel7.Controls.Add(this.label13);
             this.panel7.Controls.Add(this.label2);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel7.Location = new System.Drawing.Point(0, 0);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1346, 115);
+            this.panel7.Size = new System.Drawing.Size(1346, 88);
             this.panel7.TabIndex = 33;
             // 
             // btnPesquisaTicket
@@ -668,9 +667,9 @@ namespace Teste
             this.btnPesquisaTicket.FlatAppearance.BorderSize = 0;
             this.btnPesquisaTicket.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPesquisaTicket.Image = ((System.Drawing.Image)(resources.GetObject("btnPesquisaTicket.Image")));
-            this.btnPesquisaTicket.Location = new System.Drawing.Point(3, 10);
+            this.btnPesquisaTicket.Location = new System.Drawing.Point(8, 10);
             this.btnPesquisaTicket.Name = "btnPesquisaTicket";
-            this.btnPesquisaTicket.Size = new System.Drawing.Size(72, 69);
+            this.btnPesquisaTicket.Size = new System.Drawing.Size(72, 70);
             this.btnPesquisaTicket.TabIndex = 30;
             this.btnPesquisaTicket.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPesquisaTicket.UseVisualStyleBackColor = false;
@@ -686,14 +685,13 @@ namespace Teste
             this.mskTelefone.Name = "mskTelefone";
             this.mskTelefone.Size = new System.Drawing.Size(202, 35);
             this.mskTelefone.TabIndex = 4;
-            this.mskTelefone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mskTelefone_KeyPress);
             // 
             // splitter3
             // 
             this.splitter3.BackColor = System.Drawing.Color.Silver;
             this.splitter3.Dock = System.Windows.Forms.DockStyle.Top;
             this.splitter3.Enabled = false;
-            this.splitter3.Location = new System.Drawing.Point(0, 115);
+            this.splitter3.Location = new System.Drawing.Point(0, 88);
             this.splitter3.Name = "splitter3";
             this.splitter3.Size = new System.Drawing.Size(1346, 3);
             this.splitter3.TabIndex = 34;
@@ -703,7 +701,7 @@ namespace Teste
             // 
             this.panel8.BackColor = System.Drawing.Color.DarkBlue;
             this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel8.Location = new System.Drawing.Point(0, 118);
+            this.panel8.Location = new System.Drawing.Point(0, 91);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(1346, 10);
             this.panel8.TabIndex = 35;
@@ -714,9 +712,9 @@ namespace Teste
             this.panel10.Controls.Add(this.panel2);
             this.panel10.Controls.Add(this.panel1);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(0, 128);
+            this.panel10.Location = new System.Drawing.Point(0, 101);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(1346, 471);
+            this.panel10.Size = new System.Drawing.Size(1346, 498);
             this.panel10.TabIndex = 36;
             // 
             // toolTip1
@@ -772,7 +770,6 @@ namespace Teste
         #endregion
 
         private System.Windows.Forms.ComboBox cmbTipo;
-        private System.Windows.Forms.TextBox txtPlaca;
         private System.Windows.Forms.ComboBox cmbMarca;
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.Label label1;
@@ -822,6 +819,7 @@ namespace Teste
         private System.Windows.Forms.Button btnCadastros;
         private System.Windows.Forms.Label lblPlacal1;
         private System.Windows.Forms.ToolTip toolTip1;
+        public System.Windows.Forms.TextBox txtPlaca;
     }
 }
 
