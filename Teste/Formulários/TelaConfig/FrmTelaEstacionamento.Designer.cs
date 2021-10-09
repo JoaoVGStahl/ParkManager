@@ -31,6 +31,7 @@ namespace Teste
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTelaEstacionamento));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtID = new System.Windows.Forms.TextBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -59,6 +60,7 @@ namespace Teste
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -67,11 +69,20 @@ namespace Teste
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Silver;
+            this.panel1.Controls.Add(this.txtID);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(814, 85);
             this.panel1.TabIndex = 0;
+            // 
+            // txtID
+            // 
+            this.txtID.Location = new System.Drawing.Point(325, 45);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(174, 20);
+            this.txtID.TabIndex = 0;
+            this.txtID.Visible = false;
             // 
             // splitter1
             // 
@@ -412,6 +423,8 @@ namespace Teste
             this.Name = "FrmTelaEstacionamento";
             this.Text = " ";
             this.Load += new System.EventHandler(this.FrmTelaEstacionamento_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel4.ResumeLayout(false);
@@ -451,5 +464,6 @@ namespace Teste
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnEditar;
+        private System.Windows.Forms.TextBox txtID;
     }
 }

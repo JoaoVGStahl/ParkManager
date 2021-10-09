@@ -15,10 +15,10 @@ namespace Teste
     {
         Banco banco = new Banco();
         FrmTelaOperacao form;
-        public FrmTelaPesquisaTicket(FrmTelaOperacao form)
+        public FrmTelaPesquisaTicket(FrmTelaOperacao Form)
         {
             InitializeComponent();
-            this.form = form;
+            this.form = Form;
            
         }
         

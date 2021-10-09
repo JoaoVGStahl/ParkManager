@@ -38,7 +38,7 @@ namespace Teste
 
         private void FrmTelaOperacao_Load(object sender, EventArgs e)
         {
-            if (!(Globais.Login == Properties.Settings.Default.UserRoot))
+            if (!(Globais.Login == Properties.Settings.Default.UserRoot) || (Properties.Settings.Default["StringBanco"].ToString() == ""))
             {
                 
                 txtPlaca.Select();
@@ -117,13 +117,13 @@ namespace Teste
                 if (dt.Rows.Count > 0)
                 {
                     DateTime aux = Convert.ToDateTime("00:00:00");
-                    Globais.ValorHora = Convert.ToDecimal(dt.Rows[0].ItemArray[0]);
-                    Globais.ValorMinimo = Convert.ToDecimal(dt.Rows[0].ItemArray[1]);
-                    Globais.ValorUnico = Convert.ToDecimal(dt.Rows[0].ItemArray[2]);
-                    DateTime tempo = Convert.ToDateTime(dt.Rows[0].ItemArray[3].ToString());
+                    Globais.ValorHora = Convert.ToDecimal(dt.Rows[0].ItemArray[1]);
+                    Globais.ValorMinimo = Convert.ToDecimal(dt.Rows[0].ItemArray[2]);
+                    Globais.ValorUnico = Convert.ToDecimal(dt.Rows[0].ItemArray[3]);
+                    DateTime tempo = Convert.ToDateTime(dt.Rows[0].ItemArray[4].ToString());
                     TimeSpan ts = tempo - aux;
                     Globais.Tolerencia = ts;
-                    Properties.Settings.Default["ArquivoAuditoria"] = dt.Rows[0].ItemArray[4].ToString();
+                    Properties.Settings.Default["ArquivoAuditoria"] = dt.Rows[0].ItemArray[5].ToString();
                     Properties.Settings.Default.Save();
                 }
                 else

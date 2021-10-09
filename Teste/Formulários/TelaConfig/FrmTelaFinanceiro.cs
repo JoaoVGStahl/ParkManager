@@ -19,7 +19,6 @@ namespace Teste
         {
             InitializeComponent();
         }
-
         private void FrmTelaFinanceiro_Load(object sender, EventArgs e)
         {
             CarregarValores();
@@ -36,6 +35,7 @@ namespace Teste
         {
             try
             {
+                decimal PrecoHora, PrecoMin, PrecoUnico;
                 DataTable dt = new DataTable();
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
@@ -44,13 +44,38 @@ namespace Teste
                 dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
                 if (dt.Rows.Count > 0)
                 {
-                    decimal PrecoHora, PrecoMin, PrecoUnico;
-                    PrecoHora = Convert.ToDecimal(dt.Rows[0].ItemArray[0]);
-                    PrecoMin = Convert.ToDecimal(dt.Rows[0].ItemArray[1]);
-                    PrecoUnico = Convert.ToDecimal(dt.Rows[0].ItemArray[2]);
-                    lblPrecoHora.Text = PrecoHora.ToString("C");
-                    lblPrecoMin.Text = PrecoMin.ToString("C");
-                    lblPrecoUnico.Text = PrecoUnico.ToString("C");
+                    txtId.Text = Convert.ToString(dt.Rows[0].Field<int>("ID"));
+                    
+                    if ((Convert.ToString(dt.Rows[0].Field<decimal>("Valor Hora")) == null) && (Convert.ToString(dt.Rows[0].Field<decimal>("Valor Minimo")) == null) && (Convert.ToString(dt.Rows[0].Field<decimal>("Valor Unico")) == null))
+                    {
+                        AtivarCaixas();
+                    }
+                    else
+                    {
+                        if (Convert.ToString(dt.Rows[0].Field<decimal>("Valor Hora")) != null)
+                        {
+                            PrecoHora = dt.Rows[0].Field<decimal>("Valor Hora");
+                            lblPrecoHora.Text = PrecoHora.ToString("C");
+                        }
+                        if (Convert.ToString(dt.Rows[0].Field<decimal>("Valor Minimo")) != null)
+                        {
+                            PrecoMin = dt.Rows[0].Field<decimal>("Valor Minimo");
+                            lblPrecoMin.Text = PrecoMin.ToString("C");
+                        }
+                        if (Convert.ToString(dt.Rows[0].Field<decimal>("Valor Unico")) != null)
+                        {
+                            PrecoUnico = dt.Rows[0].Field<decimal>("Valor Unico");
+                            lblPrecoUnico.Text = PrecoUnico.ToString("C");
+                        }
+                        
+                    }
+                    
+                }
+                else
+                {
+                    btnEditar.Enabled = false;
+                    dt.Dispose();
+                    MessageBox.Show("Cadastre seu estacionamento primeiro!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
@@ -59,7 +84,6 @@ namespace Teste
                 MessageBox.Show(ex.Message, "Falha carregar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void txtPrecoHora_KeyPress(object sender, KeyPressEventArgs e)
         {
             if ((e.KeyChar < '0' || e.KeyChar > '9') &&
@@ -134,7 +158,7 @@ namespace Teste
 
         private void txtPrecoHora_Leave(object sender, EventArgs e)
         {
-            if(txtPrecoHora.Text.Length >= 1)
+            if (txtPrecoHora.Text.Length >= 1)
             {
                 txtPrecoHora.Text = Convert.ToDecimal(txtPrecoHora.Text).ToString("N2");
             }
@@ -147,7 +171,7 @@ namespace Teste
 
         private void txtCobrancaMinima_Leave(object sender, EventArgs e)
         {
-            if(txtCobrancaMinima.Text.Length >= 1)
+            if (txtCobrancaMinima.Text.Length >= 1)
             {
                 txtCobrancaMinima.Text = Convert.ToDecimal(txtCobrancaMinima.Text).ToString("N2");
             }
@@ -155,7 +179,7 @@ namespace Teste
 
         private void txtValorUnico_Leave(object sender, EventArgs e)
         {
-            if(txtValorUnico.Text.Length >= 1)
+            if (txtValorUnico.Text.Length >= 1)
             {
                 txtValorUnico.Text = Convert.ToDecimal(txtValorUnico.Text).ToString("N2");
             }
@@ -163,7 +187,7 @@ namespace Teste
 
         private void ckValorUnico_CheckedChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void ckValorUnico_CheckStateChanged(object sender, EventArgs e)
@@ -176,7 +200,7 @@ namespace Teste
             {
                 DesativarModoUnico();
             }
-            
+
         }
         private void AtivarModoUnico()
         {
@@ -190,15 +214,19 @@ namespace Teste
             ckValorUnico.ForeColor = Color.Black;
             ckValorUnico.Text = "Desativado";
             ckValorUnico.FlatAppearance.MouseOverBackColor = Color.Silver;
-            ckValorUnico.BackColor = Color.DarkGray;   
+            ckValorUnico.BackColor = Color.DarkGray;
         }
 
         private void FrmTelaFinanceiro_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
+        {
+            AtivarCaixas();
+        }
+        private void AtivarCaixas()
         {
             txtPrecoHora.Enabled = true;
             txtCobrancaMinima.Enabled = true;
@@ -214,10 +242,10 @@ namespace Teste
         }
         private void VerificarCaixas()
         {
-            decimal PHora =0, CMinima =0, VUnico =0;
-            if(txtPrecoHora.Text != "")
+            decimal PHora = 0, CMinima = 0, VUnico = 0;
+            if (txtPrecoHora.Text != "")
             {
-                if(Regex.IsMatch(txtPrecoHora.Text, @"^\d+,\d{2}"))
+                if (Regex.IsMatch(txtPrecoHora.Text, @"^\d+,\d{2}"))
                 {
                     PHora = Convert.ToDecimal(txtPrecoHora.Text);
                 }
@@ -227,9 +255,9 @@ namespace Teste
                     return;
                 }
             }
-            if(txtCobrancaMinima.Text != "")
+            if (txtCobrancaMinima.Text != "")
             {
-                if(Regex.IsMatch(txtCobrancaMinima.Text, @"^\d+,\d{2}"))
+                if (Regex.IsMatch(txtCobrancaMinima.Text, @"^\d+,\d{2}"))
                 {
                     CMinima = Convert.ToDecimal(txtCobrancaMinima.Text);
                 }
@@ -239,7 +267,7 @@ namespace Teste
                     return;
                 }
             }
-            if(txtValorUnico.Text != "")
+            if (txtValorUnico.Text != "")
             {
                 if (Regex.IsMatch(txtValorUnico.Text, @"^\d+,\d{2}"))
                 {
@@ -251,11 +279,11 @@ namespace Teste
                     return;
                 }
             }
-            if(PHora != 0 || CMinima != 0 || VUnico != 0)
+            if (PHora != 0 || CMinima != 0 || VUnico != 0)
             {
                 SalvarValores(PHora, CMinima, VUnico);
             }
-            else if(ckValorUnico.Checked != Convert.ToBoolean(Properties.Settings.Default["ModoUnico"]))
+            else if (ckValorUnico.Checked != Convert.ToBoolean(Properties.Settings.Default["ModoUnico"]))
             {
                 AttModoUnico();
                 MessageBox.Show("Modo Unico" + ckValorUnico.Text + "!", "Alteração!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -273,12 +301,13 @@ namespace Teste
                 int LinhasAfetadas;
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
+                    new SqlParameter(){ParameterName="@Id_Estacionamento", SqlDbType = SqlDbType.Int, Value =  txtId.Text},
                     new SqlParameter(){ParameterName="@Valor_Hora", SqlDbType = SqlDbType.Decimal, Value = PHora},
                     new SqlParameter(){ParameterName="@Valor_Minimo", SqlDbType = SqlDbType.Decimal, Value = CMinimo},
                     new SqlParameter(){ParameterName="@Valor_Unico", SqlDbType = SqlDbType.Decimal, Value = VUnico}
                 };
                 LinhasAfetadas = banco.EditData("dbo.Salvar_Valor", sp);
-                if(LinhasAfetadas > 0)
+                if (LinhasAfetadas > 0)
                 {
                     try
                     {
@@ -306,12 +335,13 @@ namespace Teste
         }
         private void AttModoUnico()
         {
-            if(ckValorUnico.Checked)
+            if (ckValorUnico.Checked)
             {
                 Properties.Settings.Default["ModoUnico"] = true;
                 Globais.ModoUnico = true;
                 Properties.Settings.Default.Save();
-            }else if (!ckValorUnico.Checked)
+            }
+            else if (!ckValorUnico.Checked)
             {
                 Properties.Settings.Default["ModoUnico"] = false;
                 Globais.ModoUnico = false;
@@ -327,6 +357,16 @@ namespace Teste
             ckValorUnico.Enabled = false;
             btnSalvar.Enabled = false;
             btnEditar.Enabled = true;
+        }
+
+        private void splitter3_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
