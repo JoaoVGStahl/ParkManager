@@ -52,6 +52,8 @@ namespace Teste
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.splitter4 = new System.Windows.Forms.Splitter();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.lblTicket = new System.Windows.Forms.Label();
+            this.lblCaptionTicket = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -218,7 +220,7 @@ namespace Teste
             this.cmbStatus.Items.AddRange(new object[] {
             "Inativo",
             "Ativo"});
-            this.cmbStatus.Location = new System.Drawing.Point(653, 110);
+            this.cmbStatus.Location = new System.Drawing.Point(306, 110);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(174, 37);
             this.cmbStatus.TabIndex = 18;
@@ -237,7 +239,7 @@ namespace Teste
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(82, 78);
+            this.label3.Location = new System.Drawing.Point(8, 79);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(110, 29);
             this.label3.TabIndex = 15;
@@ -247,7 +249,7 @@ namespace Teste
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(648, 78);
+            this.label2.Location = new System.Drawing.Point(301, 79);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(79, 29);
             this.label2.TabIndex = 14;
@@ -267,7 +269,7 @@ namespace Teste
             // 
             this.mskTelefone.Enabled = false;
             this.mskTelefone.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mskTelefone.Location = new System.Drawing.Point(82, 110);
+            this.mskTelefone.Location = new System.Drawing.Point(8, 111);
             this.mskTelefone.Mask = "(99)00000-0000";
             this.mskTelefone.Name = "mskTelefone";
             this.mskTelefone.Size = new System.Drawing.Size(245, 35);
@@ -284,7 +286,9 @@ namespace Teste
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.lblTicket);
             this.panel5.Controls.Add(this.label5);
+            this.panel5.Controls.Add(this.lblCaptionTicket);
             this.panel5.Controls.Add(this.mskTelefone);
             this.panel5.Controls.Add(this.txtID);
             this.panel5.Controls.Add(this.label3);
@@ -332,6 +336,29 @@ namespace Teste
             this.dataGridView1.TabIndex = 30;
             this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            // 
+            // lblTicket
+            // 
+            this.lblTicket.AutoSize = true;
+            this.lblTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTicket.Location = new System.Drawing.Point(777, 102);
+            this.lblTicket.Name = "lblTicket";
+            this.lblTicket.Size = new System.Drawing.Size(39, 42);
+            this.lblTicket.TabIndex = 16;
+            this.lblTicket.Text = "0";
+            this.lblTicket.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTicket.Visible = false;
+            // 
+            // lblCaptionTicket
+            // 
+            this.lblCaptionTicket.AutoSize = true;
+            this.lblCaptionTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCaptionTicket.Location = new System.Drawing.Point(512, 111);
+            this.lblCaptionTicket.Name = "lblCaptionTicket";
+            this.lblCaptionTicket.Size = new System.Drawing.Size(259, 24);
+            this.lblCaptionTicket.TabIndex = 15;
+            this.lblCaptionTicket.Text = "Ticket\'s abertos deste Cliente:";
+            this.lblCaptionTicket.Visible = false;
             // 
             // FrmTelaCliente
             // 
@@ -385,5 +412,7 @@ namespace Teste
         private System.Windows.Forms.Splitter splitter3;
         private System.Windows.Forms.Splitter splitter4;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label lblTicket;
+        private System.Windows.Forms.Label lblCaptionTicket;
     }
 }

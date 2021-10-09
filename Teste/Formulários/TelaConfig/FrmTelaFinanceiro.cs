@@ -368,5 +368,11 @@ namespace Teste
         {
 
         }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            lblCont.Text = tbTolerancia.Value.ToString();
+
+        }
     }
 }

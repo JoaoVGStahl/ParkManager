@@ -31,6 +31,7 @@ namespace Teste
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTelaFinanceiro));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtId = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
@@ -55,10 +56,15 @@ namespace Teste
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtId = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tbTolerancia = new System.Windows.Forms.TrackBar();
+            this.lblCont = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbTolerancia)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -71,13 +77,21 @@ namespace Teste
             this.panel1.Size = new System.Drawing.Size(814, 85);
             this.panel1.TabIndex = 0;
             // 
+            // txtId
+            // 
+            this.txtId.Location = new System.Drawing.Point(311, 33);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(156, 20);
+            this.txtId.TabIndex = 0;
+            this.txtId.Visible = false;
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Silver;
             this.panel2.Controls.Add(this.btnEditar);
             this.panel2.Controls.Add(this.btnSalvar);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 516);
+            this.panel2.Location = new System.Drawing.Point(0, 582);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(814, 85);
             this.panel2.TabIndex = 1;
@@ -139,7 +153,7 @@ namespace Teste
             this.splitter2.BackColor = System.Drawing.Color.Silver;
             this.splitter2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.splitter2.Enabled = false;
-            this.splitter2.Location = new System.Drawing.Point(0, 513);
+            this.splitter2.Location = new System.Drawing.Point(0, 579);
             this.splitter2.Name = "splitter2";
             this.splitter2.Size = new System.Drawing.Size(814, 3);
             this.splitter2.TabIndex = 3;
@@ -158,7 +172,7 @@ namespace Teste
             // 
             this.panel4.BackColor = System.Drawing.Color.DarkBlue;
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 503);
+            this.panel4.Location = new System.Drawing.Point(0, 569);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(814, 10);
             this.panel4.TabIndex = 5;
@@ -168,7 +182,7 @@ namespace Teste
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(21, 150);
+            this.label1.Location = new System.Drawing.Point(21, 120);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(204, 31);
             this.label1.TabIndex = 6;
@@ -189,7 +203,7 @@ namespace Teste
             this.ckValorUnico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ckValorUnico.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ckValorUnico.ForeColor = System.Drawing.Color.Black;
-            this.ckValorUnico.Location = new System.Drawing.Point(328, 415);
+            this.ckValorUnico.Location = new System.Drawing.Point(322, 387);
             this.ckValorUnico.Name = "ckValorUnico";
             this.ckValorUnico.Size = new System.Drawing.Size(135, 35);
             this.ckValorUnico.TabIndex = 7;
@@ -204,7 +218,7 @@ namespace Teste
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(21, 263);
+            this.label2.Location = new System.Drawing.Point(21, 229);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(278, 31);
             this.label2.TabIndex = 8;
@@ -214,7 +228,7 @@ namespace Teste
             // 
             this.txtPrecoHora.Enabled = false;
             this.txtPrecoHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrecoHora.Location = new System.Drawing.Point(27, 190);
+            this.txtPrecoHora.Location = new System.Drawing.Point(27, 168);
             this.txtPrecoHora.Name = "txtPrecoHora";
             this.txtPrecoHora.Size = new System.Drawing.Size(232, 44);
             this.txtPrecoHora.TabIndex = 9;
@@ -226,7 +240,7 @@ namespace Teste
             // 
             this.txtCobrancaMinima.Enabled = false;
             this.txtCobrancaMinima.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCobrancaMinima.Location = new System.Drawing.Point(27, 306);
+            this.txtCobrancaMinima.Location = new System.Drawing.Point(27, 277);
             this.txtCobrancaMinima.Name = "txtCobrancaMinima";
             this.txtCobrancaMinima.Size = new System.Drawing.Size(232, 44);
             this.txtCobrancaMinima.TabIndex = 10;
@@ -239,7 +253,7 @@ namespace Teste
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(37, 29);
+            this.label3.Location = new System.Drawing.Point(36, 23);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(194, 29);
             this.label3.TabIndex = 11;
@@ -249,7 +263,7 @@ namespace Teste
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(36, 307);
+            this.label4.Location = new System.Drawing.Point(36, 241);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(196, 29);
             this.label4.TabIndex = 12;
@@ -258,7 +272,7 @@ namespace Teste
             // lblPrecoHora
             // 
             this.lblPrecoHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecoHora.Location = new System.Drawing.Point(1, 57);
+            this.lblPrecoHora.Location = new System.Drawing.Point(-1, 68);
             this.lblPrecoHora.Name = "lblPrecoHora";
             this.lblPrecoHora.Size = new System.Drawing.Size(268, 39);
             this.lblPrecoHora.TabIndex = 13;
@@ -268,7 +282,7 @@ namespace Teste
             // lblPrecoUnico
             // 
             this.lblPrecoUnico.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecoUnico.Location = new System.Drawing.Point(1, 338);
+            this.lblPrecoUnico.Location = new System.Drawing.Point(-4, 286);
             this.lblPrecoUnico.Name = "lblPrecoUnico";
             this.lblPrecoUnico.Size = new System.Drawing.Size(268, 39);
             this.lblPrecoUnico.TabIndex = 14;
@@ -279,7 +293,7 @@ namespace Teste
             // 
             this.txtValorUnico.Enabled = false;
             this.txtValorUnico.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtValorUnico.Location = new System.Drawing.Point(27, 411);
+            this.txtValorUnico.Location = new System.Drawing.Point(27, 386);
             this.txtValorUnico.Name = "txtValorUnico";
             this.txtValorUnico.Size = new System.Drawing.Size(232, 44);
             this.txtValorUnico.TabIndex = 16;
@@ -291,7 +305,7 @@ namespace Teste
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(21, 371);
+            this.label7.Location = new System.Drawing.Point(21, 338);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(207, 31);
             this.label7.TabIndex = 15;
@@ -300,7 +314,7 @@ namespace Teste
             // lblPrecoMin
             // 
             this.lblPrecoMin.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecoMin.Location = new System.Drawing.Point(1, 198);
+            this.lblPrecoMin.Location = new System.Drawing.Point(-2, 177);
             this.lblPrecoMin.Name = "lblPrecoMin";
             this.lblPrecoMin.Size = new System.Drawing.Size(268, 39);
             this.lblPrecoMin.TabIndex = 19;
@@ -311,7 +325,7 @@ namespace Teste
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(24, 167);
+            this.label9.Location = new System.Drawing.Point(27, 132);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(221, 29);
             this.label9.TabIndex = 18;
@@ -321,6 +335,8 @@ namespace Teste
             // 
             this.panel6.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel6.Controls.Add(this.label8);
+            this.panel6.Controls.Add(this.label10);
             this.panel6.Controls.Add(this.label3);
             this.panel6.Controls.Add(this.lblPrecoMin);
             this.panel6.Controls.Add(this.lblPrecoHora);
@@ -330,7 +346,7 @@ namespace Teste
             this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel6.Location = new System.Drawing.Point(543, 98);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(271, 405);
+            this.panel6.Size = new System.Drawing.Size(271, 471);
             this.panel6.TabIndex = 20;
             // 
             // splitter3
@@ -339,7 +355,7 @@ namespace Teste
             this.splitter3.Enabled = false;
             this.splitter3.Location = new System.Drawing.Point(540, 98);
             this.splitter3.Name = "splitter3";
-            this.splitter3.Size = new System.Drawing.Size(3, 405);
+            this.splitter3.Size = new System.Drawing.Size(3, 471);
             this.splitter3.TabIndex = 21;
             this.splitter3.TabStop = false;
             this.splitter3.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitter3_SplitterMoved);
@@ -350,33 +366,83 @@ namespace Teste
             this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel5.Location = new System.Drawing.Point(530, 98);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(10, 405);
+            this.panel5.Size = new System.Drawing.Size(10, 471);
             this.panel5.TabIndex = 22;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(324, 383);
+            this.label5.Location = new System.Drawing.Point(318, 355);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(143, 29);
             this.label5.TabIndex = 20;
             this.label5.Text = "Modo Unico";
             // 
-            // txtId
+            // label6
             // 
-            this.txtId.Location = new System.Drawing.Point(311, 33);
-            this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(156, 20);
-            this.txtId.TabIndex = 0;
-            this.txtId.Visible = false;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(24, 447);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(300, 31);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "Tempo Tolerância (min)";
+            // 
+            // tbTolerancia
+            // 
+            this.tbTolerancia.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tbTolerancia.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.tbTolerancia.Enabled = false;
+            this.tbTolerancia.Location = new System.Drawing.Point(27, 495);
+            this.tbTolerancia.Maximum = 50;
+            this.tbTolerancia.Name = "tbTolerancia";
+            this.tbTolerancia.Size = new System.Drawing.Size(232, 45);
+            this.tbTolerancia.SmallChange = 3;
+            this.tbTolerancia.TabIndex = 24;
+            this.tbTolerancia.TickFrequency = 5;
+            this.tbTolerancia.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.tbTolerancia.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
+            // lblCont
+            // 
+            this.lblCont.AutoSize = true;
+            this.lblCont.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCont.Location = new System.Drawing.Point(262, 499);
+            this.lblCont.Name = "lblCont";
+            this.lblCont.Size = new System.Drawing.Size(29, 31);
+            this.lblCont.TabIndex = 25;
+            this.lblCont.Text = "0";
+            // 
+            // label8
+            // 
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(-6, 393);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(268, 39);
+            this.label8.TabIndex = 21;
+            this.label8.Text = "00 Minutos";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(27, 350);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(218, 29);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "Tempo Tolerância ";
             // 
             // FrmTelaFinanceiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(814, 601);
+            this.ClientSize = new System.Drawing.Size(814, 667);
+            this.Controls.Add(this.lblCont);
+            this.Controls.Add(this.tbTolerancia);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.splitter3);
@@ -404,6 +470,7 @@ namespace Teste
             this.panel2.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbTolerancia)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -437,5 +504,10 @@ namespace Teste
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TrackBar tbTolerancia;
+        private System.Windows.Forms.Label lblCont;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label10;
     }
 }
