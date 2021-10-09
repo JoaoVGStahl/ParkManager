@@ -14,10 +14,14 @@ namespace Teste
     public partial class FrmTelaPesquisaTicket : Form
     {
         Banco banco = new Banco();
-        public FrmTelaPesquisaTicket()
+        FrmTelaOperacao form;
+        public FrmTelaPesquisaTicket(FrmTelaOperacao Form)
         {
             InitializeComponent();
+            this.form = Form;
+           
         }
+        
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -28,40 +32,17 @@ namespace Teste
         {
             dataGridView1.SelectionChanged -= dataGridView1_SelectionChanged;
             cmbStatus.SelectedIndex = 1;
-            PreencherGrid();
-            dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
             dtpEntrada.Value = DateTime.Today.AddDays(-7);
-
-        }
-        private void PreencherGrid()
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                dt = banco.ProcedureSemParametros(6);
-                dataGridView1.DataSource = dt;
-                dataGridView1.Columns[0].Width = 60;
-                dataGridView1.Columns[1].Width = 95;
-                dataGridView1.Columns[2].Width = 95;
-                dataGridView1.Columns[3].Width = 168;
-                dataGridView1.Columns[4].Width = 75;
-                dataGridView1.Columns[5].Width = 110;
-                dataGridView1.Columns[6].Width = 140;
-                dataGridView1.Columns[7].Width = 225;
-                dataGridView1.Columns[8].Width = 325;
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message, "Falha ao carregar as informações!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
+            btnPesquisa.PerformClick();
+            //PreencherGrid();
+            dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
+            
 
         }
         private void button3_Click(object sender, EventArgs e)
         {
             Globais.IdTicket = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
-            FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket();
+            FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket(form);
             Frm.ShowDialog();
 
         }
@@ -226,6 +207,12 @@ namespace Teste
                 MessageBox.Show(ex.Message, "Erro!");
             }
 
+        }
+        
+        private void dataGridView1_DoubleClick(object sender, EventArgs e)
+        {
+            form.PesquisaTicket(dataGridView1.SelectedRows[0].Cells[4].Value.ToString());
+            this.Dispose();
         }
     }
 }

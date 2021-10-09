@@ -18,6 +18,7 @@ namespace Teste
         public FrmTelaOperacao()
         {
             InitializeComponent();
+            CarregarCores();
         }
         private void AbrirForm(int nivel, Form F)
         {
@@ -37,14 +38,20 @@ namespace Teste
 
         private void FrmTelaOperacao_Load(object sender, EventArgs e)
         {
-            if (!(Globais.Login == Properties.Settings.Default.UserRoot))
+            if (!(Globais.Login == Properties.Settings.Default.UserRoot) || (Properties.Settings.Default["StringBanco"].ToString() == ""))
             {
+                
                 txtPlaca.Select();
                 CarregarBarraStatus();
                 PopularComboTipo();
                 ContadorTicket();
                 CarregarParametros();
+                
             }
+
+        }
+        private void CarregarCores()
+        {
 
         }
         private void CarregarBarraStatus()
@@ -78,7 +85,7 @@ namespace Teste
             }
 
         }
-        private void ContadorTicket()
+        public void ContadorTicket()
         {
             DataTable dt = new DataTable();
             try
@@ -110,13 +117,13 @@ namespace Teste
                 if (dt.Rows.Count > 0)
                 {
                     DateTime aux = Convert.ToDateTime("00:00:00");
-                    Globais.ValorHora = Convert.ToDecimal(dt.Rows[0].ItemArray[0]);
-                    Globais.ValorMinimo = Convert.ToDecimal(dt.Rows[0].ItemArray[1]);
-                    Globais.ValorUnico = Convert.ToDecimal(dt.Rows[0].ItemArray[2]);
-                    DateTime tempo = Convert.ToDateTime(dt.Rows[0].ItemArray[3].ToString());
+                    Globais.ValorHora = Convert.ToDecimal(dt.Rows[0].ItemArray[1]);
+                    Globais.ValorMinimo = Convert.ToDecimal(dt.Rows[0].ItemArray[2]);
+                    Globais.ValorUnico = Convert.ToDecimal(dt.Rows[0].ItemArray[3]);
+                    DateTime tempo = Convert.ToDateTime(dt.Rows[0].ItemArray[4].ToString());
                     TimeSpan ts = tempo - aux;
                     Globais.Tolerencia = ts;
-                    Properties.Settings.Default["ArquivoAuditoria"] = dt.Rows[0].ItemArray[4].ToString();
+                    Properties.Settings.Default["ArquivoAuditoria"] = dt.Rows[0].ItemArray[5].ToString();
                     Properties.Settings.Default.Save();
                 }
                 else
@@ -138,13 +145,14 @@ namespace Teste
 
         private void button6_Click(object sender, EventArgs e)
         {
-            FrmTelaPesquisaTicket Frm = new FrmTelaPesquisaTicket();
+
+            FrmTelaPesquisaTicket Frm = new FrmTelaPesquisaTicket(this);
             AbrirForm(0, Frm);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket();
+            FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket(this);
             AbrirForm(0, Frm);
         }
 
@@ -257,15 +265,24 @@ namespace Teste
                         else
                         {
                             //Regex para validar Telefone.
-                            if (Regex.IsMatch(telefone,"^[(]{1}[11-99]{2}[)]{1}[0|9]{1}[0-9]{4}-[0-9]{4}"))
+                            if(Regex.IsMatch(nome, @"^[A-Za-záàâãéèêíïóôõöúçÁÀÂÃÉÈÍÏÓÔÕÖÚÇ ]+$"))
                             {
-                                VerificarTicket(placa, nome, telefone);
+                                if (Regex.IsMatch(telefone, "^[(]{1}[11-99]{2}[)]{1}[0|9]{1}[0-9]{4}-[0-9]{4}"))
+                                {
+                                    VerificarTicket(placa, nome, telefone);
+                                }
+                                else
+                                {
+                                    MessageBox.Show("O Telefone inválido!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    mskTelefone.Focus();
+                                }
                             }
                             else
                             {
-                                MessageBox.Show("O Telefone inválido!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                mskTelefone.Focus();
+                                MessageBox.Show("Nome inválido!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                txtNome.Focus();
                             }
+                            
                         }
                     }
                 }
@@ -457,7 +474,7 @@ namespace Teste
         {
             string mensagem = "Tem certeza que deseja sair?";
             string titulo = "Efetuar Logout?";
-            bool escolha = (MessageBox.Show(mensagem, titulo, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button3) == DialogResult.Yes);
+            bool escolha = (MessageBox.Show(mensagem, titulo, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes);
             if (escolha)
             {
                 //Destroi o Formulario principal e abre o formulario de login
@@ -531,8 +548,11 @@ namespace Teste
 
         private void btnPesquisaTicket_Click_2(object sender, EventArgs e)
         {
+            PesquisaTicket(txtPlaca.Text);
+        }
+        public void PesquisaTicket(string placa)
+        {
             DataTable dt = new DataTable();
-            string placa = txtPlaca.Text;
             if (placa != "")
             {
 
@@ -571,18 +591,27 @@ namespace Teste
             }
         }
 
-        private void txtPlaca_MouseHover(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void txtPlaca_MouseUp(object sender, MouseEventArgs e)
+        private void label8_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void mskTelefone_KeyPress(object sender, KeyPressEventArgs e)
+        private void panel8_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void lblQtdTicket_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel9_Paint(object sender, PaintEventArgs e)
         {
 
         }

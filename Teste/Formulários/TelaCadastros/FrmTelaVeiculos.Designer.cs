@@ -41,6 +41,8 @@ namespace Teste
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.lblTicket = new System.Windows.Forms.Label();
+            this.lblCaptionTicket = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbMarca = new System.Windows.Forms.ComboBox();
@@ -203,6 +205,8 @@ namespace Teste
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel5.Controls.Add(this.lblTicket);
+            this.panel5.Controls.Add(this.lblCaptionTicket);
             this.panel5.Controls.Add(this.txtId);
             this.panel5.Controls.Add(this.label5);
             this.panel5.Controls.Add(this.cmbMarca);
@@ -220,10 +224,34 @@ namespace Teste
             this.panel5.Size = new System.Drawing.Size(830, 444);
             this.panel5.TabIndex = 6;
             // 
+            // lblTicket
+            // 
+            this.lblTicket.AutoSize = true;
+            this.lblTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTicket.Location = new System.Drawing.Point(109, 378);
+            this.lblTicket.Name = "lblTicket";
+            this.lblTicket.Size = new System.Drawing.Size(68, 73);
+            this.lblTicket.TabIndex = 14;
+            this.lblTicket.Text = "0";
+            this.lblTicket.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTicket.Visible = false;
+            this.lblTicket.Click += new System.EventHandler(this.label7_Click);
+            // 
+            // lblCaptionTicket
+            // 
+            this.lblCaptionTicket.AutoSize = true;
+            this.lblCaptionTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCaptionTicket.Location = new System.Drawing.Point(12, 354);
+            this.lblCaptionTicket.Name = "lblCaptionTicket";
+            this.lblCaptionTicket.Size = new System.Drawing.Size(261, 24);
+            this.lblCaptionTicket.TabIndex = 13;
+            this.lblCaptionTicket.Text = "Ticket\'s abertos deste veiculo:";
+            this.lblCaptionTicket.Visible = false;
+            // 
             // txtId
             // 
             this.txtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtId.Location = new System.Drawing.Point(195, 321);
+            this.txtId.Location = new System.Drawing.Point(195, 305);
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
             this.txtId.Size = new System.Drawing.Size(67, 35);
@@ -233,7 +261,7 @@ namespace Teste
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(189, 282);
+            this.label5.Location = new System.Drawing.Point(189, 266);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(36, 29);
             this.label5.TabIndex = 11;
@@ -248,7 +276,7 @@ namespace Teste
             this.cmbMarca.Items.AddRange(new object[] {
             "0 - Inativo",
             "1 - Ativo"});
-            this.cmbMarca.Location = new System.Drawing.Point(22, 221);
+            this.cmbMarca.Location = new System.Drawing.Point(22, 205);
             this.cmbMarca.Name = "cmbMarca";
             this.cmbMarca.Size = new System.Drawing.Size(240, 37);
             this.cmbMarca.TabIndex = 10;
@@ -262,7 +290,7 @@ namespace Teste
             this.cmbTipo.Items.AddRange(new object[] {
             "0 - Inativo",
             "1 - Ativo"});
-            this.cmbTipo.Location = new System.Drawing.Point(21, 135);
+            this.cmbTipo.Location = new System.Drawing.Point(21, 119);
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(241, 37);
             this.cmbTipo.TabIndex = 9;
@@ -296,9 +324,9 @@ namespace Teste
             this.cmbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbStatus.FormattingEnabled = true;
             this.cmbStatus.Items.AddRange(new object[] {
-            "0 - Inativo",
-            "1 - Ativo"});
-            this.cmbStatus.Location = new System.Drawing.Point(23, 321);
+            "Inativo",
+            "Ativo"});
+            this.cmbStatus.Location = new System.Drawing.Point(23, 305);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(163, 37);
             this.cmbStatus.TabIndex = 7;
@@ -308,7 +336,7 @@ namespace Teste
             this.txtPlaca.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPlaca.Enabled = false;
             this.txtPlaca.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPlaca.Location = new System.Drawing.Point(21, 51);
+            this.txtPlaca.Location = new System.Drawing.Point(21, 43);
             this.txtPlaca.MaxLength = 7;
             this.txtPlaca.Name = "txtPlaca";
             this.txtPlaca.Size = new System.Drawing.Size(241, 35);
@@ -319,7 +347,7 @@ namespace Teste
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(16, 182);
+            this.label4.Location = new System.Drawing.Point(16, 166);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(79, 29);
             this.label4.TabIndex = 3;
@@ -329,17 +357,18 @@ namespace Teste
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(15, 96);
+            this.label3.Location = new System.Drawing.Point(15, 80);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(63, 29);
             this.label3.TabIndex = 2;
             this.label3.Text = "Tipo";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(17, 282);
+            this.label2.Location = new System.Drawing.Point(17, 266);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(79, 29);
             this.label2.TabIndex = 1;
@@ -349,7 +378,7 @@ namespace Teste
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(15, 12);
+            this.label1.Location = new System.Drawing.Point(15, 4);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 29);
             this.label1.TabIndex = 0;
@@ -403,5 +432,7 @@ namespace Teste
         private System.Windows.Forms.ComboBox cmbTipo;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.Label lblTicket;
+        private System.Windows.Forms.Label lblCaptionTicket;
     }
 }

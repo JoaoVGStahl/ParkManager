@@ -15,9 +15,11 @@ namespace Teste
     {
         Banco banco = new Banco();
         DateTime DataFormatada;
-        public FrmTelaEncerrarTicket()
+        FrmTelaOperacao form;
+        public FrmTelaEncerrarTicket(FrmTelaOperacao form)
         {
             InitializeComponent();
+            this.form = form;
         }
 
         private void FrmTelaEncerrarTicket_Load(object sender, EventArgs e)
@@ -127,8 +129,7 @@ namespace Teste
             else
             {
                 Total += ValorUnico;
-            }
-            
+            } 
             txtTotal.Text = Total.ToString("N2");
             PreencherLabelTempoPermanencia(ts);
 
@@ -180,6 +181,7 @@ namespace Teste
 
         private void button2_Click(object sender, EventArgs e)
         {
+            form.ContadorTicket();
             this.Close();
         }
 
@@ -205,7 +207,6 @@ namespace Teste
             {
                 txtRecebido.Focus();
                 txtRecebido.ReadOnly = false;
-
             }
             else
             {
