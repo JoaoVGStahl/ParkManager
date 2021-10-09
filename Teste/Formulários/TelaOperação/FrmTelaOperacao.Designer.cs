@@ -41,11 +41,11 @@ namespace Teste
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.lblQtdTicket = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.panel9 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblQtdTicket = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
             this.btnIniciar = new System.Windows.Forms.Button();
             this.btnEncerrar = new System.Windows.Forms.Button();
             this.lblPlaca = new System.Windows.Forms.Label();
@@ -83,7 +83,6 @@ namespace Teste
             this.panel10 = new System.Windows.Forms.Panel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
-            this.panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -206,68 +205,86 @@ namespace Teste
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.label8);
+            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.lblQtdTicket);
-            this.panel1.Controls.Add(this.label13);
-            this.panel1.Controls.Add(this.panel9);
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(661, 498);
+            this.panel1.Size = new System.Drawing.Size(660, 498);
             this.panel1.TabIndex = 12;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.ImageLocation = "";
+            this.pictureBox1.Location = new System.Drawing.Point(-14, 67);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(674, 343);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // lblQtdTicket
+            // 
+            this.lblQtdTicket.BackColor = System.Drawing.Color.Transparent;
+            this.lblQtdTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 50.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQtdTicket.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lblQtdTicket.Location = new System.Drawing.Point(203, -3);
+            this.lblQtdTicket.Name = "lblQtdTicket";
+            this.lblQtdTicket.Size = new System.Drawing.Size(190, 67);
+            this.lblQtdTicket.TabIndex = 10;
+            this.lblQtdTicket.Text = "0";
+            this.lblQtdTicket.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblQtdTicket.Click += new System.EventHandler(this.lblQtdTicket_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Transparent;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.Location = new System.Drawing.Point(394, 411);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(182, 85);
+            this.button2.TabIndex = 37;
+            this.button2.Text = "Saída";
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(81, 411);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(182, 85);
+            this.button1.TabIndex = 28;
+            this.button1.Text = "Entrada";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label8.Location = new System.Drawing.Point(212, 38);
+            this.label8.Location = new System.Drawing.Point(3, 16);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(212, 31);
             this.label8.TabIndex = 3;
             this.label8.Text = "Ticket Abertos:";
-            // 
-            // lblQtdTicket
-            // 
-            this.lblQtdTicket.BackColor = System.Drawing.Color.Transparent;
-            this.lblQtdTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 54F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQtdTicket.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lblQtdTicket.Location = new System.Drawing.Point(242, 56);
-            this.lblQtdTicket.Name = "lblQtdTicket";
-            this.lblQtdTicket.Size = new System.Drawing.Size(147, 73);
-            this.lblQtdTicket.TabIndex = 10;
-            this.lblQtdTicket.Text = "0";
-            this.lblQtdTicket.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.Firebrick;
-            this.label13.Location = new System.Drawing.Point(0, 0);
-            this.label13.Name = "label13";
-            this.label13.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label13.Size = new System.Drawing.Size(357, 31);
-            this.label13.TabIndex = 28;
-            this.label13.Text = "* Informações obrigatórias";
-            // 
-            // panel9
-            // 
-            this.panel9.Controls.Add(this.pictureBox1);
-            this.panel9.Location = new System.Drawing.Point(3, 150);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(656, 307);
-            this.panel9.TabIndex = 36;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.ImageLocation = "";
-            this.pictureBox1.Location = new System.Drawing.Point(0, -8);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(656, 350);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // btnIniciar
             // 
@@ -335,7 +352,7 @@ namespace Teste
             // 
             this.txtNomeP.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtNomeP.Font = new System.Drawing.Font("Arial Narrow", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNomeP.Location = new System.Drawing.Point(3, 182);
+            this.txtNomeP.Location = new System.Drawing.Point(3, 210);
             this.txtNomeP.MaxLength = 45;
             this.txtNomeP.Name = "txtNomeP";
             this.txtNomeP.ReadOnly = true;
@@ -348,7 +365,7 @@ namespace Teste
             // 
             this.txtTelefoneP.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtTelefoneP.Font = new System.Drawing.Font("Arial Narrow", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTelefoneP.Location = new System.Drawing.Point(184, 228);
+            this.txtTelefoneP.Location = new System.Drawing.Point(184, 256);
             this.txtTelefoneP.Name = "txtTelefoneP";
             this.txtTelefoneP.ReadOnly = true;
             this.txtTelefoneP.Size = new System.Drawing.Size(311, 34);
@@ -359,7 +376,7 @@ namespace Teste
             // lblHrEntrada
             // 
             this.lblHrEntrada.Font = new System.Drawing.Font("Microsoft Sans Serif", 27F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHrEntrada.Location = new System.Drawing.Point(116, 315);
+            this.lblHrEntrada.Location = new System.Drawing.Point(116, 343);
             this.lblHrEntrada.Name = "lblHrEntrada";
             this.lblHrEntrada.Size = new System.Drawing.Size(447, 82);
             this.lblHrEntrada.TabIndex = 24;
@@ -370,7 +387,7 @@ namespace Teste
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(202, 7);
+            this.label10.Location = new System.Drawing.Point(202, 35);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(275, 31);
             this.label10.TabIndex = 25;
@@ -387,9 +404,9 @@ namespace Teste
             this.panel2.Controls.Add(this.txtTelefoneP);
             this.panel2.Controls.Add(this.txtNomeP);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(667, 0);
+            this.panel2.Location = new System.Drawing.Point(666, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(679, 498);
+            this.panel2.Size = new System.Drawing.Size(680, 498);
             this.panel2.TabIndex = 18;
             // 
             // lblHoraEntradaVisual
@@ -397,7 +414,7 @@ namespace Teste
             this.lblHoraEntradaVisual.AutoSize = true;
             this.lblHoraEntradaVisual.BackColor = System.Drawing.Color.Transparent;
             this.lblHoraEntradaVisual.Font = new System.Drawing.Font("Microsoft Sans Serif", 27F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHoraEntradaVisual.Location = new System.Drawing.Point(176, 299);
+            this.lblHoraEntradaVisual.Location = new System.Drawing.Point(176, 327);
             this.lblHoraEntradaVisual.Name = "lblHoraEntradaVisual";
             this.lblHoraEntradaVisual.Size = new System.Drawing.Size(327, 40);
             this.lblHoraEntradaVisual.TabIndex = 29;
@@ -413,7 +430,7 @@ namespace Teste
             this.btnLimpaP.FlatAppearance.BorderSize = 0;
             this.btnLimpaP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLimpaP.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpaP.Image")));
-            this.btnLimpaP.Location = new System.Drawing.Point(509, 224);
+            this.btnLimpaP.Location = new System.Drawing.Point(509, 252);
             this.btnLimpaP.Name = "btnLimpaP";
             this.btnLimpaP.Size = new System.Drawing.Size(51, 47);
             this.btnLimpaP.TabIndex = 28;
@@ -428,7 +445,7 @@ namespace Teste
             this.panel4.Controls.Add(this.lblPlaca);
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Controls.Add(this.lblPlacal1);
-            this.panel4.Location = new System.Drawing.Point(104, 41);
+            this.panel4.Location = new System.Drawing.Point(104, 69);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(471, 131);
             this.panel4.TabIndex = 27;
@@ -705,6 +722,7 @@ namespace Teste
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(1346, 10);
             this.panel8.TabIndex = 35;
+            this.panel8.Paint += new System.Windows.Forms.PaintEventHandler(this.panel8_Paint);
             // 
             // panel10
             // 
@@ -748,7 +766,6 @@ namespace Teste
             this.Load += new System.EventHandler(this.FrmTelaOperacao_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -799,7 +816,6 @@ namespace Teste
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.Label label13;
         public System.Windows.Forms.ToolStripStatusLabel lblUsername;
         private System.Windows.Forms.ToolStripStatusLabel lblData;
         private System.Windows.Forms.Timer HoraData;
@@ -812,7 +828,6 @@ namespace Teste
         private System.Windows.Forms.MaskedTextBox mskTelefone;
         private System.Windows.Forms.Splitter splitter3;
         private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Label lblHoraEntradaVisual;
         private System.Windows.Forms.Button btnPesquisaTicket;
@@ -820,6 +835,8 @@ namespace Teste
         private System.Windows.Forms.Label lblPlacal1;
         private System.Windows.Forms.ToolTip toolTip1;
         public System.Windows.Forms.TextBox txtPlaca;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }
 
