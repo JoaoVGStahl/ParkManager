@@ -15,9 +15,11 @@ namespace Teste
     {
         Banco banco = new Banco();
         DateTime DataFormatada;
-        public FrmTelaEncerrarTicket()
+        FrmTelaOperacao form;
+        public FrmTelaEncerrarTicket(FrmTelaOperacao form)
         {
             InitializeComponent();
+            this.form = form;
         }
 
         private void FrmTelaEncerrarTicket_Load(object sender, EventArgs e)
@@ -91,37 +93,43 @@ namespace Teste
                 ts = DataEntrada - DataSaida;
             }
 
-            decimal Total = 0, Valor = Globais.ValorHora;
+            decimal Total = 0, Valor = Globais.ValorHora, ValorMinimo = Globais.ValorMinimo, ValorUnico = Globais.ValorUnico;
             int dias = ts.Days;
             int horas = ts.Hours;
             int minutos = ts.Minutes;
             int tolerancia = Globais.Tolerencia.Minutes;
-
-            if (dias > 0)
+            if (!Globais.ModoUnico)
             {
-                horas += (dias * 24);
-            }
-            if (horas > 0)
-            {
-                if (minutos > tolerancia)
+                if (dias > 0)
+                {
+                    horas += (dias * 24);
+                }
+                if (horas > 0)
+                {
+                    if (minutos > tolerancia)
+                    {
+                        horas += 1;
+                        Total = horas * Valor;
+                    }
+                    else
+                    {
+                        Total = horas * Valor;
+                    }
+                }
+                else if (minutos > tolerancia)
                 {
                     horas += 1;
                     Total = horas * Valor;
                 }
                 else
                 {
-                    Total = horas * Valor;
+                    Total += ValorMinimo;
                 }
-            }
-            else if (minutos > tolerancia)
-            {
-                horas += 1;
-                Total = horas * Valor;
             }
             else
             {
-                Total = 0;
-            }
+                Total += ValorUnico;
+            } 
             txtTotal.Text = Total.ToString("N2");
             PreencherLabelTempoPermanencia(ts);
 
@@ -173,6 +181,7 @@ namespace Teste
 
         private void button2_Click(object sender, EventArgs e)
         {
+            form.ContadorTicket();
             this.Close();
         }
 
@@ -198,7 +207,6 @@ namespace Teste
             {
                 txtRecebido.Focus();
                 txtRecebido.ReadOnly = false;
-
             }
             else
             {

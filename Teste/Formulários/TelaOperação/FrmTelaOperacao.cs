@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 namespace Teste
 {
@@ -17,6 +18,7 @@ namespace Teste
         public FrmTelaOperacao()
         {
             InitializeComponent();
+            CarregarCores();
         }
         private void AbrirForm(int nivel, Form F)
         {
@@ -36,24 +38,21 @@ namespace Teste
 
         private void FrmTelaOperacao_Load(object sender, EventArgs e)
         {
-            if (!(Globais.Login == Properties.Settings.Default.UserRoot))
+            if (!(Globais.Login == Properties.Settings.Default.UserRoot) || (Properties.Settings.Default["StringBanco"].ToString() == ""))
             {
+                
                 txtPlaca.Select();
                 CarregarBarraStatus();
                 PopularComboTipo();
                 ContadorTicket();
                 CarregarParametros();
-
+                
             }
-            //Foca a Caixa de texto da Placa
 
-            /*
-            Globais.IdUsuario = 1;
-            Globais.Login = "admin";
-            Globais.Nivel = 3;
-            Globais.UserStatus = 1;
-            lblUsername.Text = Globais.Login;
-            */
+        }
+        private void CarregarCores()
+        {
+
         }
         private void CarregarBarraStatus()
         {
@@ -86,7 +85,7 @@ namespace Teste
             }
 
         }
-        private void ContadorTicket()
+        public void ContadorTicket()
         {
             DataTable dt = new DataTable();
             try
@@ -115,14 +114,16 @@ namespace Teste
                     new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 14}
                 };
                 dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
-                if(dt.Rows.Count > 0)
+                if (dt.Rows.Count > 0)
                 {
                     DateTime aux = Convert.ToDateTime("00:00:00");
-                    Globais.ValorHora = Convert.ToDecimal(dt.Rows[0].ItemArray[0]);
-                    DateTime tempo = Convert.ToDateTime(dt.Rows[0].ItemArray[1].ToString());
+                    Globais.ValorHora = Convert.ToDecimal(dt.Rows[0].ItemArray[1]);
+                    Globais.ValorMinimo = Convert.ToDecimal(dt.Rows[0].ItemArray[2]);
+                    Globais.ValorUnico = Convert.ToDecimal(dt.Rows[0].ItemArray[3]);
+                    DateTime tempo = Convert.ToDateTime(dt.Rows[0].ItemArray[4].ToString());
                     TimeSpan ts = tempo - aux;
                     Globais.Tolerencia = ts;
-                    Properties.Settings.Default["ArquivoAuditoria"] = dt.Rows[0].ItemArray[2].ToString();
+                    Properties.Settings.Default["ArquivoAuditoria"] = dt.Rows[0].ItemArray[5].ToString();
                     Properties.Settings.Default.Save();
                 }
                 else
@@ -144,13 +145,14 @@ namespace Teste
 
         private void button6_Click(object sender, EventArgs e)
         {
-            FrmTelaPesquisaTicket Frm = new FrmTelaPesquisaTicket();
+
+            FrmTelaPesquisaTicket Frm = new FrmTelaPesquisaTicket(this);
             AbrirForm(0, Frm);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket();
+            FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket(this);
             AbrirForm(0, Frm);
         }
 
@@ -172,13 +174,14 @@ namespace Teste
                 {
                     DataTable dt = new DataTable();
                     dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
-                    if(dt.Rows.Count > 0)
+                    if (dt.Rows.Count > 0)
                     {
                         cmbTipo.Text = dt.Rows[0].ItemArray[1].ToString();
                         cmbMarca.Text = dt.Rows[0].ItemArray[2].ToString();
                         cmbTipo.Enabled = false;
                         cmbMarca.Enabled = false;
                         btnPesquisaTicket.Enabled = true;
+                        btnIniciar.Enabled = true;
                     }
                     else
                     {
@@ -203,7 +206,7 @@ namespace Teste
                 mskTelefone.Enabled = false;
 
             }
-            
+
         }
         private void AtivarFuncoes(bool caixa)
         {
@@ -237,17 +240,64 @@ namespace Teste
         }
         private void VerificarCaixas()
         {
-            if (txtPlaca.Text != "" && cmbTipo.SelectedIndex >= 0 && cmbTipo.SelectedIndex >= 0)
+            string placa = txtPlaca.Text;
+            string nome = txtNome.Text, telefone = mskTelefone.Text;
+            //Verifica se as caixas possuem texto
+            if (placa != "" && cmbTipo.SelectedIndex >= 0 && cmbMarca.SelectedIndex >= 0)
             {
-
-                VerificarTicket(txtPlaca.Text);
+                //Regex para validar a placa do veiculo
+                if (Regex.IsMatch(placa, "^[A-Z]{3}[0-9]{1}[A-Z0-9]{1}[0-9]{2}"))
+                {
+                    if (nome == "" && telefone == "(  )     -")
+                    {
+                        nome = "Convidado";
+                        telefone = "(00)00000-0000";
+                        VerificarTicket(placa, nome, telefone);
+                    }
+                    else
+                    {
+                        if (nome == "")
+                        {
+                            MessageBox.Show("O Nome neste caso, precisa estar preenchido!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            txtNome.Focus();
+                            return;
+                        }
+                        else
+                        {
+                            //Regex para validar Telefone.
+                            if(Regex.IsMatch(nome, @"^[A-Za-záàâãéèêíïóôõöúçÁÀÂÃÉÈÍÏÓÔÕÖÚÇ ]+$"))
+                            {
+                                if (Regex.IsMatch(telefone, "^[(]{1}[11-99]{2}[)]{1}[0|9]{1}[0-9]{4}-[0-9]{4}"))
+                                {
+                                    VerificarTicket(placa, nome, telefone);
+                                }
+                                else
+                                {
+                                    MessageBox.Show("O Telefone inválido!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    mskTelefone.Focus();
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Nome inválido!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                txtNome.Focus();
+                            }
+                            
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Placa Inválida!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtPlaca.Focus();
+                }
             }
             else
             {
                 MessageBox.Show("Há campos que precisam ser preenchidos!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void VerificarTicket(string placa)
+        private void VerificarTicket(string placa, string nome, string telefone)
         {
             DataTable dt = new DataTable();
             try
@@ -261,7 +311,7 @@ namespace Teste
                 }
                 else
                 {
-                    InserirTicket();
+                    InserirTicket(placa, nome, telefone);
                 }
             }
             catch (Exception ex)
@@ -271,24 +321,12 @@ namespace Teste
             }
 
         }
-        private void InserirTicket()
+        private void InserirTicket(string placa, string nome, string telefone)
         {
-            string placa = txtPlaca.Text, tipo = cmbTipo.Text, marca = cmbMarca.Text;
-            string nome, telefone;
-            int idTicket;
-
-            if (txtNome.Text == "")
-            {
-                nome = "Convidado";
-                telefone = "(00)00000-0000";
-            }
-            else
-            {
-                nome = txtNome.Text;
-                telefone = mskTelefone.Text;
-            }
+            string marca = cmbMarca.Text, tipo = cmbTipo.Text;
             try
             {
+                int idTicket;
                 DataTable dt = new DataTable();
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
@@ -436,7 +474,7 @@ namespace Teste
         {
             string mensagem = "Tem certeza que deseja sair?";
             string titulo = "Efetuar Logout?";
-            bool escolha = (MessageBox.Show(mensagem, titulo, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button3) == DialogResult.Yes);
+            bool escolha = (MessageBox.Show(mensagem, titulo, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes);
             if (escolha)
             {
                 //Destroi o Formulario principal e abre o formulario de login
@@ -449,7 +487,7 @@ namespace Teste
         private void txtPlaca_KeyPress(object sender, KeyPressEventArgs e)
         {
             //Caracteres permitidos
-            string caracterespermitidos = "ABCDEFGHIJ0123456789";
+            string caracterespermitidos = "ABCDEFGHIJKLMNOPQRTUVWXYZ0123456789";
             //Apenas Letras E BackSpace nos 3 primeiros digitos
             if (txtPlaca.TextLength < 3)
             {
@@ -466,7 +504,7 @@ namespace Teste
                     e.Handled = true;
                 }
             }
-            // Apenas letras de A-J e 0-9 e BackSpace no 5º Digito
+            // Apenas letras de A-Z e 0-9 e BackSpace no 5º Digito
             if (txtPlaca.TextLength == 4)
             {
                 if (!(caracterespermitidos.Contains(e.KeyChar.ToString().ToUpper())) && !(e.KeyChar == (char)Keys.Back))
@@ -510,8 +548,11 @@ namespace Teste
 
         private void btnPesquisaTicket_Click_2(object sender, EventArgs e)
         {
+            PesquisaTicket(txtPlaca.Text);
+        }
+        public void PesquisaTicket(string placa)
+        {
             DataTable dt = new DataTable();
-            string placa = txtPlaca.Text;
             if (placa != "")
             {
 
@@ -526,7 +567,7 @@ namespace Teste
                         LimparCaixas();
                         btnEncerrar.Enabled = true;
                         btnIniciar.Enabled = false;
-                        
+
                     }
                     else
                     {
@@ -550,11 +591,30 @@ namespace Teste
             }
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private void label8_Click(object sender, EventArgs e)
         {
-            FrmTelaRelatorios Frm = new FrmTelaRelatorios();
-            AbrirForm(2, Frm);
+
+        }
+
+        private void panel8_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void lblQtdTicket_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel9_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
-    
+

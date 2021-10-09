@@ -41,10 +41,11 @@ namespace Teste
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.lblQtdTicket = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
             this.btnIniciar = new System.Windows.Forms.Button();
             this.btnEncerrar = new System.Windows.Forms.Button();
             this.lblPlaca = new System.Windows.Forms.Label();
@@ -62,16 +63,15 @@ namespace Teste
             this.lblPlacal1 = new System.Windows.Forms.Label();
             this.btnConfig = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.btnCadastros = new System.Windows.Forms.Button();
             this.btnSair = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.btnCadastros = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblData = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblHora = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblUsername = new System.Windows.Forms.ToolStripStatusLabel();
-            this.label13 = new System.Windows.Forms.Label();
             this.HoraData = new System.Windows.Forms.Timer(this.components);
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -81,8 +81,8 @@ namespace Teste
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
-            this.panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -96,6 +96,7 @@ namespace Teste
             // cmbTipo
             // 
             this.cmbTipo.BackColor = System.Drawing.Color.White;
+            this.cmbTipo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipo.Enabled = false;
             this.cmbTipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -103,6 +104,7 @@ namespace Teste
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(189, 37);
             this.cmbTipo.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.cmbTipo, "Selecione um tipo de veiculo!");
             // 
             // txtPlaca
             // 
@@ -114,6 +116,7 @@ namespace Teste
             this.txtPlaca.Name = "txtPlaca";
             this.txtPlaca.Size = new System.Drawing.Size(183, 35);
             this.txtPlaca.TabIndex = 0;
+            this.toolTip1.SetToolTip(this.txtPlaca, "Insira uma Placa!");
             this.txtPlaca.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.txtPlaca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPlaca_KeyPress);
             // 
@@ -121,6 +124,7 @@ namespace Teste
             // 
             this.cmbMarca.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.cmbMarca.BackColor = System.Drawing.Color.White;
+            this.cmbMarca.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.cmbMarca.Enabled = false;
             this.cmbMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbMarca.FormattingEnabled = true;
@@ -130,6 +134,8 @@ namespace Teste
             this.cmbMarca.Name = "cmbMarca";
             this.cmbMarca.Size = new System.Drawing.Size(240, 37);
             this.cmbMarca.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.cmbMarca, "Selecione um Marca do veiculo!");
+            this.cmbMarca.UseWaitCursor = true;
             this.cmbMarca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbMarca_KeyPress);
             // 
             // txtNome
@@ -138,7 +144,7 @@ namespace Teste
             this.txtNome.Enabled = false;
             this.txtNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNome.Location = new System.Drawing.Point(732, 41);
-            this.txtNome.MaxLength = 50;
+            this.txtNome.MaxLength = 45;
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(397, 35);
             this.txtNome.TabIndex = 3;
@@ -198,55 +204,87 @@ namespace Teste
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.panel9);
             this.panel1.Controls.Add(this.label8);
+            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.lblQtdTicket);
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(661, 471);
+            this.panel1.Size = new System.Drawing.Size(660, 498);
             this.panel1.TabIndex = 12;
-            // 
-            // panel9
-            // 
-            this.panel9.Controls.Add(this.pictureBox1);
-            this.panel9.Location = new System.Drawing.Point(3, 111);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(656, 346);
-            this.panel9.TabIndex = 36;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.ImageLocation = "";
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(-14, 67);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(656, 346);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.Size = new System.Drawing.Size(674, 343);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // lblQtdTicket
+            // 
+            this.lblQtdTicket.BackColor = System.Drawing.Color.Transparent;
+            this.lblQtdTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 50.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQtdTicket.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lblQtdTicket.Location = new System.Drawing.Point(203, -3);
+            this.lblQtdTicket.Name = "lblQtdTicket";
+            this.lblQtdTicket.Size = new System.Drawing.Size(190, 67);
+            this.lblQtdTicket.TabIndex = 10;
+            this.lblQtdTicket.Text = "0";
+            this.lblQtdTicket.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblQtdTicket.Click += new System.EventHandler(this.lblQtdTicket_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Transparent;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.Location = new System.Drawing.Point(394, 411);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(182, 85);
+            this.button2.TabIndex = 37;
+            this.button2.Text = "Saída";
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(81, 411);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(182, 85);
+            this.button1.TabIndex = 28;
+            this.button1.Text = "Entrada";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(216, 3);
+            this.label8.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label8.Location = new System.Drawing.Point(3, 16);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(212, 31);
             this.label8.TabIndex = 3;
             this.label8.Text = "Ticket Abertos:";
-            // 
-            // lblQtdTicket
-            // 
-            this.lblQtdTicket.BackColor = System.Drawing.Color.Transparent;
-            this.lblQtdTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQtdTicket.Location = new System.Drawing.Point(233, 35);
-            this.lblQtdTicket.Name = "lblQtdTicket";
-            this.lblQtdTicket.Size = new System.Drawing.Size(147, 73);
-            this.lblQtdTicket.TabIndex = 10;
-            this.lblQtdTicket.Text = "0";
-            this.lblQtdTicket.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // btnIniciar
             // 
@@ -258,7 +296,7 @@ namespace Teste
             this.btnIniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIniciar.Image = ((System.Drawing.Image)(resources.GetObject("btnIniciar.Image")));
             this.btnIniciar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnIniciar.Location = new System.Drawing.Point(142, 2);
+            this.btnIniciar.Location = new System.Drawing.Point(123, 2);
             this.btnIniciar.Name = "btnIniciar";
             this.btnIniciar.Size = new System.Drawing.Size(220, 85);
             this.btnIniciar.TabIndex = 13;
@@ -277,9 +315,9 @@ namespace Teste
             this.btnEncerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEncerrar.Image = ((System.Drawing.Image)(resources.GetObject("btnEncerrar.Image")));
             this.btnEncerrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEncerrar.Location = new System.Drawing.Point(372, 2);
+            this.btnEncerrar.Location = new System.Drawing.Point(343, 2);
             this.btnEncerrar.Name = "btnEncerrar";
-            this.btnEncerrar.Size = new System.Drawing.Size(204, 85);
+            this.btnEncerrar.Size = new System.Drawing.Size(220, 85);
             this.btnEncerrar.TabIndex = 14;
             this.btnEncerrar.Text = "Encerrar Ticket (F4)";
             this.btnEncerrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -313,12 +351,12 @@ namespace Teste
             // txtNomeP
             // 
             this.txtNomeP.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtNomeP.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNomeP.Location = new System.Drawing.Point(25, 182);
-            this.txtNomeP.MaxLength = 32;
+            this.txtNomeP.Font = new System.Drawing.Font("Arial Narrow", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNomeP.Location = new System.Drawing.Point(3, 210);
+            this.txtNomeP.MaxLength = 45;
             this.txtNomeP.Name = "txtNomeP";
             this.txtNomeP.ReadOnly = true;
-            this.txtNomeP.Size = new System.Drawing.Size(617, 35);
+            this.txtNomeP.Size = new System.Drawing.Size(673, 34);
             this.txtNomeP.TabIndex = 21;
             this.txtNomeP.Text = "Nome";
             this.txtNomeP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -326,11 +364,11 @@ namespace Teste
             // txtTelefoneP
             // 
             this.txtTelefoneP.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtTelefoneP.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTelefoneP.Location = new System.Drawing.Point(178, 228);
+            this.txtTelefoneP.Font = new System.Drawing.Font("Arial Narrow", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTelefoneP.Location = new System.Drawing.Point(184, 256);
             this.txtTelefoneP.Name = "txtTelefoneP";
             this.txtTelefoneP.ReadOnly = true;
-            this.txtTelefoneP.Size = new System.Drawing.Size(311, 35);
+            this.txtTelefoneP.Size = new System.Drawing.Size(311, 34);
             this.txtTelefoneP.TabIndex = 21;
             this.txtTelefoneP.Text = "Telefone";
             this.txtTelefoneP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -338,7 +376,7 @@ namespace Teste
             // lblHrEntrada
             // 
             this.lblHrEntrada.Font = new System.Drawing.Font("Microsoft Sans Serif", 27F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHrEntrada.Location = new System.Drawing.Point(110, 315);
+            this.lblHrEntrada.Location = new System.Drawing.Point(116, 343);
             this.lblHrEntrada.Name = "lblHrEntrada";
             this.lblHrEntrada.Size = new System.Drawing.Size(447, 82);
             this.lblHrEntrada.TabIndex = 24;
@@ -349,7 +387,7 @@ namespace Teste
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(196, 7);
+            this.label10.Location = new System.Drawing.Point(202, 35);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(275, 31);
             this.label10.TabIndex = 25;
@@ -366,9 +404,9 @@ namespace Teste
             this.panel2.Controls.Add(this.txtTelefoneP);
             this.panel2.Controls.Add(this.txtNomeP);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(684, 0);
+            this.panel2.Location = new System.Drawing.Point(666, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(662, 471);
+            this.panel2.Size = new System.Drawing.Size(680, 498);
             this.panel2.TabIndex = 18;
             // 
             // lblHoraEntradaVisual
@@ -376,7 +414,7 @@ namespace Teste
             this.lblHoraEntradaVisual.AutoSize = true;
             this.lblHoraEntradaVisual.BackColor = System.Drawing.Color.Transparent;
             this.lblHoraEntradaVisual.Font = new System.Drawing.Font("Microsoft Sans Serif", 27F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHoraEntradaVisual.Location = new System.Drawing.Point(170, 299);
+            this.lblHoraEntradaVisual.Location = new System.Drawing.Point(176, 327);
             this.lblHoraEntradaVisual.Name = "lblHoraEntradaVisual";
             this.lblHoraEntradaVisual.Size = new System.Drawing.Size(327, 40);
             this.lblHoraEntradaVisual.TabIndex = 29;
@@ -392,7 +430,7 @@ namespace Teste
             this.btnLimpaP.FlatAppearance.BorderSize = 0;
             this.btnLimpaP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLimpaP.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpaP.Image")));
-            this.btnLimpaP.Location = new System.Drawing.Point(509, 224);
+            this.btnLimpaP.Location = new System.Drawing.Point(509, 252);
             this.btnLimpaP.Name = "btnLimpaP";
             this.btnLimpaP.Size = new System.Drawing.Size(51, 47);
             this.btnLimpaP.TabIndex = 28;
@@ -407,7 +445,7 @@ namespace Teste
             this.panel4.Controls.Add(this.lblPlaca);
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Controls.Add(this.lblPlacal1);
-            this.panel4.Location = new System.Drawing.Point(98, 41);
+            this.panel4.Location = new System.Drawing.Point(104, 69);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(471, 131);
             this.panel4.TabIndex = 27;
@@ -453,7 +491,7 @@ namespace Teste
             this.btnConfig.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConfig.FlatAppearance.BorderSize = 0;
             this.btnConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConfig.Location = new System.Drawing.Point(1217, 2);
+            this.btnConfig.Location = new System.Drawing.Point(1223, 2);
             this.btnConfig.Name = "btnConfig";
             this.btnConfig.Size = new System.Drawing.Size(120, 85);
             this.btnConfig.TabIndex = 21;
@@ -463,36 +501,18 @@ namespace Teste
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.Silver;
-            this.panel6.Controls.Add(this.btnCadastros);
             this.panel6.Controls.Add(this.btnSair);
-            this.panel6.Controls.Add(this.button8);
+            this.panel6.Controls.Add(this.btnIniciar);
+            this.panel6.Controls.Add(this.btnEncerrar);
             this.panel6.Controls.Add(this.button6);
             this.panel6.Controls.Add(this.btnConfig);
-            this.panel6.Controls.Add(this.btnEncerrar);
-            this.panel6.Controls.Add(this.btnIniciar);
+            this.panel6.Controls.Add(this.button8);
+            this.panel6.Controls.Add(this.btnCadastros);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel6.Location = new System.Drawing.Point(0, 612);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1346, 88);
             this.panel6.TabIndex = 24;
-            // 
-            // btnCadastros
-            // 
-            this.btnCadastros.BackColor = System.Drawing.Color.Transparent;
-            this.btnCadastros.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnCadastros.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCadastros.FlatAppearance.BorderSize = 0;
-            this.btnCadastros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCadastros.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastros.Image")));
-            this.btnCadastros.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCadastros.Location = new System.Drawing.Point(772, 0);
-            this.btnCadastros.Name = "btnCadastros";
-            this.btnCadastros.Size = new System.Drawing.Size(212, 85);
-            this.btnCadastros.TabIndex = 27;
-            this.btnCadastros.Text = "Cadastros";
-            this.btnCadastros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCadastros.UseVisualStyleBackColor = false;
-            this.btnCadastros.Click += new System.EventHandler(this.btnCadastros_Click);
             // 
             // btnSair
             // 
@@ -502,31 +522,12 @@ namespace Teste
             this.btnSair.FlatAppearance.BorderSize = 0;
             this.btnSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSair.Image = ((System.Drawing.Image)(resources.GetObject("btnSair.Image")));
-            this.btnSair.Location = new System.Drawing.Point(8, 2);
+            this.btnSair.Location = new System.Drawing.Point(3, 2);
             this.btnSair.Name = "btnSair";
             this.btnSair.Size = new System.Drawing.Size(120, 85);
             this.btnSair.TabIndex = 26;
             this.btnSair.UseVisualStyleBackColor = false;
             this.btnSair.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button8
-            // 
-            this.button8.BackColor = System.Drawing.Color.Transparent;
-            this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button8.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button8.FlatAppearance.BorderSize = 0;
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
-            this.button8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button8.Location = new System.Drawing.Point(994, 0);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(213, 85);
-            this.button8.TabIndex = 25;
-            this.button8.Text = "Relatórios";
-            this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button8.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button8.UseVisualStyleBackColor = false;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button6
             // 
@@ -537,14 +538,50 @@ namespace Teste
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
             this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.Location = new System.Drawing.Point(586, 0);
+            this.button6.Location = new System.Drawing.Point(563, 2);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(176, 85);
+            this.button6.Size = new System.Drawing.Size(220, 85);
             this.button6.TabIndex = 24;
             this.button6.Text = "Tickets";
             this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.Color.Transparent;
+            this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button8.FlatAppearance.BorderSize = 0;
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
+            this.button8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button8.Location = new System.Drawing.Point(1003, 2);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(220, 85);
+            this.button8.TabIndex = 25;
+            this.button8.Text = "Relatórios";
+            this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button8.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button8.UseVisualStyleBackColor = false;
+            // 
+            // btnCadastros
+            // 
+            this.btnCadastros.BackColor = System.Drawing.Color.Transparent;
+            this.btnCadastros.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnCadastros.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCadastros.FlatAppearance.BorderSize = 0;
+            this.btnCadastros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCadastros.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastros.Image")));
+            this.btnCadastros.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCadastros.Location = new System.Drawing.Point(783, 2);
+            this.btnCadastros.Name = "btnCadastros";
+            this.btnCadastros.Size = new System.Drawing.Size(220, 85);
+            this.btnCadastros.TabIndex = 27;
+            this.btnCadastros.Text = "Cadastros";
+            this.btnCadastros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCadastros.UseVisualStyleBackColor = false;
+            this.btnCadastros.Click += new System.EventHandler(this.btnCadastros_Click);
             // 
             // statusStrip1
             // 
@@ -592,18 +629,6 @@ namespace Teste
             this.lblUsername.Size = new System.Drawing.Size(63, 20);
             this.lblUsername.Text = "Usuario";
             // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.Firebrick;
-            this.label13.Location = new System.Drawing.Point(5, 79);
-            this.label13.Name = "label13";
-            this.label13.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label13.Size = new System.Drawing.Size(357, 31);
-            this.label13.TabIndex = 28;
-            this.label13.Text = "* Informações obrigatórias";
-            // 
             // HoraData
             // 
             this.HoraData.Interval = 1000;
@@ -642,12 +667,11 @@ namespace Teste
             this.panel7.Controls.Add(this.label4);
             this.panel7.Controls.Add(this.txtPlaca);
             this.panel7.Controls.Add(this.label5);
-            this.panel7.Controls.Add(this.label13);
             this.panel7.Controls.Add(this.label2);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel7.Location = new System.Drawing.Point(0, 0);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1346, 115);
+            this.panel7.Size = new System.Drawing.Size(1346, 88);
             this.panel7.TabIndex = 33;
             // 
             // btnPesquisaTicket
@@ -660,9 +684,9 @@ namespace Teste
             this.btnPesquisaTicket.FlatAppearance.BorderSize = 0;
             this.btnPesquisaTicket.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPesquisaTicket.Image = ((System.Drawing.Image)(resources.GetObject("btnPesquisaTicket.Image")));
-            this.btnPesquisaTicket.Location = new System.Drawing.Point(3, 10);
+            this.btnPesquisaTicket.Location = new System.Drawing.Point(8, 10);
             this.btnPesquisaTicket.Name = "btnPesquisaTicket";
-            this.btnPesquisaTicket.Size = new System.Drawing.Size(72, 69);
+            this.btnPesquisaTicket.Size = new System.Drawing.Size(72, 70);
             this.btnPesquisaTicket.TabIndex = 30;
             this.btnPesquisaTicket.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPesquisaTicket.UseVisualStyleBackColor = false;
@@ -674,7 +698,7 @@ namespace Teste
             this.mskTelefone.Enabled = false;
             this.mskTelefone.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mskTelefone.Location = new System.Drawing.Point(1137, 41);
-            this.mskTelefone.Mask = "(99)00000-0000";
+            this.mskTelefone.Mask = "(00)00000-0000";
             this.mskTelefone.Name = "mskTelefone";
             this.mskTelefone.Size = new System.Drawing.Size(202, 35);
             this.mskTelefone.TabIndex = 4;
@@ -684,7 +708,7 @@ namespace Teste
             this.splitter3.BackColor = System.Drawing.Color.Silver;
             this.splitter3.Dock = System.Windows.Forms.DockStyle.Top;
             this.splitter3.Enabled = false;
-            this.splitter3.Location = new System.Drawing.Point(0, 115);
+            this.splitter3.Location = new System.Drawing.Point(0, 88);
             this.splitter3.Name = "splitter3";
             this.splitter3.Size = new System.Drawing.Size(1346, 3);
             this.splitter3.TabIndex = 34;
@@ -694,10 +718,11 @@ namespace Teste
             // 
             this.panel8.BackColor = System.Drawing.Color.DarkBlue;
             this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel8.Location = new System.Drawing.Point(0, 118);
+            this.panel8.Location = new System.Drawing.Point(0, 91);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(1346, 10);
             this.panel8.TabIndex = 35;
+            this.panel8.Paint += new System.Windows.Forms.PaintEventHandler(this.panel8_Paint);
             // 
             // panel10
             // 
@@ -705,10 +730,17 @@ namespace Teste
             this.panel10.Controls.Add(this.panel2);
             this.panel10.Controls.Add(this.panel1);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(0, 128);
+            this.panel10.Location = new System.Drawing.Point(0, 101);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(1346, 471);
+            this.panel10.Size = new System.Drawing.Size(1346, 498);
             this.panel10.TabIndex = 36;
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.IsBalloon = true;
+            this.toolTip1.ShowAlways = true;
+            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTip1.ToolTipTitle = "Dica:";
             // 
             // FrmTelaOperacao
             // 
@@ -734,7 +766,6 @@ namespace Teste
             this.Load += new System.EventHandler(this.FrmTelaOperacao_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -756,7 +787,6 @@ namespace Teste
         #endregion
 
         private System.Windows.Forms.ComboBox cmbTipo;
-        private System.Windows.Forms.TextBox txtPlaca;
         private System.Windows.Forms.ComboBox cmbMarca;
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.Label label1;
@@ -786,7 +816,6 @@ namespace Teste
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.Label label13;
         public System.Windows.Forms.ToolStripStatusLabel lblUsername;
         private System.Windows.Forms.ToolStripStatusLabel lblData;
         private System.Windows.Forms.Timer HoraData;
@@ -799,12 +828,15 @@ namespace Teste
         private System.Windows.Forms.MaskedTextBox mskTelefone;
         private System.Windows.Forms.Splitter splitter3;
         private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Label lblHoraEntradaVisual;
         private System.Windows.Forms.Button btnPesquisaTicket;
         private System.Windows.Forms.Button btnCadastros;
         private System.Windows.Forms.Label lblPlacal1;
+        private System.Windows.Forms.ToolTip toolTip1;
+        public System.Windows.Forms.TextBox txtPlaca;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }
 
