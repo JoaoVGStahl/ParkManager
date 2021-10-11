@@ -39,10 +39,9 @@ namespace Teste
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = dt;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LimparCaixas();
         }
@@ -71,7 +70,6 @@ namespace Teste
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Falha ao Carregar Informações!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -133,6 +131,7 @@ namespace Teste
         }
         private void VerificarCaixas()
         {
+            DataTable dt = new DataTable();
             if (Regex.IsMatch(txtPlaca.Text, "^[A-Z]{3}[0-9]{1}[A-Z0-9]{1}[0-9]{2}"))
             {
                 if (cmbTipo.SelectedIndex >= 0)
@@ -143,11 +142,28 @@ namespace Teste
                         {
                             if (txtId.Text == "")
                             {
-                                VerificarVeiculo();
+                                dt = VerificarVeiculo();
+                                if (dt.Rows.Count > 0)
+                                {
+                                    MessageBox.Show("Este Veiculo já está cadastrado!", "Falha ao Salvar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    txtPlaca.Focus();
+                                }
+                                else
+                                {
+                                    SalvarVeiculo("Save");
+                                }
                             }
                             else
                             {
-                                VerificarTicket();
+                                dt = VerificarTicket();
+                                if (dt.Rows.Count > 0)
+                                {
+                                    MessageBox.Show("Este veiculo possui um Ticket em aberto! \nEncerre-o e tente novamente!", "Falha!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                                else
+                                {
+                                    SalvarVeiculo("Edit");
+                                }
                             }
                         }
                         else
@@ -168,63 +184,48 @@ namespace Teste
                     cmbTipo.Focus();
                 }
             }
+            dt.Dispose();
         }
-        private void VerificarVeiculo()
+        public DataTable VerificarVeiculo()
         {
+            DataTable dt = new DataTable();
             try
             {
-                DataTable dt = new DataTable();
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
                     new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value=13},
                     new SqlParameter(){ParameterName="@Placa", SqlDbType = SqlDbType.VarChar, Value = txtPlaca.Text}
                 };
                 dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
-                if(dt.Rows.Count > 0)
-                {
-                    MessageBox.Show("Este Veiculo já está cadastrado!", "Falha ao Salvar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtPlaca.Focus();
-                }
-                else
-                {
-                    SalvarVeiculo("Save");
-                }
+                return dt;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                MessageBox.Show(ex.Message, "Falha!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            return dt;
         }
-        private void VerificarTicket()
+        public DataTable VerificarTicket()
         {
+            DataTable dt = new DataTable();
             try
             {
-                DataTable dt = new DataTable();
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
                     new SqlParameter(){ParameterName="@Flag",SqlDbType = SqlDbType.Int, Value = 17},
                     new SqlParameter(){ParameterName="@idCarro", SqlDbType = SqlDbType.Int, Value = Convert.ToInt32(txtId.Text)}
                 };
                 dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
-                if (dt.Rows.Count > 0)
-                {
-                    MessageBox.Show("Este veiculo possui um Ticket em aberto! \nEncerre-o e tente novamente!", "Falha!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    SalvarVeiculo("Edit");
-                }
+                return dt;
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Falha ao editar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            return dt;
         }
-        private void SalvarVeiculo(string mode)
+        private void SalvarVeiculo(string method)
         {
-            
             try
             {
                 List<SqlParameter> sp = new List<SqlParameter>()
@@ -235,18 +236,19 @@ namespace Teste
                     new SqlParameter(){ParameterName="@Marca", SqlDbType = SqlDbType.VarChar, Value = cmbMarca.Text},
                     new SqlParameter(){ParameterName="@Status", SqlDbType = SqlDbType.Int, Value = cmbStatus.SelectedIndex}
                 };
-                if(txtId.Text != "" && mode =="Edit")
+                if (txtId.Text != "" && method == "Edit")
                 {
                     sp.Add(new SqlParameter() { ParameterName = "@idCarro", SqlDbType = SqlDbType.Int, Value = txtId.Text });
                 }
                 int LinhasAfetadas = banco.EditData("dbo.Gerencia_Veiculo", sp);
                 if (LinhasAfetadas > 0)
                 {
-                    if (mode == "Save")
+                    if (method == "Save")
                     {
                         MessageBox.Show("Veiculo Adicionado com Sucesso!", "Veiculo Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         PreencherGrid();
-                    }else if(mode == "Edit")
+                    }
+                    else if (method == "Edit")
                     {
                         MessageBox.Show("Veiculo Editado com sucesso!", "Veiculo Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         PreencherGrid();
@@ -254,10 +256,11 @@ namespace Teste
                 }
                 else
                 {
-                    if(mode == "Save")
+                    if (method == "Save")
                     {
                         MessageBox.Show("Falha ao Adiconar Veiculo!", "Veiculo não adicionado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }else if(mode == "Edit")
+                    }
+                    else if (method == "Edit")
                     {
                         MessageBox.Show("Falha ao Editar Veiculo!", "Veiculo não Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -265,11 +268,10 @@ namespace Teste
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Falha!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
+
         private void cmbTipo_SelectedIndexChanged(object sender, EventArgs e)
         {
             PopularComboMarca();
@@ -312,7 +314,6 @@ namespace Teste
         }
         private void SelecaoGrid()
         {
-
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 cmbTipo.SelectedIndexChanged -= cmbTipo_SelectedIndexChanged;
@@ -323,7 +324,6 @@ namespace Teste
                 btnExcluir.Enabled = true;
                 try
                 {
-
                     string id = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
                     DataTable dt = new DataTable();
                     List<SqlParameter> sp = new List<SqlParameter>()
@@ -334,7 +334,6 @@ namespace Teste
                     dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
                     if (dt.Rows.Count > 0)
                     {
-
                         txtId.Text = dt.Rows[0].ItemArray[0].ToString();
                         txtPlaca.Text = dt.Rows[0].ItemArray[1].ToString();
                         CarregarComboTipo();
@@ -372,7 +371,6 @@ namespace Teste
 
                     MessageBox.Show(ex.Message, "Falha!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
             }
         }
         public DataTable ContadorTicket()
@@ -380,15 +378,12 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
                     new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 5},
                     new SqlParameter(){ParameterName ="@Placa", SqlDbType = SqlDbType.VarChar, Value = txtPlaca.Text}
                 };
                 dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
-
-
             }
             catch (Exception ex)
             {
@@ -416,29 +411,26 @@ namespace Teste
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-
             if (txtId.Text != "")
             {
+                DataTable dt = new DataTable();
                 string mensagem = "Tem Certeza que deseja excluir este veiculo?";
                 string titulo = "Excluir Veiculo?";
                 bool escolha = (MessageBox.Show(mensagem, titulo, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes);
                 if (escolha)
                 {
-                    DataTable dt = new DataTable();
-                    dt = ContadorTicket();
+                    dt = VerificarTicket();
                     if (dt.Rows.Count > 0)
                     {
-                        if (Convert.ToInt32(dt.Rows[0].ItemArray[0]) == 0)
-                        {
-                            ExcluirVeiculo();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Não é possivel excluir este veiculo pois há um Ticket em andamento, encerre-o e tente novamente!", "Falha ao excluir!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                        MessageBox.Show("Não é possivel excluir este veiculo pois há um Ticket em andamento, encerre-o e tente novamente!", "Falha ao excluir!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        ExcluirVeiculo();
                     }
                 }
-                
+                dt.Dispose();
+
             }
             else
             {
@@ -469,7 +461,6 @@ namespace Teste
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Exclusão mal sucedida!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -496,7 +487,6 @@ namespace Teste
             lblCaptionTicket.Visible = false;
             lblTicket.Visible = false;
             dataGridView1.SelectionChanged -= dataGridView1_SelectionChanged;
-
         }
 
         private void label3_Click(object sender, EventArgs e)

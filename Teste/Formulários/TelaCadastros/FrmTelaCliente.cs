@@ -145,28 +145,34 @@ namespace Teste
         }
         private void ExcluirCliente()
         {
-            try
+            string mensagem = "Tem Certeza que deseja excluir este Cliente?";
+            string titulo = "Excluir Cliente?";
+            bool escolha = (MessageBox.Show(mensagem, titulo, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes);
+            if (escolha)
             {
-                string id = txtID.Text;
-                List<SqlParameter> sp = new List<SqlParameter>()
+                try
+                {
+                    string id = txtID.Text;
+                    List<SqlParameter> sp = new List<SqlParameter>()
                     {
                         new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value=1},
                         new SqlParameter(){ParameterName="@idCliente", SqlDbType = SqlDbType.Int, Value = id }
                     };
-                int LinhasAfetadas = banco.EditData("dbo.Gerencia_Cliente", sp);
-                if (LinhasAfetadas > 0)
-                {
-                    MessageBox.Show("Cadastro Excluido com Sucesso!", "Exclusão bem sucedida!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CarregarGrid();
+                    int LinhasAfetadas = banco.EditData("dbo.Gerencia_Cliente", sp);
+                    if (LinhasAfetadas > 0)
+                    {
+                        MessageBox.Show("Cadastro Excluido com Sucesso!", "Exclusão bem sucedida!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CarregarGrid();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Falha ao excluir Cliente ou ele não Existe!", "Falha!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Falha ao excluir Cliente ou ele não Existe!", "Falha!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Falha!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Falha!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
