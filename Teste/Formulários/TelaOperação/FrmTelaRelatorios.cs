@@ -21,5 +21,10 @@ namespace Teste
         {
 
         }
+
+        private void FrmTelaRelatorios_Load(object sender, EventArgs e)
+        {
+            cmbCategoria.SelectedIndex = 0;
+        }
     }
 }
