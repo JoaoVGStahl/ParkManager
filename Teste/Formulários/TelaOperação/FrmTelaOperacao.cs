@@ -9,11 +9,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
+using System.Drawing.Imaging;
 
 namespace Teste
 {
     public partial class FrmTelaOperacao : Form
     {
+        public DirectX.Capture.Filter Camera;
+        public DirectX.Capture.Capture CaptureInfo;
+        public DirectX.Capture.Filters CamContainer;
+        Image capturaImagem;
+
         Banco banco = new Banco();
         public FrmTelaOperacao()
         {
@@ -46,7 +52,9 @@ namespace Teste
                 PopularComboTipo();
                 ContadorTicket();
                 CarregarParametros();
-                
+                IniciaCamera();
+
+
             }
 
         }
@@ -135,6 +143,75 @@ namespace Teste
             {
 
                 MessageBox.Show(ex.Message, "Falha ao carregar as informações!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void IniciaCamera()
+        {               
+            try
+            {
+                CamContainer = new DirectX.Capture.Filters();
+                int quantCam = CamContainer.VideoInputDevices.Count;
+
+                for (int i = 0; i < quantCam; i++)
+                {
+                    try
+                    {
+                        // obtém o dispositivo de entrada do vídeo
+                        Camera = CamContainer.VideoInputDevices[i];
+
+                        // inicializa a Captura usando o dispositivo
+                        CaptureInfo = new DirectX.Capture.Capture(Camera, null)
+                        {
+                            // Define a janela de visualização do vídeo
+                            PreviewWindow = this.picCam
+                        };
+
+                        // Capturando o tratamento de evento
+                        CaptureInfo.FrameCaptureComplete += AtualizaImagem;
+
+                        // Captura o frame do dispositivo
+                        CaptureInfo.CaptureFrame();
+
+                        // Se o dispositivo foi encontrado e inicializado então sai sem checar o resto
+                        break;
+                        
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message);
+            }
+        }
+
+        public void AtualizaImagem(PictureBox frame)
+        {
+            try
+            {
+                capturaImagem = frame.Image;
+                this.picImagem.Image = capturaImagem;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro " + ex.Message);
+            }
+        }
+
+        private void SalvarImagem()
+        {
+            try
+            {
+                picImagem.Image.Save(Globais.CaminhoFoto, ImageFormat.Jpeg);
+                MessageBox.Show("Imagem salva com sucesso");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro " + ex.Message);
             }
         }
 
@@ -311,6 +388,7 @@ namespace Teste
                 }
                 else
                 {
+                    CapturarFoto(placa);
                     InserirTicket(placa, nome, telefone);
                 }
             }
@@ -338,9 +416,10 @@ namespace Teste
                     new SqlParameter(){ParameterName = "@Tipo", SqlDbType = SqlDbType.NVarChar, Value = tipo },
                     new SqlParameter(){ParameterName = "@Hr_Entrada", SqlDbType = SqlDbType.Time, Value = DateTime.Now.ToLongTimeString() },
                     new SqlParameter(){ParameterName = "@Data_Entrada", SqlDbType = SqlDbType.DateTime, Value = DateTime.Now.ToShortDateString() },
-                    new SqlParameter(){ParameterName = "@Caminho_Foto", SqlDbType = SqlDbType.NVarChar, Value = @"C:\ParkManager\Fotos" }
+                    new SqlParameter(){ParameterName = "@Caminho_Foto", SqlDbType = SqlDbType.NVarChar, Value = Globais.CaminhoFoto }
                 };
                 dt = banco.InsertData("dbo.InsertTicket", sp);
+                SalvarImagem();
                 //Verifica se houve algum retorno da procedure
                 if (dt.Rows.Count > 0)
                 {
@@ -614,6 +693,41 @@ namespace Teste
         private void panel9_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private string CapturarFoto(string placa)
+        {
+            string caminhoImagemSalva = @"C:\ParkManager\fotos\";
+            try
+            {
+                caminhoImagemSalva += "veiculo_" + placa + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + ".jpg";
+                Globais.CaminhoFoto = caminhoImagemSalva;
+                CaptureInfo.CaptureFrame();
+                return caminhoImagemSalva;
+                //Foto Show
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro " + ex.Message);
+                return caminhoImagemSalva;
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CaptureInfo.CaptureFrame();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro " + ex.Message);
+            }
         }
     }
 }

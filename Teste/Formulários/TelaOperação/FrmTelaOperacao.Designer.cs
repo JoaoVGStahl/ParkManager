@@ -41,11 +41,10 @@ namespace Teste
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.lblQtdTicket = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
             this.btnIniciar = new System.Windows.Forms.Button();
             this.btnEncerrar = new System.Windows.Forms.Button();
             this.lblPlaca = new System.Windows.Forms.Label();
@@ -82,8 +81,10 @@ namespace Teste
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.picImagem = new System.Windows.Forms.PictureBox();
+            this.picCam = new System.Windows.Forms.PictureBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -91,6 +92,8 @@ namespace Teste
             this.statusStrip1.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picImagem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCam)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbTipo
@@ -204,8 +207,10 @@ namespace Teste
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.button5);
+            this.panel1.Controls.Add(this.picImagem);
+            this.panel1.Controls.Add(this.picCam);
             this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.lblQtdTicket);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
@@ -215,17 +220,17 @@ namespace Teste
             this.panel1.Size = new System.Drawing.Size(660, 498);
             this.panel1.TabIndex = 12;
             // 
-            // pictureBox1
+            // label8
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.ImageLocation = "";
-            this.pictureBox1.Location = new System.Drawing.Point(-14, 67);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(674, 343);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label8.Location = new System.Drawing.Point(3, 16);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(212, 31);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Ticket Abertos:";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // lblQtdTicket
             // 
@@ -273,18 +278,7 @@ namespace Teste
             this.button1.Text = "Entrada";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = false;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label8.Location = new System.Drawing.Point(3, 16);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(212, 31);
-            this.label8.TabIndex = 3;
-            this.label8.Text = "Ticket Abertos:";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnIniciar
             // 
@@ -742,6 +736,32 @@ namespace Teste
             this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTip1.ToolTipTitle = "Dica:";
             // 
+            // picImagem
+            // 
+            this.picImagem.Location = new System.Drawing.Point(482, 280);
+            this.picImagem.Name = "picImagem";
+            this.picImagem.Size = new System.Drawing.Size(168, 125);
+            this.picImagem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picImagem.TabIndex = 38;
+            this.picImagem.TabStop = false;
+            // 
+            // picCam
+            // 
+            this.picCam.Location = new System.Drawing.Point(3, 67);
+            this.picCam.Name = "picCam";
+            this.picCam.Size = new System.Drawing.Size(647, 338);
+            this.picCam.TabIndex = 39;
+            this.picCam.TabStop = false;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(623, 411);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(27, 23);
+            this.button5.TabIndex = 42;
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // FrmTelaOperacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
@@ -766,7 +786,6 @@ namespace Teste
             this.Load += new System.EventHandler(this.FrmTelaOperacao_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel4.ResumeLayout(false);
@@ -779,6 +798,8 @@ namespace Teste
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             this.panel10.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picImagem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCam)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -822,7 +843,6 @@ namespace Teste
         private System.Windows.Forms.ToolStripStatusLabel lblHora;
         private System.Windows.Forms.Button btnLimpaP;
         private System.Windows.Forms.Splitter splitter2;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.MaskedTextBox mskTelefone;
@@ -837,6 +857,9 @@ namespace Teste
         public System.Windows.Forms.TextBox txtPlaca;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.PictureBox picImagem;
+        private System.Windows.Forms.PictureBox picCam;
+        private System.Windows.Forms.Button button5;
     }
 }
 
