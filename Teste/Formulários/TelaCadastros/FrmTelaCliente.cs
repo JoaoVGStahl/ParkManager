@@ -258,7 +258,6 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                
                 List<SqlParameter> sp = new List<SqlParameter>()
                     {
                         new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value= 22},

@@ -28,6 +28,7 @@ namespace Teste
             if (StringBanco == "")
             {
                 btnSalvar.Enabled = true;
+                btnEditar.Enabled = false;
             }
             else
             {
@@ -41,14 +42,20 @@ namespace Teste
                     dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
                     if (dt.Rows.Count > 0)
                     {
-                        txtCaminho.Text = dt.Rows[0].ItemArray[0].ToString();
-                        txtPortaArduino.Text = dt.Rows[0].ItemArray[1].ToString();
-                        string Connection = dt.Rows[0].ItemArray[2].ToString();
+                        txtID.Text = dt.Rows[0].ItemArray[0].ToString();
+                        txtCaminho.Text = dt.Rows[0].ItemArray[1].ToString();
+                        txtPortaArduino.Text = dt.Rows[0].ItemArray[2].ToString();
+                        string Connection = dt.Rows[0].ItemArray[3].ToString();
                         var array = Connection.Split(new string[] { "Server=", "Database=", "User Id=", "Password=", ";" }, StringSplitOptions.RemoveEmptyEntries);
                         txtServidor.Text = array[0];
                         txtNomeBanco.Text = array[1];
                         txtUsuario.Text = array[2];
                         txtSenha.Text = array[3];
+                    }
+                    else
+                    {
+                        btnSalvar.Enabled = true;
+                        btnEditar.Enabled = false;
                     }
 
                 }
@@ -75,25 +82,36 @@ namespace Teste
             Properties.Settings.Default["ArquivoAuditoria"] = txtCaminho.Text;
             Properties.Settings.Default["SenhaRoot"] = txtConfirmSenhaRoot.Text;
             Properties.Settings.Default.Save();
-            SalvarBanco(StrConn);
+            if(txtID.Text != "")
+            {
+                SalvarBanco(StrConn, "Edit");
+            }
+            else if(txtID.Text == "")
+            {
+                SalvarBanco(StrConn, "Save");
+            }
+            
 
         }
-        private void SalvarBanco(string StrConn)
+        private void SalvarBanco(string StrConn, string method)
         {
-            int result;
-            List<SqlParameter> sp = new List<SqlParameter>()
-            {
-                new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value =1},
-                new SqlParameter(){ParameterName = "@Caminho", SqlDbType = SqlDbType.NVarChar, Value = txtCaminho.Text},
-                new SqlParameter(){ParameterName = "@Porta_Arduino", SqlDbType = SqlDbType.NVarChar, Value = txtPortaArduino.Text},
-                new SqlParameter(){ParameterName = "@String_Conn", SqlDbType = SqlDbType.NVarChar, Value = StrConn}
-            };
             try
             {
+                int result;
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
+                    new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value =1},
+                    new SqlParameter(){ParameterName = "@Caminho", SqlDbType = SqlDbType.NVarChar, Value = txtCaminho.Text},
+                    new SqlParameter(){ParameterName = "@Porta_Arduino", SqlDbType = SqlDbType.NVarChar, Value = txtPortaArduino.Text},
+                    new SqlParameter(){ParameterName = "@String_Conn", SqlDbType = SqlDbType.NVarChar, Value = StrConn}
+                };
+                if(method == "Edit")
+                {
+                    sp.Add(new SqlParameter() { ParameterName = "@Id_Estacionamento", SqlDbType = SqlDbType.Int, Value = txtID.Text });
+                }
                 result = banco.EditData("dbo.Parametros", sp);
                 if (result > 0)
                 {
-                    MessageBox.Show("Parâmetros Editado com Sucesso!", "Configurações Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtCaminho.Enabled = false;
                     txtPortaArduino.Enabled = false;
                     txtServidor.Enabled = false;
@@ -104,6 +122,7 @@ namespace Teste
                     txtConfirmSenhaRoot.Enabled = false;
                     btnSalvar.Enabled = false;
                     btnSelecionar.Enabled = false;
+                    MessageBox.Show("Parâmetros Editado com Sucesso!", "Configurações Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {

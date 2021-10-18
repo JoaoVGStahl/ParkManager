@@ -427,7 +427,7 @@ namespace Teste
 
         private void btnConfig_Click(object sender, EventArgs e)
         {
-            FrmTelaConfig Frm = new FrmTelaConfig();
+            FrmTelaConfig Frm = new FrmTelaConfig(this);
             AbrirForm(2, Frm);
         }
         private void PreencherLabels(DataTable dt)

@@ -145,7 +145,8 @@ namespace Teste
                                 dt = VerificarVeiculo();
                                 if (dt.Rows.Count > 0)
                                 {
-                                    MessageBox.Show("Este Veiculo já está cadastrado!", "Falha ao Salvar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    
+                                    MessageBox.Show("Esta Placa já está cadastrada!", "Falha ao Salvar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     txtPlaca.Focus();
                                 }
                                 else
@@ -197,7 +198,6 @@ namespace Teste
                     new SqlParameter(){ParameterName="@Placa", SqlDbType = SqlDbType.VarChar, Value = txtPlaca.Text}
                 };
                 dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
-                return dt;
             }
             catch (Exception ex)
             {
@@ -216,7 +216,6 @@ namespace Teste
                     new SqlParameter(){ParameterName="@idCarro", SqlDbType = SqlDbType.Int, Value = Convert.ToInt32(txtId.Text)}
                 };
                 dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
-                return dt;
             }
             catch (Exception ex)
             {

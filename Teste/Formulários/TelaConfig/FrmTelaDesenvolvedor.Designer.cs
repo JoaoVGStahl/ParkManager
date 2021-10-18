@@ -61,6 +61,8 @@ namespace Teste
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.txtID = new System.Windows.Forms.TextBox();
+            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -70,6 +72,7 @@ namespace Teste
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Silver;
+            this.panel1.Controls.Add(this.txtID);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -426,6 +429,14 @@ namespace Teste
             // 
             this.folderBrowserDialog1.SelectedPath = "C:\\";
             // 
+            // txtID
+            // 
+            this.txtID.Location = new System.Drawing.Point(215, 29);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(100, 20);
+            this.txtID.TabIndex = 0;
+            this.txtID.Visible = false;
+            // 
             // FrmTelaDesenvolvedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -442,6 +453,8 @@ namespace Teste
             this.Name = "FrmTelaDesenvolvedor";
             this.Text = "FrmTelaDesenvolvedor";
             this.Load += new System.EventHandler(this.FrmTelaDesenvolvedor_Load_1);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
@@ -486,5 +499,6 @@ namespace Teste
         private System.Windows.Forms.TextBox txtConfirmSenhaRoot;
         private System.Windows.Forms.TextBox txtUserRoot;
         private System.Windows.Forms.TextBox txtSenhaRoot;
+        private System.Windows.Forms.TextBox txtID;
     }
 }
