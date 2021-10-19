@@ -146,6 +146,7 @@ namespace Teste
             }
         }
 
+        //Novo
         private void IniciaCamera()
         {               
             try
@@ -189,6 +190,7 @@ namespace Teste
             }
         }
 
+        //Novo
         public void AtualizaImagem(PictureBox frame)
         {
             try
@@ -202,12 +204,29 @@ namespace Teste
             }
         }
 
+        //Novo
+        private void CapturarFoto(string placa)
+        {
+            string caminhoImagemSalva = @"C:\ParkManager\fotos\";
+            try
+            {
+                caminhoImagemSalva += "veiculo_" + placa + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + ".jpg";
+                Globais.CaminhoFoto = caminhoImagemSalva;
+                CaptureInfo.CaptureFrame();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro " + ex.Message);
+            }
+        }
+
+        //Novo
         private void SalvarImagem()
         {
             try
             {
                 picImagem.Image.Save(Globais.CaminhoFoto, ImageFormat.Jpeg);
-                MessageBox.Show("Imagem salva com sucesso");
+                //MessageBox.Show("Imagem salva com sucesso");
             }
             catch (Exception ex)
             {
@@ -388,6 +407,7 @@ namespace Teste
                 }
                 else
                 {
+                    //Novo
                     CapturarFoto(placa);
                     InserirTicket(placa, nome, telefone);
                 }
@@ -519,6 +539,10 @@ namespace Teste
             txtNomeP.Text = Convert.ToString(dt.Rows[0].ItemArray[4]);//Nome
             txtTelefoneP.Text = Convert.ToString(dt.Rows[0].ItemArray[5]);// Telefone
             lblHrEntrada.Text = Convert.ToString(dt.Rows[0].ItemArray[6]) + " " + Convert.ToString(dt.Rows[0].ItemArray[7]);// Hora + Data
+
+            //New
+            //Adicionar na Procedure (String da foto) 
+            //picImagem.Image = Image.FromFile(Convert.ToString(dt.Rows[0].ItemArray[]));
         }
         private void AlinharLabels()
         {
@@ -645,8 +669,8 @@ namespace Teste
                         AlinharLabels();
                         LimparCaixas();
                         btnEncerrar.Enabled = true;
-                        btnIniciar.Enabled = false;
-
+                        btnIniciar.Enabled = false;                       
+                       
                     }
                     else
                     {
@@ -700,24 +724,7 @@ namespace Teste
 
         }
 
-        private string CapturarFoto(string placa)
-        {
-            string caminhoImagemSalva = @"C:\ParkManager\fotos\";
-            try
-            {
-                caminhoImagemSalva += "veiculo_" + placa + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + ".jpg";
-                Globais.CaminhoFoto = caminhoImagemSalva;
-                CaptureInfo.CaptureFrame();
-                return caminhoImagemSalva;
-                //Foto Show
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro " + ex.Message);
-                return caminhoImagemSalva;
-            }
-        }
-
+        //Novo
         private void button5_Click(object sender, EventArgs e)
         {
             try
