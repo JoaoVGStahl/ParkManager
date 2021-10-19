@@ -12,9 +12,11 @@ namespace Teste
 {
     public partial class FrmTelaConfig : Form
     {
-        public FrmTelaConfig()
+        Form frm;
+        public FrmTelaConfig(Form Frm)
         {
             InitializeComponent();
+            this.frm = Frm;
         }
         private void FundoBotao(Button botao)
         {
@@ -61,14 +63,13 @@ namespace Teste
 
         private void btnSair_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            this.Close();
         }
 
         private void FrmTelaConfig_Load(object sender, EventArgs e)
         {
             if (Globais.Login == Properties.Settings.Default.UserRoot)
             {
-                
                 btnDev.Visible = true;
                 btnDev.PerformClick();
             }
@@ -114,25 +115,12 @@ namespace Teste
             FecharFormulariosFilhos();
             FrmTelaDesenvolvedor Frm = new FrmTelaDesenvolvedor();
             AbreFormParent(3, Frm);
-
         }
 
         private void FrmTelaConfig_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (Globais.Login == Properties.Settings.Default.UserRoot)
-            {
-
-                FrmTelaLogin Frm = new FrmTelaLogin();
-                Frm.ShowDialog();
-                this.Dispose();
-            }
-            else
-            {
-                this.Dispose();
-            }
-
-            
-        }
-        
+            this.Dispose();
+            frm.Show();
+        }   
     }
 }

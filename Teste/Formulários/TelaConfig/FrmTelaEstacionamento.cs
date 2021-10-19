@@ -147,7 +147,13 @@ namespace Teste
                                 {
                                     if (Regex.IsMatch(txtCidade.Text, @"^\D+"))
                                     {
-                                        SalvarIdentificacao();
+                                        if(txtID.Text != "")
+                                        {
+                                            SalvarIdentificacao("Edit");
+                                        }else if(txtID.Text == "")
+                                        {
+                                            SalvarIdentificacao("Save");
+                                        }
                                     }
                                     else
                                     {
@@ -181,23 +187,14 @@ namespace Teste
                 }
             }
         }
-        private void SalvarIdentificacao()
+        private void SalvarIdentificacao(string method)
         {
             try
             {
-                int Flag;
-                if (txtID.Text == "")
-                {
-                    Flag = 3;
-                }
-                else
-                {
-                    Flag = 2;
-                }
                 int LinhasAfetadas;
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
-                    new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = Flag},
+                    new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 2},
                     new SqlParameter(){ParameterName = "@Cnpj", SqlDbType = SqlDbType.VarChar, Value = mskCnpj.Text},
                     new SqlParameter(){ParameterName = "@Razao_Social", SqlDbType = SqlDbType.VarChar, Value = txtRazaoSocial.Text},
                     new SqlParameter(){ParameterName = "@Endereco", SqlDbType = SqlDbType.VarChar, Value = txtEndereco.Text},
@@ -209,6 +206,10 @@ namespace Teste
                     new SqlParameter(){ParameterName = "@Inscricao_Estadual", SqlDbType = SqlDbType.VarChar, Value = mskInscricao.Text },
                     new SqlParameter(){ParameterName = "@Telefone", SqlDbType = SqlDbType.VarChar, Value = mskTelefone.Text}
                 };
+                if(method == "Edit")
+                {
+                    sp.Add(new SqlParameter() { ParameterName = "@Id_Estacionamento", SqlDbType = SqlDbType.Int, Value = txtID.Text });
+                }
                 LinhasAfetadas = banco.EditData("dbo.Parametros", sp);
                 if (LinhasAfetadas > 0)
                 {

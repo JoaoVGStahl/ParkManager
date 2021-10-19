@@ -34,7 +34,7 @@ namespace Teste
                 Globais.Login = Properties.Settings.Default.UserRoot;
                 Globais.Nivel = 3;
                 Globais.UserStatus = 1;
-                FrmTelaConfig Form = new FrmTelaConfig();
+                FrmTelaConfig Form = new FrmTelaConfig(this);
                 this.Hide();
                 Form.ShowDialog();
                 return;
