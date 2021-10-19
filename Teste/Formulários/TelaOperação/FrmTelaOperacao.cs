@@ -116,12 +116,11 @@ namespace Teste
                 dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
                 if (dt.Rows.Count > 0)
                 {
-                    DateTime aux = Convert.ToDateTime("00:00:00");
+                    
                     Globais.ValorHora = Convert.ToDecimal(dt.Rows[0].ItemArray[1]);
                     Globais.ValorMinimo = Convert.ToDecimal(dt.Rows[0].ItemArray[2]);
                     Globais.ValorUnico = Convert.ToDecimal(dt.Rows[0].ItemArray[3]);
-                    DateTime tempo = Convert.ToDateTime(dt.Rows[0].ItemArray[4].ToString());
-                    TimeSpan ts = tempo - aux;
+                    TimeSpan ts = Convert.ToDateTime(dt.Rows[0].ItemArray[4].ToString()) - Convert.ToDateTime("00:00:00");
                     Globais.Tolerencia = ts;
                     Properties.Settings.Default["ArquivoAuditoria"] = dt.Rows[0].ItemArray[5].ToString();
                     Properties.Settings.Default.Save();

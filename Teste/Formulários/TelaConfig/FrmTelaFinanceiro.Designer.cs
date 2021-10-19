@@ -53,14 +53,14 @@ namespace Teste
             this.lblPrecoMin = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.lblTolerancia = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.tbTolerancia = new System.Windows.Forms.TrackBar();
             this.lblCont = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -335,7 +335,7 @@ namespace Teste
             // 
             this.panel6.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel6.Controls.Add(this.label8);
+            this.panel6.Controls.Add(this.lblTolerancia);
             this.panel6.Controls.Add(this.label10);
             this.panel6.Controls.Add(this.label3);
             this.panel6.Controls.Add(this.lblPrecoMin);
@@ -348,6 +348,26 @@ namespace Teste
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(271, 471);
             this.panel6.TabIndex = 20;
+            // 
+            // lblTolerancia
+            // 
+            this.lblTolerancia.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTolerancia.Location = new System.Drawing.Point(-2, 393);
+            this.lblTolerancia.Name = "lblTolerancia";
+            this.lblTolerancia.Size = new System.Drawing.Size(268, 39);
+            this.lblTolerancia.TabIndex = 21;
+            this.lblTolerancia.Text = "00 Minutos";
+            this.lblTolerancia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(27, 350);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(218, 29);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "Tempo Tolerância ";
             // 
             // splitter3
             // 
@@ -395,13 +415,14 @@ namespace Teste
             this.tbTolerancia.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tbTolerancia.Enabled = false;
             this.tbTolerancia.Location = new System.Drawing.Point(27, 495);
-            this.tbTolerancia.Maximum = 50;
+            this.tbTolerancia.Maximum = 58;
             this.tbTolerancia.Name = "tbTolerancia";
             this.tbTolerancia.Size = new System.Drawing.Size(232, 45);
             this.tbTolerancia.SmallChange = 3;
             this.tbTolerancia.TabIndex = 24;
             this.tbTolerancia.TickFrequency = 5;
             this.tbTolerancia.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.tbTolerancia.Value = 1;
             this.tbTolerancia.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
             // lblCont
@@ -413,26 +434,6 @@ namespace Teste
             this.lblCont.Size = new System.Drawing.Size(29, 31);
             this.lblCont.TabIndex = 25;
             this.lblCont.Text = "0";
-            // 
-            // label8
-            // 
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(-6, 393);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(268, 39);
-            this.label8.TabIndex = 21;
-            this.label8.Text = "00 Minutos";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(27, 350);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(218, 29);
-            this.label10.TabIndex = 20;
-            this.label10.Text = "Tempo Tolerância ";
             // 
             // FrmTelaFinanceiro
             // 
@@ -507,7 +508,7 @@ namespace Teste
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TrackBar tbTolerancia;
         private System.Windows.Forms.Label lblCont;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblTolerancia;
         private System.Windows.Forms.Label label10;
     }
 }

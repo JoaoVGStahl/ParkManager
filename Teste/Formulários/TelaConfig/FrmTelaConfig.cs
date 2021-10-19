@@ -35,17 +35,23 @@ namespace Teste
         }
         private void AbreFormParent(int nivel, Form Frm)
         {
-            if (Globais.Nivel >= nivel)
+            if (Properties.Settings.Default["StringBanco"].ToString() != null)
             {
-                Frm.MdiParent = this;
-                Frm.Dock = DockStyle.Fill;
-                Frm.Show();
+                if (Globais.Nivel >= nivel)
+                {
+                    Frm.MdiParent = this;
+                    Frm.Dock = DockStyle.Fill;
+                    Frm.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Seu usuário não tem permissão para acessar está area!", "Acesso Negado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                MessageBox.Show("Seu usuário não tem permissão para acessar está area!", "Acesso Negado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Conecte-se a um banco de dados primeiro!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
         private void FecharFormulariosFilhos()
         {
@@ -114,13 +120,15 @@ namespace Teste
             FundoBotao(btnDev);
             FecharFormulariosFilhos();
             FrmTelaDesenvolvedor Frm = new FrmTelaDesenvolvedor();
-            AbreFormParent(3, Frm);
+            Frm.MdiParent = this;
+            Frm.Dock = DockStyle.Fill;
+            Frm.Show();
         }
 
         private void FrmTelaConfig_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.Dispose();
             frm.Show();
-        }   
+        }
     }
 }

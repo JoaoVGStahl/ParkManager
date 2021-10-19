@@ -33,11 +33,6 @@ namespace Teste
         private void FrmTelaUsuario_Load(object sender, EventArgs e)
         {
             PreencherGrid();
-            dataGridView1.Columns[0].Width = 50;
-            dataGridView1.Columns[1].Width = 300;
-            dataGridView1.Columns[2].Width = 83;
-            dataGridView1.Columns[3].Width = 96;
-
         }
         private void PreencherGrid()
         {
@@ -50,6 +45,10 @@ namespace Teste
             {
                 dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
                 dataGridView1.DataSource = dt;
+                dataGridView1.Columns[0].Width = 50;
+                dataGridView1.Columns[1].Width = 300;
+                dataGridView1.Columns[2].Width = 83;
+                dataGridView1.Columns[3].Width = 96;
             }
             catch (Exception ex)
             {
@@ -118,9 +117,9 @@ namespace Teste
         }
         private void VerificarCaixas()
         {
-            if(txtLogin.Text != "" && txtSenha.Text != "" && txtConfirmSenha.Text != "")
+            if (txtLogin.Text != "" && txtSenha.Text != "" && txtConfirmSenha.Text != "")
             {
-                if(txtSenha.Text == txtConfirmSenha.Text)
+                if (txtSenha.Text == txtConfirmSenha.Text)
                 {
                     VerificarUsuario();
                 }
@@ -131,7 +130,7 @@ namespace Teste
             }
             else
             {
-                MessageBox.Show("Há campos vazios que precisam ser preenchidos!","Falha ao salvar!",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Há campos vazios que precisam ser preenchidos!", "Falha ao salvar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void VerificarUsuario()
@@ -154,7 +153,7 @@ namespace Teste
                 {
                     SalvarUsuario();
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -164,7 +163,7 @@ namespace Teste
             {
                 dt.Dispose();
             }
-            
+
 
         }
         private void EditarUsuario()
@@ -181,7 +180,7 @@ namespace Teste
                 };
 
             result = banco.EditData("dbo.Gerencia_Usuario", sp);
-            if(result > 0)
+            if (result > 0)
             {
                 MessageBox.Show("Usuario alterado com sucesso!", "Alteração Salva!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Globais.RegistrarLog(Globais.Login + " Alterou o Usuário ->" + txtLogin.Text);

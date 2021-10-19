@@ -23,16 +23,7 @@ namespace Teste
         private void FrmTelaEstacionamento_Load(object sender, EventArgs e)
         {
             panel4.VerticalScroll.Value = 0;
-            if (Properties.Settings.Default["StringBanco"].ToString() != "")
-            {
-                CarregarIdentificacao();
-            }
-            else
-            {
-                MessageBox.Show("Conecte-se a um banco de dados primeiro!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                btnEditar.Enabled = false;
-            }
-            
+            CarregarIdentificacao();
 
         }
         private void CarregarIdentificacao()
@@ -62,17 +53,17 @@ namespace Teste
         }
         private void PreencherCampos(DataTable dt)
         {
-            txtID.Text = Convert.ToString(dt.Rows[0].Field<int>("ID"));
-            txtRazaoSocial.Text = Convert.ToString(dt.Rows[0].Field<string>("Razão Social"));
-            mskCnpj.Text = Convert.ToString(dt.Rows[0].Field<string>("CNPJ"));
-            mskInscricao.Text = Convert.ToString(dt.Rows[0].Field<string>("Inscrição Estadual"));
-            mskTelefone.Text = Convert.ToString(dt.Rows[0].Field<string>("Telefone"));
-            mskCEP.Text = Convert.ToString(dt.Rows[0].Field<string>("CEP"));
-            txtNumero.Text = Convert.ToString(dt.Rows[0].Field<int>("Número"));
-            txtEndereco.Text = Convert.ToString(dt.Rows[0].Field<string>("Endereço"));
-            txtBairro.Text = Convert.ToString(dt.Rows[0].Field<string>("Bairro"));
-            txtCidade.Text = Convert.ToString(dt.Rows[0].Field<string>("Cidade"));
-            txtEstado.Text = Convert.ToString(dt.Rows[0].Field<string>("Estado"));
+            txtID.Text = dt.Rows[0]["ID"].ToString();
+            txtRazaoSocial.Text = dt.Rows[0]["Razão Social"].ToString();
+            mskCnpj.Text = dt.Rows[0]["CNPJ"].ToString();
+            mskInscricao.Text = dt.Rows[0]["Inscrição Estadual"].ToString();
+            mskTelefone.Text = dt.Rows[0]["Telefone"].ToString();
+            mskCEP.Text = dt.Rows[0]["CEP"].ToString();
+            txtNumero.Text = dt.Rows[0]["Número"].ToString();
+            txtEndereco.Text = dt.Rows[0]["Endereço"].ToString();
+            txtBairro.Text = dt.Rows[0]["Bairro"].ToString();
+            txtCidade.Text = dt.Rows[0]["Cidade"].ToString();
+            txtEstado.Text = dt.Rows[0]["Estado"].ToString();
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
