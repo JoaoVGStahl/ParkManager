@@ -41,6 +41,9 @@ namespace Teste
                 if (dt.Rows.Count > 0)
                 {
                     dataGridView1.DataSource = dt;
+                    dataGridView1.Columns[0].Width = 48;
+                    dataGridView1.Columns[1].Width = 658;
+                    dataGridView1.Columns[2].Width = 118;
                 }
                 else
                 {
@@ -79,6 +82,7 @@ namespace Teste
                         txtNome.Text = dt.Rows[0].ItemArray[1].ToString();
                         mskTelefone.Text = dt.Rows[0].ItemArray[2].ToString();
                         cmbStatus.SelectedIndex = Convert.ToInt32(dt.Rows[0].ItemArray[3]);
+                        
                     }
                     else
                     {

@@ -1,0 +1,3 @@
+SELECT TOP 1 marca[Marca], COUNT (marca) as Quantidade from tb_marca as M INNER JOIN tb_carro C ON C.marca_id = M.id_marca INNER JOIN tb_ticket T ON T.carro_id = C.id_carro GROUP BY marca ORDER BY Quantidade desc
+
+SELECT TOP 1 automovel[Tipo], COUNT (automovel) as Quantidade from tb_automovel as A INNER JOIN tb_carro C ON C.tipo_id = A.id_automovel INNER JOIN tb_ticket T ON T.carro_id = C.id_carro GROUP BY automovel ORDER BY Quantidade desc

@@ -78,6 +78,7 @@ namespace Teste
             txtConfirmSenha.Enabled = false;
             cmbStatus.Enabled = false;
             numNivel.Enabled = false;
+            btnLimpar.Enabled = false;
         }
 
         private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
@@ -254,6 +255,7 @@ namespace Teste
             btnExcluir.Enabled = true;
             btnNovo.Enabled = false;
             btnSalvar.Enabled = true;
+            btnLimpar.Enabled = true;
         }
 
         private void button1_Click_2(object sender, EventArgs e)

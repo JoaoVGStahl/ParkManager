@@ -26,5 +26,10 @@ namespace Teste
         {
             cmbCategoria.SelectedIndex = 0;
         }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -49,11 +49,11 @@ namespace Teste
             this.mskTelefone = new System.Windows.Forms.MaskedTextBox();
             this.txtID = new System.Windows.Forms.TextBox();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.lblTicket = new System.Windows.Forms.Label();
+            this.lblCaptionTicket = new System.Windows.Forms.Label();
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.splitter4 = new System.Windows.Forms.Splitter();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.lblTicket = new System.Windows.Forms.Label();
-            this.lblCaptionTicket = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -302,6 +302,29 @@ namespace Teste
             this.panel5.Size = new System.Drawing.Size(830, 160);
             this.panel5.TabIndex = 27;
             // 
+            // lblTicket
+            // 
+            this.lblTicket.AutoSize = true;
+            this.lblTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTicket.Location = new System.Drawing.Point(777, 102);
+            this.lblTicket.Name = "lblTicket";
+            this.lblTicket.Size = new System.Drawing.Size(39, 42);
+            this.lblTicket.TabIndex = 16;
+            this.lblTicket.Text = "0";
+            this.lblTicket.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTicket.Visible = false;
+            // 
+            // lblCaptionTicket
+            // 
+            this.lblCaptionTicket.AutoSize = true;
+            this.lblCaptionTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCaptionTicket.Location = new System.Drawing.Point(512, 111);
+            this.lblCaptionTicket.Name = "lblCaptionTicket";
+            this.lblCaptionTicket.Size = new System.Drawing.Size(259, 24);
+            this.lblCaptionTicket.TabIndex = 15;
+            this.lblCaptionTicket.Text = "Ticket\'s abertos deste Cliente:";
+            this.lblCaptionTicket.Visible = false;
+            // 
             // splitter3
             // 
             this.splitter3.Dock = System.Windows.Forms.DockStyle.Top;
@@ -331,34 +354,13 @@ namespace Teste
             this.dataGridView1.Location = new System.Drawing.Point(0, 261);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(830, 278);
             this.dataGridView1.TabIndex = 30;
             this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
-            // 
-            // lblTicket
-            // 
-            this.lblTicket.AutoSize = true;
-            this.lblTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTicket.Location = new System.Drawing.Point(777, 102);
-            this.lblTicket.Name = "lblTicket";
-            this.lblTicket.Size = new System.Drawing.Size(39, 42);
-            this.lblTicket.TabIndex = 16;
-            this.lblTicket.Text = "0";
-            this.lblTicket.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblTicket.Visible = false;
-            // 
-            // lblCaptionTicket
-            // 
-            this.lblCaptionTicket.AutoSize = true;
-            this.lblCaptionTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCaptionTicket.Location = new System.Drawing.Point(512, 111);
-            this.lblCaptionTicket.Name = "lblCaptionTicket";
-            this.lblCaptionTicket.Size = new System.Drawing.Size(259, 24);
-            this.lblCaptionTicket.TabIndex = 15;
-            this.lblCaptionTicket.Text = "Ticket\'s abertos deste Cliente:";
-            this.lblCaptionTicket.Visible = false;
             // 
             // FrmTelaCliente
             // 

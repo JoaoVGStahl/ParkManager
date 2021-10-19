@@ -263,7 +263,7 @@ namespace Teste
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(36, 241);
+            this.label4.Location = new System.Drawing.Point(35, 241);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(196, 29);
             this.label4.TabIndex = 12;
@@ -282,7 +282,7 @@ namespace Teste
             // lblPrecoUnico
             // 
             this.lblPrecoUnico.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecoUnico.Location = new System.Drawing.Point(-4, 286);
+            this.lblPrecoUnico.Location = new System.Drawing.Point(-1, 286);
             this.lblPrecoUnico.Name = "lblPrecoUnico";
             this.lblPrecoUnico.Size = new System.Drawing.Size(268, 39);
             this.lblPrecoUnico.TabIndex = 14;
@@ -314,7 +314,7 @@ namespace Teste
             // lblPrecoMin
             // 
             this.lblPrecoMin.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecoMin.Location = new System.Drawing.Point(-2, 177);
+            this.lblPrecoMin.Location = new System.Drawing.Point(-1, 177);
             this.lblPrecoMin.Name = "lblPrecoMin";
             this.lblPrecoMin.Size = new System.Drawing.Size(268, 39);
             this.lblPrecoMin.TabIndex = 19;
@@ -325,7 +325,7 @@ namespace Teste
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(27, 132);
+            this.label9.Location = new System.Drawing.Point(23, 132);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(221, 29);
             this.label9.TabIndex = 18;
@@ -352,7 +352,7 @@ namespace Teste
             // lblTolerancia
             // 
             this.lblTolerancia.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTolerancia.Location = new System.Drawing.Point(-2, 393);
+            this.lblTolerancia.Location = new System.Drawing.Point(-1, 393);
             this.lblTolerancia.Name = "lblTolerancia";
             this.lblTolerancia.Size = new System.Drawing.Size(268, 39);
             this.lblTolerancia.TabIndex = 21;
@@ -363,11 +363,11 @@ namespace Teste
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(27, 350);
+            this.label10.Location = new System.Drawing.Point(-2, 350);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(218, 29);
+            this.label10.Size = new System.Drawing.Size(271, 29);
             this.label10.TabIndex = 20;
-            this.label10.Text = "Tempo Tolerância ";
+            this.label10.Text = "Tempo Tolerância Atual";
             // 
             // splitter3
             // 
