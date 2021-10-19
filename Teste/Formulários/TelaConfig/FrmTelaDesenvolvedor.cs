@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
+using System.IO.Ports;  // necessário para ter acesso as portas
 
 namespace Teste
 {
@@ -18,6 +19,49 @@ namespace Teste
         public FrmTelaDesenvolvedor()
         {
             InitializeComponent();
+        }
+
+        //Novo
+        private void atualizaListaCOMs()
+        {
+            int i;
+            bool quantDiferente;    //flag para sinalizar que a quantidade de portas mudou
+
+            i = 0;
+            quantDiferente = false;
+
+            //se a quantidade de portas mudou
+            if (cbPortaArduino.Items.Count == SerialPort.GetPortNames().Length)
+            {
+                foreach (string s in SerialPort.GetPortNames())
+                {
+                    if (cbPortaArduino.Items[i++].Equals(s) == false)
+                    {
+                        quantDiferente = true;
+                    }
+                }
+            }
+            else
+            {
+                quantDiferente = true;
+            }
+
+            //Se não foi detectado diferença
+            if (quantDiferente == false)
+            {
+                return;                     //retorna
+            }
+
+            //limpa comboBox
+            cbPortaArduino.Items.Clear();
+
+            //adiciona todas as COM diponíveis na lista
+            foreach (string s in SerialPort.GetPortNames())
+            {
+                cbPortaArduino.Items.Add(s);
+            }
+            //seleciona a primeira posição da lista
+            cbPortaArduino.SelectedIndex = 0;
         }
 
         private void CarregarInformacoes()
@@ -180,6 +224,7 @@ namespace Teste
         private void FrmTelaDesenvolvedor_Load_1(object sender, EventArgs e)
         {
             CarregarInformacoes();
+            atualizaListaCOMs();
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -29,6 +29,7 @@ namespace Teste
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTelaDesenvolvedor));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -61,6 +62,8 @@ namespace Teste
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.cbPortaArduino = new System.Windows.Forms.ComboBox();
+            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -171,6 +174,7 @@ namespace Teste
             this.panel5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel5.AutoScroll = true;
             this.panel5.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel5.Controls.Add(this.cbPortaArduino);
             this.panel5.Controls.Add(this.groupBox2);
             this.panel5.Controls.Add(this.txtPortaArduino);
             this.panel5.Controls.Add(this.groupBox1);
@@ -426,6 +430,14 @@ namespace Teste
             // 
             this.folderBrowserDialog1.SelectedPath = "C:\\";
             // 
+            // cbPortaArduino
+            // 
+            this.cbPortaArduino.FormattingEnabled = true;
+            this.cbPortaArduino.Location = new System.Drawing.Point(353, 56);
+            this.cbPortaArduino.Name = "cbPortaArduino";
+            this.cbPortaArduino.Size = new System.Drawing.Size(121, 21);
+            this.cbPortaArduino.TabIndex = 11;
+            // 
             // FrmTelaDesenvolvedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -486,5 +498,7 @@ namespace Teste
         private System.Windows.Forms.TextBox txtConfirmSenhaRoot;
         private System.Windows.Forms.TextBox txtUserRoot;
         private System.Windows.Forms.TextBox txtSenhaRoot;
+        private System.Windows.Forms.ComboBox cbPortaArduino;
+        private System.IO.Ports.SerialPort serialPort1;
     }
 }
