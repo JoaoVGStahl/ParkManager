@@ -16,5 +16,15 @@ namespace Teste
         {
             InitializeComponent();
         }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void FrmTelaRelatorios_Load(object sender, EventArgs e)
+        {
+            cmbCategoria.SelectedIndex = 0;
+        }
     }
 }

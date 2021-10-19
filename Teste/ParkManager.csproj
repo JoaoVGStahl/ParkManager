@@ -124,10 +124,10 @@
     <Compile Include="Formulários\TelaConfig\FrmTelaFinanceiro.Designer.cs">
       <DependentUpon>FrmTelaFinanceiro.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmTelaRelatorios.cs">
+    <Compile Include="Formulários\TelaOperação\FrmTelaRelatorios.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmTelaRelatorios.Designer.cs">
+    <Compile Include="Formulários\TelaOperação\FrmTelaRelatorios.Designer.cs">
       <DependentUpon>FrmTelaRelatorios.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -167,7 +167,7 @@
     <EmbeddedResource Include="Formulários\TelaConfig\FrmTelaFinanceiro.resx">
       <DependentUpon>FrmTelaFinanceiro.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmTelaRelatorios.resx">
+    <EmbeddedResource Include="Formulários\TelaOperação\FrmTelaRelatorios.resx">
       <DependentUpon>FrmTelaRelatorios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

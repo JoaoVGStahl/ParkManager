@@ -615,6 +615,12 @@ namespace Teste
         {
 
         }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            FrmTelaRelatorios Frm = new FrmTelaRelatorios();
+            AbrirForm(2, Frm);
+        }
     }
 }
 
