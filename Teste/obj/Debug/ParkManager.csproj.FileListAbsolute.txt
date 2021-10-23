@@ -41,3 +41,4 @@ C:\Users\spott\ParkManager\Teste\obj\Debug\Teste.FrmTelaFinanceiro.resources
 C:\Users\Valorant\ParkManager\Teste\obj\Debug\Teste.FrmTelaFinanceiro.resources
 C:\Users\Valorant\ParkManager\Teste\obj\Debug\Teste.FrmTelaRelatorios.resources
 C:\Users\spott\ParkManager\Teste\obj\Debug\Teste.FrmTelaRelatorios.resources
+C:\Users\spott\ParkManager\Teste\obj\Debug\Teste.FrmTelaMarca.resources

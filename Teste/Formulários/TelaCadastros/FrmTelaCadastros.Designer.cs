@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTelaCadastros));
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnMarca = new System.Windows.Forms.Button();
             this.btnCliente = new System.Windows.Forms.Button();
             this.btnVeiculos = new System.Windows.Forms.Button();
             this.btnSair = new System.Windows.Forms.Button();
@@ -54,6 +55,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.Controls.Add(this.btnMarca);
             this.panel1.Controls.Add(this.btnCliente);
             this.panel1.Controls.Add(this.btnVeiculos);
             this.panel1.Controls.Add(this.btnSair);
@@ -65,6 +67,24 @@
             this.panel1.Size = new System.Drawing.Size(252, 679);
             this.panel1.TabIndex = 2;
             // 
+            // btnMarca
+            // 
+            this.btnMarca.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnMarca.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMarca.FlatAppearance.BorderSize = 0;
+            this.btnMarca.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMarca.Image = ((System.Drawing.Image)(resources.GetObject("btnMarca.Image")));
+            this.btnMarca.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMarca.Location = new System.Drawing.Point(-3, 317);
+            this.btnMarca.Name = "btnMarca";
+            this.btnMarca.Size = new System.Drawing.Size(255, 77);
+            this.btnMarca.TabIndex = 23;
+            this.btnMarca.Text = "Marca";
+            this.btnMarca.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnMarca.UseVisualStyleBackColor = false;
+            this.btnMarca.Click += new System.EventHandler(this.btnMarca_Click);
+            // 
             // btnCliente
             // 
             this.btnCliente.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -74,7 +94,7 @@
             this.btnCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCliente.Image = ((System.Drawing.Image)(resources.GetObject("btnCliente.Image")));
             this.btnCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCliente.Location = new System.Drawing.Point(0, 234);
+            this.btnCliente.Location = new System.Drawing.Point(0, 237);
             this.btnCliente.Name = "btnCliente";
             this.btnCliente.Size = new System.Drawing.Size(255, 77);
             this.btnCliente.TabIndex = 22;
@@ -169,5 +189,6 @@
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnCliente;
+        private System.Windows.Forms.Button btnMarca;
     }
 }

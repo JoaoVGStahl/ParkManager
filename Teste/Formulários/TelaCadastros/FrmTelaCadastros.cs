@@ -79,5 +79,13 @@ namespace Teste
         {
             this.Dispose();
         }
+
+        private void btnMarca_Click(object sender, EventArgs e)
+        {
+            FundoBotao(btnMarca);
+            FecharFormulariosFilhos();
+            FrmTelaMarca Frm = new FrmTelaMarca();
+            AbreFormParent(2, Frm);
+        }
     }
 }
