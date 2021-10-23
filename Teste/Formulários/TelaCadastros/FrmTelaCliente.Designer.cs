@@ -49,11 +49,11 @@ namespace Teste
             this.mskTelefone = new System.Windows.Forms.MaskedTextBox();
             this.txtID = new System.Windows.Forms.TextBox();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.lblTicket = new System.Windows.Forms.Label();
+            this.lblCaptionTicket = new System.Windows.Forms.Label();
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.splitter4 = new System.Windows.Forms.Splitter();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.lblTicket = new System.Windows.Forms.Label();
-            this.lblCaptionTicket = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -129,7 +129,7 @@ namespace Teste
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(174, 79);
             this.btnNovo.TabIndex = 35;
-            this.btnNovo.Text = "Novo ";
+            this.btnNovo.Text = "Novo (F3)";
             this.btnNovo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNovo.UseVisualStyleBackColor = false;
             this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
@@ -150,7 +150,7 @@ namespace Teste
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(174, 79);
             this.btnSalvar.TabIndex = 34;
-            this.btnSalvar.Text = "Salvar";
+            this.btnSalvar.Text = "Salvar (F5)";
             this.btnSalvar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSalvar.UseVisualStyleBackColor = false;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
@@ -302,6 +302,29 @@ namespace Teste
             this.panel5.Size = new System.Drawing.Size(830, 160);
             this.panel5.TabIndex = 27;
             // 
+            // lblTicket
+            // 
+            this.lblTicket.AutoSize = true;
+            this.lblTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTicket.Location = new System.Drawing.Point(777, 102);
+            this.lblTicket.Name = "lblTicket";
+            this.lblTicket.Size = new System.Drawing.Size(39, 42);
+            this.lblTicket.TabIndex = 16;
+            this.lblTicket.Text = "0";
+            this.lblTicket.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTicket.Visible = false;
+            // 
+            // lblCaptionTicket
+            // 
+            this.lblCaptionTicket.AutoSize = true;
+            this.lblCaptionTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCaptionTicket.Location = new System.Drawing.Point(512, 111);
+            this.lblCaptionTicket.Name = "lblCaptionTicket";
+            this.lblCaptionTicket.Size = new System.Drawing.Size(259, 24);
+            this.lblCaptionTicket.TabIndex = 15;
+            this.lblCaptionTicket.Text = "Ticket\'s abertos deste Cliente:";
+            this.lblCaptionTicket.Visible = false;
+            // 
             // splitter3
             // 
             this.splitter3.Dock = System.Windows.Forms.DockStyle.Top;
@@ -337,29 +360,6 @@ namespace Teste
             this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
-            // lblTicket
-            // 
-            this.lblTicket.AutoSize = true;
-            this.lblTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTicket.Location = new System.Drawing.Point(777, 102);
-            this.lblTicket.Name = "lblTicket";
-            this.lblTicket.Size = new System.Drawing.Size(39, 42);
-            this.lblTicket.TabIndex = 16;
-            this.lblTicket.Text = "0";
-            this.lblTicket.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblTicket.Visible = false;
-            // 
-            // lblCaptionTicket
-            // 
-            this.lblCaptionTicket.AutoSize = true;
-            this.lblCaptionTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCaptionTicket.Location = new System.Drawing.Point(512, 111);
-            this.lblCaptionTicket.Name = "lblCaptionTicket";
-            this.lblCaptionTicket.Size = new System.Drawing.Size(259, 24);
-            this.lblCaptionTicket.TabIndex = 15;
-            this.lblCaptionTicket.Text = "Ticket\'s abertos deste Cliente:";
-            this.lblCaptionTicket.Visible = false;
-            // 
             // FrmTelaCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -377,9 +377,11 @@ namespace Teste
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.Name = "FrmTelaCliente";
             this.Text = "FrmTelaCliente";
             this.Load += new System.EventHandler(this.FrmTelaCliente_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmTelaCliente_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();

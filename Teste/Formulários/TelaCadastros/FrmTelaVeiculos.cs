@@ -508,5 +508,25 @@ namespace Teste
         {
 
         }
+
+        private void FrmTelaVeiculos_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.KeyCode:
+                    break;
+
+                case Keys.F3:
+                    btnNovo.PerformClick();
+                    break;
+
+                case Keys.F5:
+                    btnSalvar.PerformClick();
+                    break;
+
+                default:
+                    break;
+            }
+        }
     }
 }

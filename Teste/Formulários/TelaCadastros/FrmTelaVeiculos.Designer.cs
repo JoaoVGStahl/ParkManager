@@ -129,7 +129,7 @@ namespace Teste
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(174, 79);
             this.btnNovo.TabIndex = 31;
-            this.btnNovo.Text = "Novo ";
+            this.btnNovo.Text = "Novo (F3)";
             this.btnNovo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNovo.UseVisualStyleBackColor = false;
             this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
@@ -150,7 +150,7 @@ namespace Teste
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(174, 79);
             this.btnSalvar.TabIndex = 30;
-            this.btnSalvar.Text = "Salvar";
+            this.btnSalvar.Text = "Salvar (F5)";
             this.btnSalvar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSalvar.UseVisualStyleBackColor = false;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
@@ -397,9 +397,11 @@ namespace Teste
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.Name = "FrmTelaVeiculos";
             this.Text = "FrmTelaVeiculos";
             this.Load += new System.EventHandler(this.FrmTelaVeiculos_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmTelaVeiculos_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();

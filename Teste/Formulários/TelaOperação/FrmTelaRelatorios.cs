@@ -26,5 +26,6 @@ namespace Teste
         {
             cmbCategoria.SelectedIndex = 0;
         }
+        
     }
 }

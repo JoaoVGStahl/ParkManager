@@ -324,5 +324,25 @@ namespace Teste
             mskTelefone.Enabled = true;
             cmbStatus.Enabled = true;
         }
+
+        private void FrmTelaCliente_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.KeyCode:
+                    break;
+
+                case Keys.F3:
+                    btnNovo.PerformClick();
+                    break;
+
+                case Keys.F5:
+                    btnSalvar.PerformClick();
+                    break;
+
+                default:
+                    break;
+            }
+        }
     }
 }

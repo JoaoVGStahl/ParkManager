@@ -40,13 +40,13 @@ namespace Teste
         {
             if (!(Globais.Login == Properties.Settings.Default.UserRoot) || (Properties.Settings.Default["StringBanco"].ToString() == ""))
             {
-                
+
                 txtPlaca.Select();
                 CarregarBarraStatus();
                 PopularComboTipo();
                 ContadorTicket();
                 CarregarParametros();
-                
+
             }
 
         }
@@ -265,7 +265,7 @@ namespace Teste
                         else
                         {
                             //Regex para validar Telefone.
-                            if(Regex.IsMatch(nome, @"^[A-Za-záàâãéèêíïóôõöúçÁÀÂÃÉÈÍÏÓÔÕÖÚÇ ]+$"))
+                            if (Regex.IsMatch(nome, @"^[A-Za-záàâãéèêíïóôõöúçÁÀÂÃÉÈÍÏÓÔÕÖÚÇ ]+$"))
                             {
                                 if (Regex.IsMatch(telefone, "^[(]{1}[11-99]{2}[)]{1}[0|9]{1}[0-9]{4}-[0-9]{4}"))
                                 {
@@ -282,7 +282,7 @@ namespace Teste
                                 MessageBox.Show("Nome inválido!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 txtNome.Focus();
                             }
-                            
+
                         }
                     }
                 }
@@ -620,6 +620,27 @@ namespace Teste
         {
             FrmTelaRelatorios Frm = new FrmTelaRelatorios();
             AbrirForm(2, Frm);
+        }
+
+        private void FrmTelaOperacao_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            switch (e.KeyCode)
+            {
+                case Keys.KeyCode:
+                    break;
+
+                case Keys.F5:
+                    btnIniciar.PerformClick();
+                    break;
+
+                case Keys.F4:
+                    btnEncerrar.PerformClick();
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
 }
