@@ -64,6 +64,55 @@ namespace Teste
             cbPortaArduino.SelectedIndex = 0;
         }
 
+        //Novo
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            if (serialPort1.IsOpen == false)
+            {
+                try
+                {
+                    serialPort1.PortName = cbPortaArduino.Items[cbPortaArduino.SelectedIndex].ToString();
+                    serialPort1.Open();
+
+                }
+                catch
+                {
+                    return;
+
+                }
+                if (serialPort1.IsOpen)
+                {
+                    btConectar.Text = "Desconectar";
+                    cbPortaArduino.Enabled = false;
+
+                }
+            }
+            else
+            {
+
+                try
+                {
+                    serialPort1.Close();
+                    cbPortaArduino.Enabled = true;
+                    btConectar.Text = "Conectar";
+                }
+                catch
+                {
+                    return;
+                }
+
+            }
+        }
+
+        /* Para Fechar Porta COM        
+        if(serialPort1.IsOpen == true)
+        {
+         serialPort1.Close();
+        }
+        */
+
+
+
         private void CarregarInformacoes()
         {
             txtSenhaRoot.Text = Properties.Settings.Default["SenhaRoot"].ToString();
@@ -224,7 +273,6 @@ namespace Teste
         private void FrmTelaDesenvolvedor_Load_1(object sender, EventArgs e)
         {
             CarregarInformacoes();
-            atualizaListaCOMs();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -271,6 +319,16 @@ namespace Teste
         }
 
         private void txtNomeBanco_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timerCOM_Tick(object sender, EventArgs e)
+        {
+            atualizaListaCOMs();
+        }
+
+        private void cbPortaArduino_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

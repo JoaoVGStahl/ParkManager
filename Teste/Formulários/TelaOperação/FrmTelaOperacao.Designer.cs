@@ -41,6 +41,9 @@ namespace Teste
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button5 = new System.Windows.Forms.Button();
+            this.picImagem = new System.Windows.Forms.PictureBox();
+            this.picCam = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
             this.lblQtdTicket = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
@@ -81,10 +84,9 @@ namespace Teste
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.picImagem = new System.Windows.Forms.PictureBox();
-            this.picCam = new System.Windows.Forms.PictureBox();
-            this.button5 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picImagem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCam)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -92,8 +94,6 @@ namespace Teste
             this.statusStrip1.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picImagem)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCam)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbTipo
@@ -207,8 +207,8 @@ namespace Teste
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.picImagem);
+            this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.picCam);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.lblQtdTicket);
@@ -219,6 +219,34 @@ namespace Teste
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(660, 498);
             this.panel1.TabIndex = 12;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(623, 411);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(27, 23);
+            this.button5.TabIndex = 42;
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // picImagem
+            // 
+            this.picImagem.Image = ((System.Drawing.Image)(resources.GetObject("picImagem.Image")));
+            this.picImagem.InitialImage = ((System.Drawing.Image)(resources.GetObject("picImagem.InitialImage")));
+            this.picImagem.Location = new System.Drawing.Point(3, 67);
+            this.picImagem.Name = "picImagem";
+            this.picImagem.Size = new System.Drawing.Size(647, 338);
+            this.picImagem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picImagem.TabIndex = 38;
+            this.picImagem.TabStop = false;
+            // 
+            // picCam
+            // 
+            this.picCam.Location = new System.Drawing.Point(3, 67);
+            this.picCam.Name = "picCam";
+            this.picCam.Size = new System.Drawing.Size(647, 338);
+            this.picCam.TabIndex = 39;
+            this.picCam.TabStop = false;
             // 
             // label8
             // 
@@ -736,32 +764,6 @@ namespace Teste
             this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTip1.ToolTipTitle = "Dica:";
             // 
-            // picImagem
-            // 
-            this.picImagem.Location = new System.Drawing.Point(482, 280);
-            this.picImagem.Name = "picImagem";
-            this.picImagem.Size = new System.Drawing.Size(168, 125);
-            this.picImagem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picImagem.TabIndex = 38;
-            this.picImagem.TabStop = false;
-            // 
-            // picCam
-            // 
-            this.picCam.Location = new System.Drawing.Point(3, 67);
-            this.picCam.Name = "picCam";
-            this.picCam.Size = new System.Drawing.Size(647, 338);
-            this.picCam.TabIndex = 39;
-            this.picCam.TabStop = false;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(623, 411);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(27, 23);
-            this.button5.TabIndex = 42;
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
             // FrmTelaOperacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
@@ -786,6 +788,8 @@ namespace Teste
             this.Load += new System.EventHandler(this.FrmTelaOperacao_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picImagem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCam)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel4.ResumeLayout(false);
@@ -798,8 +802,6 @@ namespace Teste
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             this.panel10.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picImagem)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCam)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
