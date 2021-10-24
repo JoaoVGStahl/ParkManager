@@ -19,9 +19,9 @@ namespace Teste
         {
             InitializeComponent();
             this.form = Form;
-           
+
         }
-        
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -36,7 +36,7 @@ namespace Teste
             btnPesquisa.PerformClick();
             //PreencherGrid();
             dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
-            
+
 
         }
         private void button3_Click(object sender, EventArgs e)
@@ -59,13 +59,12 @@ namespace Teste
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if(txtIdTicket.Text.Length > 0)
+            if (txtIdTicket.Text.Length > 0)
             {
                 txtPlaca.Enabled = false;
                 txtPlaca.Clear();
                 dtpEntrada.Enabled = false;
                 dtpSaida.Enabled = false;
-                cmbStatus.Enabled = false;
             }
             else
             {
@@ -119,15 +118,7 @@ namespace Teste
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cmbStatus.SelectedIndex == 1)
-            {
-                dtpSaida.Enabled = false;
-            }
-            else
-            {
-                dtpSaida.Enabled = true;
-                btnEncerrar.Enabled = false;
-            }
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -193,45 +184,33 @@ namespace Teste
 
         private void button4_Click(object sender, EventArgs e)
         {
-            string placa = "";
-            DateTime DataEntrada, DataSaida;
-            int status, IdTicket;
-            if(txtIdTicket.Text != "")
+            DefinirParametros();
+        }
+        private void DefinirParametros()
+        {
+            if(txtIdTicket.Text == "")
             {
-                IdTicket = Convert.ToInt32(txtIdTicket.Text);
-                DataEntrada = Convert.ToDateTime("01/01/1753");
-                DataSaida = Convert.ToDateTime("31/12/9998");
-                status = 0;
-            }
-            if(dtpSaida.Value > dtpEntrada.Value)
-            {
-                
+                PesquisarTicket(placa: txtPlaca.Text, DataEntrada: dtpEntrada.Value.ToString(), DataSaida: dtpSaida.Value.ToString(), status:cmbStatus.SelectedIndex.ToString());
             }
             else
             {
-                MessageBox.Show("A Data de Saida não pode ser anterior que a Data de entrada!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            } 
+                PesquisarTicket(IdTicket: txtIdTicket.Text, status: cmbStatus.SelectedIndex.ToString());
+            }
         }
-        private void PesquisarTicket(int IdTicket,string Placa,DateTime DataEntrada, DateTime DataSaida, int Status)
+        private void PesquisarTicket(string IdTicket = null,string placa = null, string DataEntrada = null,string DataSaida = null, string status = null )
         {
             DataTable dt = new DataTable();
-            string DataEntrada = dtpEntrada.Value.ToString("dd/MM/yyyy");
-            string DataSaida = dtpSaida.Value.ToString("dd/MM/yyyy");
-            if (IdTicket != "")
-            {
-                IdTicket = Convert.ToInt32(txtIdTicket.Text);
-            }
             try
             {
                 List<SqlParameter> sp = new List<SqlParameter>()
-            {
-                new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 18},
-                new SqlParameter(){ParameterName="@idTicket", SqlDbType = SqlDbType.Int, Value = idticket},
-                new SqlParameter(){ParameterName="@Placa", SqlDbType = SqlDbType.VarChar, Value = txtPlaca.Text},
-                new SqlParameter(){ParameterName="@DataEntrada", SqlDbType = SqlDbType.DateTime, Value = DataEntrada},
-                new SqlParameter(){ParameterName="@DataSaida", SqlDbType = SqlDbType.DateTime, Value = DataSaida},
-                new SqlParameter(){ParameterName = "@Status", SqlDbType = SqlDbType.Int, Value = cmbStatus.SelectedIndex}
-            };
+                {
+                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 18},
+                    new SqlParameter(){ParameterName="@idTicket", SqlDbType = SqlDbType.Int, Value = IdTicket},
+                    new SqlParameter(){ParameterName="@Placa", SqlDbType = SqlDbType.VarChar, Value = placa},
+                    new SqlParameter(){ParameterName="@DataEntrada", SqlDbType = SqlDbType.DateTime, Value = DataEntrada},
+                    new SqlParameter(){ParameterName="@DataSaida", SqlDbType = SqlDbType.DateTime, Value = DataSaida},
+                    new SqlParameter(){ParameterName = "@Status", SqlDbType = SqlDbType.Int, Value = status}
+                };
                 dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
                 dataGridView1.DataSource = dt;
             }
