@@ -130,6 +130,7 @@
     <Compile Include="Formulários\TelaOperação\FrmTelaRelatorios.Designer.cs">
       <DependentUpon>FrmTelaRelatorios.cs</DependentUpon>
     </Compile>
+    <Compile Include="Classes\GeraPDF.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Formulários\TelaCadastros\FrmTelaCliente.resx">
       <DependentUpon>FrmTelaCliente.cs</DependentUpon>

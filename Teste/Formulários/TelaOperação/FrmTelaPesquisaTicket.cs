@@ -36,15 +36,20 @@ namespace Teste
             btnPesquisa.PerformClick();
             //PreencherGrid();
             dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
-
-
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            Globais.IdTicket = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
-            FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket(form);
-            Frm.ShowDialog();
-
+            if (dataGridView1.SelectedRows[0].Cells["Status"].Value.ToString() == "Ativo" )
+            {
+                dataGridView1.SelectedRows[0].Cells["Status"].Value.ToString();
+                Globais.IdTicket = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+                FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket(form);
+                Frm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Este Ticket ja foi encerrado!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -172,7 +177,7 @@ namespace Teste
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            if (cmbStatus.SelectedIndex == 1)
+            if (cmbStatus.Text == "Ativo" || cmbStatus.Text == "Todos")
             {
                 btnEncerrar.Enabled = true;
             }
@@ -222,8 +227,11 @@ namespace Teste
 
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
         {
-            form.PesquisaTicket(dataGridView1.SelectedRows[0].Cells[4].Value.ToString());
-            this.Dispose();
+            if (dataGridView1.SelectedRows[0].Cells["Status"].Value.ToString() == "Ativo")
+            {
+                form.PesquisaTicket(dataGridView1.SelectedRows[0].Cells["Placa"].Value.ToString());
+                this.Dispose();
+            }
         }
     }
 }
