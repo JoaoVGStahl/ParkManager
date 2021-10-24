@@ -59,7 +59,22 @@ namespace Teste
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
+            if(txtIdTicket.Text.Length > 0)
+            {
+                txtPlaca.Enabled = false;
+                txtPlaca.Clear();
+                dtpEntrada.Enabled = false;
+                dtpSaida.Enabled = false;
+                cmbStatus.Enabled = false;
+            }
+            else
+            {
+                txtPlaca.Enabled = true;
+                txtPlaca.Clear();
+                dtpEntrada.Enabled = true;
+                dtpSaida.Enabled = true;
+                cmbStatus.Enabled = true;
+            }
         }
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
@@ -178,15 +193,34 @@ namespace Teste
 
         private void button4_Click(object sender, EventArgs e)
         {
+            string placa = "";
+            DateTime DataEntrada, DataSaida;
+            int status, IdTicket;
+            if(txtIdTicket.Text != "")
+            {
+                IdTicket = Convert.ToInt32(txtIdTicket.Text);
+                DataEntrada = Convert.ToDateTime("01/01/1753");
+                DataSaida = Convert.ToDateTime("31/12/9998");
+                status = 0;
+            }
+            if(dtpSaida.Value > dtpEntrada.Value)
+            {
+                
+            }
+            else
+            {
+                MessageBox.Show("A Data de Saida não pode ser anterior que a Data de entrada!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } 
+        }
+        private void PesquisarTicket(int IdTicket,string Placa,DateTime DataEntrada, DateTime DataSaida, int Status)
+        {
             DataTable dt = new DataTable();
             string DataEntrada = dtpEntrada.Value.ToString("dd/MM/yyyy");
             string DataSaida = dtpSaida.Value.ToString("dd/MM/yyyy");
-            int idticket =0;
-            if (txtIdTicket.Text != "")
+            if (IdTicket != "")
             {
-                idticket = Convert.ToInt32(txtIdTicket.Text);
+                IdTicket = Convert.ToInt32(txtIdTicket.Text);
             }
-
             try
             {
                 List<SqlParameter> sp = new List<SqlParameter>()
@@ -203,12 +237,10 @@ namespace Teste
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Erro!");
             }
-
         }
-        
+
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
         {
             form.PesquisaTicket(dataGridView1.SelectedRows[0].Cells[4].Value.ToString());

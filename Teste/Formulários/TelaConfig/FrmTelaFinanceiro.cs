@@ -229,6 +229,8 @@ namespace Teste
         private void btnEditar_Click(object sender, EventArgs e)
         {
             AtivarCaixas();
+            tbTolerancia.Value = Convert.ToInt32(lblTolerancia.Text.Replace(" Minutos", ""));
+            lblCont.Text = tbTolerancia.Value.ToString();
         }
         private void AtivarCaixas()
         {

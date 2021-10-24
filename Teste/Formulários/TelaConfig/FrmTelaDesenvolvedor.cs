@@ -29,6 +29,7 @@ namespace Teste
             {
                 btnSalvar.Enabled = true;
                 btnEditar.Enabled = false;
+                AtivarCaixas();
             }
             else
             {
@@ -137,6 +138,10 @@ namespace Teste
 
         }
         private void btnEditar_Click_1(object sender, EventArgs e)
+        {
+            AtivarCaixas();
+        }
+        private void AtivarCaixas()
         {
             txtCaminho.Enabled = true;
             txtPortaArduino.Enabled = true;
