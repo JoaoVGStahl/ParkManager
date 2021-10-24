@@ -66,3 +66,29 @@ C:\Users\Lucas Mendes\Desktop\ParkManager\Teste\bin\Debug\DirectX.Capture.dll
 C:\Users\Lucas Mendes\Desktop\ParkManager\Teste\bin\Debug\DShowNET.dll
 C:\Users\Lucas Mendes\Desktop\ParkManager\Teste\obj\Debug\ParkManager.csproj.ResolveComReference.cache
 C:\Users\Lucas Mendes\Desktop\ParkManager\Teste\obj\Debug\ParkManager.csproj.CopyComplete
+C:\Users\wbcqu\ParkManager\Teste\bin\Debug\Teste.exe.config
+C:\Users\wbcqu\ParkManager\Teste\bin\Debug\Teste.exe
+C:\Users\wbcqu\ParkManager\Teste\bin\Debug\Teste.pdb
+C:\Users\wbcqu\ParkManager\Teste\bin\Debug\DirectX.Capture.dll
+C:\Users\wbcqu\ParkManager\Teste\bin\Debug\DShowNET.dll
+C:\Users\wbcqu\ParkManager\Teste\obj\Debug\ParkManager.csproj.AssemblyReference.cache
+C:\Users\wbcqu\ParkManager\Teste\obj\Debug\ParkManager.csproj.ResolveComReference.cache
+C:\Users\wbcqu\ParkManager\Teste\obj\Debug\Teste.FrmTelaCliente.resources
+C:\Users\wbcqu\ParkManager\Teste\obj\Debug\Teste.FrmTelaVeiculos.resources
+C:\Users\wbcqu\ParkManager\Teste\obj\Debug\Teste.FrmTelaEncerrarTicket.resources
+C:\Users\wbcqu\ParkManager\Teste\obj\Debug\Teste.FrmTelaLogin.resources
+C:\Users\wbcqu\ParkManager\Teste\obj\Debug\Teste.FrmTelaOperacao.resources
+C:\Users\wbcqu\ParkManager\Teste\obj\Debug\Teste.FrmTelaPesquisaTicket.resources
+C:\Users\wbcqu\ParkManager\Teste\obj\Debug\Teste.FrmTelaConfig.resources
+C:\Users\wbcqu\ParkManager\Teste\obj\Debug\Teste.FrmTelaDesenvolvedor.resources
+C:\Users\wbcqu\ParkManager\Teste\obj\Debug\Teste.FrmTelaCadastros.resources
+C:\Users\wbcqu\ParkManager\Teste\obj\Debug\Teste.FrmTelaUsuario.resources
+C:\Users\wbcqu\ParkManager\Teste\obj\Debug\Teste.FrmTelaEstacionamento.resources
+C:\Users\wbcqu\ParkManager\Teste\obj\Debug\Teste.FrmTelaFinanceiro.resources
+C:\Users\wbcqu\ParkManager\Teste\obj\Debug\Teste.FrmTelaRelatorios.resources
+C:\Users\wbcqu\ParkManager\Teste\obj\Debug\Teste.Properties.Resources.resources
+C:\Users\wbcqu\ParkManager\Teste\obj\Debug\ParkManager.csproj.GenerateResource.cache
+C:\Users\wbcqu\ParkManager\Teste\obj\Debug\ParkManager.csproj.CoreCompileInputs.cache
+C:\Users\wbcqu\ParkManager\Teste\obj\Debug\ParkManager.csproj.CopyComplete
+C:\Users\wbcqu\ParkManager\Teste\obj\Debug\Teste.exe
+C:\Users\wbcqu\ParkManager\Teste\obj\Debug\Teste.pdb
