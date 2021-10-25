@@ -333,29 +333,28 @@ namespace Teste
                     dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
                     if (dt.Rows.Count > 0)
                     {
-                        txtId.Text = dt.Rows[0].ItemArray[0].ToString();
-                        txtPlaca.Text = dt.Rows[0].ItemArray[1].ToString();
+                        txtId.Text = dt.Rows[0]["ID"].ToString();
+                        txtPlaca.Text = dt.Rows[0]["Placa"].ToString();
                         CarregarComboTipo();
                         if (cmbTipo.Items.Count > 0)
                         {
 
-                            cmbTipo.Text = dt.Rows[0].ItemArray[2].ToString();
+                            cmbTipo.Text = dt.Rows[0]["Tipo"].ToString();
                             cmbTipo.Enabled = true;
                             if (cmbTipo.SelectedIndex != -1)
                             {
                                 PopularComboMarca();
-                                cmbMarca.Text = dt.Rows[0].ItemArray[3].ToString();
+                                cmbMarca.Text = dt.Rows[0]["Marca"].ToString();
                                 cmbMarca.Enabled = true;
-
                             }
                         }
-                        cmbStatus.SelectedIndex = Convert.ToInt32(dt.Rows[0].ItemArray[4].ToString());
+                        cmbStatus.SelectedIndex = Convert.ToInt32(dt.Rows[0]["Status"]);
                         cmbTipo.SelectedIndexChanged += cmbTipo_SelectedIndexChanged;
                         dt.Clear();
                         dt = ContadorTicket();
                         if (dt.Rows.Count > 0)
                         {
-                            lblTicket.Text = dt.Rows[0].ItemArray[0].ToString();
+                            lblTicket.Text = dt.Rows[0]["QTD"].ToString();
                             lblTicket.Visible = true;
                             lblCaptionTicket.Visible = true;
                         }

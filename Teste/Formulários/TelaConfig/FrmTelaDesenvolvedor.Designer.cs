@@ -31,6 +31,7 @@ namespace Teste
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTelaDesenvolvedor));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtID = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
@@ -61,7 +62,6 @@ namespace Teste
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.txtID = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -78,6 +78,15 @@ namespace Teste
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(830, 85);
             this.panel1.TabIndex = 0;
+            // 
+            // txtID
+            // 
+            this.txtID.Location = new System.Drawing.Point(215, 29);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(100, 20);
+            this.txtID.TabIndex = 0;
+            this.txtID.TabStop = false;
+            this.txtID.Visible = false;
             // 
             // panel2
             // 
@@ -104,7 +113,7 @@ namespace Teste
             this.btnEditar.Location = new System.Drawing.Point(418, 0);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(174, 79);
-            this.btnEditar.TabIndex = 30;
+            this.btnEditar.TabIndex = 9;
             this.btnEditar.Text = "Editar";
             this.btnEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEditar.UseVisualStyleBackColor = false;
@@ -125,7 +134,7 @@ namespace Teste
             this.btnSalvar.Location = new System.Drawing.Point(238, 3);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(174, 79);
-            this.btnSalvar.TabIndex = 27;
+            this.btnSalvar.TabIndex = 8;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSalvar.UseVisualStyleBackColor = false;
@@ -237,7 +246,7 @@ namespace Teste
             this.txtConfirmSenhaRoot.MaxLength = 32;
             this.txtConfirmSenhaRoot.Name = "txtConfirmSenhaRoot";
             this.txtConfirmSenhaRoot.Size = new System.Drawing.Size(649, 31);
-            this.txtConfirmSenhaRoot.TabIndex = 2;
+            this.txtConfirmSenhaRoot.TabIndex = 7;
             this.txtConfirmSenhaRoot.UseSystemPasswordChar = true;
             // 
             // txtUserRoot
@@ -256,7 +265,7 @@ namespace Teste
             this.txtSenhaRoot.MaxLength = 32;
             this.txtSenhaRoot.Name = "txtSenhaRoot";
             this.txtSenhaRoot.Size = new System.Drawing.Size(649, 31);
-            this.txtSenhaRoot.TabIndex = 0;
+            this.txtSenhaRoot.TabIndex = 6;
             this.txtSenhaRoot.UseSystemPasswordChar = true;
             this.txtSenhaRoot.TextChanged += new System.EventHandler(this.txtSenhaRoot_TextChanged);
             // 
@@ -268,7 +277,7 @@ namespace Teste
             this.txtPortaArduino.Location = new System.Drawing.Point(215, 53);
             this.txtPortaArduino.Name = "txtPortaArduino";
             this.txtPortaArduino.Size = new System.Drawing.Size(103, 31);
-            this.txtPortaArduino.TabIndex = 6;
+            this.txtPortaArduino.TabIndex = 1;
             // 
             // groupBox1
             // 
@@ -299,7 +308,7 @@ namespace Teste
             this.txtSenha.MaxLength = 32;
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.Size = new System.Drawing.Size(306, 31);
-            this.txtSenha.TabIndex = 12;
+            this.txtSenha.TabIndex = 5;
             this.txtSenha.UseSystemPasswordChar = true;
             this.txtSenha.TextChanged += new System.EventHandler(this.txtSenha_TextChanged);
             // 
@@ -322,7 +331,7 @@ namespace Teste
             this.txtNomeBanco.MaxLength = 50;
             this.txtNomeBanco.Name = "txtNomeBanco";
             this.txtNomeBanco.Size = new System.Drawing.Size(543, 31);
-            this.txtNomeBanco.TabIndex = 10;
+            this.txtNomeBanco.TabIndex = 3;
             this.txtNomeBanco.TextChanged += new System.EventHandler(this.txtNomeBanco_TextChanged);
             // 
             // label5
@@ -344,7 +353,7 @@ namespace Teste
             this.txtServidor.MaxLength = 136;
             this.txtServidor.Name = "txtServidor";
             this.txtServidor.Size = new System.Drawing.Size(790, 31);
-            this.txtServidor.TabIndex = 3;
+            this.txtServidor.TabIndex = 2;
             this.txtServidor.TextChanged += new System.EventHandler(this.txtServidor_TextChanged);
             // 
             // label2
@@ -366,7 +375,7 @@ namespace Teste
             this.txtUsuario.MaxLength = 32;
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(306, 31);
-            this.txtUsuario.TabIndex = 8;
+            this.txtUsuario.TabIndex = 4;
             this.txtUsuario.UseSystemPasswordChar = true;
             // 
             // label4
@@ -386,7 +395,7 @@ namespace Teste
             this.btnSelecionar.Location = new System.Drawing.Point(760, 3);
             this.btnSelecionar.Name = "btnSelecionar";
             this.btnSelecionar.Size = new System.Drawing.Size(48, 38);
-            this.btnSelecionar.TabIndex = 5;
+            this.btnSelecionar.TabIndex = 0;
             this.btnSelecionar.Text = "...";
             this.btnSelecionar.UseVisualStyleBackColor = true;
             this.btnSelecionar.Click += new System.EventHandler(this.button1_Click);
@@ -401,7 +410,8 @@ namespace Teste
             this.txtCaminho.Name = "txtCaminho";
             this.txtCaminho.ReadOnly = true;
             this.txtCaminho.Size = new System.Drawing.Size(539, 31);
-            this.txtCaminho.TabIndex = 4;
+            this.txtCaminho.TabIndex = 0;
+            this.txtCaminho.TabStop = false;
             this.txtCaminho.TextChanged += new System.EventHandler(this.txtCaminho_TextChanged);
             // 
             // label1
@@ -428,14 +438,6 @@ namespace Teste
             // folderBrowserDialog1
             // 
             this.folderBrowserDialog1.SelectedPath = "C:\\";
-            // 
-            // txtID
-            // 
-            this.txtID.Location = new System.Drawing.Point(215, 29);
-            this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(100, 20);
-            this.txtID.TabIndex = 0;
-            this.txtID.Visible = false;
             // 
             // FrmTelaDesenvolvedor
             // 

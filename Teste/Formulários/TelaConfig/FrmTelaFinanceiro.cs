@@ -84,7 +84,6 @@ namespace Teste
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Falha carregar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -336,8 +335,6 @@ namespace Teste
                         DesativarCaixas();
                         Globais.RegistrarLog(Globais.Login + " Alterou os Valores.");
                         MessageBox.Show("Alterações Salvas com sucesso!", "Salvamento concluido!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
                     }
                     catch (Exception ex)
                     {

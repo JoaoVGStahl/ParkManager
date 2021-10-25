@@ -241,11 +241,18 @@ namespace Teste
                     new SqlParameter(){ParameterName = "@IdUsuario", SqlDbType = SqlDbType.Int, Value = id }
                 };
                 dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
-                txtId.Text = dt.Rows[0].ItemArray[0].ToString();
-                txtLogin.Text = dt.Rows[0].ItemArray[1].ToString();
-                cmbStatus.SelectedIndex = Convert.ToInt32(dt.Rows[0].ItemArray[3]);
-                numNivel.Value = Convert.ToInt32(dt.Rows[0].ItemArray[2]);
-
+                if(dt.Rows.Count > 0)
+                {
+                    txtId.Text = dt.Rows[0]["ID"].ToString();
+                    txtLogin.Text = dt.Rows[0]["Login"].ToString();
+                    cmbStatus.SelectedIndex = Convert.ToInt32(dt.Rows[0]["Status"]);
+                    numNivel.Value = Convert.ToInt32(dt.Rows[0]["Nivel"]);
+                }
+                else
+                {
+                    MessageBox.Show("Usuario selecionado não foi encontrado!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
             }
             txtLogin.Enabled = true;
             txtSenha.Enabled = true;
@@ -297,7 +304,6 @@ namespace Teste
                 {
                     MessageBox.Show("Falha ao deletar Usuário!", "Falha!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
             }
         }
     }

@@ -82,6 +82,7 @@ namespace Teste
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(174, 20);
             this.txtID.TabIndex = 0;
+            this.txtID.TabStop = false;
             this.txtID.Visible = false;
             // 
             // splitter1
@@ -142,7 +143,7 @@ namespace Teste
             this.mskInscricao.Mask = "000,000,000,000";
             this.mskInscricao.Name = "mskInscricao";
             this.mskInscricao.Size = new System.Drawing.Size(290, 38);
-            this.mskInscricao.TabIndex = 22;
+            this.mskInscricao.TabIndex = 2;
             this.mskInscricao.ValidatingType = typeof(System.DateTime);
             // 
             // mskCEP
@@ -153,7 +154,7 @@ namespace Teste
             this.mskCEP.Mask = "00000-000";
             this.mskCEP.Name = "mskCEP";
             this.mskCEP.Size = new System.Drawing.Size(171, 38);
-            this.mskCEP.TabIndex = 21;
+            this.mskCEP.TabIndex = 4;
             // 
             // mskTelefone
             // 
@@ -163,7 +164,7 @@ namespace Teste
             this.mskTelefone.Mask = "(99)00000-0000";
             this.mskTelefone.Name = "mskTelefone";
             this.mskTelefone.Size = new System.Drawing.Size(280, 38);
-            this.mskTelefone.TabIndex = 20;
+            this.mskTelefone.TabIndex = 3;
             // 
             // mskCnpj
             // 
@@ -173,7 +174,7 @@ namespace Teste
             this.mskCnpj.Mask = "00,000,000/0000-00";
             this.mskCnpj.Name = "mskCnpj";
             this.mskCnpj.Size = new System.Drawing.Size(303, 38);
-            this.mskCnpj.TabIndex = 19;
+            this.mskCnpj.TabIndex = 1;
             this.mskCnpj.ValidatingType = typeof(System.DateTime);
             // 
             // label10
@@ -203,7 +204,7 @@ namespace Teste
             this.txtRazaoSocial.Location = new System.Drawing.Point(12, 84);
             this.txtRazaoSocial.Name = "txtRazaoSocial";
             this.txtRazaoSocial.Size = new System.Drawing.Size(772, 38);
-            this.txtRazaoSocial.TabIndex = 15;
+            this.txtRazaoSocial.TabIndex = 0;
             this.txtRazaoSocial.TextChanged += new System.EventHandler(this.txtRazaoSocial_TextChanged);
             // 
             // label8
@@ -234,7 +235,7 @@ namespace Teste
             this.txtNumero.MaxLength = 6;
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(169, 38);
-            this.txtNumero.TabIndex = 11;
+            this.txtNumero.TabIndex = 5;
             this.txtNumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumero_KeyPress);
             // 
             // label6
@@ -254,7 +255,7 @@ namespace Teste
             this.txtEndereco.Location = new System.Drawing.Point(12, 399);
             this.txtEndereco.Name = "txtEndereco";
             this.txtEndereco.Size = new System.Drawing.Size(772, 38);
-            this.txtEndereco.TabIndex = 9;
+            this.txtEndereco.TabIndex = 6;
             this.txtEndereco.TextChanged += new System.EventHandler(this.txtEndereco_TextChanged);
             // 
             // label5
@@ -285,7 +286,7 @@ namespace Teste
             this.txtEstado.MaxLength = 2;
             this.txtEstado.Name = "txtEstado";
             this.txtEstado.Size = new System.Drawing.Size(108, 38);
-            this.txtEstado.TabIndex = 5;
+            this.txtEstado.TabIndex = 9;
             this.txtEstado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEstado_KeyPress);
             // 
             // label3
@@ -305,7 +306,7 @@ namespace Teste
             this.txtBairro.Location = new System.Drawing.Point(12, 476);
             this.txtBairro.Name = "txtBairro";
             this.txtBairro.Size = new System.Drawing.Size(624, 38);
-            this.txtBairro.TabIndex = 3;
+            this.txtBairro.TabIndex = 7;
             // 
             // label2
             // 
@@ -324,7 +325,7 @@ namespace Teste
             this.txtCidade.Location = new System.Drawing.Point(12, 554);
             this.txtCidade.Name = "txtCidade";
             this.txtCidade.Size = new System.Drawing.Size(475, 38);
-            this.txtCidade.TabIndex = 1;
+            this.txtCidade.TabIndex = 8;
             this.txtCidade.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCidade_KeyPress);
             // 
             // label1
@@ -375,7 +376,7 @@ namespace Teste
             this.btnEditar.Location = new System.Drawing.Point(442, 6);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(174, 79);
-            this.btnEditar.TabIndex = 29;
+            this.btnEditar.TabIndex = 11;
             this.btnEditar.Text = "Editar";
             this.btnEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEditar.UseVisualStyleBackColor = false;
@@ -396,7 +397,7 @@ namespace Teste
             this.btnSalvar.Location = new System.Drawing.Point(198, 6);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(174, 79);
-            this.btnSalvar.TabIndex = 28;
+            this.btnSalvar.TabIndex = 10;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSalvar.UseVisualStyleBackColor = false;
