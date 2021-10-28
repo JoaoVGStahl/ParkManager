@@ -31,6 +31,7 @@ namespace Teste
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTelaEstacionamento));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtID = new System.Windows.Forms.TextBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -59,6 +60,7 @@ namespace Teste
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -67,11 +69,21 @@ namespace Teste
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Silver;
+            this.panel1.Controls.Add(this.txtID);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(814, 85);
             this.panel1.TabIndex = 0;
+            // 
+            // txtID
+            // 
+            this.txtID.Location = new System.Drawing.Point(325, 45);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(174, 20);
+            this.txtID.TabIndex = 0;
+            this.txtID.TabStop = false;
+            this.txtID.Visible = false;
             // 
             // splitter1
             // 
@@ -115,12 +127,13 @@ namespace Teste
             this.groupBox1.Controls.Add(this.txtCidade);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 3);
+            this.groupBox1.Location = new System.Drawing.Point(4, 10);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(778, 617);
+            this.groupBox1.Size = new System.Drawing.Size(790, 610);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Identificação";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // mskInscricao
             // 
@@ -130,7 +143,7 @@ namespace Teste
             this.mskInscricao.Mask = "000,000,000,000";
             this.mskInscricao.Name = "mskInscricao";
             this.mskInscricao.Size = new System.Drawing.Size(290, 38);
-            this.mskInscricao.TabIndex = 22;
+            this.mskInscricao.TabIndex = 2;
             this.mskInscricao.ValidatingType = typeof(System.DateTime);
             // 
             // mskCEP
@@ -141,7 +154,7 @@ namespace Teste
             this.mskCEP.Mask = "00000-000";
             this.mskCEP.Name = "mskCEP";
             this.mskCEP.Size = new System.Drawing.Size(171, 38);
-            this.mskCEP.TabIndex = 21;
+            this.mskCEP.TabIndex = 4;
             // 
             // mskTelefone
             // 
@@ -151,7 +164,7 @@ namespace Teste
             this.mskTelefone.Mask = "(99)00000-0000";
             this.mskTelefone.Name = "mskTelefone";
             this.mskTelefone.Size = new System.Drawing.Size(280, 38);
-            this.mskTelefone.TabIndex = 20;
+            this.mskTelefone.TabIndex = 3;
             // 
             // mskCnpj
             // 
@@ -161,7 +174,7 @@ namespace Teste
             this.mskCnpj.Mask = "00,000,000/0000-00";
             this.mskCnpj.Name = "mskCnpj";
             this.mskCnpj.Size = new System.Drawing.Size(303, 38);
-            this.mskCnpj.TabIndex = 19;
+            this.mskCnpj.TabIndex = 1;
             this.mskCnpj.ValidatingType = typeof(System.DateTime);
             // 
             // label10
@@ -190,8 +203,9 @@ namespace Teste
             this.txtRazaoSocial.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRazaoSocial.Location = new System.Drawing.Point(12, 84);
             this.txtRazaoSocial.Name = "txtRazaoSocial";
-            this.txtRazaoSocial.Size = new System.Drawing.Size(688, 38);
-            this.txtRazaoSocial.TabIndex = 15;
+            this.txtRazaoSocial.Size = new System.Drawing.Size(772, 38);
+            this.txtRazaoSocial.TabIndex = 0;
+            this.txtRazaoSocial.TextChanged += new System.EventHandler(this.txtRazaoSocial_TextChanged);
             // 
             // label8
             // 
@@ -218,9 +232,10 @@ namespace Teste
             this.txtNumero.Enabled = false;
             this.txtNumero.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNumero.Location = new System.Drawing.Point(208, 325);
+            this.txtNumero.MaxLength = 6;
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(169, 38);
-            this.txtNumero.TabIndex = 11;
+            this.txtNumero.TabIndex = 5;
             this.txtNumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumero_KeyPress);
             // 
             // label6
@@ -239,8 +254,9 @@ namespace Teste
             this.txtEndereco.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEndereco.Location = new System.Drawing.Point(12, 399);
             this.txtEndereco.Name = "txtEndereco";
-            this.txtEndereco.Size = new System.Drawing.Size(688, 38);
-            this.txtEndereco.TabIndex = 9;
+            this.txtEndereco.Size = new System.Drawing.Size(772, 38);
+            this.txtEndereco.TabIndex = 6;
+            this.txtEndereco.TextChanged += new System.EventHandler(this.txtEndereco_TextChanged);
             // 
             // label5
             // 
@@ -266,17 +282,18 @@ namespace Teste
             // 
             this.txtEstado.Enabled = false;
             this.txtEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEstado.Location = new System.Drawing.Point(442, 554);
+            this.txtEstado.Location = new System.Drawing.Point(528, 554);
+            this.txtEstado.MaxLength = 2;
             this.txtEstado.Name = "txtEstado";
             this.txtEstado.Size = new System.Drawing.Size(108, 38);
-            this.txtEstado.TabIndex = 5;
+            this.txtEstado.TabIndex = 9;
             this.txtEstado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEstado_KeyPress);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(451, 521);
+            this.label3.Location = new System.Drawing.Point(537, 521);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(99, 31);
             this.label3.TabIndex = 4;
@@ -288,8 +305,8 @@ namespace Teste
             this.txtBairro.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBairro.Location = new System.Drawing.Point(12, 476);
             this.txtBairro.Name = "txtBairro";
-            this.txtBairro.Size = new System.Drawing.Size(538, 38);
-            this.txtBairro.TabIndex = 3;
+            this.txtBairro.Size = new System.Drawing.Size(624, 38);
+            this.txtBairro.TabIndex = 7;
             // 
             // label2
             // 
@@ -307,8 +324,8 @@ namespace Teste
             this.txtCidade.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCidade.Location = new System.Drawing.Point(12, 554);
             this.txtCidade.Name = "txtCidade";
-            this.txtCidade.Size = new System.Drawing.Size(394, 38);
-            this.txtCidade.TabIndex = 1;
+            this.txtCidade.Size = new System.Drawing.Size(475, 38);
+            this.txtCidade.TabIndex = 8;
             this.txtCidade.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCidade_KeyPress);
             // 
             // label1
@@ -323,12 +340,15 @@ namespace Teste
             // 
             // panel4
             // 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.AutoScroll = true;
             this.panel4.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel4.Controls.Add(this.groupBox1);
-            this.panel4.Location = new System.Drawing.Point(0, 104);
+            this.panel4.Location = new System.Drawing.Point(0, 94);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(814, 391);
+            this.panel4.Size = new System.Drawing.Size(814, 401);
             this.panel4.TabIndex = 6;
             // 
             // panel3
@@ -356,7 +376,7 @@ namespace Teste
             this.btnEditar.Location = new System.Drawing.Point(442, 6);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(174, 79);
-            this.btnEditar.TabIndex = 29;
+            this.btnEditar.TabIndex = 11;
             this.btnEditar.Text = "Editar";
             this.btnEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEditar.UseVisualStyleBackColor = false;
@@ -377,7 +397,7 @@ namespace Teste
             this.btnSalvar.Location = new System.Drawing.Point(198, 6);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(174, 79);
-            this.btnSalvar.TabIndex = 28;
+            this.btnSalvar.TabIndex = 10;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSalvar.UseVisualStyleBackColor = false;
@@ -407,6 +427,8 @@ namespace Teste
             this.Name = "FrmTelaEstacionamento";
             this.Text = " ";
             this.Load += new System.EventHandler(this.FrmTelaEstacionamento_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel4.ResumeLayout(false);
@@ -446,5 +468,6 @@ namespace Teste
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnEditar;
+        private System.Windows.Forms.TextBox txtID;
     }
 }

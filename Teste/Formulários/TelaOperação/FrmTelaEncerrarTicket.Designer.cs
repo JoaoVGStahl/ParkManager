@@ -86,6 +86,7 @@ namespace Teste
             this.txtTotal.ReadOnly = true;
             this.txtTotal.Size = new System.Drawing.Size(157, 38);
             this.txtTotal.TabIndex = 50;
+            this.txtTotal.TabStop = false;
             this.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTotal.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
@@ -108,6 +109,7 @@ namespace Teste
             this.txtTroco.ReadOnly = true;
             this.txtTroco.Size = new System.Drawing.Size(157, 38);
             this.txtTroco.TabIndex = 52;
+            this.txtTroco.TabStop = false;
             this.txtTroco.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label5
@@ -123,6 +125,7 @@ namespace Teste
             // cmbFormaPagamento
             // 
             this.cmbFormaPagamento.BackColor = System.Drawing.Color.White;
+            this.cmbFormaPagamento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbFormaPagamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbFormaPagamento.FormattingEnabled = true;
             this.cmbFormaPagamento.Items.AddRange(new object[] {
@@ -133,7 +136,7 @@ namespace Teste
             this.cmbFormaPagamento.Location = new System.Drawing.Point(164, 181);
             this.cmbFormaPagamento.Name = "cmbFormaPagamento";
             this.cmbFormaPagamento.Size = new System.Drawing.Size(219, 41);
-            this.cmbFormaPagamento.TabIndex = 53;
+            this.cmbFormaPagamento.TabIndex = 0;
             this.cmbFormaPagamento.SelectedIndexChanged += new System.EventHandler(this.cmbFormaPagamento_SelectedIndexChanged);
             // 
             // label3
@@ -154,7 +157,7 @@ namespace Teste
             this.txtRecebido.Name = "txtRecebido";
             this.txtRecebido.ReadOnly = true;
             this.txtRecebido.Size = new System.Drawing.Size(157, 38);
-            this.txtRecebido.TabIndex = 56;
+            this.txtRecebido.TabIndex = 1;
             this.txtRecebido.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtRecebido.TextChanged += new System.EventHandler(this.txtRecebido_TextChanged);
             this.txtRecebido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRecebido_KeyPress);
@@ -258,6 +261,7 @@ namespace Teste
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(33, 37);
             this.button2.TabIndex = 58;
+            this.button2.TabStop = false;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -282,7 +286,7 @@ namespace Teste
             this.btnEncerrar.Location = new System.Drawing.Point(166, 15);
             this.btnEncerrar.Name = "btnEncerrar";
             this.btnEncerrar.Size = new System.Drawing.Size(218, 85);
-            this.btnEncerrar.TabIndex = 15;
+            this.btnEncerrar.TabIndex = 2;
             this.btnEncerrar.Text = "Encerrar Ticket (F4)";
             this.btnEncerrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEncerrar.UseVisualStyleBackColor = false;

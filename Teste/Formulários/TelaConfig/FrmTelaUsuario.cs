@@ -33,11 +33,6 @@ namespace Teste
         private void FrmTelaUsuario_Load(object sender, EventArgs e)
         {
             PreencherGrid();
-            dataGridView1.Columns[0].Width = 50;
-            dataGridView1.Columns[1].Width = 300;
-            dataGridView1.Columns[2].Width = 83;
-            dataGridView1.Columns[3].Width = 96;
-
         }
         private void PreencherGrid()
         {
@@ -50,6 +45,10 @@ namespace Teste
             {
                 dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
                 dataGridView1.DataSource = dt;
+                dataGridView1.Columns[0].Width = 50;
+                dataGridView1.Columns[1].Width = 300;
+                dataGridView1.Columns[2].Width = 83;
+                dataGridView1.Columns[3].Width = 96;
             }
             catch (Exception ex)
             {
@@ -79,6 +78,7 @@ namespace Teste
             txtConfirmSenha.Enabled = false;
             cmbStatus.Enabled = false;
             numNivel.Enabled = false;
+            btnLimpar.Enabled = false;
         }
 
         private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
@@ -118,9 +118,9 @@ namespace Teste
         }
         private void VerificarCaixas()
         {
-            if(txtLogin.Text != "" && txtSenha.Text != "" && txtConfirmSenha.Text != "")
+            if (txtLogin.Text != "" && txtSenha.Text != "" && txtConfirmSenha.Text != "")
             {
-                if(txtSenha.Text == txtConfirmSenha.Text)
+                if (txtSenha.Text == txtConfirmSenha.Text)
                 {
                     VerificarUsuario();
                 }
@@ -131,7 +131,7 @@ namespace Teste
             }
             else
             {
-                MessageBox.Show("Há campos vazios que precisam ser preenchidos!","Falha ao salvar!",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Há campos vazios que precisam ser preenchidos!", "Falha ao salvar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void VerificarUsuario()
@@ -154,7 +154,7 @@ namespace Teste
                 {
                     SalvarUsuario();
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -164,7 +164,7 @@ namespace Teste
             {
                 dt.Dispose();
             }
-            
+
 
         }
         private void EditarUsuario()
@@ -181,7 +181,7 @@ namespace Teste
                 };
 
             result = banco.EditData("dbo.Gerencia_Usuario", sp);
-            if(result > 0)
+            if (result > 0)
             {
                 MessageBox.Show("Usuario alterado com sucesso!", "Alteração Salva!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Globais.RegistrarLog(Globais.Login + " Alterou o Usuário ->" + txtLogin.Text);
@@ -241,11 +241,18 @@ namespace Teste
                     new SqlParameter(){ParameterName = "@IdUsuario", SqlDbType = SqlDbType.Int, Value = id }
                 };
                 dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
-                txtId.Text = dt.Rows[0].ItemArray[0].ToString();
-                txtLogin.Text = dt.Rows[0].ItemArray[1].ToString();
-                cmbStatus.SelectedIndex = Convert.ToInt32(dt.Rows[0].ItemArray[3]);
-                numNivel.Value = Convert.ToInt32(dt.Rows[0].ItemArray[2]);
-
+                if(dt.Rows.Count > 0)
+                {
+                    txtId.Text = dt.Rows[0]["ID"].ToString();
+                    txtLogin.Text = dt.Rows[0]["Login"].ToString();
+                    cmbStatus.SelectedIndex = Convert.ToInt32(dt.Rows[0]["Status"]);
+                    numNivel.Value = Convert.ToInt32(dt.Rows[0]["Nivel"]);
+                }
+                else
+                {
+                    MessageBox.Show("Usuario selecionado não foi encontrado!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
             }
             txtLogin.Enabled = true;
             txtSenha.Enabled = true;
@@ -255,6 +262,7 @@ namespace Teste
             btnExcluir.Enabled = true;
             btnNovo.Enabled = false;
             btnSalvar.Enabled = true;
+            btnLimpar.Enabled = true;
         }
 
         private void button1_Click_2(object sender, EventArgs e)
@@ -296,7 +304,6 @@ namespace Teste
                 {
                     MessageBox.Show("Falha ao deletar Usuário!", "Falha!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
             }
         }
     }

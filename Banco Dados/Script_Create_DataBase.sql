@@ -32,7 +32,7 @@ CREATE TABLE tb_estacionamento(
 
 CREATE TABLE tb_cliente(
     id_cliente INT PRIMARY KEY IDENTITY,
-	nome VARCHAR(50) not null,
+	nome VARCHAR(45) not null,
 	telefone VARCHAR(14),
 	status SMALLINT NOT NULL
 )

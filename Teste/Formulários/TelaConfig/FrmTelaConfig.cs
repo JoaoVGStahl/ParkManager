@@ -12,9 +12,11 @@ namespace Teste
 {
     public partial class FrmTelaConfig : Form
     {
-        public FrmTelaConfig()
+        Form frm;
+        public FrmTelaConfig(Form Frm)
         {
             InitializeComponent();
+            this.frm = Frm;
         }
         private void FundoBotao(Button botao)
         {
@@ -33,17 +35,23 @@ namespace Teste
         }
         private void AbreFormParent(int nivel, Form Frm)
         {
-            if (Globais.Nivel >= nivel)
+            if (Properties.Settings.Default["StringBanco"].ToString() != null)
             {
-                Frm.MdiParent = this;
-                Frm.Dock = DockStyle.Fill;
-                Frm.Show();
+                if (Globais.Nivel >= nivel)
+                {
+                    Frm.MdiParent = this;
+                    Frm.Dock = DockStyle.Fill;
+                    Frm.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Seu usuário não tem permissão para acessar está area!", "Acesso Negado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                MessageBox.Show("Seu usuário não tem permissão para acessar está area!", "Acesso Negado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Conecte-se a um banco de dados primeiro!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
         private void FecharFormulariosFilhos()
         {
@@ -58,29 +66,23 @@ namespace Teste
                 }
             }
         }
-
         private void btnSair_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            this.Close();
         }
-
         private void FrmTelaConfig_Load(object sender, EventArgs e)
         {
             if (Globais.Login == Properties.Settings.Default.UserRoot)
             {
-                
                 btnDev.Visible = true;
                 btnDev.PerformClick();
             }
             lblUsuario.Text = Globais.Login;
         }
-
-
         private void btnGeral_Click(object sender, EventArgs e)
         {
             FundoBotao(btnGeral);
         }
-
         private void btnEstacionamento_Click(object sender, EventArgs e)
         {
             FundoBotao(btnEstacionamento);
@@ -89,7 +91,6 @@ namespace Teste
             FrmTelaEstacionamento Frm = new FrmTelaEstacionamento();
             AbreFormParent(2, Frm);
         }
-
         private void btnPrecos_Click(object sender, EventArgs e)
         {
             FundoBotao(btnPrecos);
@@ -98,7 +99,6 @@ namespace Teste
             FrmTelaFinanceiro Frm = new FrmTelaFinanceiro();
             AbreFormParent(2, Frm);
         }
-
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
             FundoBotao(btnUsuarios);
@@ -107,32 +107,19 @@ namespace Teste
             FrmTelaUsuario Frm = new FrmTelaUsuario();
             AbreFormParent(2, Frm);
         }
-
         private void btnDev_Click(object sender, EventArgs e)
         {
             FundoBotao(btnDev);
             FecharFormulariosFilhos();
             FrmTelaDesenvolvedor Frm = new FrmTelaDesenvolvedor();
-            AbreFormParent(3, Frm);
-
+            Frm.MdiParent = this;
+            Frm.Dock = DockStyle.Fill;
+            Frm.Show();
         }
-
         private void FrmTelaConfig_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (Globais.Login == Properties.Settings.Default.UserRoot)
-            {
-
-                FrmTelaLogin Frm = new FrmTelaLogin();
-                Frm.ShowDialog();
-                this.Dispose();
-            }
-            else
-            {
-                this.Dispose();
-            }
-
-            
+            this.Dispose();
+            frm.Show();
         }
-        
     }
 }

@@ -39,7 +39,7 @@ namespace Teste
             this.panel3 = new System.Windows.Forms.Panel();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnLimpar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnNovo = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
@@ -110,7 +110,7 @@ namespace Teste
             this.txtConfirmSenha.MaxLength = 32;
             this.txtConfirmSenha.Name = "txtConfirmSenha";
             this.txtConfirmSenha.Size = new System.Drawing.Size(269, 31);
-            this.txtConfirmSenha.TabIndex = 40;
+            this.txtConfirmSenha.TabIndex = 2;
             this.txtConfirmSenha.UseSystemPasswordChar = true;
             // 
             // label2
@@ -170,7 +170,7 @@ namespace Teste
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Silver;
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.btnLimpar);
             this.panel2.Controls.Add(this.btnExcluir);
             this.panel2.Controls.Add(this.btnNovo);
             this.panel2.Controls.Add(this.btnSalvar);
@@ -181,26 +181,26 @@ namespace Teste
             this.panel2.TabIndex = 33;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
-            // button1
+            // btnLimpar
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.Enabled = false;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(640, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(174, 79);
-            this.button1.TabIndex = 29;
-            this.button1.Text = "Limpar";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click_2);
+            this.btnLimpar.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnLimpar.BackColor = System.Drawing.Color.Transparent;
+            this.btnLimpar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnLimpar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLimpar.Enabled = false;
+            this.btnLimpar.FlatAppearance.BorderSize = 0;
+            this.btnLimpar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpar.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpar.Image")));
+            this.btnLimpar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLimpar.Location = new System.Drawing.Point(640, 0);
+            this.btnLimpar.Name = "btnLimpar";
+            this.btnLimpar.Size = new System.Drawing.Size(174, 79);
+            this.btnLimpar.TabIndex = 8;
+            this.btnLimpar.Text = "Limpar";
+            this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnLimpar.UseVisualStyleBackColor = false;
+            this.btnLimpar.Click += new System.EventHandler(this.button1_Click_2);
             // 
             // btnExcluir
             // 
@@ -217,7 +217,7 @@ namespace Teste
             this.btnExcluir.Location = new System.Drawing.Point(447, 0);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(174, 79);
-            this.btnExcluir.TabIndex = 28;
+            this.btnExcluir.TabIndex = 7;
             this.btnExcluir.Text = "Excluir ";
             this.btnExcluir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnExcluir.UseVisualStyleBackColor = false;
@@ -237,7 +237,7 @@ namespace Teste
             this.btnNovo.Location = new System.Drawing.Point(61, 0);
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(174, 79);
-            this.btnNovo.TabIndex = 27;
+            this.btnNovo.TabIndex = 5;
             this.btnNovo.Text = "Novo ";
             this.btnNovo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNovo.UseVisualStyleBackColor = false;
@@ -258,7 +258,7 @@ namespace Teste
             this.btnSalvar.Location = new System.Drawing.Point(254, 0);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(174, 79);
-            this.btnSalvar.TabIndex = 26;
+            this.btnSalvar.TabIndex = 6;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSalvar.UseVisualStyleBackColor = false;
@@ -279,7 +279,7 @@ namespace Teste
             0});
             this.numNivel.Name = "numNivel";
             this.numNivel.Size = new System.Drawing.Size(85, 31);
-            this.numNivel.TabIndex = 14;
+            this.numNivel.TabIndex = 4;
             // 
             // cmbStatus
             // 
@@ -297,7 +297,7 @@ namespace Teste
             this.cmbStatus.Location = new System.Drawing.Point(13, 469);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(163, 33);
-            this.cmbStatus.TabIndex = 13;
+            this.cmbStatus.TabIndex = 3;
             // 
             // label6
             // 
@@ -338,7 +338,7 @@ namespace Teste
             this.txtSenha.MaxLength = 32;
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.Size = new System.Drawing.Size(270, 31);
-            this.txtSenha.TabIndex = 8;
+            this.txtSenha.TabIndex = 1;
             this.txtSenha.UseSystemPasswordChar = true;
             // 
             // label4
@@ -366,7 +366,7 @@ namespace Teste
             this.txtLogin.MaxLength = 32;
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(269, 31);
-            this.txtLogin.TabIndex = 6;
+            this.txtLogin.TabIndex = 0;
             this.txtLogin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
             // 
             // label3
@@ -395,6 +395,7 @@ namespace Teste
             this.txtId.ReadOnly = true;
             this.txtId.Size = new System.Drawing.Size(67, 31);
             this.txtId.TabIndex = 2;
+            this.txtId.TabStop = false;
             // 
             // label1
             // 
@@ -431,6 +432,7 @@ namespace Teste
             this.dataGridView1.ShowEditingIcon = false;
             this.dataGridView1.Size = new System.Drawing.Size(554, 483);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.TabStop = false;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
@@ -482,6 +484,6 @@ namespace Teste
         private System.Windows.Forms.TextBox txtConfirmSenha;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnLimpar;
     }
 }

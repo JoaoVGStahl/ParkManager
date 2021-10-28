@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
+using System.Data.SqlClient;
 
 namespace Teste
 {
@@ -15,9 +16,11 @@ namespace Teste
     {
         Banco banco = new Banco();
         DateTime DataFormatada;
-        public FrmTelaEncerrarTicket()
+        FrmTelaOperacao form;
+        public FrmTelaEncerrarTicket(FrmTelaOperacao form)
         {
             InitializeComponent();
+            this.form = form;
         }
 
         private void FrmTelaEncerrarTicket_Load(object sender, EventArgs e)
@@ -32,7 +35,11 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                dt = banco.ProcedureSemParametros(4);
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
+                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 4}
+                };
+                dt = banco.InsertData(NameProcedure: "dbo.Funcoes_Pesquisa", sp: sp);
                 cmbFormaPagamento.DataSource = null;
                 cmbFormaPagamento.DataSource = dt;
                 cmbFormaPagamento.ValueMember = "id_pgt";
@@ -44,8 +51,6 @@ namespace Teste
 
                 MessageBox.Show(ex.Message, "Houve uma falha ao carregar os Métodos de pagamento!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
         }
         private void CarregarTicket()
         {
@@ -55,14 +60,18 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                dt = banco.ProcedureCarregarTicket(3, Globais.IdTicket);
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
+                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 3},
+                    new SqlParameter(){ParameterName="@IdTicket", SqlDbType = SqlDbType.Int, Value = Globais.IdTicket}
+                };
+                dt = banco.InsertData(NameProcedure: "dbo.Funcoes_Pesquisa", sp: sp);
                 if (dt.Rows.Count > 0)
                 {
+                    lblIdTicket.Text = "#" + dt.Rows[0]["#Ticket"].ToString();//ID Ticket
 
-                    lblIdTicket.Text = "#" + Convert.ToString(dt.Rows[0].ItemArray[0]);//ID Ticket
-
-                    DataEntrada = Convert.ToDateTime(dt.Rows[0].ItemArray[2]);
-                    HoraEntrada = Convert.ToDateTime(dt.Rows[0].ItemArray[1]);
+                    DataEntrada = Convert.ToDateTime(dt.Rows[0]["Data Entrada"].ToString());
+                    HoraEntrada = Convert.ToDateTime(dt.Rows[0]["Hora Entrada"].ToString());
                     lblHoraEntrada.Text = HoraEntrada.ToLongTimeString() + " " + DataEntrada.ToShortDateString();
                     DataFormatada = Convert.ToDateTime(DataEntrada.ToString("dd/MM/yyyy") + " " + HoraEntrada.ToString("HH:mm:ss"));
                     timer1.Enabled = true;
@@ -71,11 +80,13 @@ namespace Teste
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Houve uma falha ao carregar o ticket! \nRealize a pesquisa e tente novamente!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Dispose();
             }
-
+            finally
+            {
+                dt.Dispose();
+            }
         }
         private void CalcularPreco(DateTime DataEntrada)
         {
@@ -127,8 +138,7 @@ namespace Teste
             else
             {
                 Total += ValorUnico;
-            }
-            
+            } 
             txtTotal.Text = Total.ToString("N2");
             PreencherLabelTempoPermanencia(ts);
 
@@ -180,6 +190,7 @@ namespace Teste
 
         private void button2_Click(object sender, EventArgs e)
         {
+            form.ContadorTicket();
             this.Close();
         }
 
@@ -205,7 +216,6 @@ namespace Teste
             {
                 txtRecebido.Focus();
                 txtRecebido.ReadOnly = false;
-
             }
             else
             {

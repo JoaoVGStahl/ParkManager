@@ -14,11 +14,12 @@ namespace Teste
     public partial class FrmTelaPesquisaTicket : Form
     {
         Banco banco = new Banco();
-        public FrmTelaPesquisaTicket()
+        FrmTelaOperacao form;
+        public FrmTelaPesquisaTicket(FrmTelaOperacao Form)
         {
             InitializeComponent();
+            this.form = Form;
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -28,117 +29,92 @@ namespace Teste
         {
             dataGridView1.SelectionChanged -= dataGridView1_SelectionChanged;
             cmbStatus.SelectedIndex = 1;
-            PreencherGrid();
-            dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
             dtpEntrada.Value = DateTime.Today.AddDays(-7);
-
-        }
-        private void PreencherGrid()
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                dt = banco.ProcedureSemParametros(6);
-                dataGridView1.DataSource = dt;
-                dataGridView1.Columns[0].Width = 60;
-                dataGridView1.Columns[1].Width = 95;
-                dataGridView1.Columns[2].Width = 95;
-                dataGridView1.Columns[3].Width = 168;
-                dataGridView1.Columns[4].Width = 75;
-                dataGridView1.Columns[5].Width = 110;
-                dataGridView1.Columns[6].Width = 140;
-                dataGridView1.Columns[7].Width = 225;
-                dataGridView1.Columns[8].Width = 325;
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message, "Falha ao carregar as informações!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
-
+            btnPesquisa.PerformClick();
+            //PreencherGrid();
+            dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            Globais.IdTicket = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
-            FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket();
-            Frm.ShowDialog();
-
+            if (dataGridView1.SelectedRows[0].Cells["Status"].Value.ToString() == "Ativo" )
+            {
+                dataGridView1.SelectedRows[0].Cells["Status"].Value.ToString();
+                Globais.IdTicket = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
+                FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket(form);
+                Frm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Este Ticket ja foi encerrado!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
 
         }
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(cmbStatus.SelectedIndex == 1)
+            if (txtIdTicket.Text.Length > 0)
             {
+                txtPlaca.Enabled = false;
+                txtPlaca.Clear();
+                dtpEntrada.Enabled = false;
                 dtpSaida.Enabled = false;
             }
             else
             {
+                txtPlaca.Enabled = true;
+                txtPlaca.Clear();
+                dtpEntrada.Enabled = true;
                 dtpSaida.Enabled = true;
-                btnEncerrar.Enabled = false;
+                cmbStatus.Enabled = true;
             }
         }
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
 
+        }
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
-
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
             //Caracteres permitidos
@@ -176,16 +152,14 @@ namespace Teste
                 }
             }
         }
-
         private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             dataGridView1.ClearSelection();
             btnEncerrar.Enabled = false;
         }
-
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            if (cmbStatus.SelectedIndex == 1)
+            if (cmbStatus.Text == "Ativo" || cmbStatus.Text == "Todos")
             {
                 btnEncerrar.Enabled = true;
             }
@@ -194,38 +168,50 @@ namespace Teste
                 btnEncerrar.Enabled = false;
             }
         }
-
         private void button4_Click(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            string DataEntrada = dtpEntrada.Value.ToString("dd/MM/yyyy");
-            string DataSaida = dtpSaida.Value.ToString("dd/MM/yyyy");
-            int idticket =0;
-            if (txtIdTicket.Text != "")
+            DefinirParametros();
+        }
+        private void DefinirParametros()
+        {
+            if(txtIdTicket.Text == "")
             {
-                idticket = Convert.ToInt32(txtIdTicket.Text);
+                PesquisarTicket(placa: txtPlaca.Text, DataEntrada: dtpEntrada.Value.ToString(), DataSaida: dtpSaida.Value.ToString(), status:cmbStatus.SelectedIndex.ToString());
             }
-
+            else
+            {
+                PesquisarTicket(IdTicket: txtIdTicket.Text, status: cmbStatus.SelectedIndex.ToString());
+            }
+        }
+        private void PesquisarTicket(string IdTicket = null,string placa = null, string DataEntrada = null,string DataSaida = null, string status = null )
+        {
+            DataTable dt = new DataTable();
             try
             {
                 List<SqlParameter> sp = new List<SqlParameter>()
-            {
-                new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 18},
-                new SqlParameter(){ParameterName="@idTicket", SqlDbType = SqlDbType.Int, Value = idticket},
-                new SqlParameter(){ParameterName="@Placa", SqlDbType = SqlDbType.VarChar, Value = txtPlaca.Text},
-                new SqlParameter(){ParameterName="@DataEntrada", SqlDbType = SqlDbType.DateTime, Value = DataEntrada},
-                new SqlParameter(){ParameterName="@DataSaida", SqlDbType = SqlDbType.DateTime, Value = DataSaida},
-                new SqlParameter(){ParameterName = "@Status", SqlDbType = SqlDbType.Int, Value = cmbStatus.SelectedIndex}
-            };
+                {
+                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 18},
+                    new SqlParameter(){ParameterName="@idTicket", SqlDbType = SqlDbType.Int, Value = IdTicket},
+                    new SqlParameter(){ParameterName="@Placa", SqlDbType = SqlDbType.VarChar, Value = placa},
+                    new SqlParameter(){ParameterName="@DataEntrada", SqlDbType = SqlDbType.DateTime, Value = DataEntrada},
+                    new SqlParameter(){ParameterName="@DataSaida", SqlDbType = SqlDbType.DateTime, Value = DataSaida},
+                    new SqlParameter(){ParameterName = "@Status", SqlDbType = SqlDbType.Int, Value = status}
+                };
                 dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
                 dataGridView1.DataSource = dt;
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Erro!");
             }
-
+        }
+        private void dataGridView1_DoubleClick(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows[0].Cells["Status"].Value.ToString() == "Ativo")
+            {
+                form.PesquisaTicket(dataGridView1.SelectedRows[0].Cells["Placa"].Value.ToString());
+                this.Dispose();
+            }
         }
     }
 }

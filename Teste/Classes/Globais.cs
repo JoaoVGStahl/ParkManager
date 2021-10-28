@@ -83,7 +83,14 @@ namespace Teste
             get { return modounico; }
             set { modounico = value; }
         }
-        
+
+        private static string caminhoFoto;
+        public static string CaminhoFoto
+        {
+            get { return caminhoFoto; }
+            set { caminhoFoto = value; }
+        }
+
 
         //Função generica para registrar as ações do usuario
         public static void RegistrarLog(string Action)
