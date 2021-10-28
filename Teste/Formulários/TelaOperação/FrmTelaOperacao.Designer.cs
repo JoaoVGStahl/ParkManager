@@ -41,8 +41,8 @@ namespace Teste
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button5 = new System.Windows.Forms.Button();
             this.picImagem = new System.Windows.Forms.PictureBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.picCam = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
             this.lblQtdTicket = new System.Windows.Forms.Label();
@@ -220,15 +220,6 @@ namespace Teste
             this.panel1.Size = new System.Drawing.Size(660, 498);
             this.panel1.TabIndex = 12;
             // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(623, 411);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(27, 23);
-            this.button5.TabIndex = 42;
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
             // picImagem
             // 
             this.picImagem.Image = ((System.Drawing.Image)(resources.GetObject("picImagem.Image")));
@@ -240,6 +231,15 @@ namespace Teste
             this.picImagem.TabIndex = 38;
             this.picImagem.TabStop = false;
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(623, 411);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(27, 23);
+            this.button5.TabIndex = 42;
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // picCam
             // 
             this.picCam.Location = new System.Drawing.Point(3, 67);
@@ -249,19 +249,6 @@ namespace Teste
             this.picCam.TabStop = false;
             // 
             // label8
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label8.Location = new System.Drawing.Point(3, 16);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(212, 31);
-            this.label8.TabIndex = 3;
-            this.label8.Text = "Ticket Abertos:";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
-            // 
-            // pictureBox1
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -322,7 +309,6 @@ namespace Teste
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // 
             // btnIniciar
             // 

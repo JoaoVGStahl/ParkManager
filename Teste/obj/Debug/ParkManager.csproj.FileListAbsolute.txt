@@ -111,3 +111,12 @@ C:\Users\Valorant\Projetos\ParkManager\Teste\obj\Debug\Teste.Properties.Resource
 C:\Users\Valorant\Projetos\ParkManager\Teste\obj\Debug\ParkManager.csproj.GenerateResource.cache
 C:\Users\Valorant\Projetos\ParkManager\Teste\obj\Debug\Teste.exe
 C:\Users\Valorant\Projetos\ParkManager\Teste\obj\Debug\Teste.pdb
+C:\Users\Valorant\Projetos\ParkManager\Teste\bin\Debug\Teste.exe.config
+C:\Users\Valorant\Projetos\ParkManager\Teste\bin\Debug\Teste.exe
+C:\Users\Valorant\Projetos\ParkManager\Teste\bin\Debug\Teste.pdb
+C:\Users\Valorant\Projetos\ParkManager\Teste\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\Valorant\Projetos\ParkManager\Teste\bin\Debug\DirectX.Capture.dll
+C:\Users\Valorant\Projetos\ParkManager\Teste\bin\Debug\DShowNET.dll
+C:\Users\Valorant\Projetos\ParkManager\Teste\bin\Debug\itextsharp.dll
+C:\Users\Valorant\Projetos\ParkManager\Teste\bin\Debug\itextsharp.xml
+C:\Users\Valorant\Projetos\ParkManager\Teste\obj\Debug\ParkManager.csproj.CopyComplete
