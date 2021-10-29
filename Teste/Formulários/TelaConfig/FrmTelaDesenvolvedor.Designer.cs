@@ -29,9 +29,9 @@ namespace Teste
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTelaDesenvolvedor));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtID = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
@@ -40,6 +40,7 @@ namespace Teste
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.cbPortaArduino = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -62,7 +63,11 @@ namespace Teste
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.txtID = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
+            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+            this.timerCOM = new System.Windows.Forms.Timer(this.components);
+            this.btConectar = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -78,15 +83,6 @@ namespace Teste
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(830, 85);
             this.panel1.TabIndex = 0;
-            // 
-            // txtID
-            // 
-            this.txtID.Location = new System.Drawing.Point(215, 29);
-            this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(100, 20);
-            this.txtID.TabIndex = 0;
-            this.txtID.TabStop = false;
-            this.txtID.Visible = false;
             // 
             // panel2
             // 
@@ -113,7 +109,7 @@ namespace Teste
             this.btnEditar.Location = new System.Drawing.Point(418, 0);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(174, 79);
-            this.btnEditar.TabIndex = 9;
+            this.btnEditar.TabIndex = 30;
             this.btnEditar.Text = "Editar";
             this.btnEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEditar.UseVisualStyleBackColor = false;
@@ -134,7 +130,7 @@ namespace Teste
             this.btnSalvar.Location = new System.Drawing.Point(238, 3);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(174, 79);
-            this.btnSalvar.TabIndex = 8;
+            this.btnSalvar.TabIndex = 27;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSalvar.UseVisualStyleBackColor = false;
@@ -183,6 +179,8 @@ namespace Teste
             this.panel5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel5.AutoScroll = true;
             this.panel5.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel5.Controls.Add(this.btConectar);
+            this.panel5.Controls.Add(this.cbPortaArduino);
             this.panel5.Controls.Add(this.groupBox2);
             this.panel5.Controls.Add(this.txtPortaArduino);
             this.panel5.Controls.Add(this.groupBox1);
@@ -194,6 +192,15 @@ namespace Teste
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(830, 452);
             this.panel5.TabIndex = 7;
+            // 
+            // cbPortaArduino
+            // 
+            this.cbPortaArduino.FormattingEnabled = true;
+            this.cbPortaArduino.Location = new System.Drawing.Point(353, 56);
+            this.cbPortaArduino.Name = "cbPortaArduino";
+            this.cbPortaArduino.Size = new System.Drawing.Size(121, 21);
+            this.cbPortaArduino.TabIndex = 11;
+            this.cbPortaArduino.SelectedIndexChanged += new System.EventHandler(this.cbPortaArduino_SelectedIndexChanged);
             // 
             // groupBox2
             // 
@@ -246,7 +253,7 @@ namespace Teste
             this.txtConfirmSenhaRoot.MaxLength = 32;
             this.txtConfirmSenhaRoot.Name = "txtConfirmSenhaRoot";
             this.txtConfirmSenhaRoot.Size = new System.Drawing.Size(649, 31);
-            this.txtConfirmSenhaRoot.TabIndex = 7;
+            this.txtConfirmSenhaRoot.TabIndex = 2;
             this.txtConfirmSenhaRoot.UseSystemPasswordChar = true;
             // 
             // txtUserRoot
@@ -265,7 +272,7 @@ namespace Teste
             this.txtSenhaRoot.MaxLength = 32;
             this.txtSenhaRoot.Name = "txtSenhaRoot";
             this.txtSenhaRoot.Size = new System.Drawing.Size(649, 31);
-            this.txtSenhaRoot.TabIndex = 6;
+            this.txtSenhaRoot.TabIndex = 0;
             this.txtSenhaRoot.UseSystemPasswordChar = true;
             this.txtSenhaRoot.TextChanged += new System.EventHandler(this.txtSenhaRoot_TextChanged);
             // 
@@ -277,7 +284,7 @@ namespace Teste
             this.txtPortaArduino.Location = new System.Drawing.Point(215, 53);
             this.txtPortaArduino.Name = "txtPortaArduino";
             this.txtPortaArduino.Size = new System.Drawing.Size(103, 31);
-            this.txtPortaArduino.TabIndex = 1;
+            this.txtPortaArduino.TabIndex = 6;
             // 
             // groupBox1
             // 
@@ -308,7 +315,7 @@ namespace Teste
             this.txtSenha.MaxLength = 32;
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.Size = new System.Drawing.Size(306, 31);
-            this.txtSenha.TabIndex = 5;
+            this.txtSenha.TabIndex = 12;
             this.txtSenha.UseSystemPasswordChar = true;
             this.txtSenha.TextChanged += new System.EventHandler(this.txtSenha_TextChanged);
             // 
@@ -331,7 +338,7 @@ namespace Teste
             this.txtNomeBanco.MaxLength = 50;
             this.txtNomeBanco.Name = "txtNomeBanco";
             this.txtNomeBanco.Size = new System.Drawing.Size(543, 31);
-            this.txtNomeBanco.TabIndex = 3;
+            this.txtNomeBanco.TabIndex = 10;
             this.txtNomeBanco.TextChanged += new System.EventHandler(this.txtNomeBanco_TextChanged);
             // 
             // label5
@@ -353,7 +360,7 @@ namespace Teste
             this.txtServidor.MaxLength = 136;
             this.txtServidor.Name = "txtServidor";
             this.txtServidor.Size = new System.Drawing.Size(790, 31);
-            this.txtServidor.TabIndex = 2;
+            this.txtServidor.TabIndex = 3;
             this.txtServidor.TextChanged += new System.EventHandler(this.txtServidor_TextChanged);
             // 
             // label2
@@ -375,7 +382,7 @@ namespace Teste
             this.txtUsuario.MaxLength = 32;
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(306, 31);
-            this.txtUsuario.TabIndex = 4;
+            this.txtUsuario.TabIndex = 8;
             this.txtUsuario.UseSystemPasswordChar = true;
             // 
             // label4
@@ -395,7 +402,7 @@ namespace Teste
             this.btnSelecionar.Location = new System.Drawing.Point(760, 3);
             this.btnSelecionar.Name = "btnSelecionar";
             this.btnSelecionar.Size = new System.Drawing.Size(48, 38);
-            this.btnSelecionar.TabIndex = 0;
+            this.btnSelecionar.TabIndex = 5;
             this.btnSelecionar.Text = "...";
             this.btnSelecionar.UseVisualStyleBackColor = true;
             this.btnSelecionar.Click += new System.EventHandler(this.button1_Click);
@@ -410,8 +417,7 @@ namespace Teste
             this.txtCaminho.Name = "txtCaminho";
             this.txtCaminho.ReadOnly = true;
             this.txtCaminho.Size = new System.Drawing.Size(539, 31);
-            this.txtCaminho.TabIndex = 0;
-            this.txtCaminho.TabStop = false;
+            this.txtCaminho.TabIndex = 4;
             this.txtCaminho.TextChanged += new System.EventHandler(this.txtCaminho_TextChanged);
             // 
             // label1
@@ -438,6 +444,29 @@ namespace Teste
             // folderBrowserDialog1
             // 
             this.folderBrowserDialog1.SelectedPath = "C:\\";
+            // 
+            // timerCOM
+            // 
+            this.timerCOM.Interval = 1000;
+            this.timerCOM.Tick += new System.EventHandler(this.timerCOM_Tick);
+            // 
+            // btConectar
+            // 
+            this.btConectar.Location = new System.Drawing.Point(526, 60);
+            this.btConectar.Name = "btConectar";
+            this.btConectar.Size = new System.Drawing.Size(75, 23);
+            this.btConectar.TabIndex = 12;
+            this.btConectar.Text = "Conectar";
+            this.btConectar.UseVisualStyleBackColor = true;
+            this.btConectar.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // txtID
+            // 
+            this.txtID.Location = new System.Drawing.Point(215, 29);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(100, 20);
+            this.txtID.TabIndex = 0;
+            this.txtID.Visible = false;
             // 
             // FrmTelaDesenvolvedor
             // 
@@ -501,6 +530,10 @@ namespace Teste
         private System.Windows.Forms.TextBox txtConfirmSenhaRoot;
         private System.Windows.Forms.TextBox txtUserRoot;
         private System.Windows.Forms.TextBox txtSenhaRoot;
+        private System.Windows.Forms.ComboBox cbPortaArduino;
+        private System.IO.Ports.SerialPort serialPort1;
+        private System.Windows.Forms.Timer timerCOM;
+        private System.Windows.Forms.Button btConectar;
         private System.Windows.Forms.TextBox txtID;
     }
 }

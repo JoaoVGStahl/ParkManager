@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
+using System.IO.Ports;  // necessário para ter acesso as portas
 
 namespace Teste
 {
@@ -19,6 +20,98 @@ namespace Teste
         {
             InitializeComponent();
         }
+
+        //Novo
+        private void atualizaListaCOMs()
+        {
+            int i;
+            bool quantDiferente;    //flag para sinalizar que a quantidade de portas mudou
+
+            i = 0;
+            quantDiferente = false;
+
+            //se a quantidade de portas mudou
+            if (cbPortaArduino.Items.Count == SerialPort.GetPortNames().Length)
+            {
+                foreach (string s in SerialPort.GetPortNames())
+                {
+                    if (cbPortaArduino.Items[i++].Equals(s) == false)
+                    {
+                        quantDiferente = true;
+                    }
+                }
+            }
+            else
+            {
+                quantDiferente = true;
+            }
+
+            //Se não foi detectado diferença
+            if (quantDiferente == false)
+            {
+                return;                     //retorna
+            }
+
+            //limpa comboBox
+            cbPortaArduino.Items.Clear();
+
+            //adiciona todas as COM diponíveis na lista
+            foreach (string s in SerialPort.GetPortNames())
+            {
+                cbPortaArduino.Items.Add(s);
+            }
+            //seleciona a primeira posição da lista
+            cbPortaArduino.SelectedIndex = 0;
+        }
+
+        //Novo
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            if (serialPort1.IsOpen == false)
+            {
+                try
+                {
+                    serialPort1.PortName = cbPortaArduino.Items[cbPortaArduino.SelectedIndex].ToString();
+                    serialPort1.Open();
+
+                }
+                catch
+                {
+                    return;
+
+                }
+                if (serialPort1.IsOpen)
+                {
+                    btConectar.Text = "Desconectar";
+                    cbPortaArduino.Enabled = false;
+
+                }
+            }
+            else
+            {
+
+                try
+                {
+                    serialPort1.Close();
+                    cbPortaArduino.Enabled = true;
+                    btConectar.Text = "Conectar";
+                }
+                catch
+                {
+                    return;
+                }
+
+            }
+        }
+
+        /* Para Fechar Porta COM        
+        if(serialPort1.IsOpen == true)
+        {
+         serialPort1.Close();
+        }
+        */
+
+
 
         private void CarregarInformacoes()
         {
@@ -245,6 +338,16 @@ namespace Teste
         }
 
         private void txtNomeBanco_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timerCOM_Tick(object sender, EventArgs e)
+        {
+            atualizaListaCOMs();
+        }
+
+        private void cbPortaArduino_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
