@@ -54,17 +54,18 @@ namespace Teste
                 PopularComboTipo();
                 ContadorTicket();
                 CarregarParametros();
-                if(!IniciaCamera())
+                if (!IniciaCamera())
                 {
                     picCam.Visible = false;
                     picImagem.Image = picImagem.InitialImage;
                     picImagem.Visible = true;
                     MessageBox.Show("Câmera não encontrada!", "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }else
+                }
+                else
                 {
                     picImagem.Visible = false;
                     picCam.Visible = true;
-                } 
+                }
             }
         }
         private void CarregarCores()
@@ -87,11 +88,7 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                List<SqlParameter> sp = new List<SqlParameter>()
-                {
-                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 0}
-                };
-                dt = banco.InsertData(NameProcedure: "dbo.Funcoes_Pesquisa", sp: sp);
+                dt = banco.InsertData(NameProcedure: "[dbo].[ComboBox_Tipo]");
                 cmbTipo.DataSource = null;
                 cmbTipo.DataSource = dt;
                 cmbTipo.ValueMember = "id_automovel";
@@ -110,11 +107,7 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                List<SqlParameter> sp = new List<SqlParameter>()
-                {
-                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 2}
-                };
-                dt = banco.InsertData(NameProcedure: "dbo.Funcoes_Pesquisa", sp: sp);
+                dt = banco.InsertData(NameProcedure: "dbo.Tickets_Abertos");
                 lblQtdTicket.Text = dt.Rows[0]["Ticket's Abertos"].ToString();
             }
             catch (Exception ex)
@@ -132,20 +125,16 @@ namespace Teste
             try
             {
                 DataTable dt = new DataTable();
-                List<SqlParameter> sp = new List<SqlParameter>()
-                {
-                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 14}
-                };
-                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                dt = banco.InsertData("dbo.Parametros_Sistema");
                 if (dt.Rows.Count > 0)
                 {
-                    
-                    Globais.ValorHora = Convert.ToDecimal(dt.Rows[0].ItemArray[1]);
-                    Globais.ValorMinimo = Convert.ToDecimal(dt.Rows[0].ItemArray[2]);
-                    Globais.ValorUnico = Convert.ToDecimal(dt.Rows[0].ItemArray[3]);
-                    TimeSpan ts = Convert.ToDateTime(dt.Rows[0].ItemArray[4].ToString()) - Convert.ToDateTime("00:00:00");
+
+                    Globais.ValorHora = Convert.ToDecimal(dt.Rows[0]["Valor Hora"]);
+                    Globais.ValorMinimo = Convert.ToDecimal(dt.Rows[0]["Valor Minimo"]);
+                    Globais.ValorUnico = Convert.ToDecimal(dt.Rows[0]["Valor Unico"]);
+                    TimeSpan ts = Convert.ToDateTime(dt.Rows[0]["Tolerancia"].ToString()) - Convert.ToDateTime("00:00:00");
                     Globais.Tolerencia = ts;
-                    Properties.Settings.Default["ArquivoAuditoria"] = dt.Rows[0].ItemArray[5].ToString();
+                    Properties.Settings.Default["ArquivoAuditoria"] = dt.Rows[0]["Caminho Log"].ToString();
                     Properties.Settings.Default.Save();
                 }
                 else
@@ -170,12 +159,12 @@ namespace Teste
                 int quantCam = CamContainer.VideoInputDevices.Count;
                 if (quantCam > 0)
                 {
-                    for ( int i = 0; i < quantCam; i++)
+                    for (int i = 0; i < quantCam; i++)
                     {
 
                         // obtém o dispositivo de entrada do vídeo
                         Camera = CamContainer.VideoInputDevices[i];
-                        
+
                         // inicializa a Captura usando o dispositivo
                         CaptureInfo = new DirectX.Capture.Capture(Camera, null)
                         {
@@ -193,7 +182,7 @@ namespace Teste
                             Cam = true;
 
                         }
-                        
+
                         // Se o dispositivo foi encontrado e inicializado então sai sem checar o resto
                         break;
                     }
@@ -215,7 +204,8 @@ namespace Teste
             {
                 capturaImagem = frame.Image;
                 this.picImagem.Image = capturaImagem;
-                SalvarImagem();                            }
+                SalvarImagem();
+            }
             catch (Exception ex)
             {
                 MessageBox.Show("Erro " + ex.Message);
@@ -238,7 +228,7 @@ namespace Teste
         //Novo
         private void SalvarImagem()
         {
-            if(Inicializacao == 0)
+            if (Inicializacao == 0)
             {
                 string caminhoImagemSalva = @"c:\ParkManager\fotos\";
                 caminhoImagemSalva += "veiculo_" + txtPlaca.Text + DateTime.Now.ToShortDateString().Replace("/", "_") + DateTime.Now.ToLongTimeString().Replace(":", "_") + ".jpg";
@@ -258,7 +248,7 @@ namespace Teste
                 {
                     Inicializacao = 1;
                 }
-            }         
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -288,19 +278,19 @@ namespace Teste
             {
                 txtNome.Enabled = true;
                 mskTelefone.Enabled = true;
-                List<SqlParameter> sp = new List<SqlParameter>()
-                {
-                    new SqlParameter(){ParameterName= "@Flag", SqlDbType = SqlDbType.Int, Value = 13 },
-                    new SqlParameter(){ParameterName= "@Placa", SqlDbType = SqlDbType.VarChar, Value = txtPlaca.Text}
-                };
+
                 try
                 {
+                    List<SqlParameter> sp = new List<SqlParameter>()
+                    {
+                        new SqlParameter(){ParameterName= "@Placa", SqlDbType = SqlDbType.VarChar, Value = txtPlaca.Text}
+                    };
                     DataTable dt = new DataTable();
-                    dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                    dt = banco.InsertData("dbo.Pesquisa_Info_Placa", sp);
                     if (dt.Rows.Count > 0)
                     {
-                        cmbTipo.Text = dt.Rows[0].ItemArray[1].ToString();
-                        cmbMarca.Text = dt.Rows[0].ItemArray[2].ToString();
+                        cmbTipo.Text = dt.Rows[0]["Tipo"].ToString();
+                        cmbMarca.Text = dt.Rows[0]["Marca"].ToString();
                         cmbTipo.Enabled = false;
                         cmbMarca.Enabled = false;
                         btnPesquisaTicket.Enabled = true;
@@ -427,11 +417,10 @@ namespace Teste
             {
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
-                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 7},
                     new SqlParameter(){ParameterName="@Placa", SqlDbType = SqlDbType.VarChar, Value = placa}
                 };
-                dt = banco.InsertData(NameProcedure: "dbo.Funcoes_Pesquisa", sp: sp);
-                if (dt.Rows.Count > 0)
+                dt = banco.InsertData(NameProcedure: "dbo.Pesquisa_TicketAberto_Placa", sp: sp);
+                if (Convert.ToInt32(dt.Rows[0]["QTD"]) > 0)
                 {
                     MessageBox.Show("Já existe um ticket em andamento para este veiculo!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     LimparCaixas();
@@ -471,7 +460,7 @@ namespace Teste
                     new SqlParameter() { ParameterName = "@Caminho_Foto", SqlDbType = SqlDbType.NVarChar, Value = Globais.CaminhoFoto }
 
                 };
-               
+
                 dt = banco.InsertData("dbo.InsertTicket", sp);
                 //Verifica se houve algum retorno da procedure
                 if (dt.Rows.Count > 0)
@@ -479,7 +468,7 @@ namespace Teste
                     idTicket = Convert.ToInt32(dt.Rows[0].ItemArray[0]);
                     if (idTicket > 0)
                     {
-                        
+
                         ContadorTicket();
                         LimparCaixas();
                         Globais.RegistrarLog(Globais.Login + " Inicou o Ticket #" + idTicket);
@@ -541,10 +530,9 @@ namespace Teste
                 {
                     List<SqlParameter> sp = new List<SqlParameter>()
                     {
-                        new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 1},
                         new SqlParameter(){ParameterName="@Tipo", SqlDbType = SqlDbType.VarChar,Value = tipo}
                     };
-                    dt = banco.InsertData(NameProcedure: "dbo.Funcoes_Pesquisa", sp: sp);
+                    dt = banco.InsertData(NameProcedure: "dbo.ComboBox_Marca", sp: sp);
                     //Limpar o DataSource do combo
                     cmbMarca.DataSource = null;
                     //Seleciona o DataTable como o DataSoucer do combo
@@ -714,10 +702,9 @@ namespace Teste
                 {
                     List<SqlParameter> sp = new List<SqlParameter>()
                     {
-                        new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 7},
                         new SqlParameter(){ParameterName="@Placa", SqlDbType = SqlDbType.VarChar, Value = placa}
                     };
-                    dt = banco.InsertData(NameProcedure: "dbo.Funcoes_Pesquisa", sp: sp);
+                    dt = banco.InsertData(NameProcedure: "dbo.Pesquisa_Ticket_TelaOperacao", sp: sp);
                     //Verifica se houve algum retorno no DataTable
                     if (dt.Rows.Count > 0)
                     {

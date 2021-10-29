@@ -37,13 +37,9 @@ namespace Teste
         private void PreencherGrid()
         {
             DataTable dt = new DataTable();
-            List<SqlParameter> sp = new List<SqlParameter>()
-            {
-                new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 9},
-            };
             try
             {
-                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                dt = banco.InsertData("dbo.Pesquisa_Usuarios");
                 dataGridView1.DataSource = dt;
                 dataGridView1.Columns[0].Width = 50;
                 dataGridView1.Columns[1].Width = 300;
@@ -139,13 +135,11 @@ namespace Teste
             DataTable dt = new DataTable();
             List<SqlParameter> sp = new List<SqlParameter>()
                 {
-
-                    new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 11},
                     new SqlParameter(){ParameterName = "@Login", SqlDbType = SqlDbType.NVarChar, Value = txtLogin.Text }
                 };
             try
             {
-                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                dt = banco.InsertData("dbo.Pesquisa_Usuario_Login", sp);
                 if (dt.Rows.Count > 0)
                 {
                     EditarUsuario();
@@ -236,11 +230,9 @@ namespace Teste
                 DataTable dt = new DataTable();
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
-
-                    new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 10},
                     new SqlParameter(){ParameterName = "@IdUsuario", SqlDbType = SqlDbType.Int, Value = id }
                 };
-                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                dt = banco.InsertData("dbo.Pesquisa_Usuario_Id", sp);
                 if(dt.Rows.Count > 0)
                 {
                     txtId.Text = dt.Rows[0]["ID"].ToString();

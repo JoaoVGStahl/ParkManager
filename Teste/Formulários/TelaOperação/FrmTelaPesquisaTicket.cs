@@ -190,14 +190,13 @@ namespace Teste
             {
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
-                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 18},
                     new SqlParameter(){ParameterName="@idTicket", SqlDbType = SqlDbType.Int, Value = IdTicket},
                     new SqlParameter(){ParameterName="@Placa", SqlDbType = SqlDbType.VarChar, Value = placa},
                     new SqlParameter(){ParameterName="@DataEntrada", SqlDbType = SqlDbType.DateTime, Value = DataEntrada},
                     new SqlParameter(){ParameterName="@DataSaida", SqlDbType = SqlDbType.DateTime, Value = DataSaida},
                     new SqlParameter(){ParameterName = "@Status", SqlDbType = SqlDbType.Int, Value = status}
                 };
-                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                dt = banco.InsertData("dbo.Select_Tela_Pesquisa", sp);
                 dataGridView1.DataSource = dt;
             }
             catch (Exception ex)

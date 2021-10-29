@@ -30,11 +30,10 @@ namespace Teste
                 cmd.CommandType = CommandType.StoredProcedure;
                 if(sp != null)
                 {
-                    cmd.Parameters.AddRange(sp.ToArray());
-                    da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-                    
+                    cmd.Parameters.AddRange(sp.ToArray());  
                 }
+                da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
                 return dt;
 
 

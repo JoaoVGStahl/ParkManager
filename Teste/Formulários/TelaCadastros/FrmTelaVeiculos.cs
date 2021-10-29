@@ -31,11 +31,7 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                List<SqlParameter> sp = new List<SqlParameter>()
-                {
-                    new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 15}
-                };
-                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                dt = banco.InsertData("dbo.Select_TelaCadastro_Veiculos");
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = dt;
             }
@@ -212,10 +208,9 @@ namespace Teste
             {
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
-                    new SqlParameter(){ParameterName="@Flag",SqlDbType = SqlDbType.Int, Value = 17},
                     new SqlParameter(){ParameterName="@idCarro", SqlDbType = SqlDbType.Int, Value = Convert.ToInt32(txtId.Text)}
                 };
-                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                dt = banco.InsertData("dbo.Select_TicketAberto_Veiculo", sp);
             }
             catch (Exception ex)
             {
@@ -327,10 +322,9 @@ namespace Teste
                     DataTable dt = new DataTable();
                     List<SqlParameter> sp = new List<SqlParameter>()
                     {
-                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 16},
-                    new SqlParameter(){ParameterName="@idCarro",SqlDbType = SqlDbType.Int, Value = id}
+                        new SqlParameter(){ParameterName="@idCarro",SqlDbType = SqlDbType.Int, Value = id}
                     };
-                    dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                    dt = banco.InsertData("dbo.Select_Veiculo_Especifico", sp);
                     if (dt.Rows.Count > 0)
                     {
                         txtId.Text = dt.Rows[0]["ID"].ToString();

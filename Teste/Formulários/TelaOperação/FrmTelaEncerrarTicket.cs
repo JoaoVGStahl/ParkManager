@@ -35,11 +35,7 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                List<SqlParameter> sp = new List<SqlParameter>()
-                {
-                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 4}
-                };
-                dt = banco.InsertData(NameProcedure: "dbo.Funcoes_Pesquisa", sp: sp);
+                dt = banco.InsertData(NameProcedure: "dbo.Metodos_Pagamento");
                 cmbFormaPagamento.DataSource = null;
                 cmbFormaPagamento.DataSource = dt;
                 cmbFormaPagamento.ValueMember = "id_pgt";
@@ -62,10 +58,9 @@ namespace Teste
             {
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
-                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 3},
                     new SqlParameter(){ParameterName="@IdTicket", SqlDbType = SqlDbType.Int, Value = Globais.IdTicket}
                 };
-                dt = banco.InsertData(NameProcedure: "dbo.Funcoes_Pesquisa", sp: sp);
+                dt = banco.InsertData(NameProcedure: "dbo.Carregar_Tela_Encerrar", sp: sp);
                 if (dt.Rows.Count > 0)
                 {
                     lblIdTicket.Text = "#" + dt.Rows[0]["#Ticket"].ToString();//ID Ticket

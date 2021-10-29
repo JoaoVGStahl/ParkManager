@@ -129,11 +129,7 @@ namespace Teste
                 DataTable dt = new DataTable();
                 try
                 {
-                    List<SqlParameter> sp = new List<SqlParameter>()
-                        {
-                        new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 12}
-                        };
-                    dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                    dt = banco.InsertData("dbo.Pesquisa_TelaDesenvolvedor");
                     if (dt.Rows.Count > 0)
                     {
                         txtID.Text = dt.Rows[0]["id"].ToString();

@@ -31,11 +31,7 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                List<SqlParameter> sp = new List<SqlParameter>()
-                {
-                    new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 8}
-                };
-                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                dt = banco.InsertData("dbo.Info_Estacionamento");
                 if (dt.Rows.Count > 0)
                 {
                     PreencherCampos(dt);

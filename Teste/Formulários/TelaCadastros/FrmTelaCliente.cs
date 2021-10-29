@@ -34,10 +34,9 @@ namespace Teste
                 DataTable dt = new DataTable();
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
-                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 19},
                     new SqlParameter(){ParameterName="@Status", SqlDbType = SqlDbType.Int, Value = cmbStatus.SelectedIndex}
                 };
-                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                dt = banco.InsertData("dbo.Select_Cliente_Grid", sp);
                 if (dt.Rows.Count > 0)
                 {
                     dataGridView1.DataSource = dt;
@@ -72,10 +71,9 @@ namespace Teste
                     DataTable dt = new DataTable();
                     List<SqlParameter> sp = new List<SqlParameter>()
                     {
-                        new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 20},
                         new SqlParameter(){ParameterName="@idCliente", SqlDbType = SqlDbType.Int, Value = id}
                     };
-                    dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                    dt = banco.InsertData("dbo.Select_Cliente", sp);
                     if (dt.Rows.Count > 0)
                     {
                         txtID.Text = dt.Rows[0]["ID"].ToString();
@@ -235,12 +233,10 @@ namespace Teste
                 
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
-
-                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value=21},
                     new SqlParameter(){ParameterName="@Nome", SqlDbType = SqlDbType.VarChar, Value = txtNome.Text },
                     new SqlParameter(){ParameterName="@Telefone", SqlDbType = SqlDbType.VarChar, Value = mskTelefone.Text }
                 };
-                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                dt = banco.InsertData("dbo.Select_Cliente_Nome_Telefone", sp);
                 if (dt.Rows.Count > 0)
                 {
                     MessageBox.Show("Este Cliente e Telefone já está cadastrado! \n ID:" + dt.Rows[0]["ID"].ToString(), "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -267,10 +263,9 @@ namespace Teste
             {
                 List<SqlParameter> sp = new List<SqlParameter>()
                     {
-                        new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value= 22},
                         new SqlParameter(){ParameterName="@idCliente", SqlDbType = SqlDbType.Int, Value = txtID.Text},
                     };
-                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                dt = banco.InsertData("dbo.Select_QtdTicket_Cliente", sp);
             }
             catch (Exception ex)
             {
