@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
@@ -169,13 +165,14 @@ namespace Teste
 
                         // obtém o dispositivo de entrada do vídeo
                         Camera = CamContainer.VideoInputDevices[i];
-                        
+
                         // inicializa a Captura usando o dispositivo
                         CaptureInfo = new DirectX.Capture.Capture(Camera, null)
                         {
                             // Define a janela de visualização do vídeo
                             PreviewWindow = this.picCam
                         };
+
                         // Capturando o tratamento de evento
                         if (CaptureInfo != null)
                         {
@@ -612,7 +609,8 @@ namespace Teste
 
         private void FrmTelaOperacao_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Globais.RegistrarLog(Globais.Login + " Efetuou logout.");
+            
+                
             this.Dispose();
             Application.Exit();
         }
@@ -624,8 +622,9 @@ namespace Teste
             if (escolha)
             {
                 //Destroi o Formulario principal e abre o formulario de login
-                FrmTelaLogin Frm = new FrmTelaLogin();
+                CaptureInfo.DisposeCapture();
                 this.Dispose();
+                FrmTelaLogin Frm = new FrmTelaLogin();
                 Frm.ShowDialog();
             }
         }
