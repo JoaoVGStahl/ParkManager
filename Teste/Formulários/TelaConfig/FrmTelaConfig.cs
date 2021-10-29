@@ -66,12 +66,10 @@ namespace Teste
                 }
             }
         }
-
         private void btnSair_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void FrmTelaConfig_Load(object sender, EventArgs e)
         {
             if (Globais.Login == Properties.Settings.Default.UserRoot)
@@ -81,13 +79,10 @@ namespace Teste
             }
             lblUsuario.Text = Globais.Login;
         }
-
-
         private void btnGeral_Click(object sender, EventArgs e)
         {
             FundoBotao(btnGeral);
         }
-
         private void btnEstacionamento_Click(object sender, EventArgs e)
         {
             FundoBotao(btnEstacionamento);
@@ -96,7 +91,6 @@ namespace Teste
             FrmTelaEstacionamento Frm = new FrmTelaEstacionamento();
             AbreFormParent(2, Frm);
         }
-
         private void btnPrecos_Click(object sender, EventArgs e)
         {
             FundoBotao(btnPrecos);
@@ -105,7 +99,6 @@ namespace Teste
             FrmTelaFinanceiro Frm = new FrmTelaFinanceiro();
             AbreFormParent(2, Frm);
         }
-
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
             FundoBotao(btnUsuarios);
@@ -114,7 +107,6 @@ namespace Teste
             FrmTelaUsuario Frm = new FrmTelaUsuario();
             AbreFormParent(2, Frm);
         }
-
         private void btnDev_Click(object sender, EventArgs e)
         {
             FundoBotao(btnDev);
@@ -124,7 +116,6 @@ namespace Teste
             Frm.Dock = DockStyle.Fill;
             Frm.Show();
         }
-
         private void FrmTelaConfig_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.Dispose();

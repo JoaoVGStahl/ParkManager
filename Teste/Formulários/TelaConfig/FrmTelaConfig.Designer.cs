@@ -74,7 +74,7 @@ namespace Teste
             this.btnGeral.Location = new System.Drawing.Point(0, 147);
             this.btnGeral.Name = "btnGeral";
             this.btnGeral.Size = new System.Drawing.Size(255, 77);
-            this.btnGeral.TabIndex = 15;
+            this.btnGeral.TabIndex = 0;
             this.btnGeral.Text = "Geral";
             this.btnGeral.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnGeral.UseVisualStyleBackColor = false;
@@ -94,7 +94,7 @@ namespace Teste
             this.btnDev.Location = new System.Drawing.Point(0, 455);
             this.btnDev.Name = "btnDev";
             this.btnDev.Size = new System.Drawing.Size(255, 77);
-            this.btnDev.TabIndex = 19;
+            this.btnDev.TabIndex = 4;
             this.btnDev.Text = "Opções do Desenvolvedor";
             this.btnDev.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnDev.UseVisualStyleBackColor = false;
@@ -114,7 +114,7 @@ namespace Teste
             this.btnUsuarios.Location = new System.Drawing.Point(0, 378);
             this.btnUsuarios.Name = "btnUsuarios";
             this.btnUsuarios.Size = new System.Drawing.Size(255, 77);
-            this.btnUsuarios.TabIndex = 18;
+            this.btnUsuarios.TabIndex = 3;
             this.btnUsuarios.Text = "Usuários";
             this.btnUsuarios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnUsuarios.UseVisualStyleBackColor = false;
@@ -133,7 +133,7 @@ namespace Teste
             this.btnEstacionamento.Location = new System.Drawing.Point(0, 224);
             this.btnEstacionamento.Name = "btnEstacionamento";
             this.btnEstacionamento.Size = new System.Drawing.Size(255, 77);
-            this.btnEstacionamento.TabIndex = 17;
+            this.btnEstacionamento.TabIndex = 1;
             this.btnEstacionamento.Text = "Estacionamento";
             this.btnEstacionamento.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEstacionamento.UseVisualStyleBackColor = false;
@@ -152,7 +152,7 @@ namespace Teste
             this.btnPrecos.Location = new System.Drawing.Point(0, 301);
             this.btnPrecos.Name = "btnPrecos";
             this.btnPrecos.Size = new System.Drawing.Size(255, 77);
-            this.btnPrecos.TabIndex = 16;
+            this.btnPrecos.TabIndex = 2;
             this.btnPrecos.Text = "Financeiro";
             this.btnPrecos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPrecos.UseVisualStyleBackColor = false;
@@ -169,7 +169,7 @@ namespace Teste
             this.btnSair.Location = new System.Drawing.Point(3, 565);
             this.btnSair.Name = "btnSair";
             this.btnSair.Size = new System.Drawing.Size(246, 77);
-            this.btnSair.TabIndex = 21;
+            this.btnSair.TabIndex = 5;
             this.btnSair.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSair.UseVisualStyleBackColor = false;
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);

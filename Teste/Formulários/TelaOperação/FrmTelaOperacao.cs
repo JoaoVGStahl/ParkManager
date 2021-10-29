@@ -83,7 +83,11 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                dt = banco.ProcedureSemParametros(0);
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
+                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 0}
+                };
+                dt = banco.InsertData(NameProcedure: "dbo.Funcoes_Pesquisa", sp: sp);
                 cmbTipo.DataSource = null;
                 cmbTipo.DataSource = dt;
                 cmbTipo.ValueMember = "id_automovel";
@@ -93,7 +97,6 @@ namespace Teste
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Falha ao carregar Tipo de veiculos!");
             }
 
@@ -103,12 +106,15 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                dt = banco.ProcedureSemParametros(2);
-                lblQtdTicket.Text = Convert.ToString(dt.Rows[0].ItemArray[0]);
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
+                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 2}
+                };
+                dt = banco.InsertData(NameProcedure: "dbo.Funcoes_Pesquisa", sp: sp);
+                lblQtdTicket.Text = dt.Rows[0]["Ticket's Abertos"].ToString();
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Falha ao Carregar Contador de Tickets!");
             }
             finally
@@ -416,30 +422,29 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                dt = banco.ProcedurePesquisaTicketVeiculo(7, placa);
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
+                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 7},
+                    new SqlParameter(){ParameterName="@Placa", SqlDbType = SqlDbType.VarChar, Value = placa}
+                };
+                dt = banco.InsertData(NameProcedure: "dbo.Funcoes_Pesquisa", sp: sp);
                 if (dt.Rows.Count > 0)
                 {
                     MessageBox.Show("Já existe um ticket em andamento para este veiculo!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     LimparCaixas();
-
                 }
                 else
                 {
-                    //Novo
-                    if (Camera != null && CamContainer.VideoInputDevices.Count > 0)
-                    {
-                        Inicializacao = 0;
-                        CapturarFoto(txtPlaca.Text);
-                    }
-                    MessageBox.Show("Ok");
-                    Globais.CaminhoFoto = @"c:\ParkManager\fotos";
-                    //InserirTicket(placa, nome, telefone);
+                    InserirTicket(placa, nome, telefone);
                 }
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Falha ao iniciar ticket!");
+            }
+            finally
+            {
+                dt.Dispose();
             }
 
         }
@@ -531,7 +536,12 @@ namespace Teste
                 //Chama a função que executa a query no banco de dados
                 try
                 {
-                    dt = banco.ProcedureMarca(1, tipo, "");
+                    List<SqlParameter> sp = new List<SqlParameter>()
+                    {
+                        new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 1},
+                        new SqlParameter(){ParameterName="@Tipo", SqlDbType = SqlDbType.VarChar,Value = tipo}
+                    };
+                    dt = banco.InsertData(NameProcedure: "dbo.Funcoes_Pesquisa", sp: sp);
                     //Limpar o DataSource do combo
                     cmbMarca.DataSource = null;
                     //Seleciona o DataTable como o DataSoucer do combo
@@ -544,7 +554,6 @@ namespace Teste
                 }
                 catch (Exception ex)
                 {
-
                     MessageBox.Show(ex.Message, "Falha ao carregar Marcas!");
                 }
             }
@@ -700,10 +709,14 @@ namespace Teste
             DataTable dt = new DataTable();
             if (placa != "")
             {
-
                 try
                 {
-                    dt = banco.ProcedurePesquisaTicketVeiculo(7, placa);
+                    List<SqlParameter> sp = new List<SqlParameter>()
+                    {
+                        new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 7},
+                        new SqlParameter(){ParameterName="@Placa", SqlDbType = SqlDbType.VarChar, Value = placa}
+                    };
+                    dt = banco.InsertData(NameProcedure: "dbo.Funcoes_Pesquisa", sp: sp);
                     //Verifica se houve algum retorno no DataTable
                     if (dt.Rows.Count > 0)
                     {
@@ -712,7 +725,6 @@ namespace Teste
                         LimparCaixas();
                         btnEncerrar.Enabled = true;
                         btnIniciar.Enabled = false;
-
                     }
                     else
                     {
@@ -728,7 +740,6 @@ namespace Teste
                 {
                     dt.Dispose();
                 }
-
             }
             else
             {

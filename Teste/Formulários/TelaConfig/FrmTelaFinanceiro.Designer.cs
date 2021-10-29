@@ -83,6 +83,7 @@ namespace Teste
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(156, 20);
             this.txtId.TabIndex = 0;
+            this.txtId.TabStop = false;
             this.txtId.Visible = false;
             // 
             // panel2
@@ -110,7 +111,7 @@ namespace Teste
             this.btnEditar.Location = new System.Drawing.Point(442, 3);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(174, 79);
-            this.btnEditar.TabIndex = 31;
+            this.btnEditar.TabIndex = 6;
             this.btnEditar.Text = "Editar";
             this.btnEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEditar.UseVisualStyleBackColor = false;
@@ -131,7 +132,7 @@ namespace Teste
             this.btnSalvar.Location = new System.Drawing.Point(198, 3);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(174, 79);
-            this.btnSalvar.TabIndex = 30;
+            this.btnSalvar.TabIndex = 5;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSalvar.UseVisualStyleBackColor = false;
@@ -206,7 +207,7 @@ namespace Teste
             this.ckValorUnico.Location = new System.Drawing.Point(322, 387);
             this.ckValorUnico.Name = "ckValorUnico";
             this.ckValorUnico.Size = new System.Drawing.Size(135, 35);
-            this.ckValorUnico.TabIndex = 7;
+            this.ckValorUnico.TabIndex = 3;
             this.ckValorUnico.Text = "Desativado";
             this.ckValorUnico.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ckValorUnico.UseMnemonic = false;
@@ -231,7 +232,7 @@ namespace Teste
             this.txtPrecoHora.Location = new System.Drawing.Point(27, 168);
             this.txtPrecoHora.Name = "txtPrecoHora";
             this.txtPrecoHora.Size = new System.Drawing.Size(232, 44);
-            this.txtPrecoHora.TabIndex = 9;
+            this.txtPrecoHora.TabIndex = 0;
             this.txtPrecoHora.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPrecoHora.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecoHora_KeyPress);
             this.txtPrecoHora.Leave += new System.EventHandler(this.txtPrecoHora_Leave);
@@ -243,7 +244,7 @@ namespace Teste
             this.txtCobrancaMinima.Location = new System.Drawing.Point(27, 277);
             this.txtCobrancaMinima.Name = "txtCobrancaMinima";
             this.txtCobrancaMinima.Size = new System.Drawing.Size(232, 44);
-            this.txtCobrancaMinima.TabIndex = 10;
+            this.txtCobrancaMinima.TabIndex = 1;
             this.txtCobrancaMinima.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCobrancaMinima.TextChanged += new System.EventHandler(this.txtCobrancaMinima_TextChanged);
             this.txtCobrancaMinima.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCobrancaMinima_KeyPress);
@@ -296,7 +297,7 @@ namespace Teste
             this.txtValorUnico.Location = new System.Drawing.Point(27, 386);
             this.txtValorUnico.Name = "txtValorUnico";
             this.txtValorUnico.Size = new System.Drawing.Size(232, 44);
-            this.txtValorUnico.TabIndex = 16;
+            this.txtValorUnico.TabIndex = 2;
             this.txtValorUnico.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtValorUnico.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtValorUnico_KeyPress);
             this.txtValorUnico.Leave += new System.EventHandler(this.txtValorUnico_Leave);
@@ -419,7 +420,7 @@ namespace Teste
             this.tbTolerancia.Name = "tbTolerancia";
             this.tbTolerancia.Size = new System.Drawing.Size(232, 45);
             this.tbTolerancia.SmallChange = 3;
-            this.tbTolerancia.TabIndex = 24;
+            this.tbTolerancia.TabIndex = 4;
             this.tbTolerancia.TickFrequency = 5;
             this.tbTolerancia.TickStyle = System.Windows.Forms.TickStyle.Both;
             this.tbTolerancia.Value = 1;

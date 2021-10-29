@@ -87,7 +87,7 @@ namespace Teste
             this.btnLimpar.Location = new System.Drawing.Point(618, 3);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(174, 79);
-            this.btnLimpar.TabIndex = 33;
+            this.btnLimpar.TabIndex = 7;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLimpar.UseVisualStyleBackColor = false;
@@ -108,7 +108,7 @@ namespace Teste
             this.btnExcluir.Location = new System.Drawing.Point(425, 3);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(174, 79);
-            this.btnExcluir.TabIndex = 32;
+            this.btnExcluir.TabIndex = 6;
             this.btnExcluir.Text = "Excluir ";
             this.btnExcluir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnExcluir.UseVisualStyleBackColor = false;
@@ -128,7 +128,7 @@ namespace Teste
             this.btnNovo.Location = new System.Drawing.Point(39, 3);
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(174, 79);
-            this.btnNovo.TabIndex = 31;
+            this.btnNovo.TabIndex = 4;
             this.btnNovo.Text = "Novo ";
             this.btnNovo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNovo.UseVisualStyleBackColor = false;
@@ -149,7 +149,7 @@ namespace Teste
             this.btnSalvar.Location = new System.Drawing.Point(232, 3);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(174, 79);
-            this.btnSalvar.TabIndex = 30;
+            this.btnSalvar.TabIndex = 5;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSalvar.UseVisualStyleBackColor = false;
@@ -273,13 +273,14 @@ namespace Teste
             this.cmbMarca.Enabled = false;
             this.cmbMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbMarca.FormattingEnabled = true;
+            this.cmbMarca.IntegralHeight = false;
             this.cmbMarca.Items.AddRange(new object[] {
             "0 - Inativo",
             "1 - Ativo"});
             this.cmbMarca.Location = new System.Drawing.Point(22, 205);
             this.cmbMarca.Name = "cmbMarca";
             this.cmbMarca.Size = new System.Drawing.Size(240, 37);
-            this.cmbMarca.TabIndex = 10;
+            this.cmbMarca.TabIndex = 2;
             // 
             // cmbTipo
             // 
@@ -293,7 +294,7 @@ namespace Teste
             this.cmbTipo.Location = new System.Drawing.Point(21, 119);
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(241, 37);
-            this.cmbTipo.TabIndex = 9;
+            this.cmbTipo.TabIndex = 1;
             this.cmbTipo.SelectedIndexChanged += new System.EventHandler(this.cmbTipo_SelectedIndexChanged);
             // 
             // dataGridView1
@@ -313,6 +314,7 @@ namespace Teste
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(550, 444);
             this.dataGridView1.TabIndex = 8;
+            this.dataGridView1.TabStop = false;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
@@ -329,7 +331,7 @@ namespace Teste
             this.cmbStatus.Location = new System.Drawing.Point(23, 305);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(163, 37);
-            this.cmbStatus.TabIndex = 7;
+            this.cmbStatus.TabIndex = 3;
             // 
             // txtPlaca
             // 
@@ -340,7 +342,7 @@ namespace Teste
             this.txtPlaca.MaxLength = 7;
             this.txtPlaca.Name = "txtPlaca";
             this.txtPlaca.Size = new System.Drawing.Size(241, 35);
-            this.txtPlaca.TabIndex = 4;
+            this.txtPlaca.TabIndex = 0;
             this.txtPlaca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPlaca_KeyPress);
             // 
             // label4

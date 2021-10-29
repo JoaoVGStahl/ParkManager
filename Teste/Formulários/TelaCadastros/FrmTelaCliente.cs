@@ -78,10 +78,10 @@ namespace Teste
                     dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
                     if (dt.Rows.Count > 0)
                     {
-                        txtID.Text = dt.Rows[0].ItemArray[0].ToString();
-                        txtNome.Text = dt.Rows[0].ItemArray[1].ToString();
-                        mskTelefone.Text = dt.Rows[0].ItemArray[2].ToString();
-                        cmbStatus.SelectedIndex = Convert.ToInt32(dt.Rows[0].ItemArray[3]);
+                        txtID.Text = dt.Rows[0]["ID"].ToString();
+                        txtNome.Text = dt.Rows[0]["Nome"].ToString();
+                        mskTelefone.Text = dt.Rows[0]["Telefone"].ToString();
+                        cmbStatus.SelectedIndex = Convert.ToInt32(dt.Rows[0]["Status"]);
                         
                     }
                     else
@@ -135,7 +135,7 @@ namespace Teste
                 dt = VerificarTicket();
                 if (dt.Rows.Count > 0)
                 {
-                    if (Convert.ToInt32(dt.Rows[0].ItemArray[0]) == 0)
+                    if (Convert.ToInt32(dt.Rows[0]["QTD"]) == 0)
                     {
                         ExcluirCliente();
                     }
@@ -143,8 +143,7 @@ namespace Teste
                     {
                         MessageBox.Show("Não é possivel Excluir este cliente, pois ele possui um Ticket em Aberto!", "Cliente NÃO Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                }
-                
+                } 
             }
         }
         private void ExcluirCliente()
@@ -202,7 +201,7 @@ namespace Teste
                             dt = VerificarTicket();
                             if(dt.Rows.Count > 0)
                             {
-                                if (Convert.ToInt32(dt.Rows[0].ItemArray[0]) == 0)
+                                if (Convert.ToInt32(dt.Rows[0]["QTD"]) == 0)
                                 {
                                     SalvarCliente("Edit");
                                 }
@@ -230,20 +229,21 @@ namespace Teste
         }
         private void VerificarCliente()
         {
+            DataTable dt = new DataTable();
             try
             {
-                DataTable dt = new DataTable();
+                
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
 
-                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value=1},
+                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value=21},
                     new SqlParameter(){ParameterName="@Nome", SqlDbType = SqlDbType.VarChar, Value = txtNome.Text },
                     new SqlParameter(){ParameterName="@Telefone", SqlDbType = SqlDbType.VarChar, Value = mskTelefone.Text }
                 };
                 dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
                 if (dt.Rows.Count > 0)
                 {
-                    MessageBox.Show("Este Cliente e Telefone já está cadastrado! \n ID:" + dt.Rows[0].ItemArray[0], "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Este Cliente e Telefone já está cadastrado! \n ID:" + dt.Rows[0]["ID"].ToString(), "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtNome.Focus();
                 }
                 else
@@ -253,8 +253,11 @@ namespace Teste
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                dt.Dispose();
             }
         }
         public DataTable VerificarTicket()
@@ -271,7 +274,6 @@ namespace Teste
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Cliente NÃO Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return dt;
@@ -323,7 +325,6 @@ namespace Teste
                 MessageBox.Show(ex.Message, "Cliente NÃO Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void btnNovo_Click(object sender, EventArgs e)
         {
             btnNovo.Enabled = false;

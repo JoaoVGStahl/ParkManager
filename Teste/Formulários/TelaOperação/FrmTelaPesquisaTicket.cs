@@ -19,10 +19,7 @@ namespace Teste
         {
             InitializeComponent();
             this.form = Form;
-
         }
-
-
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -56,12 +53,10 @@ namespace Teste
         {
 
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
 
         }
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             if (txtIdTicket.Text.Length > 0)
@@ -80,57 +75,46 @@ namespace Teste
                 cmbStatus.Enabled = true;
             }
         }
-
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
 
         }
-
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
 
         }
-
         private void label4_Click(object sender, EventArgs e)
         {
 
         }
-
         private void label3_Click(object sender, EventArgs e)
         {
 
         }
-
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
         }
-
         private void label2_Click(object sender, EventArgs e)
         {
 
         }
-
         private void label1_Click(object sender, EventArgs e)
         {
 
         }
-
         private void label5_Click(object sender, EventArgs e)
         {
 
         }
-
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
-
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
             //Caracteres permitidos
@@ -168,13 +152,11 @@ namespace Teste
                 }
             }
         }
-
         private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             dataGridView1.ClearSelection();
             btnEncerrar.Enabled = false;
         }
-
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             if (cmbStatus.Text == "Ativo" || cmbStatus.Text == "Todos")
@@ -186,7 +168,6 @@ namespace Teste
                 btnEncerrar.Enabled = false;
             }
         }
-
         private void button4_Click(object sender, EventArgs e)
         {
             DefinirParametros();
@@ -224,7 +205,6 @@ namespace Teste
                 MessageBox.Show(ex.Message, "Erro!");
             }
         }
-
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows[0].Cells["Status"].Value.ToString() == "Ativo")

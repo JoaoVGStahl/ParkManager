@@ -202,11 +202,13 @@ namespace Teste
             this.ClientSize = new System.Drawing.Size(400, 530);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "FrmTelaLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Acesso ao ParkManager";
             this.Load += new System.EventHandler(this.FrmTelaLogin_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmTelaLogin_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel6.ResumeLayout(false);

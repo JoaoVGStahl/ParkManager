@@ -136,15 +136,15 @@ namespace Teste
                     dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
                     if (dt.Rows.Count > 0)
                     {
-                        txtID.Text = dt.Rows[0].ItemArray[0].ToString();
-                        txtCaminho.Text = dt.Rows[0].ItemArray[1].ToString();
-                        txtPortaArduino.Text = dt.Rows[0].ItemArray[2].ToString();
-                        string Connection = dt.Rows[0].ItemArray[3].ToString();
-                        var array = Connection.Split(new string[] { "Server=", "Database=", "User Id=", "Password=", ";" }, StringSplitOptions.RemoveEmptyEntries);
-                        txtServidor.Text = array[0];
-                        txtNomeBanco.Text = array[1];
-                        txtUsuario.Text = array[2];
-                        txtSenha.Text = array[3];
+                        txtID.Text = dt.Rows[0]["id"].ToString();
+                        txtCaminho.Text = dt.Rows[0]["Caminho Log"].ToString();
+                        txtPortaArduino.Text = dt.Rows[0]["Porta Arduino"].ToString();
+                        string Connection = dt.Rows[0]["String Conexão"].ToString();
+                        var split = Connection.Split(new string[] { "Server=", "Database=", "User Id=", "Password=", ";" }, StringSplitOptions.RemoveEmptyEntries);
+                        txtServidor.Text = split[0];
+                        txtNomeBanco.Text = split[1];
+                        txtUsuario.Text = split[2];
+                        txtSenha.Text = split[3];
                     }
                     else
                     {
@@ -158,11 +158,8 @@ namespace Teste
 
                     MessageBox.Show(ex.Message + "\nString Conexão:" + Properties.Settings.Default.StringBanco, "Falha ao se conectar com banco de dados!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
             }
-
         }
-
         private void SalvarSettings()
         {
             string servidor = txtServidor.Text;
@@ -225,10 +222,8 @@ namespace Teste
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Configurações NÃO Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
         private void btnEditar_Click_1(object sender, EventArgs e)
         {
