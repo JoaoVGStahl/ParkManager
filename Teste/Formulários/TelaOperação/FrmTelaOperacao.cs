@@ -88,7 +88,7 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                dt = banco.InsertData(NameProcedure: "[dbo].[ComboBox_Tipo]");
+                dt = banco.InsertData(NameProcedure: "dbo.ComboBox_Tipo");
                 cmbTipo.DataSource = null;
                 cmbTipo.DataSource = dt;
                 cmbTipo.ValueMember = "id_automovel";
@@ -204,7 +204,6 @@ namespace Teste
             {
                 capturaImagem = frame.Image;
                 this.picImagem.Image = capturaImagem;
-                SalvarImagem();
             }
             catch (Exception ex)
             {
@@ -213,7 +212,7 @@ namespace Teste
         }
 
         //Novo
-        private void CapturarFoto(string placa)
+        private void CapturarFoto()
         {
             try
             {
@@ -226,15 +225,16 @@ namespace Teste
         }
 
         //Novo
-        private void SalvarImagem()
+        private void SalvarImagem(string placa)
         {
             if (Inicializacao == 0)
             {
                 string caminhoImagemSalva = @"c:\ParkManager\fotos\";
-                caminhoImagemSalva += "veiculo_" + txtPlaca.Text + DateTime.Now.ToShortDateString().Replace("/", "_") + DateTime.Now.ToLongTimeString().Replace(":", "_") + ".jpg";
+                caminhoImagemSalva += "veiculo_" + placa + "_" + DateTime.Now.ToShortDateString().Replace("/", "-") + "_" + DateTime.Now.ToLongTimeString().Replace(":", "-") + ".jpg";
                 Globais.CaminhoFoto = caminhoImagemSalva;
                 try
                 {
+                    CapturarFoto();
                     if (picImagem.Image != null)
                     {
                         picImagem.Image.Save(Globais.CaminhoFoto, ImageFormat.Jpeg);
@@ -427,6 +427,11 @@ namespace Teste
                 }
                 else
                 {
+                    if (Camera != null && CamContainer.VideoInputDevices.Count > 0)
+                    {
+                        Inicializacao = 0;
+                        SalvarImagem(placa);
+                    }
                     InserirTicket(placa, nome, telefone);
                 }
             }
@@ -558,16 +563,16 @@ namespace Teste
         }
         private void PreencherLabels(DataTable dt)
         {
-            string CaminhoFoto = dt.Rows[0].ItemArray[8].ToString();
+            string CaminhoFoto = dt.Rows[0]["Caminho Foto"].ToString();
 
             //Preenchendo as labels com as informações do banco
-            Globais.IdTicket = Convert.ToInt32(dt.Rows[0].ItemArray[0]);
-            lblTipo.Text = Convert.ToString(dt.Rows[0].ItemArray[1]); //Tipo
-            lblMarca.Text = Convert.ToString(dt.Rows[0].ItemArray[2]);//Marca
-            lblPlaca.Text = Convert.ToString(dt.Rows[0].ItemArray[3]);//Placa
-            txtNomeP.Text = Convert.ToString(dt.Rows[0].ItemArray[4]);//Nome
-            txtTelefoneP.Text = Convert.ToString(dt.Rows[0].ItemArray[5]);// Telefone
-            lblHrEntrada.Text = Convert.ToString(dt.Rows[0].ItemArray[6]) + " " + Convert.ToString(dt.Rows[0].ItemArray[7]);// Hora + Data
+            Globais.IdTicket = Convert.ToInt32(dt.Rows[0]["#Ticket"]);
+            lblTipo.Text = dt.Rows[0]["Tipo"].ToString(); //Tipo
+            lblMarca.Text = dt.Rows[0]["Marca"].ToString();//Marca
+            lblPlaca.Text = dt.Rows[0]["Placa"].ToString();//Placa
+            txtNomeP.Text = dt.Rows[0]["Nome Cliente"].ToString();//Nome
+            txtTelefoneP.Text = dt.Rows[0]["Telefone"].ToString();// Telefone
+            lblHrEntrada.Text = dt.Rows[0]["Hora Entrada"].ToString() + " " + dt.Rows[0]["Data Entrada"].ToString();// Hora + Data
             picCam.Visible = false;
             picImagem.Visible = true;
             if (CaminhoFoto != @"c:\ParkManager\fotos" && File.Exists(CaminhoFoto))
