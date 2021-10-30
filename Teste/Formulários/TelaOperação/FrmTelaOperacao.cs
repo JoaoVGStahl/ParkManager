@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
@@ -271,43 +267,15 @@ namespace Teste
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            bool caixa;
+
             //Caso for digitado 7 caracteres na caixa de texto da placa, Ativa algumas funções
 
             if (txtPlaca.TextLength == 7)
             {
                 txtNome.Enabled = true;
                 mskTelefone.Enabled = true;
-
-                try
-                {
-                    List<SqlParameter> sp = new List<SqlParameter>()
-                    {
-                        new SqlParameter(){ParameterName= "@Placa", SqlDbType = SqlDbType.VarChar, Value = txtPlaca.Text}
-                    };
-                    DataTable dt = new DataTable();
-                    dt = banco.InsertData("dbo.Pesquisa_Info_Placa", sp);
-                    if (dt.Rows.Count > 0)
-                    {
-                        cmbTipo.Text = dt.Rows[0]["Tipo"].ToString();
-                        cmbMarca.Text = dt.Rows[0]["Marca"].ToString();
-                        cmbTipo.Enabled = false;
-                        cmbMarca.Enabled = false;
-                        btnPesquisaTicket.Enabled = true;
-                        btnIniciar.Enabled = true;
-                    }
-                    else
-                    {
-                        caixa = true;
-                        AtivarFuncoes(caixa);
-                    }
-                    dt.Dispose();
-                }
-                catch (Exception ex)
-                {
-
-                    MessageBox.Show(ex.Message, "Falha ao Consultar a placa do veiculo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                CarregarVeiculo();
+                
             }
             else
             {
@@ -320,6 +288,38 @@ namespace Teste
 
             }
 
+        }
+        private void CarregarVeiculo()
+        {
+            bool caixa;
+            try
+            {
+                List<SqlParameter> sp = new List<SqlParameter>()
+                    {
+                        new SqlParameter(){ParameterName= "@Placa", SqlDbType = SqlDbType.VarChar, Value = txtPlaca.Text}
+                    };
+                DataTable dt = new DataTable();
+                dt = banco.InsertData("dbo.Pesquisa_Info_Placa", sp);
+                if (dt.Rows.Count > 0)
+                {
+                    cmbTipo.Text = dt.Rows[0]["Tipo"].ToString();
+                    cmbMarca.Text = dt.Rows[0]["Marca"].ToString();
+                    cmbTipo.Enabled = false;
+                    cmbMarca.Enabled = false;
+                    btnPesquisaTicket.Enabled = true;
+                    btnIniciar.Enabled = true;
+                }
+                else
+                {
+                    caixa = true;
+                    AtivarFuncoes(caixa);
+                }
+                dt.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Falha ao Consultar a placa do veiculo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void AtivarFuncoes(bool caixa)
         {
