@@ -54,24 +54,24 @@ namespace Teste
             this.panel3 = new System.Windows.Forms.Panel();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.btnCliente = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.btnFinanceiro = new System.Windows.Forms.Button();
+            this.btnVeiculo = new System.Windows.Forms.Button();
+            this.btnFluxo = new System.Windows.Forms.Button();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.panel5 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.panel7 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.panel4.SuspendLayout();
+            this.panel7.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -317,6 +317,34 @@ namespace Teste
             this.panel4.Size = new System.Drawing.Size(1055, 380);
             this.panel4.TabIndex = 34;
             // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.Silver;
+            this.panel7.Controls.Add(this.btnCliente);
+            this.panel7.Controls.Add(this.button5);
+            this.panel7.Controls.Add(this.btnFinanceiro);
+            this.panel7.Controls.Add(this.btnVeiculo);
+            this.panel7.Controls.Add(this.btnFluxo);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel7.Location = new System.Drawing.Point(0, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(1051, 52);
+            this.panel7.TabIndex = 1;
+            // 
+            // btnCliente
+            // 
+            this.btnCliente.FlatAppearance.BorderSize = 0;
+            this.btnCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCliente.Image = ((System.Drawing.Image)(resources.GetObject("btnCliente.Image")));
+            this.btnCliente.Location = new System.Drawing.Point(479, 6);
+            this.btnCliente.Name = "btnCliente";
+            this.btnCliente.Size = new System.Drawing.Size(133, 38);
+            this.btnCliente.TabIndex = 44;
+            this.btnCliente.Text = "Cliente";
+            this.btnCliente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCliente.UseVisualStyleBackColor = true;
+            // 
             // button5
             // 
             this.button5.BackColor = System.Drawing.Color.Transparent;
@@ -332,6 +360,48 @@ namespace Teste
             this.button5.Text = "Imprimir";
             this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button5.UseVisualStyleBackColor = false;
+            // 
+            // btnFinanceiro
+            // 
+            this.btnFinanceiro.FlatAppearance.BorderSize = 0;
+            this.btnFinanceiro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFinanceiro.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFinanceiro.Image = ((System.Drawing.Image)(resources.GetObject("btnFinanceiro.Image")));
+            this.btnFinanceiro.Location = new System.Drawing.Point(340, 6);
+            this.btnFinanceiro.Name = "btnFinanceiro";
+            this.btnFinanceiro.Size = new System.Drawing.Size(133, 38);
+            this.btnFinanceiro.TabIndex = 45;
+            this.btnFinanceiro.Text = "Financeiro";
+            this.btnFinanceiro.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnFinanceiro.UseVisualStyleBackColor = true;
+            // 
+            // btnVeiculo
+            // 
+            this.btnVeiculo.FlatAppearance.BorderSize = 0;
+            this.btnVeiculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVeiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVeiculo.Image = ((System.Drawing.Image)(resources.GetObject("btnVeiculo.Image")));
+            this.btnVeiculo.Location = new System.Drawing.Point(618, 6);
+            this.btnVeiculo.Name = "btnVeiculo";
+            this.btnVeiculo.Size = new System.Drawing.Size(133, 38);
+            this.btnVeiculo.TabIndex = 46;
+            this.btnVeiculo.Text = "Veículo";
+            this.btnVeiculo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnVeiculo.UseVisualStyleBackColor = true;
+            // 
+            // btnFluxo
+            // 
+            this.btnFluxo.FlatAppearance.BorderSize = 0;
+            this.btnFluxo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFluxo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFluxo.Image = ((System.Drawing.Image)(resources.GetObject("btnFluxo.Image")));
+            this.btnFluxo.Location = new System.Drawing.Point(201, 6);
+            this.btnFluxo.Name = "btnFluxo";
+            this.btnFluxo.Size = new System.Drawing.Size(133, 38);
+            this.btnFluxo.TabIndex = 43;
+            this.btnFluxo.Text = "Fluxo";
+            this.btnFluxo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnFluxo.UseVisualStyleBackColor = true;
             // 
             // dateTimePicker2
             // 
@@ -384,76 +454,6 @@ namespace Teste
             this.panel6.Size = new System.Drawing.Size(1055, 10);
             this.panel6.TabIndex = 38;
             // 
-            // button4
-            // 
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
-            this.button4.Location = new System.Drawing.Point(201, 6);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(133, 38);
-            this.button4.TabIndex = 43;
-            this.button4.Text = "Fluxo";
-            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(479, 6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(133, 38);
-            this.button1.TabIndex = 44;
-            this.button1.Text = "Cliente";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(340, 6);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(133, 38);
-            this.button2.TabIndex = 45;
-            this.button2.Text = "Financeiro";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.Location = new System.Drawing.Point(618, 6);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(133, 38);
-            this.button3.TabIndex = 46;
-            this.button3.Text = "Veículo";
-            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // panel7
-            // 
-            this.panel7.BackColor = System.Drawing.Color.Silver;
-            this.panel7.Controls.Add(this.button1);
-            this.panel7.Controls.Add(this.button5);
-            this.panel7.Controls.Add(this.button2);
-            this.panel7.Controls.Add(this.button3);
-            this.panel7.Controls.Add(this.button4);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(0, 0);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1051, 52);
-            this.panel7.TabIndex = 1;
-            // 
             // FrmTelaRelatorios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -478,9 +478,9 @@ namespace Teste
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.panel4.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panel7.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -515,9 +515,9 @@ namespace Teste
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnCliente;
+        private System.Windows.Forms.Button btnFinanceiro;
+        private System.Windows.Forms.Button btnVeiculo;
+        private System.Windows.Forms.Button btnFluxo;
     }
 }
