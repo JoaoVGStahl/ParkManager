@@ -32,6 +32,7 @@ namespace Teste
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTelaDesenvolvedor));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtID = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
@@ -40,6 +41,7 @@ namespace Teste
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.btConectar = new System.Windows.Forms.Button();
             this.cbPortaArduino = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -63,11 +65,9 @@ namespace Teste
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.txtID = new System.Windows.Forms.TextBox();
-            this.panel1.SuspendLayout();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.timerCOM = new System.Windows.Forms.Timer(this.components);
-            this.btConectar = new System.Windows.Forms.Button();
+            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -83,6 +83,14 @@ namespace Teste
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(830, 85);
             this.panel1.TabIndex = 0;
+            // 
+            // txtID
+            // 
+            this.txtID.Location = new System.Drawing.Point(215, 29);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(100, 20);
+            this.txtID.TabIndex = 0;
+            this.txtID.Visible = false;
             // 
             // panel2
             // 
@@ -192,6 +200,16 @@ namespace Teste
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(830, 452);
             this.panel5.TabIndex = 7;
+            // 
+            // btConectar
+            // 
+            this.btConectar.Location = new System.Drawing.Point(526, 60);
+            this.btConectar.Name = "btConectar";
+            this.btConectar.Size = new System.Drawing.Size(75, 23);
+            this.btConectar.TabIndex = 12;
+            this.btConectar.Text = "Conectar";
+            this.btConectar.UseVisualStyleBackColor = true;
+            this.btConectar.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // cbPortaArduino
             // 
@@ -445,28 +463,14 @@ namespace Teste
             // 
             this.folderBrowserDialog1.SelectedPath = "C:\\";
             // 
+            // serialPort1
+            // 
+            this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
+            // 
             // timerCOM
             // 
             this.timerCOM.Interval = 1000;
             this.timerCOM.Tick += new System.EventHandler(this.timerCOM_Tick);
-            // 
-            // btConectar
-            // 
-            this.btConectar.Location = new System.Drawing.Point(526, 60);
-            this.btConectar.Name = "btConectar";
-            this.btConectar.Size = new System.Drawing.Size(75, 23);
-            this.btConectar.TabIndex = 12;
-            this.btConectar.Text = "Conectar";
-            this.btConectar.UseVisualStyleBackColor = true;
-            this.btConectar.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // txtID
-            // 
-            this.txtID.Location = new System.Drawing.Point(215, 29);
-            this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(100, 20);
-            this.txtID.TabIndex = 0;
-            this.txtID.Visible = false;
             // 
             // FrmTelaDesenvolvedor
             // 
