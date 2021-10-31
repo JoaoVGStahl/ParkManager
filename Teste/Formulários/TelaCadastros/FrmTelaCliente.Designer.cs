@@ -87,7 +87,7 @@ namespace Teste
             this.btnLimpar.Location = new System.Drawing.Point(618, 3);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(174, 79);
-            this.btnLimpar.TabIndex = 37;
+            this.btnLimpar.TabIndex = 6;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLimpar.UseVisualStyleBackColor = false;
@@ -108,7 +108,7 @@ namespace Teste
             this.btnExcluir.Location = new System.Drawing.Point(425, 3);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(174, 79);
-            this.btnExcluir.TabIndex = 36;
+            this.btnExcluir.TabIndex = 5;
             this.btnExcluir.Text = "Excluir ";
             this.btnExcluir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnExcluir.UseVisualStyleBackColor = false;
@@ -128,8 +128,8 @@ namespace Teste
             this.btnNovo.Location = new System.Drawing.Point(39, 3);
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(174, 79);
-            this.btnNovo.TabIndex = 35;
-            this.btnNovo.Text = "Novo (F3)";
+            this.btnNovo.TabIndex = 3;
+            this.btnNovo.Text = "Novo ";
             this.btnNovo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNovo.UseVisualStyleBackColor = false;
             this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
@@ -149,8 +149,8 @@ namespace Teste
             this.btnSalvar.Location = new System.Drawing.Point(232, 3);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(174, 79);
-            this.btnSalvar.TabIndex = 34;
-            this.btnSalvar.Text = "Salvar (F5)";
+            this.btnSalvar.TabIndex = 4;
+            this.btnSalvar.Text = "Salvar";
             this.btnSalvar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSalvar.UseVisualStyleBackColor = false;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
@@ -223,7 +223,7 @@ namespace Teste
             this.cmbStatus.Location = new System.Drawing.Point(306, 110);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(174, 37);
-            this.cmbStatus.TabIndex = 18;
+            this.cmbStatus.TabIndex = 2;
             // 
             // label4
             // 
@@ -263,7 +263,7 @@ namespace Teste
             this.txtNome.MaxLength = 45;
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(745, 38);
-            this.txtNome.TabIndex = 23;
+            this.txtNome.TabIndex = 0;
             // 
             // mskTelefone
             // 
@@ -273,7 +273,7 @@ namespace Teste
             this.mskTelefone.Mask = "(99)00000-0000";
             this.mskTelefone.Name = "mskTelefone";
             this.mskTelefone.Size = new System.Drawing.Size(245, 35);
-            this.mskTelefone.TabIndex = 25;
+            this.mskTelefone.TabIndex = 1;
             // 
             // txtID
             // 
@@ -354,9 +354,12 @@ namespace Teste
             this.dataGridView1.Location = new System.Drawing.Point(0, 261);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(830, 278);
             this.dataGridView1.TabIndex = 30;
+            this.dataGridView1.TabStop = false;
             this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -377,11 +380,9 @@ namespace Teste
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.KeyPreview = true;
             this.Name = "FrmTelaCliente";
             this.Text = "FrmTelaCliente";
             this.Load += new System.EventHandler(this.FrmTelaCliente_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmTelaCliente_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();

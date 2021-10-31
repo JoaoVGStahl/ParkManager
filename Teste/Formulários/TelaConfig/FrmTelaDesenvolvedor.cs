@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
+using System.IO.Ports;  // necessário para ter acesso as portas
 
 namespace Teste
 {
@@ -20,6 +21,98 @@ namespace Teste
             InitializeComponent();
         }
 
+        //Novo
+        private void atualizaListaCOMs()
+        {
+            int i;
+            bool quantDiferente;    //flag para sinalizar que a quantidade de portas mudou
+
+            i = 0;
+            quantDiferente = false;
+
+            //se a quantidade de portas mudou
+            if (cbPortaArduino.Items.Count == SerialPort.GetPortNames().Length)
+            {
+                foreach (string s in SerialPort.GetPortNames())
+                {
+                    if (cbPortaArduino.Items[i++].Equals(s) == false)
+                    {
+                        quantDiferente = true;
+                    }
+                }
+            }
+            else
+            {
+                quantDiferente = true;
+            }
+
+            //Se não foi detectado diferença
+            if (quantDiferente == false)
+            {
+                return;                     //retorna
+            }
+
+            //limpa comboBox
+            cbPortaArduino.Items.Clear();
+
+            //adiciona todas as COM diponíveis na lista
+            foreach (string s in SerialPort.GetPortNames())
+            {
+                cbPortaArduino.Items.Add(s);
+            }
+            //seleciona a primeira posição da lista
+            cbPortaArduino.SelectedIndex = 0;
+        }
+
+        //Novo
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            if (serialPort1.IsOpen == false)
+            {
+                try
+                {
+                    serialPort1.PortName = cbPortaArduino.Items[cbPortaArduino.SelectedIndex].ToString();
+                    serialPort1.Open();
+
+                }
+                catch
+                {
+                    return;
+
+                }
+                if (serialPort1.IsOpen)
+                {
+                    btConectar.Text = "Desconectar";
+                    cbPortaArduino.Enabled = false;
+
+                }
+            }
+            else
+            {
+
+                try
+                {
+                    serialPort1.Close();
+                    cbPortaArduino.Enabled = true;
+                    btConectar.Text = "Conectar";
+                }
+                catch
+                {
+                    return;
+                }
+
+            }
+        }
+
+        /* Para Fechar Porta COM        
+        if(serialPort1.IsOpen == true)
+        {
+         serialPort1.Close();
+        }
+        */
+
+
+
         private void CarregarInformacoes()
         {
             txtSenhaRoot.Text = Properties.Settings.Default["SenhaRoot"].ToString();
@@ -28,27 +121,31 @@ namespace Teste
             if (StringBanco == "")
             {
                 btnSalvar.Enabled = true;
+                btnEditar.Enabled = false;
+                AtivarCaixas();
             }
             else
             {
                 DataTable dt = new DataTable();
                 try
                 {
-                    List<SqlParameter> sp = new List<SqlParameter>()
-                        {
-                        new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 12}
-                        };
-                    dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                    dt = banco.InsertData("dbo.Pesquisa_TelaDesenvolvedor");
                     if (dt.Rows.Count > 0)
                     {
-                        txtCaminho.Text = dt.Rows[0].ItemArray[0].ToString();
-                        txtPortaArduino.Text = dt.Rows[0].ItemArray[1].ToString();
-                        string Connection = dt.Rows[0].ItemArray[2].ToString();
-                        var array = Connection.Split(new string[] { "Server=", "Database=", "User Id=", "Password=", ";" }, StringSplitOptions.RemoveEmptyEntries);
-                        txtServidor.Text = array[0];
-                        txtNomeBanco.Text = array[1];
-                        txtUsuario.Text = array[2];
-                        txtSenha.Text = array[3];
+                        txtID.Text = dt.Rows[0]["id"].ToString();
+                        txtCaminho.Text = dt.Rows[0]["Caminho Log"].ToString();
+                        txtPortaArduino.Text = dt.Rows[0]["Porta Arduino"].ToString();
+                        string Connection = dt.Rows[0]["String Conexão"].ToString();
+                        var split = Connection.Split(new string[] { "Server=", "Database=", "User Id=", "Password=", ";" }, StringSplitOptions.RemoveEmptyEntries);
+                        txtServidor.Text = split[0];
+                        txtNomeBanco.Text = split[1];
+                        txtUsuario.Text = split[2];
+                        txtSenha.Text = split[3];
+                    }
+                    else
+                    {
+                        btnSalvar.Enabled = true;
+                        btnEditar.Enabled = false;
                     }
 
                 }
@@ -57,11 +154,8 @@ namespace Teste
 
                     MessageBox.Show(ex.Message + "\nString Conexão:" + Properties.Settings.Default.StringBanco, "Falha ao se conectar com banco de dados!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
             }
-
         }
-
         private void SalvarSettings()
         {
             string servidor = txtServidor.Text;
@@ -75,25 +169,36 @@ namespace Teste
             Properties.Settings.Default["ArquivoAuditoria"] = txtCaminho.Text;
             Properties.Settings.Default["SenhaRoot"] = txtConfirmSenhaRoot.Text;
             Properties.Settings.Default.Save();
-            SalvarBanco(StrConn);
+            if(txtID.Text != "")
+            {
+                SalvarBanco(StrConn, "Edit");
+            }
+            else if(txtID.Text == "")
+            {
+                SalvarBanco(StrConn, "Save");
+            }
+            
 
         }
-        private void SalvarBanco(string StrConn)
+        private void SalvarBanco(string StrConn, string method)
         {
-            int result;
-            List<SqlParameter> sp = new List<SqlParameter>()
-            {
-                new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value =1},
-                new SqlParameter(){ParameterName = "@Caminho", SqlDbType = SqlDbType.NVarChar, Value = txtCaminho.Text},
-                new SqlParameter(){ParameterName = "@Porta_Arduino", SqlDbType = SqlDbType.NVarChar, Value = txtPortaArduino.Text},
-                new SqlParameter(){ParameterName = "@String_Conn", SqlDbType = SqlDbType.NVarChar, Value = StrConn}
-            };
             try
             {
+                int result;
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
+                    new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value =1},
+                    new SqlParameter(){ParameterName = "@Caminho", SqlDbType = SqlDbType.NVarChar, Value = txtCaminho.Text},
+                    new SqlParameter(){ParameterName = "@Porta_Arduino", SqlDbType = SqlDbType.NVarChar, Value = txtPortaArduino.Text},
+                    new SqlParameter(){ParameterName = "@String_Conn", SqlDbType = SqlDbType.NVarChar, Value = StrConn}
+                };
+                if(method == "Edit")
+                {
+                    sp.Add(new SqlParameter() { ParameterName = "@Id_Estacionamento", SqlDbType = SqlDbType.Int, Value = txtID.Text });
+                }
                 result = banco.EditData("dbo.Parametros", sp);
                 if (result > 0)
                 {
-                    MessageBox.Show("Parâmetros Editado com Sucesso!", "Configurações Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtCaminho.Enabled = false;
                     txtPortaArduino.Enabled = false;
                     txtServidor.Enabled = false;
@@ -104,6 +209,7 @@ namespace Teste
                     txtConfirmSenhaRoot.Enabled = false;
                     btnSalvar.Enabled = false;
                     btnSelecionar.Enabled = false;
+                    MessageBox.Show("Parâmetros Editado com Sucesso!", "Configurações Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
@@ -112,12 +218,14 @@ namespace Teste
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Configurações NÃO Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
         private void btnEditar_Click_1(object sender, EventArgs e)
+        {
+            AtivarCaixas();
+        }
+        private void AtivarCaixas()
         {
             txtCaminho.Enabled = true;
             txtPortaArduino.Enabled = true;
@@ -226,6 +334,21 @@ namespace Teste
         }
 
         private void txtNomeBanco_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timerCOM_Tick(object sender, EventArgs e)
+        {
+            atualizaListaCOMs();
+        }
+
+        private void cbPortaArduino_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
 
         }

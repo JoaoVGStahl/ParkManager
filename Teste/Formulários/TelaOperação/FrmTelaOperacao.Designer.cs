@@ -41,8 +41,10 @@ namespace Teste
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.picImagem = new System.Windows.Forms.PictureBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.picCam = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblQtdTicket = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -83,7 +85,8 @@ namespace Teste
             this.panel10 = new System.Windows.Forms.Panel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picImagem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCam)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -103,7 +106,7 @@ namespace Teste
             this.cmbTipo.Location = new System.Drawing.Point(282, 41);
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(189, 37);
-            this.cmbTipo.TabIndex = 1;
+            this.cmbTipo.TabIndex = 2;
             this.toolTip1.SetToolTip(this.cmbTipo, "Selecione um tipo de veiculo!");
             // 
             // txtPlaca
@@ -115,7 +118,7 @@ namespace Teste
             this.txtPlaca.MaxLength = 7;
             this.txtPlaca.Name = "txtPlaca";
             this.txtPlaca.Size = new System.Drawing.Size(183, 35);
-            this.txtPlaca.TabIndex = 0;
+            this.txtPlaca.TabIndex = 1;
             this.toolTip1.SetToolTip(this.txtPlaca, "Insira uma Placa!");
             this.txtPlaca.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.txtPlaca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPlaca_KeyPress);
@@ -133,7 +136,7 @@ namespace Teste
             this.cmbMarca.Location = new System.Drawing.Point(484, 41);
             this.cmbMarca.Name = "cmbMarca";
             this.cmbMarca.Size = new System.Drawing.Size(240, 37);
-            this.cmbMarca.TabIndex = 2;
+            this.cmbMarca.TabIndex = 3;
             this.toolTip1.SetToolTip(this.cmbMarca, "Selecione um Marca do veiculo!");
             this.cmbMarca.UseWaitCursor = true;
             this.cmbMarca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbMarca_KeyPress);
@@ -147,7 +150,7 @@ namespace Teste
             this.txtNome.MaxLength = 45;
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(397, 35);
-            this.txtNome.TabIndex = 3;
+            this.txtNome.TabIndex = 4;
             this.txtNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNome_KeyPress);
             // 
             // label1
@@ -204,8 +207,10 @@ namespace Teste
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.picImagem);
+            this.panel1.Controls.Add(this.button5);
+            this.panel1.Controls.Add(this.picCam);
             this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.lblQtdTicket);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
@@ -214,6 +219,34 @@ namespace Teste
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(660, 498);
             this.panel1.TabIndex = 12;
+            // 
+            // picImagem
+            // 
+            this.picImagem.Image = ((System.Drawing.Image)(resources.GetObject("picImagem.Image")));
+            this.picImagem.InitialImage = ((System.Drawing.Image)(resources.GetObject("picImagem.InitialImage")));
+            this.picImagem.Location = new System.Drawing.Point(3, 67);
+            this.picImagem.Name = "picImagem";
+            this.picImagem.Size = new System.Drawing.Size(647, 338);
+            this.picImagem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picImagem.TabIndex = 38;
+            this.picImagem.TabStop = false;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(623, 411);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(27, 23);
+            this.button5.TabIndex = 42;
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // picCam
+            // 
+            this.picCam.Location = new System.Drawing.Point(3, 67);
+            this.picCam.Name = "picCam";
+            this.picCam.Size = new System.Drawing.Size(647, 338);
+            this.picCam.TabIndex = 39;
+            this.picCam.TabStop = false;
             // 
             // label8
             // 
@@ -226,18 +259,6 @@ namespace Teste
             this.label8.TabIndex = 3;
             this.label8.Text = "Ticket Abertos:";
             this.label8.Click += new System.EventHandler(this.label8_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.ImageLocation = "";
-            this.pictureBox1.Location = new System.Drawing.Point(-14, 67);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(674, 343);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // lblQtdTicket
             // 
@@ -265,6 +286,7 @@ namespace Teste
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(182, 85);
             this.button2.TabIndex = 37;
+            this.button2.TabStop = false;
             this.button2.Text = "Saída";
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button2.UseVisualStyleBackColor = false;
@@ -282,9 +304,11 @@ namespace Teste
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(182, 85);
             this.button1.TabIndex = 28;
+            this.button1.TabStop = false;
             this.button1.Text = "Entrada";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnIniciar
             // 
@@ -299,7 +323,7 @@ namespace Teste
             this.btnIniciar.Location = new System.Drawing.Point(123, 2);
             this.btnIniciar.Name = "btnIniciar";
             this.btnIniciar.Size = new System.Drawing.Size(220, 85);
-            this.btnIniciar.TabIndex = 13;
+            this.btnIniciar.TabIndex = 7;
             this.btnIniciar.Text = "Iniciar (F5)";
             this.btnIniciar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnIniciar.UseVisualStyleBackColor = false;
@@ -318,7 +342,7 @@ namespace Teste
             this.btnEncerrar.Location = new System.Drawing.Point(343, 2);
             this.btnEncerrar.Name = "btnEncerrar";
             this.btnEncerrar.Size = new System.Drawing.Size(220, 85);
-            this.btnEncerrar.TabIndex = 14;
+            this.btnEncerrar.TabIndex = 8;
             this.btnEncerrar.Text = "Encerrar Ticket (F4)";
             this.btnEncerrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEncerrar.UseVisualStyleBackColor = false;
@@ -358,6 +382,7 @@ namespace Teste
             this.txtNomeP.ReadOnly = true;
             this.txtNomeP.Size = new System.Drawing.Size(673, 34);
             this.txtNomeP.TabIndex = 21;
+            this.txtNomeP.TabStop = false;
             this.txtNomeP.Text = "Nome";
             this.txtNomeP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -370,6 +395,7 @@ namespace Teste
             this.txtTelefoneP.ReadOnly = true;
             this.txtTelefoneP.Size = new System.Drawing.Size(311, 34);
             this.txtTelefoneP.TabIndex = 21;
+            this.txtTelefoneP.TabStop = false;
             this.txtTelefoneP.Text = "Telefone";
             this.txtTelefoneP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -494,7 +520,8 @@ namespace Teste
             this.btnConfig.Location = new System.Drawing.Point(1223, 2);
             this.btnConfig.Name = "btnConfig";
             this.btnConfig.Size = new System.Drawing.Size(120, 85);
-            this.btnConfig.TabIndex = 21;
+            this.btnConfig.TabIndex = 12;
+            this.btnConfig.TabStop = false;
             this.btnConfig.UseVisualStyleBackColor = false;
             this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
             // 
@@ -525,7 +552,7 @@ namespace Teste
             this.btnSair.Location = new System.Drawing.Point(3, 2);
             this.btnSair.Name = "btnSair";
             this.btnSair.Size = new System.Drawing.Size(120, 85);
-            this.btnSair.TabIndex = 26;
+            this.btnSair.TabIndex = 6;
             this.btnSair.UseVisualStyleBackColor = false;
             this.btnSair.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -541,7 +568,7 @@ namespace Teste
             this.button6.Location = new System.Drawing.Point(563, 2);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(220, 85);
-            this.button6.TabIndex = 24;
+            this.button6.TabIndex = 9;
             this.button6.Text = "Tickets";
             this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button6.UseVisualStyleBackColor = false;
@@ -559,7 +586,7 @@ namespace Teste
             this.button8.Location = new System.Drawing.Point(1003, 2);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(220, 85);
-            this.button8.TabIndex = 25;
+            this.button8.TabIndex = 11;
             this.button8.Text = "Relatórios";
             this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button8.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -578,7 +605,7 @@ namespace Teste
             this.btnCadastros.Location = new System.Drawing.Point(783, 2);
             this.btnCadastros.Name = "btnCadastros";
             this.btnCadastros.Size = new System.Drawing.Size(220, 85);
-            this.btnCadastros.TabIndex = 27;
+            this.btnCadastros.TabIndex = 10;
             this.btnCadastros.Text = "Cadastros";
             this.btnCadastros.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCadastros.UseVisualStyleBackColor = false;
@@ -688,7 +715,7 @@ namespace Teste
             this.btnPesquisaTicket.Location = new System.Drawing.Point(8, 10);
             this.btnPesquisaTicket.Name = "btnPesquisaTicket";
             this.btnPesquisaTicket.Size = new System.Drawing.Size(72, 70);
-            this.btnPesquisaTicket.TabIndex = 30;
+            this.btnPesquisaTicket.TabIndex = 0;
             this.btnPesquisaTicket.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPesquisaTicket.UseVisualStyleBackColor = false;
             this.btnPesquisaTicket.Click += new System.EventHandler(this.btnPesquisaTicket_Click_2);
@@ -702,7 +729,7 @@ namespace Teste
             this.mskTelefone.Mask = "(00)00000-0000";
             this.mskTelefone.Name = "mskTelefone";
             this.mskTelefone.Size = new System.Drawing.Size(202, 35);
-            this.mskTelefone.TabIndex = 4;
+            this.mskTelefone.TabIndex = 5;
             // 
             // splitter3
             // 
@@ -769,7 +796,8 @@ namespace Teste
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmTelaOperacao_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picImagem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCam)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel4.ResumeLayout(false);
@@ -825,7 +853,6 @@ namespace Teste
         private System.Windows.Forms.ToolStripStatusLabel lblHora;
         private System.Windows.Forms.Button btnLimpaP;
         private System.Windows.Forms.Splitter splitter2;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.MaskedTextBox mskTelefone;
@@ -840,6 +867,9 @@ namespace Teste
         public System.Windows.Forms.TextBox txtPlaca;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.PictureBox picImagem;
+        private System.Windows.Forms.PictureBox picCam;
+        private System.Windows.Forms.Button button5;
     }
 }
 

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
+using System.Data.SqlClient;
 
 namespace Teste
 {
@@ -34,7 +35,7 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                dt = banco.ProcedureSemParametros(4);
+                dt = banco.InsertData(NameProcedure: "dbo.Metodos_Pagamento");
                 cmbFormaPagamento.DataSource = null;
                 cmbFormaPagamento.DataSource = dt;
                 cmbFormaPagamento.ValueMember = "id_pgt";
@@ -46,8 +47,6 @@ namespace Teste
 
                 MessageBox.Show(ex.Message, "Houve uma falha ao carregar os Métodos de pagamento!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
         }
         private void CarregarTicket()
         {
@@ -57,14 +56,17 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                dt = banco.ProcedureCarregarTicket(3, Globais.IdTicket);
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
+                    new SqlParameter(){ParameterName="@IdTicket", SqlDbType = SqlDbType.Int, Value = Globais.IdTicket}
+                };
+                dt = banco.InsertData(NameProcedure: "dbo.Carregar_Tela_Encerrar", sp: sp);
                 if (dt.Rows.Count > 0)
                 {
+                    lblIdTicket.Text = "#" + dt.Rows[0]["#Ticket"].ToString();//ID Ticket
 
-                    lblIdTicket.Text = "#" + Convert.ToString(dt.Rows[0].ItemArray[0]);//ID Ticket
-
-                    DataEntrada = Convert.ToDateTime(dt.Rows[0].ItemArray[2]);
-                    HoraEntrada = Convert.ToDateTime(dt.Rows[0].ItemArray[1]);
+                    DataEntrada = Convert.ToDateTime(dt.Rows[0]["Data Entrada"].ToString());
+                    HoraEntrada = Convert.ToDateTime(dt.Rows[0]["Hora Entrada"].ToString());
                     lblHoraEntrada.Text = HoraEntrada.ToLongTimeString() + " " + DataEntrada.ToShortDateString();
                     DataFormatada = Convert.ToDateTime(DataEntrada.ToString("dd/MM/yyyy") + " " + HoraEntrada.ToString("HH:mm:ss"));
                     timer1.Enabled = true;
@@ -73,11 +75,13 @@ namespace Teste
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Houve uma falha ao carregar o ticket! \nRealize a pesquisa e tente novamente!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Dispose();
             }
-
+            finally
+            {
+                dt.Dispose();
+            }
         }
         private void CalcularPreco(DateTime DataEntrada)
         {

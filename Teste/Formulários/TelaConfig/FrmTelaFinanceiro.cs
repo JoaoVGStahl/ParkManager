@@ -30,6 +30,7 @@ namespace Teste
             {
                 DesativarModoUnico();
             }
+
         }
         private void CarregarValores()
         {
@@ -44,32 +45,35 @@ namespace Teste
                 dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
                 if (dt.Rows.Count > 0)
                 {
-                    txtId.Text = Convert.ToString(dt.Rows[0].Field<int>("ID"));
-                    
-                    if ((Convert.ToString(dt.Rows[0].Field<decimal>("Valor Hora")) == null) && (Convert.ToString(dt.Rows[0].Field<decimal>("Valor Minimo")) == null) && (Convert.ToString(dt.Rows[0].Field<decimal>("Valor Unico")) == null))
+                    txtId.Text = dt.Rows[0]["ID"].ToString();
+
+                    if ((dt.Rows[0]["Valor Hora"].ToString() == null) && (dt.Rows[0]["Valor Minimo"].ToString() == null) && (dt.Rows[0]["Valor Unico"].ToString() == null))
                     {
                         AtivarCaixas();
                     }
                     else
                     {
-                        if (Convert.ToString(dt.Rows[0].Field<decimal>("Valor Hora")) != null)
+                        if (dt.Rows[0]["Valor Hora"].ToString() != null)
                         {
-                            PrecoHora = dt.Rows[0].Field<decimal>("Valor Hora");
+                            PrecoHora = Convert.ToDecimal(dt.Rows[0]["Valor Hora"].ToString());
                             lblPrecoHora.Text = PrecoHora.ToString("C");
                         }
-                        if (Convert.ToString(dt.Rows[0].Field<decimal>("Valor Minimo")) != null)
+                        if (dt.Rows[0]["Valor Minimo"].ToString() != null)
                         {
-                            PrecoMin = dt.Rows[0].Field<decimal>("Valor Minimo");
+                            PrecoMin = Convert.ToDecimal(dt.Rows[0]["Valor Minimo"].ToString());
                             lblPrecoMin.Text = PrecoMin.ToString("C");
                         }
-                        if (Convert.ToString(dt.Rows[0].Field<decimal>("Valor Unico")) != null)
+                        if (dt.Rows[0]["Valor Unico"].ToString() != null)
                         {
-                            PrecoUnico = dt.Rows[0].Field<decimal>("Valor Unico");
+                            PrecoUnico = Convert.ToDecimal(dt.Rows[0]["Valor Unico"].ToString());
                             lblPrecoUnico.Text = PrecoUnico.ToString("C");
                         }
-                        
+                        if (dt.Rows[0]["Tolerancia"].ToString() != null)
+                        {
+                            TimeSpan ts = Convert.ToDateTime(dt.Rows[0]["Tolerancia"].ToString()) - Convert.ToDateTime("00:00:00");
+                            lblTolerancia.Text = ts.Minutes + " Minutos";
+                        }
                     }
-                    
                 }
                 else
                 {
@@ -80,7 +84,6 @@ namespace Teste
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Falha carregar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -225,6 +228,8 @@ namespace Teste
         private void btnEditar_Click(object sender, EventArgs e)
         {
             AtivarCaixas();
+            tbTolerancia.Value = Convert.ToInt32(lblTolerancia.Text.Replace(" Minutos", ""));
+            lblCont.Text = tbTolerancia.Value.ToString();
         }
         private void AtivarCaixas()
         {
@@ -232,8 +237,9 @@ namespace Teste
             txtCobrancaMinima.Enabled = true;
             txtValorUnico.Enabled = true;
             btnSalvar.Enabled = true;
-            btnEditar.Enabled = true;
+            btnEditar.Enabled = false;
             ckValorUnico.Enabled = true;
+            tbTolerancia.Enabled = true;
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -255,6 +261,10 @@ namespace Teste
                     return;
                 }
             }
+            else
+            {
+                PHora = -1;
+            }
             if (txtCobrancaMinima.Text != "")
             {
                 if (Regex.IsMatch(txtCobrancaMinima.Text, @"^\d+,\d{2}"))
@@ -266,6 +276,10 @@ namespace Teste
                     MessageBox.Show("Cobrança Minima Inválido!", "Falha carregar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+            }
+            else
+            {
+                CMinima = -1;
             }
             if (txtValorUnico.Text != "")
             {
@@ -279,7 +293,11 @@ namespace Teste
                     return;
                 }
             }
-            if (PHora != 0 || CMinima != 0 || VUnico != 0)
+            else
+            {
+                VUnico = -1;
+            }
+            if (PHora != 0 || CMinima != 0 || VUnico != 0 || tbTolerancia.Value != Convert.ToInt32(lblTolerancia.Text.Replace(" Minutos", "")))
             {
                 SalvarValores(PHora, CMinima, VUnico);
             }
@@ -304,7 +322,8 @@ namespace Teste
                     new SqlParameter(){ParameterName="@Id_Estacionamento", SqlDbType = SqlDbType.Int, Value =  txtId.Text},
                     new SqlParameter(){ParameterName="@Valor_Hora", SqlDbType = SqlDbType.Decimal, Value = PHora},
                     new SqlParameter(){ParameterName="@Valor_Minimo", SqlDbType = SqlDbType.Decimal, Value = CMinimo},
-                    new SqlParameter(){ParameterName="@Valor_Unico", SqlDbType = SqlDbType.Decimal, Value = VUnico}
+                    new SqlParameter(){ParameterName="@Valor_Unico", SqlDbType = SqlDbType.Decimal, Value = VUnico},
+                    new SqlParameter(){ParameterName="@Tolerancia", SqlDbType = SqlDbType.Time, Value = "00:" + tbTolerancia.Value + ":00"}
                 };
                 LinhasAfetadas = banco.EditData("dbo.Salvar_Valor", sp);
                 if (LinhasAfetadas > 0)
@@ -312,10 +331,10 @@ namespace Teste
                     try
                     {
                         AttModoUnico();
-                        Globais.RegistrarLog(Globais.Login + " Alterou os Valores.");
-                        MessageBox.Show("Alterações Salvas com sucesso!", "Salvamento concluido!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         CarregarValores();
                         DesativarCaixas();
+                        Globais.RegistrarLog(Globais.Login + " Alterou os Valores.");
+                        MessageBox.Show("Alterações Salvas com sucesso!", "Salvamento concluido!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
@@ -357,6 +376,8 @@ namespace Teste
             ckValorUnico.Enabled = false;
             btnSalvar.Enabled = false;
             btnEditar.Enabled = true;
+            tbTolerancia.Value = 1;
+            lblCont.Text = tbTolerancia.Value.ToString();
         }
 
         private void splitter3_SplitterMoved(object sender, SplitterEventArgs e)

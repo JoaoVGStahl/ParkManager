@@ -23,16 +23,7 @@ namespace Teste
         private void FrmTelaEstacionamento_Load(object sender, EventArgs e)
         {
             panel4.VerticalScroll.Value = 0;
-            if (Properties.Settings.Default["StringBanco"].ToString() != "")
-            {
-                CarregarIdentificacao();
-            }
-            else
-            {
-                MessageBox.Show("Conecte-se a um banco de dados primeiro!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                btnEditar.Enabled = false;
-            }
-            
+            CarregarIdentificacao();
 
         }
         private void CarregarIdentificacao()
@@ -40,11 +31,7 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                List<SqlParameter> sp = new List<SqlParameter>()
-                {
-                    new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 8}
-                };
-                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                dt = banco.InsertData("dbo.Info_Estacionamento");
                 if (dt.Rows.Count > 0)
                 {
                     PreencherCampos(dt);
@@ -62,17 +49,17 @@ namespace Teste
         }
         private void PreencherCampos(DataTable dt)
         {
-            txtID.Text = Convert.ToString(dt.Rows[0].Field<int>("ID"));
-            txtRazaoSocial.Text = Convert.ToString(dt.Rows[0].Field<string>("Razão Social"));
-            mskCnpj.Text = Convert.ToString(dt.Rows[0].Field<string>("CNPJ"));
-            mskInscricao.Text = Convert.ToString(dt.Rows[0].Field<string>("Inscrição Estadual"));
-            mskTelefone.Text = Convert.ToString(dt.Rows[0].Field<string>("Telefone"));
-            mskCEP.Text = Convert.ToString(dt.Rows[0].Field<string>("CEP"));
-            txtNumero.Text = Convert.ToString(dt.Rows[0].Field<int>("Número"));
-            txtEndereco.Text = Convert.ToString(dt.Rows[0].Field<string>("Endereço"));
-            txtBairro.Text = Convert.ToString(dt.Rows[0].Field<string>("Bairro"));
-            txtCidade.Text = Convert.ToString(dt.Rows[0].Field<string>("Cidade"));
-            txtEstado.Text = Convert.ToString(dt.Rows[0].Field<string>("Estado"));
+            txtID.Text = dt.Rows[0]["ID"].ToString();
+            txtRazaoSocial.Text = dt.Rows[0]["Razão Social"].ToString();
+            mskCnpj.Text = dt.Rows[0]["CNPJ"].ToString();
+            mskInscricao.Text = dt.Rows[0]["Inscrição Estadual"].ToString();
+            mskTelefone.Text = dt.Rows[0]["Telefone"].ToString();
+            mskCEP.Text = dt.Rows[0]["CEP"].ToString();
+            txtNumero.Text = dt.Rows[0]["Número"].ToString();
+            txtEndereco.Text = dt.Rows[0]["Endereço"].ToString();
+            txtBairro.Text = dt.Rows[0]["Bairro"].ToString();
+            txtCidade.Text = dt.Rows[0]["Cidade"].ToString();
+            txtEstado.Text = dt.Rows[0]["Estado"].ToString();
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -147,7 +134,13 @@ namespace Teste
                                 {
                                     if (Regex.IsMatch(txtCidade.Text, @"^\D+"))
                                     {
-                                        SalvarIdentificacao();
+                                        if(txtID.Text != "")
+                                        {
+                                            SalvarIdentificacao("Edit");
+                                        }else if(txtID.Text == "")
+                                        {
+                                            SalvarIdentificacao("Save");
+                                        }
                                     }
                                     else
                                     {
@@ -181,23 +174,14 @@ namespace Teste
                 }
             }
         }
-        private void SalvarIdentificacao()
+        private void SalvarIdentificacao(string method)
         {
             try
             {
-                int Flag;
-                if (txtID.Text == "")
-                {
-                    Flag = 3;
-                }
-                else
-                {
-                    Flag = 2;
-                }
                 int LinhasAfetadas;
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
-                    new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = Flag},
+                    new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 2},
                     new SqlParameter(){ParameterName = "@Cnpj", SqlDbType = SqlDbType.VarChar, Value = mskCnpj.Text},
                     new SqlParameter(){ParameterName = "@Razao_Social", SqlDbType = SqlDbType.VarChar, Value = txtRazaoSocial.Text},
                     new SqlParameter(){ParameterName = "@Endereco", SqlDbType = SqlDbType.VarChar, Value = txtEndereco.Text},
@@ -209,6 +193,10 @@ namespace Teste
                     new SqlParameter(){ParameterName = "@Inscricao_Estadual", SqlDbType = SqlDbType.VarChar, Value = mskInscricao.Text },
                     new SqlParameter(){ParameterName = "@Telefone", SqlDbType = SqlDbType.VarChar, Value = mskTelefone.Text}
                 };
+                if(method == "Edit")
+                {
+                    sp.Add(new SqlParameter() { ParameterName = "@Id_Estacionamento", SqlDbType = SqlDbType.Int, Value = txtID.Text });
+                }
                 LinhasAfetadas = banco.EditData("dbo.Parametros", sp);
                 if (LinhasAfetadas > 0)
                 {

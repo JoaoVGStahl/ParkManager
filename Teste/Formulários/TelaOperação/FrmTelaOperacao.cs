@@ -1,19 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
+using System.Drawing.Imaging;
+using System.IO;
 
 namespace Teste
 {
     public partial class FrmTelaOperacao : Form
     {
+        public DirectX.Capture.Filter Camera;
+        public DirectX.Capture.Capture CaptureInfo;
+        public DirectX.Capture.Filters CamContainer;
+        public int Inicializacao;
+        Image capturaImagem;
+
         Banco banco = new Banco();
         public FrmTelaOperacao()
         {
@@ -38,17 +42,27 @@ namespace Teste
 
         private void FrmTelaOperacao_Load(object sender, EventArgs e)
         {
+            Globais.CaminhoFoto = @"c:\ParkManager\fotos";
             if (!(Globais.Login == Properties.Settings.Default.UserRoot) || (Properties.Settings.Default["StringBanco"].ToString() == ""))
             {
-
                 txtPlaca.Select();
                 CarregarBarraStatus();
                 PopularComboTipo();
                 ContadorTicket();
                 CarregarParametros();
-
+                if (!IniciaCamera())
+                {
+                    picCam.Visible = false;
+                    picImagem.Image = picImagem.InitialImage;
+                    picImagem.Visible = true;
+                    MessageBox.Show("Câmera não encontrada!", "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    picImagem.Visible = false;
+                    picCam.Visible = true;
+                }
             }
-
         }
         private void CarregarCores()
         {
@@ -70,7 +84,7 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                dt = banco.ProcedureSemParametros(0);
+                dt = banco.InsertData(NameProcedure: "dbo.ComboBox_Tipo");
                 cmbTipo.DataSource = null;
                 cmbTipo.DataSource = dt;
                 cmbTipo.ValueMember = "id_automovel";
@@ -80,7 +94,6 @@ namespace Teste
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Falha ao carregar Tipo de veiculos!");
             }
 
@@ -90,12 +103,11 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                dt = banco.ProcedureSemParametros(2);
-                lblQtdTicket.Text = Convert.ToString(dt.Rows[0].ItemArray[0]);
+                dt = banco.InsertData(NameProcedure: "dbo.Tickets_Abertos");
+                lblQtdTicket.Text = dt.Rows[0]["Ticket's Abertos"].ToString();
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Falha ao Carregar Contador de Tickets!");
             }
             finally
@@ -109,21 +121,16 @@ namespace Teste
             try
             {
                 DataTable dt = new DataTable();
-                List<SqlParameter> sp = new List<SqlParameter>()
-                {
-                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 14}
-                };
-                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                dt = banco.InsertData("dbo.Parametros_Sistema");
                 if (dt.Rows.Count > 0)
                 {
-                    DateTime aux = Convert.ToDateTime("00:00:00");
-                    Globais.ValorHora = Convert.ToDecimal(dt.Rows[0].ItemArray[1]);
-                    Globais.ValorMinimo = Convert.ToDecimal(dt.Rows[0].ItemArray[2]);
-                    Globais.ValorUnico = Convert.ToDecimal(dt.Rows[0].ItemArray[3]);
-                    DateTime tempo = Convert.ToDateTime(dt.Rows[0].ItemArray[4].ToString());
-                    TimeSpan ts = tempo - aux;
+
+                    Globais.ValorHora = Convert.ToDecimal(dt.Rows[0]["Valor Hora"]);
+                    Globais.ValorMinimo = Convert.ToDecimal(dt.Rows[0]["Valor Minimo"]);
+                    Globais.ValorUnico = Convert.ToDecimal(dt.Rows[0]["Valor Unico"]);
+                    TimeSpan ts = Convert.ToDateTime(dt.Rows[0]["Tolerancia"].ToString()) - Convert.ToDateTime("00:00:00");
                     Globais.Tolerencia = ts;
-                    Properties.Settings.Default["ArquivoAuditoria"] = dt.Rows[0].ItemArray[5].ToString();
+                    Properties.Settings.Default["ArquivoAuditoria"] = dt.Rows[0]["Caminho Log"].ToString();
                     Properties.Settings.Default.Save();
                 }
                 else
@@ -135,6 +142,108 @@ namespace Teste
             {
 
                 MessageBox.Show(ex.Message, "Falha ao carregar as informações!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //Novo
+        private bool IniciaCamera()
+        {
+            bool Cam = false;
+            try
+            {
+                CamContainer = new DirectX.Capture.Filters();
+                int quantCam = CamContainer.VideoInputDevices.Count;
+                if (quantCam > 0)
+                {
+                    for (int i = 0; i < quantCam; i++)
+                    {
+
+                        // obtém o dispositivo de entrada do vídeo
+                        Camera = CamContainer.VideoInputDevices[i];
+
+                        // inicializa a Captura usando o dispositivo
+                        CaptureInfo = new DirectX.Capture.Capture(Camera, null)
+                        {
+                            // Define a janela de visualização do vídeo
+                            PreviewWindow = this.picCam
+                        };
+                        // Capturando o tratamento de evento
+                        if (CaptureInfo != null)
+                        {
+                            CaptureInfo.CaptureFrame();
+                            Inicializacao = 1;
+                            CaptureInfo.FrameCaptureComplete += AtualizaImagem;
+
+                            // Captura o frame do dispositivo
+                            Cam = true;
+
+                        }
+
+                        // Se o dispositivo foi encontrado e inicializado então sai sem checar o resto
+                        break;
+                    }
+
+                }
+
+            }
+            catch (Exception)
+            {
+                Cam = false;
+            }
+            return Cam;
+        }
+
+        //Novo
+        public void AtualizaImagem(PictureBox frame)
+        {
+            try
+            {
+                capturaImagem = frame.Image;
+                this.picImagem.Image = capturaImagem;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro " + ex.Message);
+            }
+        }
+
+        //Novo
+        private void CapturarFoto()
+        {
+            try
+            {
+                CaptureInfo.CaptureFrame();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro " + ex.Message);
+            }
+        }
+
+        //Novo
+        private void SalvarImagem(string placa)
+        {
+            if (Inicializacao == 0)
+            {
+                string caminhoImagemSalva = @"c:\ParkManager\fotos\";
+                caminhoImagemSalva += "veiculo_" + placa + "_" + DateTime.Now.ToShortDateString().Replace("/", "-") + "_" + DateTime.Now.ToLongTimeString().Replace(":", "-") + ".jpg";
+                Globais.CaminhoFoto = caminhoImagemSalva;
+                try
+                {
+                    CapturarFoto();
+                    if (picImagem.Image != null)
+                    {
+                        picImagem.Image.Save(Globais.CaminhoFoto, ImageFormat.Jpeg);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro " + ex.Message);
+                }
+                finally
+                {
+                    Inicializacao = 1;
+                }
             }
         }
 
@@ -158,43 +267,15 @@ namespace Teste
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            bool caixa;
+
             //Caso for digitado 7 caracteres na caixa de texto da placa, Ativa algumas funções
 
             if (txtPlaca.TextLength == 7)
             {
                 txtNome.Enabled = true;
                 mskTelefone.Enabled = true;
-                List<SqlParameter> sp = new List<SqlParameter>()
-                {
-                    new SqlParameter(){ParameterName= "@Flag", SqlDbType = SqlDbType.Int, Value = 13 },
-                    new SqlParameter(){ParameterName= "@Placa", SqlDbType = SqlDbType.VarChar, Value = txtPlaca.Text}
-                };
-                try
-                {
-                    DataTable dt = new DataTable();
-                    dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
-                    if (dt.Rows.Count > 0)
-                    {
-                        cmbTipo.Text = dt.Rows[0].ItemArray[1].ToString();
-                        cmbMarca.Text = dt.Rows[0].ItemArray[2].ToString();
-                        cmbTipo.Enabled = false;
-                        cmbMarca.Enabled = false;
-                        btnPesquisaTicket.Enabled = true;
-                        btnIniciar.Enabled = true;
-                    }
-                    else
-                    {
-                        caixa = true;
-                        AtivarFuncoes(caixa);
-                    }
-                    dt.Dispose();
-                }
-                catch (Exception ex)
-                {
-
-                    MessageBox.Show(ex.Message, "Falha ao Consultar a placa do veiculo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                CarregarVeiculo();
+                
             }
             else
             {
@@ -207,6 +288,38 @@ namespace Teste
 
             }
 
+        }
+        private void CarregarVeiculo()
+        {
+            bool caixa;
+            try
+            {
+                List<SqlParameter> sp = new List<SqlParameter>()
+                    {
+                        new SqlParameter(){ParameterName= "@Placa", SqlDbType = SqlDbType.VarChar, Value = txtPlaca.Text}
+                    };
+                DataTable dt = new DataTable();
+                dt = banco.InsertData("dbo.Pesquisa_Info_Placa", sp);
+                if (dt.Rows.Count > 0)
+                {
+                    cmbTipo.Text = dt.Rows[0]["Tipo"].ToString();
+                    cmbMarca.Text = dt.Rows[0]["Marca"].ToString();
+                    cmbTipo.Enabled = false;
+                    cmbMarca.Enabled = false;
+                    btnPesquisaTicket.Enabled = true;
+                    btnIniciar.Enabled = true;
+                }
+                else
+                {
+                    caixa = true;
+                    AtivarFuncoes(caixa);
+                }
+                dt.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Falha ao Consultar a placa do veiculo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void AtivarFuncoes(bool caixa)
         {
@@ -302,22 +415,33 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                dt = banco.ProcedurePesquisaTicketVeiculo(7, placa);
-                if (dt.Rows.Count > 0)
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
+                    new SqlParameter(){ParameterName="@Placa", SqlDbType = SqlDbType.VarChar, Value = placa}
+                };
+                dt = banco.InsertData(NameProcedure: "dbo.Pesquisa_TicketAberto_Placa", sp: sp);
+                if (Convert.ToInt32(dt.Rows[0]["QTD"]) > 0)
                 {
                     MessageBox.Show("Já existe um ticket em andamento para este veiculo!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     LimparCaixas();
-
                 }
                 else
                 {
+                    if (Camera != null && CamContainer.VideoInputDevices.Count > 0)
+                    {
+                        Inicializacao = 0;
+                        SalvarImagem(placa);
+                    }
                     InserirTicket(placa, nome, telefone);
                 }
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Falha ao iniciar ticket!");
+            }
+            finally
+            {
+                dt.Dispose();
             }
 
         }
@@ -338,22 +462,24 @@ namespace Teste
                     new SqlParameter(){ParameterName = "@Tipo", SqlDbType = SqlDbType.NVarChar, Value = tipo },
                     new SqlParameter(){ParameterName = "@Hr_Entrada", SqlDbType = SqlDbType.Time, Value = DateTime.Now.ToLongTimeString() },
                     new SqlParameter(){ParameterName = "@Data_Entrada", SqlDbType = SqlDbType.DateTime, Value = DateTime.Now.ToShortDateString() },
-                    new SqlParameter(){ParameterName = "@Caminho_Foto", SqlDbType = SqlDbType.NVarChar, Value = @"C:\ParkManager\Fotos" }
+                    new SqlParameter() { ParameterName = "@Caminho_Foto", SqlDbType = SqlDbType.NVarChar, Value = Globais.CaminhoFoto }
+
                 };
+
                 dt = banco.InsertData("dbo.InsertTicket", sp);
                 //Verifica se houve algum retorno da procedure
                 if (dt.Rows.Count > 0)
                 {
                     idTicket = Convert.ToInt32(dt.Rows[0].ItemArray[0]);
-
                     if (idTicket > 0)
                     {
-                        MessageBox.Show("Ticket Iniciado com sucesso! \n #Ticket:" + idTicket, "Ticket Iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+
                         ContadorTicket();
                         LimparCaixas();
                         Globais.RegistrarLog(Globais.Login + " Inicou o Ticket #" + idTicket);
                         dt.Dispose();
                         sp.Clear();
+                        MessageBox.Show("Ticket Iniciado com sucesso! \n #Ticket:" + idTicket, "Ticket Iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                     }
                     else
                     {
@@ -368,8 +494,11 @@ namespace Teste
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Falha ao iniciar ticket!");
+            }
+            finally
+            {
+                Globais.CaminhoFoto = @"c:\ParkManager\fotos";
             }
         }
         private void LimparCaixas()
@@ -386,7 +515,6 @@ namespace Teste
             btnIniciar.Enabled = false;
             btnEncerrar.Enabled = false;
             btnPesquisaTicket.Enabled = false;
-
         }
         private void cmbTipo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -405,7 +533,11 @@ namespace Teste
                 //Chama a função que executa a query no banco de dados
                 try
                 {
-                    dt = banco.ProcedureMarca(1, tipo, "");
+                    List<SqlParameter> sp = new List<SqlParameter>()
+                    {
+                        new SqlParameter(){ParameterName="@Tipo", SqlDbType = SqlDbType.VarChar,Value = tipo}
+                    };
+                    dt = banco.InsertData(NameProcedure: "dbo.ComboBox_Marca", sp: sp);
                     //Limpar o DataSource do combo
                     cmbMarca.DataSource = null;
                     //Seleciona o DataTable como o DataSoucer do combo
@@ -418,7 +550,6 @@ namespace Teste
                 }
                 catch (Exception ex)
                 {
-
                     MessageBox.Show(ex.Message, "Falha ao carregar Marcas!");
                 }
             }
@@ -427,19 +558,34 @@ namespace Teste
 
         private void btnConfig_Click(object sender, EventArgs e)
         {
-            FrmTelaConfig Frm = new FrmTelaConfig();
+            FrmTelaConfig Frm = new FrmTelaConfig(this);
             AbrirForm(2, Frm);
         }
         private void PreencherLabels(DataTable dt)
         {
+            string CaminhoFoto = dt.Rows[0]["Caminho Foto"].ToString();
+
             //Preenchendo as labels com as informações do banco
-            Globais.IdTicket = Convert.ToInt32(dt.Rows[0].ItemArray[0]);
-            lblTipo.Text = Convert.ToString(dt.Rows[0].ItemArray[1]); //Tipo
-            lblMarca.Text = Convert.ToString(dt.Rows[0].ItemArray[2]);//Marca
-            lblPlaca.Text = Convert.ToString(dt.Rows[0].ItemArray[3]);//Placa
-            txtNomeP.Text = Convert.ToString(dt.Rows[0].ItemArray[4]);//Nome
-            txtTelefoneP.Text = Convert.ToString(dt.Rows[0].ItemArray[5]);// Telefone
-            lblHrEntrada.Text = Convert.ToString(dt.Rows[0].ItemArray[6]) + " " + Convert.ToString(dt.Rows[0].ItemArray[7]);// Hora + Data
+            Globais.IdTicket = Convert.ToInt32(dt.Rows[0]["#Ticket"]);
+            lblTipo.Text = dt.Rows[0]["Tipo"].ToString(); //Tipo
+            lblMarca.Text = dt.Rows[0]["Marca"].ToString();//Marca
+            lblPlaca.Text = dt.Rows[0]["Placa"].ToString();//Placa
+            txtNomeP.Text = dt.Rows[0]["Nome Cliente"].ToString();//Nome
+            txtTelefoneP.Text = dt.Rows[0]["Telefone"].ToString();// Telefone
+            lblHrEntrada.Text = dt.Rows[0]["Hora Entrada"].ToString() + " " + dt.Rows[0]["Data Entrada"].ToString();// Hora + Data
+            picCam.Visible = false;
+            picImagem.Visible = true;
+            if (CaminhoFoto != @"c:\ParkManager\fotos" && File.Exists(CaminhoFoto))
+            {
+                picImagem.Image = Image.FromFile(CaminhoFoto);
+            }
+            else
+            {
+                picImagem.Image = picImagem.InitialImage;
+            }
+            //Novo
+            //Adicionar na Procedure (String da foto) 
+            //picImagem.Image = Image.FromFile(Convert.ToString(dt.Rows[0].ItemArray[]));
         }
         private void AlinharLabels()
         {
@@ -462,6 +608,8 @@ namespace Teste
             txtNomeP.Text = "Nome";
             txtTelefoneP.Text = "Telefone";
             btnEncerrar.Enabled = false;
+            picCam.Visible = true;
+            picImagem.Visible = false;
         }
 
         private void FrmTelaOperacao_FormClosing(object sender, FormClosingEventArgs e)
@@ -478,6 +626,7 @@ namespace Teste
             if (escolha)
             {
                 //Destroi o Formulario principal e abre o formulario de login
+                CaptureInfo.DisposeCapture();
                 FrmTelaLogin Frm = new FrmTelaLogin();
                 this.Dispose();
                 Frm.ShowDialog();
@@ -555,10 +704,13 @@ namespace Teste
             DataTable dt = new DataTable();
             if (placa != "")
             {
-
                 try
                 {
-                    dt = banco.ProcedurePesquisaTicketVeiculo(7, placa);
+                    List<SqlParameter> sp = new List<SqlParameter>()
+                    {
+                        new SqlParameter(){ParameterName="@Placa", SqlDbType = SqlDbType.VarChar, Value = placa}
+                    };
+                    dt = banco.InsertData(NameProcedure: "dbo.Pesquisa_Ticket_TelaOperacao", sp: sp);
                     //Verifica se houve algum retorno no DataTable
                     if (dt.Rows.Count > 0)
                     {
@@ -567,7 +719,6 @@ namespace Teste
                         LimparCaixas();
                         btnEncerrar.Enabled = true;
                         btnIniciar.Enabled = false;
-
                     }
                     else
                     {
@@ -583,7 +734,6 @@ namespace Teste
                 {
                     dt.Dispose();
                 }
-
             }
             else
             {
@@ -616,31 +766,28 @@ namespace Teste
 
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //Novo
+        private void button5_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CaptureInfo.CaptureFrame();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro " + ex.Message);
+            }
+        }
+
         private void button8_Click(object sender, EventArgs e)
         {
             FrmTelaRelatorios Frm = new FrmTelaRelatorios();
             AbrirForm(2, Frm);
-        }
-
-        private void FrmTelaOperacao_KeyDown(object sender, KeyEventArgs e)
-        {
-
-            switch (e.KeyCode)
-            {
-                case Keys.KeyCode:
-                    break;
-
-                case Keys.F5:
-                    btnIniciar.PerformClick();
-                    break;
-
-                case Keys.F4:
-                    btnEncerrar.PerformClick();
-                    break;
-
-                default:
-                    break;
-            }
         }
     }
 }

@@ -34,13 +34,15 @@ namespace Teste
                 DataTable dt = new DataTable();
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
-                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 19},
                     new SqlParameter(){ParameterName="@Status", SqlDbType = SqlDbType.Int, Value = cmbStatus.SelectedIndex}
                 };
-                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                dt = banco.InsertData("dbo.Select_Cliente_Grid", sp);
                 if (dt.Rows.Count > 0)
                 {
                     dataGridView1.DataSource = dt;
+                    dataGridView1.Columns[0].Width = 48;
+                    dataGridView1.Columns[1].Width = 658;
+                    dataGridView1.Columns[2].Width = 118;
                 }
                 else
                 {
@@ -69,16 +71,16 @@ namespace Teste
                     DataTable dt = new DataTable();
                     List<SqlParameter> sp = new List<SqlParameter>()
                     {
-                        new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 20},
                         new SqlParameter(){ParameterName="@idCliente", SqlDbType = SqlDbType.Int, Value = id}
                     };
-                    dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                    dt = banco.InsertData("dbo.Select_Cliente", sp);
                     if (dt.Rows.Count > 0)
                     {
-                        txtID.Text = dt.Rows[0].ItemArray[0].ToString();
-                        txtNome.Text = dt.Rows[0].ItemArray[1].ToString();
-                        mskTelefone.Text = dt.Rows[0].ItemArray[2].ToString();
-                        cmbStatus.SelectedIndex = Convert.ToInt32(dt.Rows[0].ItemArray[3]);
+                        txtID.Text = dt.Rows[0]["ID"].ToString();
+                        txtNome.Text = dt.Rows[0]["Nome"].ToString();
+                        mskTelefone.Text = dt.Rows[0]["Telefone"].ToString();
+                        cmbStatus.SelectedIndex = Convert.ToInt32(dt.Rows[0]["Status"]);
+                        
                     }
                     else
                     {
@@ -131,7 +133,7 @@ namespace Teste
                 dt = VerificarTicket();
                 if (dt.Rows.Count > 0)
                 {
-                    if (Convert.ToInt32(dt.Rows[0].ItemArray[0]) == 0)
+                    if (Convert.ToInt32(dt.Rows[0]["QTD"]) == 0)
                     {
                         ExcluirCliente();
                     }
@@ -139,34 +141,39 @@ namespace Teste
                     {
                         MessageBox.Show("Não é possivel Excluir este cliente, pois ele possui um Ticket em Aberto!", "Cliente NÃO Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                }
-                
+                } 
             }
         }
         private void ExcluirCliente()
         {
-            try
+            string mensagem = "Tem Certeza que deseja excluir este Cliente?";
+            string titulo = "Excluir Cliente?";
+            bool escolha = (MessageBox.Show(mensagem, titulo, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes);
+            if (escolha)
             {
-                string id = txtID.Text;
-                List<SqlParameter> sp = new List<SqlParameter>()
+                try
+                {
+                    string id = txtID.Text;
+                    List<SqlParameter> sp = new List<SqlParameter>()
                     {
                         new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value=1},
                         new SqlParameter(){ParameterName="@idCliente", SqlDbType = SqlDbType.Int, Value = id }
                     };
-                int LinhasAfetadas = banco.EditData("dbo.Gerencia_Cliente", sp);
-                if (LinhasAfetadas > 0)
-                {
-                    MessageBox.Show("Cadastro Excluido com Sucesso!", "Exclusão bem sucedida!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CarregarGrid();
+                    int LinhasAfetadas = banco.EditData("dbo.Gerencia_Cliente", sp);
+                    if (LinhasAfetadas > 0)
+                    {
+                        MessageBox.Show("Cadastro Excluido com Sucesso!", "Exclusão bem sucedida!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CarregarGrid();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Falha ao excluir Cliente ou ele não Existe!", "Falha!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Falha ao excluir Cliente ou ele não Existe!", "Falha!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Falha!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Falha!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -192,7 +199,7 @@ namespace Teste
                             dt = VerificarTicket();
                             if(dt.Rows.Count > 0)
                             {
-                                if (Convert.ToInt32(dt.Rows[0].ItemArray[0]) == 0)
+                                if (Convert.ToInt32(dt.Rows[0]["QTD"]) == 0)
                                 {
                                     SalvarCliente("Edit");
                                 }
@@ -220,20 +227,19 @@ namespace Teste
         }
         private void VerificarCliente()
         {
+            DataTable dt = new DataTable();
             try
             {
-                DataTable dt = new DataTable();
+                
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
-
-                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value=1},
                     new SqlParameter(){ParameterName="@Nome", SqlDbType = SqlDbType.VarChar, Value = txtNome.Text },
                     new SqlParameter(){ParameterName="@Telefone", SqlDbType = SqlDbType.VarChar, Value = mskTelefone.Text }
                 };
-                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                dt = banco.InsertData("dbo.Select_Cliente_Nome_Telefone", sp);
                 if (dt.Rows.Count > 0)
                 {
-                    MessageBox.Show("Este Cliente e Telefone já está cadastrado! \n ID:" + dt.Rows[0].ItemArray[0], "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Este Cliente e Telefone já está cadastrado! \n ID:" + dt.Rows[0]["ID"].ToString(), "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtNome.Focus();
                 }
                 else
@@ -243,8 +249,11 @@ namespace Teste
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                dt.Dispose();
             }
         }
         public DataTable VerificarTicket()
@@ -252,17 +261,14 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                
                 List<SqlParameter> sp = new List<SqlParameter>()
                     {
-                        new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value= 22},
                         new SqlParameter(){ParameterName="@idCliente", SqlDbType = SqlDbType.Int, Value = txtID.Text},
                     };
-                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                dt = banco.InsertData("dbo.Select_QtdTicket_Cliente", sp);
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Cliente NÃO Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return dt;
@@ -314,7 +320,6 @@ namespace Teste
                 MessageBox.Show(ex.Message, "Cliente NÃO Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void btnNovo_Click(object sender, EventArgs e)
         {
             btnNovo.Enabled = false;

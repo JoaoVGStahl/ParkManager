@@ -53,14 +53,14 @@ namespace Teste
             this.lblPrecoMin = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.lblTolerancia = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.tbTolerancia = new System.Windows.Forms.TrackBar();
             this.lblCont = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -83,6 +83,7 @@ namespace Teste
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(156, 20);
             this.txtId.TabIndex = 0;
+            this.txtId.TabStop = false;
             this.txtId.Visible = false;
             // 
             // panel2
@@ -110,7 +111,7 @@ namespace Teste
             this.btnEditar.Location = new System.Drawing.Point(442, 3);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(174, 79);
-            this.btnEditar.TabIndex = 31;
+            this.btnEditar.TabIndex = 6;
             this.btnEditar.Text = "Editar";
             this.btnEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEditar.UseVisualStyleBackColor = false;
@@ -131,7 +132,7 @@ namespace Teste
             this.btnSalvar.Location = new System.Drawing.Point(198, 3);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(174, 79);
-            this.btnSalvar.TabIndex = 30;
+            this.btnSalvar.TabIndex = 5;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSalvar.UseVisualStyleBackColor = false;
@@ -206,7 +207,7 @@ namespace Teste
             this.ckValorUnico.Location = new System.Drawing.Point(322, 387);
             this.ckValorUnico.Name = "ckValorUnico";
             this.ckValorUnico.Size = new System.Drawing.Size(135, 35);
-            this.ckValorUnico.TabIndex = 7;
+            this.ckValorUnico.TabIndex = 3;
             this.ckValorUnico.Text = "Desativado";
             this.ckValorUnico.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ckValorUnico.UseMnemonic = false;
@@ -231,7 +232,7 @@ namespace Teste
             this.txtPrecoHora.Location = new System.Drawing.Point(27, 168);
             this.txtPrecoHora.Name = "txtPrecoHora";
             this.txtPrecoHora.Size = new System.Drawing.Size(232, 44);
-            this.txtPrecoHora.TabIndex = 9;
+            this.txtPrecoHora.TabIndex = 0;
             this.txtPrecoHora.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPrecoHora.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecoHora_KeyPress);
             this.txtPrecoHora.Leave += new System.EventHandler(this.txtPrecoHora_Leave);
@@ -243,7 +244,7 @@ namespace Teste
             this.txtCobrancaMinima.Location = new System.Drawing.Point(27, 277);
             this.txtCobrancaMinima.Name = "txtCobrancaMinima";
             this.txtCobrancaMinima.Size = new System.Drawing.Size(232, 44);
-            this.txtCobrancaMinima.TabIndex = 10;
+            this.txtCobrancaMinima.TabIndex = 1;
             this.txtCobrancaMinima.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCobrancaMinima.TextChanged += new System.EventHandler(this.txtCobrancaMinima_TextChanged);
             this.txtCobrancaMinima.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCobrancaMinima_KeyPress);
@@ -263,7 +264,7 @@ namespace Teste
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(36, 241);
+            this.label4.Location = new System.Drawing.Point(35, 241);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(196, 29);
             this.label4.TabIndex = 12;
@@ -282,7 +283,7 @@ namespace Teste
             // lblPrecoUnico
             // 
             this.lblPrecoUnico.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecoUnico.Location = new System.Drawing.Point(-4, 286);
+            this.lblPrecoUnico.Location = new System.Drawing.Point(-1, 286);
             this.lblPrecoUnico.Name = "lblPrecoUnico";
             this.lblPrecoUnico.Size = new System.Drawing.Size(268, 39);
             this.lblPrecoUnico.TabIndex = 14;
@@ -296,7 +297,7 @@ namespace Teste
             this.txtValorUnico.Location = new System.Drawing.Point(27, 386);
             this.txtValorUnico.Name = "txtValorUnico";
             this.txtValorUnico.Size = new System.Drawing.Size(232, 44);
-            this.txtValorUnico.TabIndex = 16;
+            this.txtValorUnico.TabIndex = 2;
             this.txtValorUnico.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtValorUnico.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtValorUnico_KeyPress);
             this.txtValorUnico.Leave += new System.EventHandler(this.txtValorUnico_Leave);
@@ -314,7 +315,7 @@ namespace Teste
             // lblPrecoMin
             // 
             this.lblPrecoMin.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecoMin.Location = new System.Drawing.Point(-2, 177);
+            this.lblPrecoMin.Location = new System.Drawing.Point(-1, 177);
             this.lblPrecoMin.Name = "lblPrecoMin";
             this.lblPrecoMin.Size = new System.Drawing.Size(268, 39);
             this.lblPrecoMin.TabIndex = 19;
@@ -325,7 +326,7 @@ namespace Teste
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(27, 132);
+            this.label9.Location = new System.Drawing.Point(23, 132);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(221, 29);
             this.label9.TabIndex = 18;
@@ -335,7 +336,7 @@ namespace Teste
             // 
             this.panel6.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel6.Controls.Add(this.label8);
+            this.panel6.Controls.Add(this.lblTolerancia);
             this.panel6.Controls.Add(this.label10);
             this.panel6.Controls.Add(this.label3);
             this.panel6.Controls.Add(this.lblPrecoMin);
@@ -348,6 +349,26 @@ namespace Teste
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(271, 471);
             this.panel6.TabIndex = 20;
+            // 
+            // lblTolerancia
+            // 
+            this.lblTolerancia.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTolerancia.Location = new System.Drawing.Point(-1, 393);
+            this.lblTolerancia.Name = "lblTolerancia";
+            this.lblTolerancia.Size = new System.Drawing.Size(268, 39);
+            this.lblTolerancia.TabIndex = 21;
+            this.lblTolerancia.Text = "00 Minutos";
+            this.lblTolerancia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(-2, 350);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(271, 29);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "Tempo Tolerância Atual";
             // 
             // splitter3
             // 
@@ -395,13 +416,14 @@ namespace Teste
             this.tbTolerancia.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tbTolerancia.Enabled = false;
             this.tbTolerancia.Location = new System.Drawing.Point(27, 495);
-            this.tbTolerancia.Maximum = 50;
+            this.tbTolerancia.Maximum = 58;
             this.tbTolerancia.Name = "tbTolerancia";
             this.tbTolerancia.Size = new System.Drawing.Size(232, 45);
             this.tbTolerancia.SmallChange = 3;
-            this.tbTolerancia.TabIndex = 24;
+            this.tbTolerancia.TabIndex = 4;
             this.tbTolerancia.TickFrequency = 5;
             this.tbTolerancia.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.tbTolerancia.Value = 1;
             this.tbTolerancia.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
             // lblCont
@@ -413,26 +435,6 @@ namespace Teste
             this.lblCont.Size = new System.Drawing.Size(29, 31);
             this.lblCont.TabIndex = 25;
             this.lblCont.Text = "0";
-            // 
-            // label8
-            // 
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(-6, 393);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(268, 39);
-            this.label8.TabIndex = 21;
-            this.label8.Text = "00 Minutos";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(27, 350);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(218, 29);
-            this.label10.TabIndex = 20;
-            this.label10.Text = "Tempo Tolerância ";
             // 
             // FrmTelaFinanceiro
             // 
@@ -507,7 +509,7 @@ namespace Teste
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TrackBar tbTolerancia;
         private System.Windows.Forms.Label lblCont;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblTolerancia;
         private System.Windows.Forms.Label label10;
     }
 }

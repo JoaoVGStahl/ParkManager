@@ -74,7 +74,7 @@ namespace Teste
             this.button1.Location = new System.Drawing.Point(13, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(123, 82);
-            this.button1.TabIndex = 3;
+            this.button1.TabIndex = 6;
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -91,7 +91,7 @@ namespace Teste
             this.button2.Location = new System.Drawing.Point(693, 3);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(218, 82);
-            this.button2.TabIndex = 4;
+            this.button2.TabIndex = 9;
             this.button2.Text = "Pesquisar Ticket(F6)";
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button2.UseVisualStyleBackColor = false;
@@ -124,7 +124,7 @@ namespace Teste
             this.button5.Location = new System.Drawing.Point(436, 3);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(218, 82);
-            this.button5.TabIndex = 19;
+            this.button5.TabIndex = 8;
             this.button5.Text = "Imprimir";
             this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button5.UseVisualStyleBackColor = false;
@@ -163,7 +163,7 @@ namespace Teste
             this.btnEncerrar.Location = new System.Drawing.Point(179, 3);
             this.btnEncerrar.Name = "btnEncerrar";
             this.btnEncerrar.Size = new System.Drawing.Size(218, 82);
-            this.btnEncerrar.TabIndex = 16;
+            this.btnEncerrar.TabIndex = 7;
             this.btnEncerrar.Text = "Encerrar Ticket (F4)";
             this.btnEncerrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEncerrar.UseVisualStyleBackColor = false;
@@ -186,7 +186,7 @@ namespace Teste
             this.txtIdTicket.Location = new System.Drawing.Point(11, 40);
             this.txtIdTicket.Name = "txtIdTicket";
             this.txtIdTicket.Size = new System.Drawing.Size(150, 38);
-            this.txtIdTicket.TabIndex = 11;
+            this.txtIdTicket.TabIndex = 0;
             this.txtIdTicket.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label2
@@ -208,7 +208,7 @@ namespace Teste
             this.txtPlaca.MaxLength = 7;
             this.txtPlaca.Name = "txtPlaca";
             this.txtPlaca.Size = new System.Drawing.Size(180, 38);
-            this.txtPlaca.TabIndex = 12;
+            this.txtPlaca.TabIndex = 1;
             this.txtPlaca.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             this.txtPlaca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
@@ -252,7 +252,7 @@ namespace Teste
             this.dtpEntrada.Location = new System.Drawing.Point(411, 40);
             this.dtpEntrada.Name = "dtpEntrada";
             this.dtpEntrada.Size = new System.Drawing.Size(200, 38);
-            this.dtpEntrada.TabIndex = 21;
+            this.dtpEntrada.TabIndex = 2;
             this.dtpEntrada.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // dtpSaida
@@ -262,7 +262,7 @@ namespace Teste
             this.dtpSaida.Location = new System.Drawing.Point(646, 40);
             this.dtpSaida.Name = "dtpSaida";
             this.dtpSaida.Size = new System.Drawing.Size(200, 38);
-            this.dtpSaida.TabIndex = 22;
+            this.dtpSaida.TabIndex = 3;
             this.dtpSaida.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
             // 
             // cmbStatus
@@ -277,7 +277,7 @@ namespace Teste
             this.cmbStatus.Location = new System.Drawing.Point(872, 39);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(199, 39);
-            this.cmbStatus.TabIndex = 23;
+            this.cmbStatus.TabIndex = 4;
             this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // btnPesquisa
@@ -291,7 +291,7 @@ namespace Teste
             this.btnPesquisa.Location = new System.Drawing.Point(1086, 4);
             this.btnPesquisa.Name = "btnPesquisa";
             this.btnPesquisa.Size = new System.Drawing.Size(218, 80);
-            this.btnPesquisa.TabIndex = 24;
+            this.btnPesquisa.TabIndex = 5;
             this.btnPesquisa.Text = "Pesquisar Ticket(F6)";
             this.btnPesquisa.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPesquisa.UseVisualStyleBackColor = false;
@@ -367,6 +367,7 @@ namespace Teste
             this.dataGridView1.ShowEditingIcon = false;
             this.dataGridView1.Size = new System.Drawing.Size(1316, 499);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.TabStop = false;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);

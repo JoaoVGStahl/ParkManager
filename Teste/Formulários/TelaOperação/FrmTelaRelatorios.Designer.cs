@@ -148,6 +148,7 @@ namespace Teste
             this.label13.Size = new System.Drawing.Size(20, 24);
             this.label13.TabIndex = 9;
             this.label13.Text = "0";
+            this.label13.Click += new System.EventHandler(this.label13_Click);
             // 
             // label12
             // 
@@ -263,6 +264,7 @@ namespace Teste
             this.btnSair.TabIndex = 22;
             this.btnSair.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSair.UseVisualStyleBackColor = false;
+            this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
             // splitter1
             // 
@@ -467,7 +469,7 @@ namespace Teste
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.panel1);
             this.MaximumSize = new System.Drawing.Size(1336, 738);
-            this.MinimumSize = new System.Drawing.Size(1336, 738);
+            this.MinimumSize = new System.Drawing.Size(1336, 726);
             this.Name = "FrmTelaRelatorios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmTelaRelatorios";

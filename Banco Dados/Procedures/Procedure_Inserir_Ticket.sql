@@ -1,12 +1,10 @@
-USE [db_estacionamento]
-GO
-
-/****** Object:  StoredProcedure [dbo].[InsertTicket]    Script Date: 26/09/2021 02:38:10 ******/
+/****** Object:  StoredProcedure [dbo].[InsertTicket]    Script Date: 24/10/2021 13:59:08 ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
+
 
 
 CREATE OR ALTER PROCEDURE [dbo].[InsertTicket]

@@ -97,7 +97,7 @@
             this.btnCliente.Location = new System.Drawing.Point(0, 237);
             this.btnCliente.Name = "btnCliente";
             this.btnCliente.Size = new System.Drawing.Size(255, 77);
-            this.btnCliente.TabIndex = 22;
+            this.btnCliente.TabIndex = 1;
             this.btnCliente.Text = "Clientes";
             this.btnCliente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCliente.UseVisualStyleBackColor = false;
@@ -115,7 +115,7 @@
             this.btnVeiculos.Location = new System.Drawing.Point(0, 157);
             this.btnVeiculos.Name = "btnVeiculos";
             this.btnVeiculos.Size = new System.Drawing.Size(255, 77);
-            this.btnVeiculos.TabIndex = 15;
+            this.btnVeiculos.TabIndex = 0;
             this.btnVeiculos.Text = "Veículos";
             this.btnVeiculos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVeiculos.UseVisualStyleBackColor = false;
@@ -132,7 +132,7 @@
             this.btnSair.Location = new System.Drawing.Point(3, 565);
             this.btnSair.Name = "btnSair";
             this.btnSair.Size = new System.Drawing.Size(246, 77);
-            this.btnSair.TabIndex = 21;
+            this.btnSair.TabIndex = 2;
             this.btnSair.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSair.UseVisualStyleBackColor = false;
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
