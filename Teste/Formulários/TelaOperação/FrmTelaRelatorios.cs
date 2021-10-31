@@ -24,7 +24,7 @@ namespace Teste
 
         private void FrmTelaRelatorios_Load(object sender, EventArgs e)
         {
-            cmbCategoria.SelectedIndex = 0;
+
         }
 
         private void label13_Click(object sender, EventArgs e)

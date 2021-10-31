@@ -42,3 +42,10 @@ C:\Users\Valorant\ParkManager\Teste\obj\Debug\Teste.FrmTelaFinanceiro.resources
 C:\Users\Valorant\ParkManager\Teste\obj\Debug\Teste.FrmTelaRelatorios.resources
 C:\Users\spott\ParkManager\Teste\obj\Debug\Teste.FrmTelaRelatorios.resources
 C:\Users\spott\ParkManager\Teste\obj\Debug\Teste.FrmTelaMarca.resources
+C:\Users\spott\ParkManager\Teste\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\spott\ParkManager\Teste\bin\Debug\DirectX.Capture.dll
+C:\Users\spott\ParkManager\Teste\bin\Debug\DShowNET.dll
+C:\Users\spott\ParkManager\Teste\bin\Debug\itextsharp.dll
+C:\Users\spott\ParkManager\Teste\bin\Debug\itextsharp.xml
+C:\Users\spott\ParkManager\Teste\obj\Debug\ParkManager.csproj.ResolveComReference.cache
+C:\Users\spott\ParkManager\Teste\obj\Debug\ParkManager.csproj.CopyComplete

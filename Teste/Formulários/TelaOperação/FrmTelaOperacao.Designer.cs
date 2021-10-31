@@ -793,7 +793,6 @@ namespace Teste
             this.Text = "Menu Principal - ParkManager";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmTelaOperacao_FormClosing);
             this.Load += new System.EventHandler(this.FrmTelaOperacao_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmTelaOperacao_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picImagem)).EndInit();
