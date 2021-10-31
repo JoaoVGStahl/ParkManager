@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace Teste
 {
@@ -31,11 +26,7 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                List<SqlParameter> sp = new List<SqlParameter>()
-                {
-                    new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 15}
-                };
-                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                dt = banco.ExecuteProcedureReturnDataTable("dbo.Select_TelaCadastro_Veiculos");
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = dt;
             }
@@ -54,7 +45,7 @@ namespace Teste
                 {
                     new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 0}
                 };
-                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                dt = banco.ExecuteProcedureReturnDataTable("dbo.Funcoes_Pesquisa", sp);
                 if (dt.Rows.Count > 0)
                 {
                     cmbTipo.DataSource = null;
@@ -145,7 +136,7 @@ namespace Teste
                                 dt = VerificarVeiculo();
                                 if (dt.Rows.Count > 0)
                                 {
-                                    
+
                                     MessageBox.Show("Esta Placa já está cadastrada!", "Falha ao Salvar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     txtPlaca.Focus();
                                 }
@@ -197,7 +188,7 @@ namespace Teste
                     new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value=13},
                     new SqlParameter(){ParameterName="@Placa", SqlDbType = SqlDbType.VarChar, Value = txtPlaca.Text}
                 };
-                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                dt = banco.ExecuteProcedureReturnDataTable("dbo.Funcoes_Pesquisa", sp);
             }
             catch (Exception ex)
             {
@@ -212,10 +203,9 @@ namespace Teste
             {
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
-                    new SqlParameter(){ParameterName="@Flag",SqlDbType = SqlDbType.Int, Value = 17},
                     new SqlParameter(){ParameterName="@idCarro", SqlDbType = SqlDbType.Int, Value = Convert.ToInt32(txtId.Text)}
                 };
-                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                dt = banco.ExecuteProcedureReturnDataTable("dbo.Select_TicketAberto_Veiculo", sp);
             }
             catch (Exception ex)
             {
@@ -239,7 +229,7 @@ namespace Teste
                 {
                     sp.Add(new SqlParameter() { ParameterName = "@idCarro", SqlDbType = SqlDbType.Int, Value = txtId.Text });
                 }
-                int LinhasAfetadas = banco.EditData("dbo.Gerencia_Veiculo", sp);
+                int LinhasAfetadas = banco.ExecuteProcedureReturnInt("dbo.Gerencia_Veiculo", sp);
                 if (LinhasAfetadas > 0)
                 {
                     if (method == "Save")
@@ -285,7 +275,7 @@ namespace Teste
                     new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 1},
                     new SqlParameter(){ParameterName ="@Tipo", SqlDbType = SqlDbType.VarChar, Value = cmbTipo.Text}
                 };
-                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                dt = banco.ExecuteProcedureReturnDataTable("dbo.Funcoes_Pesquisa", sp);
                 if (dt.Rows.Count > 0)
                 {
                     cmbMarca.DataSource = null;
@@ -327,10 +317,9 @@ namespace Teste
                     DataTable dt = new DataTable();
                     List<SqlParameter> sp = new List<SqlParameter>()
                     {
-                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 16},
-                    new SqlParameter(){ParameterName="@idCarro",SqlDbType = SqlDbType.Int, Value = id}
+                        new SqlParameter(){ParameterName="@idCarro",SqlDbType = SqlDbType.Int, Value = id}
                     };
-                    dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                    dt = banco.ExecuteProcedureReturnDataTable("dbo.Select_Veiculo_Especifico", sp);
                     if (dt.Rows.Count > 0)
                     {
                         txtId.Text = dt.Rows[0]["ID"].ToString();
@@ -381,7 +370,7 @@ namespace Teste
                     new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 5},
                     new SqlParameter(){ParameterName ="@Placa", SqlDbType = SqlDbType.VarChar, Value = txtPlaca.Text}
                 };
-                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                dt = banco.ExecuteProcedureReturnDataTable("dbo.Funcoes_Pesquisa", sp);
             }
             catch (Exception ex)
             {
@@ -446,7 +435,7 @@ namespace Teste
                     new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 1},
                     new SqlParameter(){ParameterName="@idCarro",SqlDbType = SqlDbType.Int, Value = id}
                     };
-                int LinhasAfetadas = banco.EditData("dbo.Gerencia_Veiculo", sp);
+                int LinhasAfetadas = banco.ExecuteProcedureReturnInt("dbo.Gerencia_Veiculo", sp);
                 if (LinhasAfetadas > 0)
                 {
                     MessageBox.Show("Veiculo Excluido com sucesso!", "Exclusão bem sucedida!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -495,6 +484,26 @@ namespace Teste
         private void label7_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void FrmTelaVeiculos_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.KeyCode:
+                    break;
+
+                case Keys.F3:
+                    btnNovo.PerformClick();
+                    break;
+
+                case Keys.F5:
+                    btnSalvar.PerformClick();
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
 }

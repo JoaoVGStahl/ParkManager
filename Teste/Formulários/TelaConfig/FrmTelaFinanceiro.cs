@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.SqlClient;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace Teste
 {
@@ -42,7 +39,7 @@ namespace Teste
                 {
                     new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 14}
                 };
-                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                dt = banco.ExecuteProcedureReturnDataTable("dbo.Funcoes_Pesquisa", sp);
                 if (dt.Rows.Count > 0)
                 {
                     txtId.Text = dt.Rows[0]["ID"].ToString();
@@ -325,7 +322,7 @@ namespace Teste
                     new SqlParameter(){ParameterName="@Valor_Unico", SqlDbType = SqlDbType.Decimal, Value = VUnico},
                     new SqlParameter(){ParameterName="@Tolerancia", SqlDbType = SqlDbType.Time, Value = "00:" + tbTolerancia.Value + ":00"}
                 };
-                LinhasAfetadas = banco.EditData("dbo.Salvar_Valor", sp);
+                LinhasAfetadas = banco.ExecuteProcedureReturnInt("dbo.Salvar_Valor", sp);
                 if (LinhasAfetadas > 0)
                 {
                     try

@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
-using System.Text.RegularExpressions;
 using System.IO.Ports;  // necessário para ter acesso as portas
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace Teste
 {
@@ -129,11 +124,7 @@ namespace Teste
                 DataTable dt = new DataTable();
                 try
                 {
-                    List<SqlParameter> sp = new List<SqlParameter>()
-                        {
-                        new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 12}
-                        };
-                    dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                    dt = banco.ExecuteProcedureReturnDataTable("dbo.Pesquisa_TelaDesenvolvedor");
                     if (dt.Rows.Count > 0)
                     {
                         txtID.Text = dt.Rows[0]["id"].ToString();
@@ -173,15 +164,15 @@ namespace Teste
             Properties.Settings.Default["ArquivoAuditoria"] = txtCaminho.Text;
             Properties.Settings.Default["SenhaRoot"] = txtConfirmSenhaRoot.Text;
             Properties.Settings.Default.Save();
-            if(txtID.Text != "")
+            if (txtID.Text != "")
             {
                 SalvarBanco(StrConn, "Edit");
             }
-            else if(txtID.Text == "")
+            else if (txtID.Text == "")
             {
                 SalvarBanco(StrConn, "Save");
             }
-            
+
 
         }
         private void SalvarBanco(string StrConn, string method)
@@ -196,11 +187,11 @@ namespace Teste
                     new SqlParameter(){ParameterName = "@Porta_Arduino", SqlDbType = SqlDbType.NVarChar, Value = txtPortaArduino.Text},
                     new SqlParameter(){ParameterName = "@String_Conn", SqlDbType = SqlDbType.NVarChar, Value = StrConn}
                 };
-                if(method == "Edit")
+                if (method == "Edit")
                 {
                     sp.Add(new SqlParameter() { ParameterName = "@Id_Estacionamento", SqlDbType = SqlDbType.Int, Value = txtID.Text });
                 }
-                result = banco.EditData("dbo.Parametros", sp);
+                result = banco.ExecuteProcedureReturnInt("dbo.Parametros", sp);
                 if (result > 0)
                 {
                     txtCaminho.Enabled = false;
@@ -348,6 +339,11 @@ namespace Teste
         }
 
         private void cbPortaArduino_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
 
         }

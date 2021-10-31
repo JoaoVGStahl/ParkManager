@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Data;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 namespace Teste
 {
@@ -15,23 +15,22 @@ namespace Teste
             conexao.Open();
             return conexao;
         }
-        
-        public DataTable InsertData(string NameProcedure, List<SqlParameter> sp = null)
+        public DataTable ExecuteProcedureReturnDataTable(string NameProcedure, List<SqlParameter> sp = null)
         {
             SqlDataAdapter da = null;
-            SqlCommand cmd =null;
+            SqlCommand cmd = null;
             DataTable dt = new DataTable();
             try
             {
                 var connection = ConexaoBanco();
                 cmd = new SqlCommand(NameProcedure, connection);
                 cmd.CommandType = CommandType.StoredProcedure;
-                if(sp != null)
+                if (sp != null)
                 {
                     cmd.Parameters.AddRange(sp.ToArray());
-                    da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);                    
                 }
+                da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
                 return dt;
             }
             catch (Exception)
@@ -44,11 +43,10 @@ namespace Teste
                 conexao.Close();
                 da.Dispose();
                 cmd.Dispose();
-                dt.Dispose(); 
+                dt.Dispose();
             }
-            
         }
-        public int EditData(string NameProcedure, List<SqlParameter> sp = null)
+        public int ExecuteProcedureReturnInt(string NameProcedure, List<SqlParameter> sp = null)
         {
             SqlCommand cmd = null;
             int LinesAffected = 0;
@@ -61,16 +59,11 @@ namespace Teste
                 {
                     cmd.Parameters.AddRange(sp.ToArray());
                     LinesAffected = cmd.ExecuteNonQuery();
-
                 }
                 return LinesAffected;
-
-
-
             }
             catch (Exception)
             {
-
                 throw;
             }
             finally
@@ -78,7 +71,33 @@ namespace Teste
                 conexao.Close();
                 cmd.Dispose();
             }
-
+        }
+        public int ExecuteProcedureWithReturnValue(string NameProcedure, List<SqlParameter> sp = null)
+        {
+            SqlCommand cmd = null;
+            try
+            {
+                var connection = ConexaoBanco();
+                cmd = new SqlCommand(NameProcedure, connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                if (sp != null)
+                {
+                    cmd.Parameters.AddRange(sp.ToArray());
+                }
+                SqlParameter ReturnValue = cmd.Parameters.Add("@return_value", SqlDbType.Int);
+                ReturnValue.Direction = ParameterDirection.ReturnValue;
+                cmd.ExecuteNonQuery();
+                return Convert.ToInt32(ReturnValue.Value);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                conexao.Close();
+                cmd.Dispose();
+            }
         }
     }
 }

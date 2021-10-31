@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace Teste
 {
@@ -34,10 +29,9 @@ namespace Teste
                 DataTable dt = new DataTable();
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
-                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 19},
                     new SqlParameter(){ParameterName="@Status", SqlDbType = SqlDbType.Int, Value = cmbStatus.SelectedIndex}
                 };
-                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                dt = banco.ExecuteProcedureReturnDataTable("dbo.Select_Cliente_Grid", sp);
                 if (dt.Rows.Count > 0)
                 {
                     dataGridView1.DataSource = dt;
@@ -72,17 +66,16 @@ namespace Teste
                     DataTable dt = new DataTable();
                     List<SqlParameter> sp = new List<SqlParameter>()
                     {
-                        new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 20},
                         new SqlParameter(){ParameterName="@idCliente", SqlDbType = SqlDbType.Int, Value = id}
                     };
-                    dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                    dt = banco.ExecuteProcedureReturnDataTable("dbo.Select_Cliente", sp);
                     if (dt.Rows.Count > 0)
                     {
                         txtID.Text = dt.Rows[0]["ID"].ToString();
                         txtNome.Text = dt.Rows[0]["Nome"].ToString();
                         mskTelefone.Text = dt.Rows[0]["Telefone"].ToString();
                         cmbStatus.SelectedIndex = Convert.ToInt32(dt.Rows[0]["Status"]);
-                        
+
                     }
                     else
                     {
@@ -143,7 +136,7 @@ namespace Teste
                     {
                         MessageBox.Show("Não é possivel Excluir este cliente, pois ele possui um Ticket em Aberto!", "Cliente NÃO Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                } 
+                }
             }
         }
         private void ExcluirCliente()
@@ -161,7 +154,7 @@ namespace Teste
                         new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value=1},
                         new SqlParameter(){ParameterName="@idCliente", SqlDbType = SqlDbType.Int, Value = id }
                     };
-                    int LinhasAfetadas = banco.EditData("dbo.Gerencia_Cliente", sp);
+                    int LinhasAfetadas = banco.ExecuteProcedureReturnInt("dbo.Gerencia_Cliente", sp);
                     if (LinhasAfetadas > 0)
                     {
                         MessageBox.Show("Cadastro Excluido com Sucesso!", "Exclusão bem sucedida!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -199,7 +192,7 @@ namespace Teste
                         {
                             DataTable dt = new DataTable();
                             dt = VerificarTicket();
-                            if(dt.Rows.Count > 0)
+                            if (dt.Rows.Count > 0)
                             {
                                 if (Convert.ToInt32(dt.Rows[0]["QTD"]) == 0)
                                 {
@@ -232,15 +225,13 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                
+
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
-
-                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value=21},
                     new SqlParameter(){ParameterName="@Nome", SqlDbType = SqlDbType.VarChar, Value = txtNome.Text },
                     new SqlParameter(){ParameterName="@Telefone", SqlDbType = SqlDbType.VarChar, Value = mskTelefone.Text }
                 };
-                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                dt = banco.ExecuteProcedureReturnDataTable("dbo.Select_Cliente_Nome_Telefone", sp);
                 if (dt.Rows.Count > 0)
                 {
                     MessageBox.Show("Este Cliente e Telefone já está cadastrado! \n ID:" + dt.Rows[0]["ID"].ToString(), "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -267,10 +258,9 @@ namespace Teste
             {
                 List<SqlParameter> sp = new List<SqlParameter>()
                     {
-                        new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value= 22},
                         new SqlParameter(){ParameterName="@idCliente", SqlDbType = SqlDbType.Int, Value = txtID.Text},
                     };
-                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                dt = banco.ExecuteProcedureReturnDataTable("dbo.Select_QtdTicket_Cliente", sp);
             }
             catch (Exception ex)
             {
@@ -293,15 +283,16 @@ namespace Teste
                 {
                     sp.Add(new SqlParameter() { ParameterName = "@idCliente", SqlDbType = SqlDbType.Int, Value = txtID.Text });
                 }
-                int LinhasAfetadas = banco.EditData("dbo.Gerencia_Cliente",sp);
-                if(LinhasAfetadas > 0)
+                int LinhasAfetadas = banco.ExecuteProcedureReturnInt("dbo.Gerencia_Cliente", sp);
+                if (LinhasAfetadas > 0)
                 {
-                    if(mode == "Save")
+                    if (mode == "Save")
                     {
                         MessageBox.Show("Cliente Adionado com sucesso!", "Cliente Adicionado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         CarregarGrid();
                         Globais.RegistrarLog(Globais.Login + " Adicionou o Cliente:" + txtNome.Text + " Telefone:" + mskTelefone.Text);
-                    }else if(mode == "Edit")
+                    }
+                    else if (mode == "Edit")
                     {
                         MessageBox.Show("Cliente Editado com sucesso!", "Cliente Salvo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Globais.RegistrarLog(Globais.Login + " Alterou o Cliente ID:" + txtID.Text + ".");
@@ -310,10 +301,11 @@ namespace Teste
                 }
                 else
                 {
-                    if(mode == "Save")
+                    if (mode == "Save")
                     {
                         MessageBox.Show("Falha ao adicionar Cliente", "Cliente NÃO Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }else if(mode == "Edit")
+                    }
+                    else if (mode == "Edit")
                     {
                         MessageBox.Show("Falha ao Editar Cliente", "Cliente NÃO Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -333,6 +325,26 @@ namespace Teste
             txtNome.Enabled = true;
             mskTelefone.Enabled = true;
             cmbStatus.Enabled = true;
+        }
+
+        private void FrmTelaCliente_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.KeyCode:
+                    break;
+
+                case Keys.F3:
+                    btnNovo.PerformClick();
+                    break;
+
+                case Keys.F5:
+                    btnSalvar.PerformClick();
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
 }

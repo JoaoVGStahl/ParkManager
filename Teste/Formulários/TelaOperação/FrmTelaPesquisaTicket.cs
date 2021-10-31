@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Teste
 {
@@ -36,7 +31,7 @@ namespace Teste
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows[0].Cells["Status"].Value.ToString() == "Ativo" )
+            if (dataGridView1.SelectedRows[0].Cells["Status"].Value.ToString() == "Ativo")
             {
                 dataGridView1.SelectedRows[0].Cells["Status"].Value.ToString();
                 Globais.IdTicket = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
@@ -174,30 +169,29 @@ namespace Teste
         }
         private void DefinirParametros()
         {
-            if(txtIdTicket.Text == "")
+            if (txtIdTicket.Text == "")
             {
-                PesquisarTicket(placa: txtPlaca.Text, DataEntrada: dtpEntrada.Value.ToString(), DataSaida: dtpSaida.Value.ToString(), status:cmbStatus.SelectedIndex.ToString());
+                PesquisarTicket(placa: txtPlaca.Text, DataEntrada: dtpEntrada.Value.ToString(), DataSaida: dtpSaida.Value.ToString(), status: cmbStatus.SelectedIndex.ToString());
             }
             else
             {
                 PesquisarTicket(IdTicket: txtIdTicket.Text, status: cmbStatus.SelectedIndex.ToString());
             }
         }
-        private void PesquisarTicket(string IdTicket = null,string placa = null, string DataEntrada = null,string DataSaida = null, string status = null )
+        private void PesquisarTicket(string IdTicket = null, string placa = null, string DataEntrada = null, string DataSaida = null, string status = null)
         {
             DataTable dt = new DataTable();
             try
             {
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
-                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 18},
                     new SqlParameter(){ParameterName="@idTicket", SqlDbType = SqlDbType.Int, Value = IdTicket},
                     new SqlParameter(){ParameterName="@Placa", SqlDbType = SqlDbType.VarChar, Value = placa},
                     new SqlParameter(){ParameterName="@DataEntrada", SqlDbType = SqlDbType.DateTime, Value = DataEntrada},
                     new SqlParameter(){ParameterName="@DataSaida", SqlDbType = SqlDbType.DateTime, Value = DataSaida},
                     new SqlParameter(){ParameterName = "@Status", SqlDbType = SqlDbType.Int, Value = status}
                 };
-                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                dt = banco.ExecuteProcedureReturnDataTable("dbo.Select_Tela_Pesquisa", sp);
                 dataGridView1.DataSource = dt;
             }
             catch (Exception ex)

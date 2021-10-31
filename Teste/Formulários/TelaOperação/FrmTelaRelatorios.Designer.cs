@@ -54,11 +54,14 @@ namespace Teste
             this.panel3 = new System.Windows.Forms.Panel();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.btnCliente = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.btnFinanceiro = new System.Windows.Forms.Button();
+            this.btnVeiculo = new System.Windows.Forms.Button();
+            this.btnFluxo = new System.Windows.Forms.Button();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label17 = new System.Windows.Forms.Label();
-            this.cmbCategoria = new System.Windows.Forms.ComboBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -66,6 +69,7 @@ namespace Teste
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.panel4.SuspendLayout();
+            this.panel7.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -288,7 +292,7 @@ namespace Teste
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(0, 98);
+            this.chart1.Location = new System.Drawing.Point(0, 112);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             this.chart1.PaletteCustomColors = new System.Drawing.Color[] {
@@ -298,24 +302,50 @@ namespace Teste
             series1.Name = "Series1";
             series1.YValuesPerPoint = 4;
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(1052, 282);
+            this.chart1.Size = new System.Drawing.Size(1052, 268);
             this.chart1.TabIndex = 30;
             this.chart1.Text = "chart1";
             // 
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel4.Controls.Add(this.button5);
+            this.panel4.Controls.Add(this.panel7);
             this.panel4.Controls.Add(this.dateTimePicker2);
             this.panel4.Controls.Add(this.dateTimePicker1);
-            this.panel4.Controls.Add(this.label17);
-            this.panel4.Controls.Add(this.cmbCategoria);
             this.panel4.Controls.Add(this.chart1);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(265, 0);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1055, 380);
             this.panel4.TabIndex = 34;
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.Silver;
+            this.panel7.Controls.Add(this.btnCliente);
+            this.panel7.Controls.Add(this.button5);
+            this.panel7.Controls.Add(this.btnFinanceiro);
+            this.panel7.Controls.Add(this.btnVeiculo);
+            this.panel7.Controls.Add(this.btnFluxo);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel7.Location = new System.Drawing.Point(0, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(1051, 52);
+            this.panel7.TabIndex = 1;
+            // 
+            // btnCliente
+            // 
+            this.btnCliente.FlatAppearance.BorderSize = 0;
+            this.btnCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCliente.Image = ((System.Drawing.Image)(resources.GetObject("btnCliente.Image")));
+            this.btnCliente.Location = new System.Drawing.Point(479, 6);
+            this.btnCliente.Name = "btnCliente";
+            this.btnCliente.Size = new System.Drawing.Size(133, 38);
+            this.btnCliente.TabIndex = 44;
+            this.btnCliente.Text = "Cliente";
+            this.btnCliente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCliente.UseVisualStyleBackColor = true;
             // 
             // button5
             // 
@@ -325,59 +355,77 @@ namespace Teste
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
-            this.button5.Location = new System.Drawing.Point(877, 16);
+            this.button5.Location = new System.Drawing.Point(892, 2);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(129, 63);
+            this.button5.Size = new System.Drawing.Size(149, 48);
             this.button5.TabIndex = 39;
             this.button5.Text = "Imprimir";
             this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button5.UseVisualStyleBackColor = false;
+            // 
+            // btnFinanceiro
+            // 
+            this.btnFinanceiro.FlatAppearance.BorderSize = 0;
+            this.btnFinanceiro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFinanceiro.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFinanceiro.Image = ((System.Drawing.Image)(resources.GetObject("btnFinanceiro.Image")));
+            this.btnFinanceiro.Location = new System.Drawing.Point(340, 6);
+            this.btnFinanceiro.Name = "btnFinanceiro";
+            this.btnFinanceiro.Size = new System.Drawing.Size(133, 38);
+            this.btnFinanceiro.TabIndex = 45;
+            this.btnFinanceiro.Text = "Financeiro";
+            this.btnFinanceiro.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnFinanceiro.UseVisualStyleBackColor = true;
+            // 
+            // btnVeiculo
+            // 
+            this.btnVeiculo.FlatAppearance.BorderSize = 0;
+            this.btnVeiculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVeiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVeiculo.Image = ((System.Drawing.Image)(resources.GetObject("btnVeiculo.Image")));
+            this.btnVeiculo.Location = new System.Drawing.Point(618, 6);
+            this.btnVeiculo.Name = "btnVeiculo";
+            this.btnVeiculo.Size = new System.Drawing.Size(133, 38);
+            this.btnVeiculo.TabIndex = 46;
+            this.btnVeiculo.Text = "Veículo";
+            this.btnVeiculo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnVeiculo.UseVisualStyleBackColor = true;
+            // 
+            // btnFluxo
+            // 
+            this.btnFluxo.FlatAppearance.BorderSize = 0;
+            this.btnFluxo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFluxo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFluxo.Image = ((System.Drawing.Image)(resources.GetObject("btnFluxo.Image")));
+            this.btnFluxo.Location = new System.Drawing.Point(201, 6);
+            this.btnFluxo.Name = "btnFluxo";
+            this.btnFluxo.Size = new System.Drawing.Size(133, 38);
+            this.btnFluxo.TabIndex = 43;
+            this.btnFluxo.Text = "Fluxo";
+            this.btnFluxo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnFluxo.UseVisualStyleBackColor = true;
             // 
             // dateTimePicker2
             // 
             this.dateTimePicker2.CustomFormat = "dd \'de\'MMMM\'de\' yyyy";
             this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(351, 31);
+            this.dateTimePicker2.Location = new System.Drawing.Point(201, 77);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(238, 29);
             this.dateTimePicker2.TabIndex = 38;
-            this.dateTimePicker2.Value = new System.DateTime(2021, 10, 15, 0, 0, 0, 0);
+            this.dateTimePicker2.Value = new System.DateTime(2021, 10, 23, 0, 0, 0, 0);
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.CustomFormat = "dd \'de\'MMMM\'de\' yyyy";
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(614, 32);
+            this.dateTimePicker1.Location = new System.Drawing.Point(513, 77);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(238, 29);
             this.dateTimePicker1.TabIndex = 37;
-            this.dateTimePicker1.Value = new System.DateTime(2021, 10, 15, 0, 0, 0, 0);
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(42, 31);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(111, 25);
-            this.label17.TabIndex = 34;
-            this.label17.Text = "Categoria:";
-            // 
-            // cmbCategoria
-            // 
-            this.cmbCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbCategoria.FormattingEnabled = true;
-            this.cmbCategoria.Items.AddRange(new object[] {
-            "Fluxo",
-            "Financeiro",
-            "Cliente",
-            "Veículo"});
-            this.cmbCategoria.Location = new System.Drawing.Point(159, 29);
-            this.cmbCategoria.Name = "cmbCategoria";
-            this.cmbCategoria.Size = new System.Drawing.Size(167, 32);
-            this.cmbCategoria.TabIndex = 33;
+            this.dateTimePicker1.Value = new System.DateTime(2021, 10, 23, 0, 0, 0, 0);
             // 
             // panel5
             // 
@@ -432,7 +480,7 @@ namespace Teste
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
+            this.panel7.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -463,12 +511,15 @@ namespace Teste
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.ComboBox cmbCategoria;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Button btnCliente;
+        private System.Windows.Forms.Button btnFinanceiro;
+        private System.Windows.Forms.Button btnVeiculo;
+        private System.Windows.Forms.Button btnFluxo;
     }
 }

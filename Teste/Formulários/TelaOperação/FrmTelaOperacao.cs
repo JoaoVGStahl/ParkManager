@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
-using System.Text.RegularExpressions;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace Teste
 {
@@ -54,17 +50,18 @@ namespace Teste
                 PopularComboTipo();
                 ContadorTicket();
                 CarregarParametros();
-                if(!IniciaCamera())
+                if (!IniciaCamera())
                 {
                     picCam.Visible = false;
                     picImagem.Image = picImagem.InitialImage;
                     picImagem.Visible = true;
                     MessageBox.Show("Câmera não encontrada!", "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }else
+                }
+                else
                 {
                     picImagem.Visible = false;
                     picCam.Visible = true;
-                } 
+                }
             }
         }
         private void CarregarCores()
@@ -87,11 +84,7 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                List<SqlParameter> sp = new List<SqlParameter>()
-                {
-                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 0}
-                };
-                dt = banco.InsertData(NameProcedure: "dbo.Funcoes_Pesquisa", sp: sp);
+                dt = banco.ExecuteProcedureReturnDataTable(NameProcedure: "dbo.ComboBox_Tipo");
                 cmbTipo.DataSource = null;
                 cmbTipo.DataSource = dt;
                 cmbTipo.ValueMember = "id_automovel";
@@ -110,11 +103,7 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                List<SqlParameter> sp = new List<SqlParameter>()
-                {
-                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 2}
-                };
-                dt = banco.InsertData(NameProcedure: "dbo.Funcoes_Pesquisa", sp: sp);
+                dt = banco.ExecuteProcedureReturnDataTable(NameProcedure: "dbo.Tickets_Abertos");
                 lblQtdTicket.Text = dt.Rows[0]["Ticket's Abertos"].ToString();
             }
             catch (Exception ex)
@@ -132,20 +121,16 @@ namespace Teste
             try
             {
                 DataTable dt = new DataTable();
-                List<SqlParameter> sp = new List<SqlParameter>()
-                {
-                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 14}
-                };
-                dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
+                dt = banco.ExecuteProcedureReturnDataTable("dbo.Parametros_Sistema");
                 if (dt.Rows.Count > 0)
                 {
-                    
-                    Globais.ValorHora = Convert.ToDecimal(dt.Rows[0].ItemArray[1]);
-                    Globais.ValorMinimo = Convert.ToDecimal(dt.Rows[0].ItemArray[2]);
-                    Globais.ValorUnico = Convert.ToDecimal(dt.Rows[0].ItemArray[3]);
-                    TimeSpan ts = Convert.ToDateTime(dt.Rows[0].ItemArray[4].ToString()) - Convert.ToDateTime("00:00:00");
+
+                    Globais.ValorHora = Convert.ToDecimal(dt.Rows[0]["Valor Hora"]);
+                    Globais.ValorMinimo = Convert.ToDecimal(dt.Rows[0]["Valor Minimo"]);
+                    Globais.ValorUnico = Convert.ToDecimal(dt.Rows[0]["Valor Unico"]);
+                    TimeSpan ts = Convert.ToDateTime(dt.Rows[0]["Tolerancia"].ToString()) - Convert.ToDateTime("00:00:00");
                     Globais.Tolerencia = ts;
-                    Properties.Settings.Default["ArquivoAuditoria"] = dt.Rows[0].ItemArray[5].ToString();
+                    Properties.Settings.Default["ArquivoAuditoria"] = dt.Rows[0]["Caminho Log"].ToString();
                     Properties.Settings.Default.Save();
                 }
                 else
@@ -170,12 +155,12 @@ namespace Teste
                 int quantCam = CamContainer.VideoInputDevices.Count;
                 if (quantCam > 0)
                 {
-                    for ( int i = 0; i < quantCam; i++)
+                    for (int i = 0; i < quantCam; i++)
                     {
 
                         // obtém o dispositivo de entrada do vídeo
                         Camera = CamContainer.VideoInputDevices[i];
-                        
+
                         // inicializa a Captura usando o dispositivo
                         CaptureInfo = new DirectX.Capture.Capture(Camera, null)
                         {
@@ -193,7 +178,7 @@ namespace Teste
                             Cam = true;
 
                         }
-                        
+
                         // Se o dispositivo foi encontrado e inicializado então sai sem checar o resto
                         break;
                     }
@@ -215,7 +200,7 @@ namespace Teste
             {
                 capturaImagem = frame.Image;
                 this.picImagem.Image = capturaImagem;
-                SalvarImagem();                            }
+            }
             catch (Exception ex)
             {
                 MessageBox.Show("Erro " + ex.Message);
@@ -223,7 +208,7 @@ namespace Teste
         }
 
         //Novo
-        private void CapturarFoto(string placa)
+        private void CapturarFoto()
         {
             try
             {
@@ -236,15 +221,16 @@ namespace Teste
         }
 
         //Novo
-        private void SalvarImagem()
+        private void SalvarImagem(string placa)
         {
-            if(Inicializacao == 0)
+            if (Inicializacao == 0)
             {
                 string caminhoImagemSalva = @"c:\ParkManager\fotos\";
-                caminhoImagemSalva += "veiculo_" + txtPlaca.Text + DateTime.Now.ToShortDateString().Replace("/", "_") + DateTime.Now.ToLongTimeString().Replace(":", "_") + ".jpg";
+                caminhoImagemSalva += "veiculo_" + placa + "_" + DateTime.Now.ToShortDateString().Replace("/", "-") + "_" + DateTime.Now.ToLongTimeString().Replace(":", "-") + ".jpg";
                 Globais.CaminhoFoto = caminhoImagemSalva;
                 try
                 {
+                    CapturarFoto();
                     if (picImagem.Image != null)
                     {
                         picImagem.Image.Save(Globais.CaminhoFoto, ImageFormat.Jpeg);
@@ -258,7 +244,7 @@ namespace Teste
                 {
                     Inicializacao = 1;
                 }
-            }         
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -281,43 +267,15 @@ namespace Teste
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            bool caixa;
+
             //Caso for digitado 7 caracteres na caixa de texto da placa, Ativa algumas funções
 
             if (txtPlaca.TextLength == 7)
             {
                 txtNome.Enabled = true;
                 mskTelefone.Enabled = true;
-                List<SqlParameter> sp = new List<SqlParameter>()
-                {
-                    new SqlParameter(){ParameterName= "@Flag", SqlDbType = SqlDbType.Int, Value = 13 },
-                    new SqlParameter(){ParameterName= "@Placa", SqlDbType = SqlDbType.VarChar, Value = txtPlaca.Text}
-                };
-                try
-                {
-                    DataTable dt = new DataTable();
-                    dt = banco.InsertData("dbo.Funcoes_Pesquisa", sp);
-                    if (dt.Rows.Count > 0)
-                    {
-                        cmbTipo.Text = dt.Rows[0].ItemArray[1].ToString();
-                        cmbMarca.Text = dt.Rows[0].ItemArray[2].ToString();
-                        cmbTipo.Enabled = false;
-                        cmbMarca.Enabled = false;
-                        btnPesquisaTicket.Enabled = true;
-                        btnIniciar.Enabled = true;
-                    }
-                    else
-                    {
-                        caixa = true;
-                        AtivarFuncoes(caixa);
-                    }
-                    dt.Dispose();
-                }
-                catch (Exception ex)
-                {
+                CarregarVeiculo();
 
-                    MessageBox.Show(ex.Message, "Falha ao Consultar a placa do veiculo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
             }
             else
             {
@@ -330,6 +288,38 @@ namespace Teste
 
             }
 
+        }
+        private void CarregarVeiculo()
+        {
+            bool caixa;
+            try
+            {
+                List<SqlParameter> sp = new List<SqlParameter>()
+                    {
+                        new SqlParameter(){ParameterName= "@Placa", SqlDbType = SqlDbType.VarChar, Value = txtPlaca.Text}
+                    };
+                DataTable dt = new DataTable();
+                dt = banco.ExecuteProcedureReturnDataTable("dbo.Pesquisa_Info_Placa", sp);
+                if (dt.Rows.Count > 0)
+                {
+                    cmbTipo.Text = dt.Rows[0]["Tipo"].ToString();
+                    cmbMarca.Text = dt.Rows[0]["Marca"].ToString();
+                    cmbTipo.Enabled = false;
+                    cmbMarca.Enabled = false;
+                    btnPesquisaTicket.Enabled = true;
+                    btnIniciar.Enabled = true;
+                }
+                else
+                {
+                    caixa = true;
+                    AtivarFuncoes(caixa);
+                }
+                dt.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Falha ao Consultar a placa do veiculo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void AtivarFuncoes(bool caixa)
         {
@@ -427,17 +417,21 @@ namespace Teste
             {
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
-                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 7},
                     new SqlParameter(){ParameterName="@Placa", SqlDbType = SqlDbType.VarChar, Value = placa}
                 };
-                dt = banco.InsertData(NameProcedure: "dbo.Funcoes_Pesquisa", sp: sp);
-                if (dt.Rows.Count > 0)
+                dt = banco.ExecuteProcedureReturnDataTable(NameProcedure: "dbo.Pesquisa_TicketAberto_Placa", sp: sp);
+                if (Convert.ToInt32(dt.Rows[0]["QTD"]) > 0)
                 {
                     MessageBox.Show("Já existe um ticket em andamento para este veiculo!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     LimparCaixas();
                 }
                 else
                 {
+                    if (Camera != null && CamContainer.VideoInputDevices.Count > 0)
+                    {
+                        Inicializacao = 0;
+                        SalvarImagem(placa);
+                    }
                     InserirTicket(placa, nome, telefone);
                 }
             }
@@ -456,8 +450,6 @@ namespace Teste
             string marca = cmbMarca.Text, tipo = cmbTipo.Text;
             try
             {
-                int idTicket;
-                DataTable dt = new DataTable();
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
                     new SqlParameter(){ParameterName = "@idUsuario", SqlDbType = SqlDbType.Int, Value = Globais.IdUsuario},
@@ -471,32 +463,20 @@ namespace Teste
                     new SqlParameter() { ParameterName = "@Caminho_Foto", SqlDbType = SqlDbType.NVarChar, Value = Globais.CaminhoFoto }
 
                 };
-               
-                dt = banco.InsertData("dbo.InsertTicket", sp);
+                int idTicket = banco.ExecuteProcedureWithReturnValue(NameProcedure: "dbo.InsertTicket", sp: sp);
                 //Verifica se houve algum retorno da procedure
-                if (dt.Rows.Count > 0)
+                if (idTicket > 0)
                 {
-                    idTicket = Convert.ToInt32(dt.Rows[0].ItemArray[0]);
-                    if (idTicket > 0)
-                    {
-                        
-                        ContadorTicket();
-                        LimparCaixas();
-                        Globais.RegistrarLog(Globais.Login + " Inicou o Ticket #" + idTicket);
-                        dt.Dispose();
-                        sp.Clear();
-                        MessageBox.Show("Ticket Iniciado com sucesso! \n #Ticket:" + idTicket, "Ticket Iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Falha ao iniciar Ticket!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    ContadorTicket();
+                    LimparCaixas();
+                    Globais.RegistrarLog(Globais.Login + " Inicou o Ticket #" + idTicket);
+                    sp.Clear();
+                    MessageBox.Show("Ticket Iniciado com sucesso! \n #Ticket:" + idTicket, "Ticket Iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                 }
                 else
                 {
                     MessageBox.Show("Falha ao iniciar Ticket!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
             }
             catch (Exception ex)
             {
@@ -541,10 +521,9 @@ namespace Teste
                 {
                     List<SqlParameter> sp = new List<SqlParameter>()
                     {
-                        new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 1},
                         new SqlParameter(){ParameterName="@Tipo", SqlDbType = SqlDbType.VarChar,Value = tipo}
                     };
-                    dt = banco.InsertData(NameProcedure: "dbo.Funcoes_Pesquisa", sp: sp);
+                    dt = banco.ExecuteProcedureReturnDataTable(NameProcedure: "dbo.ComboBox_Marca", sp: sp);
                     //Limpar o DataSource do combo
                     cmbMarca.DataSource = null;
                     //Seleciona o DataTable como o DataSoucer do combo
@@ -570,16 +549,16 @@ namespace Teste
         }
         private void PreencherLabels(DataTable dt)
         {
-            string CaminhoFoto = dt.Rows[0].ItemArray[8].ToString();
+            string CaminhoFoto = dt.Rows[0]["Caminho Foto"].ToString();
 
             //Preenchendo as labels com as informações do banco
-            Globais.IdTicket = Convert.ToInt32(dt.Rows[0].ItemArray[0]);
-            lblTipo.Text = Convert.ToString(dt.Rows[0].ItemArray[1]); //Tipo
-            lblMarca.Text = Convert.ToString(dt.Rows[0].ItemArray[2]);//Marca
-            lblPlaca.Text = Convert.ToString(dt.Rows[0].ItemArray[3]);//Placa
-            txtNomeP.Text = Convert.ToString(dt.Rows[0].ItemArray[4]);//Nome
-            txtTelefoneP.Text = Convert.ToString(dt.Rows[0].ItemArray[5]);// Telefone
-            lblHrEntrada.Text = Convert.ToString(dt.Rows[0].ItemArray[6]) + " " + Convert.ToString(dt.Rows[0].ItemArray[7]);// Hora + Data
+            Globais.IdTicket = Convert.ToInt32(dt.Rows[0]["#Ticket"]);
+            lblTipo.Text = dt.Rows[0]["Tipo"].ToString(); //Tipo
+            lblMarca.Text = dt.Rows[0]["Marca"].ToString();//Marca
+            lblPlaca.Text = dt.Rows[0]["Placa"].ToString();//Placa
+            txtNomeP.Text = dt.Rows[0]["Nome Cliente"].ToString();//Nome
+            txtTelefoneP.Text = dt.Rows[0]["Telefone"].ToString();// Telefone
+            lblHrEntrada.Text = dt.Rows[0]["Hora Entrada"].ToString() + " " + dt.Rows[0]["Data Entrada"].ToString();// Hora + Data
             picCam.Visible = false;
             picImagem.Visible = true;
             if (CaminhoFoto != @"c:\ParkManager\fotos" && File.Exists(CaminhoFoto))
@@ -633,6 +612,7 @@ namespace Teste
             if (escolha)
             {
                 //Destroi o Formulario principal e abre o formulario de login
+                CaptureInfo.DisposeCapture();
                 FrmTelaLogin Frm = new FrmTelaLogin();
                 this.Dispose();
                 Frm.ShowDialog();
@@ -714,10 +694,9 @@ namespace Teste
                 {
                     List<SqlParameter> sp = new List<SqlParameter>()
                     {
-                        new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 7},
                         new SqlParameter(){ParameterName="@Placa", SqlDbType = SqlDbType.VarChar, Value = placa}
                     };
-                    dt = banco.InsertData(NameProcedure: "dbo.Funcoes_Pesquisa", sp: sp);
+                    dt = banco.ExecuteProcedureReturnDataTable(NameProcedure: "dbo.Pesquisa_Ticket_TelaOperacao", sp: sp);
                     //Verifica se houve algum retorno no DataTable
                     if (dt.Rows.Count > 0)
                     {

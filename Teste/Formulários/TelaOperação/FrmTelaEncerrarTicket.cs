@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Globalization;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Teste
 {
@@ -35,11 +30,7 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                List<SqlParameter> sp = new List<SqlParameter>()
-                {
-                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 4}
-                };
-                dt = banco.InsertData(NameProcedure: "dbo.Funcoes_Pesquisa", sp: sp);
+                dt = banco.ExecuteProcedureReturnDataTable(NameProcedure: "dbo.Metodos_Pagamento");
                 cmbFormaPagamento.DataSource = null;
                 cmbFormaPagamento.DataSource = dt;
                 cmbFormaPagamento.ValueMember = "id_pgt";
@@ -62,10 +53,9 @@ namespace Teste
             {
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
-                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 3},
                     new SqlParameter(){ParameterName="@IdTicket", SqlDbType = SqlDbType.Int, Value = Globais.IdTicket}
                 };
-                dt = banco.InsertData(NameProcedure: "dbo.Funcoes_Pesquisa", sp: sp);
+                dt = banco.ExecuteProcedureReturnDataTable(NameProcedure: "dbo.Carregar_Tela_Encerrar", sp: sp);
                 if (dt.Rows.Count > 0)
                 {
                     lblIdTicket.Text = "#" + dt.Rows[0]["#Ticket"].ToString();//ID Ticket
@@ -138,7 +128,7 @@ namespace Teste
             else
             {
                 Total += ValorUnico;
-            } 
+            }
             txtTotal.Text = Total.ToString("N2");
             PreencherLabelTempoPermanencia(ts);
 
@@ -170,7 +160,7 @@ namespace Teste
             {
                 lblPermanencia.Text += ts.Hours.ToString() + ":";
             }
-            if(minutos < 10)
+            if (minutos < 10)
             {
                 lblPermanencia.Text += "0" + ts.Minutes.ToString() + ":";
             }
@@ -178,7 +168,7 @@ namespace Teste
             {
                 lblPermanencia.Text += ts.Minutes.ToString() + ":";
             }
-            if(segundos < 10)
+            if (segundos < 10)
             {
                 lblPermanencia.Text += "0" + ts.Seconds.ToString();
             }
