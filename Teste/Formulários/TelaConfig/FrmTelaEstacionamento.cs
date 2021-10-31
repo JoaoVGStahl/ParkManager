@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace Teste
 {
@@ -31,7 +26,7 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                dt = banco.InsertData("dbo.Info_Estacionamento");
+                dt = banco.ExecuteProcedureReturnDataTable("dbo.Info_Estacionamento");
                 if (dt.Rows.Count > 0)
                 {
                     PreencherCampos(dt);
@@ -134,10 +129,11 @@ namespace Teste
                                 {
                                     if (Regex.IsMatch(txtCidade.Text, @"^\D+"))
                                     {
-                                        if(txtID.Text != "")
+                                        if (txtID.Text != "")
                                         {
                                             SalvarIdentificacao("Edit");
-                                        }else if(txtID.Text == "")
+                                        }
+                                        else if (txtID.Text == "")
                                         {
                                             SalvarIdentificacao("Save");
                                         }
@@ -193,11 +189,11 @@ namespace Teste
                     new SqlParameter(){ParameterName = "@Inscricao_Estadual", SqlDbType = SqlDbType.VarChar, Value = mskInscricao.Text },
                     new SqlParameter(){ParameterName = "@Telefone", SqlDbType = SqlDbType.VarChar, Value = mskTelefone.Text}
                 };
-                if(method == "Edit")
+                if (method == "Edit")
                 {
                     sp.Add(new SqlParameter() { ParameterName = "@Id_Estacionamento", SqlDbType = SqlDbType.Int, Value = txtID.Text });
                 }
-                LinhasAfetadas = banco.EditData("dbo.Parametros", sp);
+                LinhasAfetadas = banco.ExecuteProcedureReturnInt("dbo.Parametros", sp);
                 if (LinhasAfetadas > 0)
                 {
                     DesativarCaixas();

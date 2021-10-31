@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Data;
-using System.Windows.Forms;
-using System.Data.SqlClient;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Teste
 {
@@ -45,7 +45,7 @@ namespace Teste
                             new SqlParameter(){ParameterName="@Login", SqlDbType = SqlDbType.VarChar, Value = usuario},
                             new SqlParameter(){ParameterName="@Senha", SqlDbType = SqlDbType.VarChar, Value = senha}
                         };
-                        dt = banco.InsertData("dbo.Gerencia_Usuario", sp);
+                        dt = banco.ExecuteProcedureReturnDataTable("dbo.Gerencia_Usuario", sp);
                         if (dt.Rows.Count > 0)
                         {
                             int status = Convert.ToInt32(dt.Rows[0]["Status"].ToString());

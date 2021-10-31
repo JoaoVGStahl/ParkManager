@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Teste
 {
@@ -39,7 +34,7 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                dt = banco.InsertData("dbo.Pesquisa_Usuarios");
+                dt = banco.ExecuteProcedureReturnDataTable("dbo.Pesquisa_Usuarios");
                 dataGridView1.DataSource = dt;
                 dataGridView1.Columns[0].Width = 50;
                 dataGridView1.Columns[1].Width = 300;
@@ -139,7 +134,7 @@ namespace Teste
                 };
             try
             {
-                dt = banco.InsertData("dbo.Pesquisa_Usuario_Login", sp);
+                dt = banco.ExecuteProcedureReturnDataTable("dbo.Pesquisa_Usuario_Login", sp);
                 if (dt.Rows.Count > 0)
                 {
                     EditarUsuario();
@@ -168,18 +163,19 @@ namespace Teste
                 {
 
                     new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 2},
+                    new SqlParameter(){ParameterName = "@Id", SqlDbType = SqlDbType.Int, Value = txtId.Text},
                     new SqlParameter(){ParameterName = "@Login", SqlDbType = SqlDbType.NVarChar, Value = txtLogin.Text },
                     new SqlParameter(){ParameterName = "@Senha", SqlDbType = SqlDbType.NVarChar, Value = txtConfirmSenha.Text },
                     new SqlParameter(){ParameterName = "@Nivel", SqlDbType = SqlDbType.Int, Value = numNivel.Value },
                     new SqlParameter(){ParameterName = "@Status", SqlDbType = SqlDbType.Int, Value = cmbStatus.SelectedIndex }
                 };
 
-            result = banco.EditData("dbo.Gerencia_Usuario", sp);
+            result = banco.ExecuteProcedureReturnInt(NameProcedure: "dbo.Gerencia_Usuario", sp: sp);
             if (result > 0)
             {
-                MessageBox.Show("Usuario alterado com sucesso!", "Alteração Salva!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Globais.RegistrarLog(Globais.Login + " Alterou o Usuário ->" + txtLogin.Text);
                 PreencherGrid();
+                MessageBox.Show("Usuario alterado com sucesso!", "Alteração Salva!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
@@ -200,7 +196,7 @@ namespace Teste
                     new SqlParameter(){ParameterName = "@Status", SqlDbType = SqlDbType.Int, Value = cmbStatus.SelectedIndex }
                 };
 
-            result = banco.EditData("dbo.Gerencia_Usuario", sp);
+            result = banco.ExecuteProcedureReturnInt("dbo.Gerencia_Usuario", sp);
             if (result > 0)
             {
                 MessageBox.Show("Usuario adicionado com sucesso!", "Novo usuário!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -232,8 +228,8 @@ namespace Teste
                 {
                     new SqlParameter(){ParameterName = "@IdUsuario", SqlDbType = SqlDbType.Int, Value = id }
                 };
-                dt = banco.InsertData("dbo.Pesquisa_Usuario_Id", sp);
-                if(dt.Rows.Count > 0)
+                dt = banco.ExecuteProcedureReturnDataTable("dbo.Pesquisa_Usuario_Id", sp);
+                if (dt.Rows.Count > 0)
                 {
                     txtId.Text = dt.Rows[0]["ID"].ToString();
                     txtLogin.Text = dt.Rows[0]["Login"].ToString();
@@ -244,7 +240,7 @@ namespace Teste
                 {
                     MessageBox.Show("Usuario selecionado não foi encontrado!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                
+
             }
             txtLogin.Enabled = true;
             txtSenha.Enabled = true;
@@ -283,7 +279,7 @@ namespace Teste
                     new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 3},
                     new SqlParameter(){ParameterName = "@Id", SqlDbType = SqlDbType.Int, Value = id }
                 };
-                result = banco.EditData("dbo.Gerencia_Usuario", sp);
+                result = banco.ExecuteProcedureReturnInt("dbo.Gerencia_Usuario", sp);
                 if (result > 0)
                 {
                     MessageBox.Show("Usuário Deletado com Sucesso!", "Usuário Deletado!", MessageBoxButtons.OK, MessageBoxIcon.Information);

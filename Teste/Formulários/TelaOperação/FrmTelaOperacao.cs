@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
-using System.Windows.Forms;
 using System.Data.SqlClient;
-using System.Text.RegularExpressions;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace Teste
 {
@@ -84,7 +84,7 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                dt = banco.InsertData(NameProcedure: "dbo.ComboBox_Tipo");
+                dt = banco.ExecuteProcedureReturnDataTable(NameProcedure: "dbo.ComboBox_Tipo");
                 cmbTipo.DataSource = null;
                 cmbTipo.DataSource = dt;
                 cmbTipo.ValueMember = "id_automovel";
@@ -103,7 +103,7 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                dt = banco.InsertData(NameProcedure: "dbo.Tickets_Abertos");
+                dt = banco.ExecuteProcedureReturnDataTable(NameProcedure: "dbo.Tickets_Abertos");
                 lblQtdTicket.Text = dt.Rows[0]["Ticket's Abertos"].ToString();
             }
             catch (Exception ex)
@@ -121,7 +121,7 @@ namespace Teste
             try
             {
                 DataTable dt = new DataTable();
-                dt = banco.InsertData("dbo.Parametros_Sistema");
+                dt = banco.ExecuteProcedureReturnDataTable("dbo.Parametros_Sistema");
                 if (dt.Rows.Count > 0)
                 {
 
@@ -275,7 +275,7 @@ namespace Teste
                 txtNome.Enabled = true;
                 mskTelefone.Enabled = true;
                 CarregarVeiculo();
-                
+
             }
             else
             {
@@ -299,7 +299,7 @@ namespace Teste
                         new SqlParameter(){ParameterName= "@Placa", SqlDbType = SqlDbType.VarChar, Value = txtPlaca.Text}
                     };
                 DataTable dt = new DataTable();
-                dt = banco.InsertData("dbo.Pesquisa_Info_Placa", sp);
+                dt = banco.ExecuteProcedureReturnDataTable("dbo.Pesquisa_Info_Placa", sp);
                 if (dt.Rows.Count > 0)
                 {
                     cmbTipo.Text = dt.Rows[0]["Tipo"].ToString();
@@ -419,7 +419,7 @@ namespace Teste
                 {
                     new SqlParameter(){ParameterName="@Placa", SqlDbType = SqlDbType.VarChar, Value = placa}
                 };
-                dt = banco.InsertData(NameProcedure: "dbo.Pesquisa_TicketAberto_Placa", sp: sp);
+                dt = banco.ExecuteProcedureReturnDataTable(NameProcedure: "dbo.Pesquisa_TicketAberto_Placa", sp: sp);
                 if (Convert.ToInt32(dt.Rows[0]["QTD"]) > 0)
                 {
                     MessageBox.Show("Já existe um ticket em andamento para este veiculo!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -450,8 +450,6 @@ namespace Teste
             string marca = cmbMarca.Text, tipo = cmbTipo.Text;
             try
             {
-                int idTicket;
-                DataTable dt = new DataTable();
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
                     new SqlParameter(){ParameterName = "@idUsuario", SqlDbType = SqlDbType.Int, Value = Globais.IdUsuario},
@@ -465,32 +463,20 @@ namespace Teste
                     new SqlParameter() { ParameterName = "@Caminho_Foto", SqlDbType = SqlDbType.NVarChar, Value = Globais.CaminhoFoto }
 
                 };
-
-                dt = banco.InsertData("dbo.InsertTicket", sp);
+                int idTicket = banco.ExecuteProcedureWithReturnValue(NameProcedure: "dbo.InsertTicket", sp: sp);
                 //Verifica se houve algum retorno da procedure
-                if (dt.Rows.Count > 0)
+                if (idTicket > 0)
                 {
-                    idTicket = Convert.ToInt32(dt.Rows[0].ItemArray[0]);
-                    if (idTicket > 0)
-                    {
-
-                        ContadorTicket();
-                        LimparCaixas();
-                        Globais.RegistrarLog(Globais.Login + " Inicou o Ticket #" + idTicket);
-                        dt.Dispose();
-                        sp.Clear();
-                        MessageBox.Show("Ticket Iniciado com sucesso! \n #Ticket:" + idTicket, "Ticket Iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Falha ao iniciar Ticket!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    ContadorTicket();
+                    LimparCaixas();
+                    Globais.RegistrarLog(Globais.Login + " Inicou o Ticket #" + idTicket);
+                    sp.Clear();
+                    MessageBox.Show("Ticket Iniciado com sucesso! \n #Ticket:" + idTicket, "Ticket Iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                 }
                 else
                 {
                     MessageBox.Show("Falha ao iniciar Ticket!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
             }
             catch (Exception ex)
             {
@@ -537,7 +523,7 @@ namespace Teste
                     {
                         new SqlParameter(){ParameterName="@Tipo", SqlDbType = SqlDbType.VarChar,Value = tipo}
                     };
-                    dt = banco.InsertData(NameProcedure: "dbo.ComboBox_Marca", sp: sp);
+                    dt = banco.ExecuteProcedureReturnDataTable(NameProcedure: "dbo.ComboBox_Marca", sp: sp);
                     //Limpar o DataSource do combo
                     cmbMarca.DataSource = null;
                     //Seleciona o DataTable como o DataSoucer do combo
@@ -710,7 +696,7 @@ namespace Teste
                     {
                         new SqlParameter(){ParameterName="@Placa", SqlDbType = SqlDbType.VarChar, Value = placa}
                     };
-                    dt = banco.InsertData(NameProcedure: "dbo.Pesquisa_Ticket_TelaOperacao", sp: sp);
+                    dt = banco.ExecuteProcedureReturnDataTable(NameProcedure: "dbo.Pesquisa_Ticket_TelaOperacao", sp: sp);
                     //Verifica se houve algum retorno no DataTable
                     if (dt.Rows.Count > 0)
                     {
