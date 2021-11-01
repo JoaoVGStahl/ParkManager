@@ -10,10 +10,14 @@ namespace Teste
     public partial class FrmTelaMarca : Form
     {
         Banco banco = new Banco();
+        FrmTelaOperacao Frm;
         public FrmTelaMarca()
         {
             InitializeComponent();
+            Frm = (FrmTelaOperacao)Application.OpenForms["FrmTelaOperacao"];
+            //Form1 f1 = (Form1)Application.OpenForms["Form1"];
         }
+        
 
         private void FrmTelaMarca_KeyDown(object sender, KeyEventArgs e)
         {
@@ -277,6 +281,11 @@ namespace Teste
             gridview = (DataGridView)sender;
             gridview.ClearSelection();
             dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

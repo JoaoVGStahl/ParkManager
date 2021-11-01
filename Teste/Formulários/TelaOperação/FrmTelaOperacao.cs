@@ -24,6 +24,18 @@ namespace Teste
             InitializeComponent();
             CarregarCores();
         }
+        public string NomeCli
+        {
+            set { txtNome.Text = value; }
+        }
+        public string TelCli
+        {
+            set { mskTelefone.Text = value; }
+        }
+        public string Placa
+        {
+            set { txtPlaca.Text = value; }
+        }
         private void AbrirForm(int nivel, Form F)
         {
             //Função Genérica para abrir formulários
@@ -613,7 +625,10 @@ namespace Teste
             if (escolha)
             {
                 //Destroi o Formulario principal e abre o formulario de login
-                CaptureInfo.DisposeCapture();
+                if (CaptureInfo.Capturing)
+                {
+                    CaptureInfo.DisposeCapture();
+                }
                 FrmTelaLogin Frm = new FrmTelaLogin();
                 this.Dispose();
                 Frm.ShowDialog();
