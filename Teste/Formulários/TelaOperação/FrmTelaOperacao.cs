@@ -377,9 +377,10 @@ namespace Teste
                         }
                         else
                         {
-                            //Regex para validar Telefone.
+                            //Regex para validar Nome.   
                             if (Regex.IsMatch(nome, @"^[A-Za-záàâãéèêíïóôõöúçÁÀÂÃÉÈÍÏÓÔÕÖÚÇ ]+$"))
                             {
+                                //Regex para validar Telefone.
                                 if (Regex.IsMatch(telefone, "^[(]{1}[11-99]{2}[)]{1}[0|9]{1}[0-9]{4}-[0-9]{4}"))
                                 {
                                     VerificarTicket(placa, nome, telefone);

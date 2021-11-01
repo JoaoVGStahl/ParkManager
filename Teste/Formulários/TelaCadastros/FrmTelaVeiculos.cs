@@ -313,7 +313,7 @@ namespace Teste
                 btnExcluir.Enabled = true;
                 try
                 {
-                    string id = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+                    string id = dataGridView1.SelectedRows[0].Cells["ID"].Value.ToString();
                     DataTable dt = new DataTable();
                     List<SqlParameter> sp = new List<SqlParameter>()
                     {
