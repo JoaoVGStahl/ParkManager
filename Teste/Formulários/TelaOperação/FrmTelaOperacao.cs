@@ -262,13 +262,13 @@ namespace Teste
         private void button6_Click(object sender, EventArgs e)
         {
 
-            FrmTelaPesquisaTicket Frm = new FrmTelaPesquisaTicket(this);
+            FrmTelaPesquisaTicket Frm = new FrmTelaPesquisaTicket();
             AbrirForm(0, Frm);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket(this);
+            FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket();
             AbrirForm(0, Frm);
         }
 

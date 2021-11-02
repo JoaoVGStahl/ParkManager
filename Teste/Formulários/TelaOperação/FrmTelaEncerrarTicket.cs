@@ -11,11 +11,11 @@ namespace Teste
     {
         Banco banco = new Banco();
         DateTime DataFormatada;
-        FrmTelaOperacao form;
-        public FrmTelaEncerrarTicket(FrmTelaOperacao form)
+        FrmTelaOperacao Form;
+        public FrmTelaEncerrarTicket()
         {
             InitializeComponent();
-            this.form = form;
+            this.Form = (FrmTelaOperacao)Application.OpenForms["FrmTelaOperacao"];
         }
 
         private void FrmTelaEncerrarTicket_Load(object sender, EventArgs e)
@@ -180,7 +180,7 @@ namespace Teste
 
         private void button2_Click(object sender, EventArgs e)
         {
-            form.ContadorTicket();
+            Form.ContadorTicket();
             this.Close();
         }
 
@@ -239,7 +239,6 @@ namespace Teste
                 }
             }
         }
-
         private void txtRecebido_TextChanged(object sender, EventArgs e)
         {
             decimal troco;

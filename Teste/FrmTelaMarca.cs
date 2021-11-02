@@ -32,7 +32,6 @@ namespace Teste
                     break;
             }
         }
-
         private void FrmTelaMarca_Load(object sender, System.EventArgs e)
         {
             dataGridView1.SelectionChanged -= dataGridView1_SelectionChanged;
@@ -291,7 +290,13 @@ namespace Teste
         {
             if(txtId.Text != "")
             {
-                ExcluirMarca();
+                string mensagem = "Tem certeza que deseja deletar a marca "+ txtMarca.Text + "?";
+                string titulo = "Deletar marca?";
+                bool escolha = (MessageBox.Show(mensagem, titulo, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes);
+                if (escolha)
+                {
+                    ExcluirMarca();
+                }
             }
             else
             {
