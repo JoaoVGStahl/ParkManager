@@ -22,6 +22,8 @@ namespace Teste
             btnVeiculos.ForeColor = Color.Black;
             btnCliente.BackColor = Color.WhiteSmoke;
             btnCliente.ForeColor = Color.Black;
+            btnMarca.BackColor = Color.WhiteSmoke;
+            btnMarca.ForeColor = Color.Black;
             botao.BackColor = Color.DarkBlue;
             botao.ForeColor = Color.White;
         }
@@ -52,7 +54,6 @@ namespace Teste
                 }
             }
         }
-
         private void btnVeiculos_Click(object sender, EventArgs e)
         {
             FundoBotao(btnVeiculos);

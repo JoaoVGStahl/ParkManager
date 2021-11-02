@@ -35,7 +35,17 @@ namespace Teste
             string usuario = txtUsuario.Text, senha = txtSenha.Text;
             if (usuario != "" && senha != "")
             {
-                if (usuario != Properties.Settings.Default["UserRoot"].ToString() && senha != Properties.Settings.Default["SenhaRoot"].ToString())
+                if(usuario == Properties.Settings.Default["UserRoot"].ToString() && senha == Properties.Settings.Default["SenhaRoot"].ToString())
+                {
+                    Globais.IdUsuario = 1;
+                    Globais.Login = usuario;
+                    Globais.Nivel = 3;
+                    Globais.UserStatus = 1;
+                    FrmTelaConfig Form = new FrmTelaConfig(this);
+                    this.Hide();
+                    Form.ShowDialog();
+                }
+                else
                 {
                     try
                     {
@@ -75,15 +85,6 @@ namespace Teste
                         MessageBox.Show(ex.Message, "Falha no login!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                else if (usuario == Properties.Settings.Default["UserRoot"].ToString() && senha == Properties.Settings.Default["SenhaRoot"].ToString())
-                {
-                    Globais.IdUsuario = 1;
-                    Globais.Login = usuario;
-                    Globais.Nivel = 3;
-                    Globais.UserStatus = 1;
-                    FrmTelaConfig Form = new FrmTelaConfig(this);
-                    AbrirForm();
-                }
             }
             else
             {
@@ -91,7 +92,6 @@ namespace Teste
                 MessageBox.Show("Preencha todos os campos!", "Falha no login!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             dt.Dispose();
-
         }
 
         private void AbrirForm()

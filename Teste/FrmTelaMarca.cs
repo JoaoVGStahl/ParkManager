@@ -14,8 +14,7 @@ namespace Teste
         public FrmTelaMarca()
         {
             InitializeComponent();
-            Frm = (FrmTelaOperacao)Application.OpenForms["FrmTelaOperacao"];
-            //Form1 f1 = (Form1)Application.OpenForms["Form1"];
+            this.Frm = (FrmTelaOperacao)Application.OpenForms["FrmTelaOperacao"];
         }
         
 
@@ -286,6 +285,46 @@ namespace Teste
         private void panel3_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            if(txtId.Text != "")
+            {
+                ExcluirMarca();
+            }
+            else
+            {
+                MessageBox.Show("Seleciona uma marca primeiro!", "Falha na exclusão", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void ExcluirMarca()
+        {
+            try
+            {
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
+                    new SqlParameter(){ParameterName="@idMarca", SqlDbType = SqlDbType.Int, Value = txtId.Text}
+                };
+                int Linhas = banco.ExecuteProcedureReturnInt(NameProcedure: "dbo.Deletar_Marca", sp: sp);
+                if(Linhas > 0)
+                {
+                    LimparCaixas();
+                    AtualizarGrid();
+                    Frm.PopularComboMarca();
+                    MessageBox.Show("Marca Deletada com sucesso!", "Marca Deletada!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Marca NÃO deletada!", "Falha!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Falha!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

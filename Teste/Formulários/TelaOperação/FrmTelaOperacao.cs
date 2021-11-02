@@ -22,7 +22,6 @@ namespace Teste
         public FrmTelaOperacao()
         {
             InitializeComponent();
-            CarregarCores();
         }
         public string NomeCli
         {
@@ -75,10 +74,6 @@ namespace Teste
                     picCam.Visible = true;
                 }
             }
-        }
-        private void CarregarCores()
-        {
-
         }
         private void CarregarBarraStatus()
         {
@@ -519,38 +514,43 @@ namespace Teste
         {
             PopularComboMarca();
         }
-        private void PopularComboMarca()
+        public void PopularComboMarca()
         {
-            string tipo = cmbTipo.Text;
+
             //Verifica se tem algum Tipo que foi carregando do banco.
             if (cmbTipo.Items.Count > 0)
             {
-                cmbMarca.Enabled = true;
-                DataTable dt = new DataTable();
-                //Limpa o DataTable
-                dt.Clear();
-                //Chama a função que executa a query no banco de dados
-                try
+                if (cmbTipo.SelectedIndex != -1)
                 {
-                    List<SqlParameter> sp = new List<SqlParameter>()
+                    string tipo = cmbTipo.Text;
+                    cmbMarca.Enabled = true;
+                    DataTable dt = new DataTable();
+                    //Limpa o DataTable
+                    dt.Clear();
+                    //Chama a função que executa a query no banco de dados
+                    try
                     {
+                        List<SqlParameter> sp = new List<SqlParameter>()
+                        {
                         new SqlParameter(){ParameterName="@Tipo", SqlDbType = SqlDbType.VarChar,Value = tipo}
-                    };
-                    dt = banco.ExecuteProcedureReturnDataTable(NameProcedure: "dbo.ComboBox_Marca", sp: sp);
-                    //Limpar o DataSource do combo
-                    cmbMarca.DataSource = null;
-                    //Seleciona o DataTable como o DataSoucer do combo
-                    cmbMarca.DataSource = dt;
-                    //Preenche o ComboBox com o DataTable
-                    cmbMarca.ValueMember = "Tipo";
-                    cmbMarca.DisplayMember = "Marca";
-                    //Desmacar qualquer seleção pré-selecionada
-                    cmbMarca.SelectedItem = null;
+                        };
+                        dt = banco.ExecuteProcedureReturnDataTable(NameProcedure: "dbo.ComboBox_Marca", sp: sp);
+                        //Limpar o DataSource do combo
+                        cmbMarca.DataSource = null;
+                        //Seleciona o DataTable como o DataSoucer do combo
+                        cmbMarca.DataSource = dt;
+                        //Preenche o ComboBox com o DataTable
+                        cmbMarca.ValueMember = "Tipo";
+                        cmbMarca.DisplayMember = "Marca";
+                        //Desmacar qualquer seleção pré-selecionada
+                        cmbMarca.SelectedItem = null;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Falha ao carregar Marcas!");
+                    }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Falha ao carregar Marcas!");
-                }
+
             }
 
         }

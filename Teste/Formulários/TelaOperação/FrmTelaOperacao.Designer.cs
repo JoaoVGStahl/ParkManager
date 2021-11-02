@@ -351,7 +351,7 @@ namespace Teste
             // lblPlaca
             // 
             this.lblPlaca.BackColor = System.Drawing.Color.Transparent;
-            this.lblPlaca.Font = new System.Drawing.Font("Arial Narrow", 65.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlaca.Font = new System.Drawing.Font("Microsoft Sans Serif", 65.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPlaca.Location = new System.Drawing.Point(2, 32);
             this.lblPlaca.Name = "lblPlaca";
             this.lblPlaca.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -375,7 +375,7 @@ namespace Teste
             // txtNomeP
             // 
             this.txtNomeP.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtNomeP.Font = new System.Drawing.Font("Arial Narrow", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNomeP.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNomeP.Location = new System.Drawing.Point(3, 210);
             this.txtNomeP.MaxLength = 45;
             this.txtNomeP.Name = "txtNomeP";
@@ -389,7 +389,7 @@ namespace Teste
             // txtTelefoneP
             // 
             this.txtTelefoneP.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtTelefoneP.Font = new System.Drawing.Font("Arial Narrow", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTelefoneP.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTelefoneP.Location = new System.Drawing.Point(184, 256);
             this.txtTelefoneP.Name = "txtTelefoneP";
             this.txtTelefoneP.ReadOnly = true;
@@ -503,10 +503,10 @@ namespace Teste
             // 
             this.lblPlacal1.AutoSize = true;
             this.lblPlacal1.BackColor = System.Drawing.Color.Transparent;
-            this.lblPlacal1.Font = new System.Drawing.Font("Arial Narrow", 51.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlacal1.Font = new System.Drawing.Font("Microsoft Sans Serif", 51.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPlacal1.Location = new System.Drawing.Point(-11, 37);
             this.lblPlacal1.Name = "lblPlacal1";
-            this.lblPlacal1.Size = new System.Drawing.Size(0, 81);
+            this.lblPlacal1.Size = new System.Drawing.Size(0, 79);
             this.lblPlacal1.TabIndex = 30;
             // 
             // btnConfig
@@ -815,8 +815,6 @@ namespace Teste
         }
 
         #endregion
-
-        private System.Windows.Forms.ComboBox cmbTipo;
         private System.Windows.Forms.ComboBox cmbMarca;
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.Label label1;
@@ -869,6 +867,7 @@ namespace Teste
         private System.Windows.Forms.PictureBox picImagem;
         private System.Windows.Forms.PictureBox picCam;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.ComboBox cmbTipo;
     }
 }
 
