@@ -143,10 +143,10 @@
       <DependentUpon>FrmTelaRelatorios.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\GeraPDF.cs" />
-    <Compile Include="FrmTelaMarca.cs">
+    <Compile Include="Formulários\TelaCadastros\FrmTelaMarca.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmTelaMarca.Designer.cs">
+    <Compile Include="Formulários\TelaCadastros\FrmTelaMarca.Designer.cs">
       <DependentUpon>FrmTelaMarca.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -189,7 +189,7 @@
     <EmbeddedResource Include="Formulários\TelaOperação\FrmTelaRelatorios.resx">
       <DependentUpon>FrmTelaRelatorios.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmTelaMarca.resx">
+    <EmbeddedResource Include="Formulários\TelaCadastros\FrmTelaMarca.resx">
       <DependentUpon>FrmTelaMarca.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

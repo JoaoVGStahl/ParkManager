@@ -15,8 +15,7 @@ namespace Teste
         {
             InitializeComponent();
             this.Frm = (FrmTelaOperacao)Application.OpenForms["FrmTelaOperacao"];
-        }
-        
+        }   
 
         private void FrmTelaMarca_KeyDown(object sender, KeyEventArgs e)
         {
@@ -296,7 +295,7 @@ namespace Teste
                 if (escolha)
                 {
                     ExcluirMarca();
-                }
+                } 
             }
             else
             {
