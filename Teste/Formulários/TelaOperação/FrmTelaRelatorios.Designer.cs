@@ -103,9 +103,9 @@ namespace Teste
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Location = new System.Drawing.Point(5, 111);
+            this.panel2.Location = new System.Drawing.Point(0, 111);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(246, 459);
+            this.panel2.Size = new System.Drawing.Size(252, 459);
             this.panel2.TabIndex = 23;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
@@ -339,9 +339,9 @@ namespace Teste
             this.btnCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCliente.Image = ((System.Drawing.Image)(resources.GetObject("btnCliente.Image")));
-            this.btnCliente.Location = new System.Drawing.Point(479, 6);
+            this.btnCliente.Location = new System.Drawing.Point(467, 0);
             this.btnCliente.Name = "btnCliente";
-            this.btnCliente.Size = new System.Drawing.Size(133, 38);
+            this.btnCliente.Size = new System.Drawing.Size(133, 52);
             this.btnCliente.TabIndex = 44;
             this.btnCliente.Text = "Cliente";
             this.btnCliente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -369,9 +369,9 @@ namespace Teste
             this.btnFinanceiro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFinanceiro.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFinanceiro.Image = ((System.Drawing.Image)(resources.GetObject("btnFinanceiro.Image")));
-            this.btnFinanceiro.Location = new System.Drawing.Point(340, 6);
+            this.btnFinanceiro.Location = new System.Drawing.Point(334, 0);
             this.btnFinanceiro.Name = "btnFinanceiro";
-            this.btnFinanceiro.Size = new System.Drawing.Size(133, 38);
+            this.btnFinanceiro.Size = new System.Drawing.Size(133, 52);
             this.btnFinanceiro.TabIndex = 45;
             this.btnFinanceiro.Text = "Financeiro";
             this.btnFinanceiro.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -383,9 +383,9 @@ namespace Teste
             this.btnVeiculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVeiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVeiculo.Image = ((System.Drawing.Image)(resources.GetObject("btnVeiculo.Image")));
-            this.btnVeiculo.Location = new System.Drawing.Point(618, 6);
+            this.btnVeiculo.Location = new System.Drawing.Point(600, 0);
             this.btnVeiculo.Name = "btnVeiculo";
-            this.btnVeiculo.Size = new System.Drawing.Size(133, 38);
+            this.btnVeiculo.Size = new System.Drawing.Size(133, 52);
             this.btnVeiculo.TabIndex = 46;
             this.btnVeiculo.Text = "Veículo";
             this.btnVeiculo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -397,9 +397,9 @@ namespace Teste
             this.btnFluxo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFluxo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFluxo.Image = ((System.Drawing.Image)(resources.GetObject("btnFluxo.Image")));
-            this.btnFluxo.Location = new System.Drawing.Point(201, 6);
+            this.btnFluxo.Location = new System.Drawing.Point(201, 0);
             this.btnFluxo.Name = "btnFluxo";
-            this.btnFluxo.Size = new System.Drawing.Size(133, 38);
+            this.btnFluxo.Size = new System.Drawing.Size(133, 52);
             this.btnFluxo.TabIndex = 43;
             this.btnFluxo.Text = "Fluxo";
             this.btnFluxo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;

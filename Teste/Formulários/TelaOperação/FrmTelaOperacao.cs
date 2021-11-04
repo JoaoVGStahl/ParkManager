@@ -131,7 +131,6 @@ namespace Teste
                 dt = banco.ExecuteProcedureReturnDataTable("dbo.Parametros_Sistema");
                 if (dt.Rows.Count > 0)
                 {
-
                     Globais.ValorHora = Convert.ToDecimal(dt.Rows[0]["Valor Hora"]);
                     Globais.ValorMinimo = Convert.ToDecimal(dt.Rows[0]["Valor Minimo"]);
                     Globais.ValorUnico = Convert.ToDecimal(dt.Rows[0]["Valor Unico"]);
@@ -159,12 +158,12 @@ namespace Teste
             try
             {
                 CamContainer = new DirectX.Capture.Filters();
-                int quantCam = CamContainer.VideoInputDevices.Count;
-                if (quantCam > 0)
+                int quantCam;
+
+                if ((quantCam = CamContainer.VideoInputDevices.Count) > 0)
                 {
                     for (int i = 0; i < quantCam; i++)
                     {
-
                         // obtém o dispositivo de entrada do vídeo
                         Camera = CamContainer.VideoInputDevices[i];
 
@@ -302,9 +301,9 @@ namespace Teste
             try
             {
                 List<SqlParameter> sp = new List<SqlParameter>()
-                    {
-                        new SqlParameter(){ParameterName= "@Placa", SqlDbType = SqlDbType.VarChar, Value = txtPlaca.Text}
-                    };
+                {
+                    new SqlParameter(){ParameterName= "@Placa", SqlDbType = SqlDbType.VarChar, Value = txtPlaca.Text}
+                };
                 DataTable dt = new DataTable();
                 dt = banco.ExecuteProcedureReturnDataTable("dbo.Pesquisa_Info_Placa", sp);
                 if (dt.Rows.Count > 0)
@@ -518,10 +517,8 @@ namespace Teste
         {
 
             //Verifica se tem algum Tipo que foi carregando do banco.
-            if (cmbTipo.Items.Count > 0)
+            if (cmbTipo.Items.Count > 0 && cmbTipo.SelectedIndex != -1)
             {
-                if (cmbTipo.SelectedIndex != -1)
-                {
                     string tipo = cmbTipo.Text;
                     cmbMarca.Enabled = true;
                     DataTable dt = new DataTable();
@@ -549,10 +546,7 @@ namespace Teste
                     {
                         MessageBox.Show(ex.Message, "Falha ao carregar Marcas!");
                     }
-                }
-
             }
-
         }
 
         private void btnConfig_Click(object sender, EventArgs e)
@@ -624,7 +618,6 @@ namespace Teste
             bool escolha = (MessageBox.Show(mensagem, titulo, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes);
             if (escolha)
             {
-                //Destroi o Formulario principal e abre o formulario de login
                 if (CaptureInfo.Capturing)
                 {
                     CaptureInfo.DisposeCapture();
