@@ -7,6 +7,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.IO.Ports;
 
 namespace Teste
 {
@@ -19,6 +20,7 @@ namespace Teste
         Image capturaImagem;
 
         Banco banco = new Banco();
+        
         public FrmTelaOperacao()
         {
             InitializeComponent();
@@ -73,7 +75,30 @@ namespace Teste
                     picImagem.Visible = false;
                     picCam.Visible = true;
                 }
+                Arduino.Port = serialPort1;
+                Arduino.PortaCom = Properties.Settings.Default["PortaArduino"].ToString();
+                Arduino.OpenCom();
+
             }
+
+            //Conexão Serial
+            /*
+            if (serialPort1.IsOpen == false)
+            {
+                try
+                {
+                    serialPort1.PortName = Properties.Settings.Default["PortaArduino"].ToString();
+                    serialPort1.Open();                   
+
+                }
+                catch
+                {
+                    return;
+
+                }
+            }
+            */
+
         }
         private void CarregarBarraStatus()
         {
@@ -138,6 +163,7 @@ namespace Teste
                     TimeSpan ts = Convert.ToDateTime(dt.Rows[0]["Tolerancia"].ToString()) - Convert.ToDateTime("00:00:00");
                     Globais.Tolerencia = ts;
                     Properties.Settings.Default["ArquivoAuditoria"] = dt.Rows[0]["Caminho Log"].ToString();
+                    Properties.Settings.Default["PortaArduino"] = dt.Rows[0]["Porta Arduino"].ToString();
                     Properties.Settings.Default.Save();
                 }
                 else
@@ -629,6 +655,7 @@ namespace Teste
                 {
                     CaptureInfo.DisposeCapture();
                 }
+                Arduino.CloseCom();
                 FrmTelaLogin Frm = new FrmTelaLogin();
                 this.Dispose();
                 Frm.ShowDialog();
@@ -770,6 +797,16 @@ namespace Teste
 
         private void button1_Click(object sender, EventArgs e)
         {
+            string method = "E";
+            try
+            {
+                Arduino.WriteCom(method);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
 
         }
 
@@ -790,6 +827,38 @@ namespace Teste
         {
             FrmTelaRelatorios Frm = new FrmTelaRelatorios();
             AbrirForm(2, Frm);
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            string method = "S";
+            try
+            {
+                Arduino.WriteCom(method);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            string resp = serialPort1.ReadExisting();
+
+            switch (resp)
+            {
+                case "E":
+                    MessageBox.Show("Cancela Entrada Fechada");
+                break;
+
+                case "S":
+                    MessageBox.Show("Cancela Saida Fechada");
+                break;
+
+                default:
+                    break;
+            }
         }
     }
 }
