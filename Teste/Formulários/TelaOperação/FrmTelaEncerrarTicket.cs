@@ -143,39 +143,24 @@ namespace Teste
             if (dias > 0)
             {
                 if (dias < 10)
-                {
                     lblPermanencia.Text += "0" + ts.Days.ToString() + ":";
-                }
                 else
-                {
                     lblPermanencia.Text += ts.Days.ToString() + ":";
-                }
-
             }
             if (horas < 10)
-            {
                 lblPermanencia.Text += "0" + ts.Hours.ToString() + ":";
-            }
             else
-            {
                 lblPermanencia.Text += ts.Hours.ToString() + ":";
-            }
+
             if (minutos < 10)
-            {
                 lblPermanencia.Text += "0" + ts.Minutes.ToString() + ":";
-            }
             else
-            {
                 lblPermanencia.Text += ts.Minutes.ToString() + ":";
-            }
+
             if (segundos < 10)
-            {
                 lblPermanencia.Text += "0" + ts.Seconds.ToString();
-            }
             else
-            {
                 lblPermanencia.Text += ts.Seconds.ToString();
-            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -229,13 +214,9 @@ namespace Teste
                 if (e.KeyChar == '.' || e.KeyChar == ',')
                 {
                     if (!txtRecebido.Text.Contains(','))
-                    {
                         e.KeyChar = ',';
-                    }
                     else
-                    {
                         e.KeyChar = (Char)0;
-                    }
                 }
             }
         }
@@ -277,13 +258,9 @@ namespace Teste
         {
             decimal total = Convert.ToDecimal(txtTotal.Text), troco = Convert.ToDecimal(txtTroco.Text);
             if (troco < 0)
-            {
                 MessageBox.Show("Não é possivel encerrar este ticket porque está faltando parte do pagamento!", "Falha ao encerrar ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
             else
-            {
                 MessageBox.Show("Ticket Encerrado com sucesso!", "Ticket Encerrardo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
         }
     }
 }
