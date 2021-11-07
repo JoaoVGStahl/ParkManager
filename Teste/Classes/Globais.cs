@@ -104,10 +104,6 @@ namespace Teste
                 string texto = data + " " + hora + " " + "(" + maquina + "):" + Action;
 
                 string arquivo = Properties.Settings.Default["ArquivoAuditoria"].ToString() + @"\" + data.Replace("/", "-") + ".dat";
- 
-
-
-
 
                 using (StreamWriter tw = new StreamWriter(arquivo, File.Exists(arquivo) ? true : false))
                 {
