@@ -61,6 +61,7 @@ namespace Teste
                 PopularComboTipo();
                 ContadorTicket();
                 CarregarParametros();
+                /*
                 if (!IniciaCamera())
                 {
                     picCam.Visible = false;
@@ -73,6 +74,7 @@ namespace Teste
                     picImagem.Visible = false;
                     picCam.Visible = true;
                 }
+                */
             }
         }
         private void CarregarBarraStatus()
@@ -618,10 +620,12 @@ namespace Teste
             bool escolha = (MessageBox.Show(mensagem, titulo, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes);
             if (escolha)
             {
+                /*
                 if (CaptureInfo.Capturing)
                 {
                     CaptureInfo.DisposeCapture();
                 }
+                */
                 FrmTelaLogin Frm = new FrmTelaLogin();
                 this.Dispose();
                 Frm.ShowDialog();
