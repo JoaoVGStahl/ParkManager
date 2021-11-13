@@ -10,9 +10,13 @@ namespace Teste
     public partial class FrmTelaVeiculos : Form
     {
         Banco banco = new Banco();
+        FrmTelaOperacao FrmOp;
+        FrmTelaCadastros FrmCad;
         public FrmTelaVeiculos()
         {
             InitializeComponent();
+            this.FrmOp = (FrmTelaOperacao)Application.OpenForms["FrmTelaOperacao"];
+            this.FrmCad = (FrmTelaCadastros)Application.OpenForms["FrmTelaCadastros"];
         }
 
         private void FrmTelaVeiculos_Load(object sender, EventArgs e)
@@ -313,7 +317,7 @@ namespace Teste
                 btnExcluir.Enabled = true;
                 try
                 {
-                    string id = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+                    string id = dataGridView1.SelectedRows[0].Cells["ID"].Value.ToString();
                     DataTable dt = new DataTable();
                     List<SqlParameter> sp = new List<SqlParameter>()
                     {
@@ -504,6 +508,13 @@ namespace Teste
                 default:
                     break;
             }
+        }
+
+        private void dataGridView1_DoubleClick(object sender, EventArgs e)
+        {
+            FrmOp.Placa = dataGridView1.SelectedRows[0].Cells["Placa"].Value.ToString();
+            FrmCad.Dispose();
+            
         }
     }
 }

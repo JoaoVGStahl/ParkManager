@@ -10,9 +10,13 @@ namespace Teste
     public partial class FrmTelaCliente : Form
     {
         Banco banco = new Banco();
+        FrmTelaOperacao FormOp;
+        FrmTelaCadastros FormCad;
         public FrmTelaCliente()
         {
             InitializeComponent();
+            this.FormOp = (FrmTelaOperacao)Application.OpenForms["FrmTelaOperacao"];
+            this.FormCad = (FrmTelaCadastros)Application.OpenForms["FrmTelaCadastros"];
         }
 
         private void FrmTelaCliente_Load(object sender, EventArgs e)
@@ -345,6 +349,13 @@ namespace Teste
                 default:
                     break;
             }
+        }
+
+        private void dataGridView1_DoubleClick(object sender, EventArgs e)
+        {
+            FormOp.NomeCli = dataGridView1.SelectedRows[0].Cells["Nome"].Value.ToString();
+            FormOp.TelCli = dataGridView1.SelectedRows[0].Cells["Telefone"].Value.ToString();
+            FormCad.Dispose();
         }
     }
 }

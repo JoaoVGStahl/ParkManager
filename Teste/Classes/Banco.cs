@@ -17,8 +17,8 @@ namespace Teste
         }
         public DataTable ExecuteProcedureReturnDataTable(string NameProcedure, List<SqlParameter> sp = null)
         {
-            SqlDataAdapter da = null;
-            SqlCommand cmd = null;
+            SqlDataAdapter da;
+            SqlCommand cmd;
             DataTable dt = new DataTable();
             try
             {
@@ -41,8 +41,6 @@ namespace Teste
             finally
             {
                 conexao.Close();
-                da.Dispose();
-                cmd.Dispose();
                 dt.Dispose();
             }
         }

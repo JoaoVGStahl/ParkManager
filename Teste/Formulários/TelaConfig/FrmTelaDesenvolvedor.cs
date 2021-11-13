@@ -124,7 +124,11 @@ namespace Teste
                 DataTable dt = new DataTable();
                 try
                 {
-                    dt = banco.ExecuteProcedureReturnDataTable("dbo.Pesquisa_TelaDesenvolvedor");
+                     List<SqlParameter> sp = new List<SqlParameter>()
+                    {
+                        new SqlParameter(){ParameterName="@IdEstacionamento", SqlDbType = SqlDbType.Int, Value=Properties.Settings.Default["IDEstacionamento"].ToString()}
+                    };
+                    dt = banco.ExecuteProcedureReturnDataTable(NameProcedure: "dbo.Pesquisa_TelaDesenvolvedor" , sp: sp);
                     if (dt.Rows.Count > 0)
                     {
                         txtID.Text = dt.Rows[0]["id"].ToString();
@@ -141,6 +145,7 @@ namespace Teste
                     {
                         btnSalvar.Enabled = true;
                         btnEditar.Enabled = false;
+                        AtivarCaixas();
                     }
 
                 }
@@ -157,9 +162,8 @@ namespace Teste
             string nomebanco = txtNomeBanco.Text;
             string usuario = txtUsuario.Text;
             string senha = txtSenha.Text;
-            string StrConn;
+            string StrConn = "Server=" + servidor + ";Database=" + nomebanco + ";User Id=" + usuario + ";Password=" + senha + ";";
 
-            StrConn = "Server=" + servidor + ";Database=" + nomebanco + ";User Id=" + usuario + ";Password=" + senha + ";";
             Properties.Settings.Default["StringBanco"] = StrConn;
             Properties.Settings.Default["ArquivoAuditoria"] = txtCaminho.Text;
             Properties.Settings.Default["SenhaRoot"] = txtConfirmSenhaRoot.Text;
@@ -204,7 +208,7 @@ namespace Teste
                     txtConfirmSenhaRoot.Enabled = false;
                     btnSalvar.Enabled = false;
                     btnSelecionar.Enabled = false;
-                    MessageBox.Show("Parâmetros Editado com Sucesso!", "Configurações Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Parâmetros Editados com Sucesso!", "Configurações Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {

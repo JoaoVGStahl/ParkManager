@@ -22,7 +22,18 @@ namespace Teste
         public FrmTelaOperacao()
         {
             InitializeComponent();
-            CarregarCores();
+        }
+        public string NomeCli
+        {
+            set { txtNome.Text = value; }
+        }
+        public string TelCli
+        {
+            set { mskTelefone.Text = value; }
+        }
+        public string Placa
+        {
+            set { txtPlaca.Text = value; }
         }
         private void AbrirForm(int nivel, Form F)
         {
@@ -50,6 +61,7 @@ namespace Teste
                 PopularComboTipo();
                 ContadorTicket();
                 CarregarParametros();
+                /*
                 if (!IniciaCamera())
                 {
                     picCam.Visible = false;
@@ -62,11 +74,8 @@ namespace Teste
                     picImagem.Visible = false;
                     picCam.Visible = true;
                 }
+                */
             }
-        }
-        private void CarregarCores()
-        {
-
         }
         private void CarregarBarraStatus()
         {
@@ -124,7 +133,6 @@ namespace Teste
                 dt = banco.ExecuteProcedureReturnDataTable("dbo.Parametros_Sistema");
                 if (dt.Rows.Count > 0)
                 {
-
                     Globais.ValorHora = Convert.ToDecimal(dt.Rows[0]["Valor Hora"]);
                     Globais.ValorMinimo = Convert.ToDecimal(dt.Rows[0]["Valor Minimo"]);
                     Globais.ValorUnico = Convert.ToDecimal(dt.Rows[0]["Valor Unico"]);
@@ -152,12 +160,12 @@ namespace Teste
             try
             {
                 CamContainer = new DirectX.Capture.Filters();
-                int quantCam = CamContainer.VideoInputDevices.Count;
-                if (quantCam > 0)
+                int quantCam;
+
+                if ((quantCam = CamContainer.VideoInputDevices.Count) > 0)
                 {
                     for (int i = 0; i < quantCam; i++)
                     {
-
                         // obtém o dispositivo de entrada do vídeo
                         Camera = CamContainer.VideoInputDevices[i];
 
@@ -255,13 +263,13 @@ namespace Teste
         private void button6_Click(object sender, EventArgs e)
         {
 
-            FrmTelaPesquisaTicket Frm = new FrmTelaPesquisaTicket(this);
+            FrmTelaPesquisaTicket Frm = new FrmTelaPesquisaTicket();
             AbrirForm(0, Frm);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket(this);
+            FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket();
             AbrirForm(0, Frm);
         }
 
@@ -295,9 +303,9 @@ namespace Teste
             try
             {
                 List<SqlParameter> sp = new List<SqlParameter>()
-                    {
-                        new SqlParameter(){ParameterName= "@Placa", SqlDbType = SqlDbType.VarChar, Value = txtPlaca.Text}
-                    };
+                {
+                    new SqlParameter(){ParameterName= "@Placa", SqlDbType = SqlDbType.VarChar, Value = txtPlaca.Text}
+                };
                 DataTable dt = new DataTable();
                 dt = banco.ExecuteProcedureReturnDataTable("dbo.Pesquisa_Info_Placa", sp);
                 if (dt.Rows.Count > 0)
@@ -377,9 +385,10 @@ namespace Teste
                         }
                         else
                         {
-                            //Regex para validar Telefone.
+                            //Regex para validar Nome.   
                             if (Regex.IsMatch(nome, @"^[A-Za-záàâãéèêíïóôõöúçÁÀÂÃÉÈÍÏÓÔÕÖÚÇ ]+$"))
                             {
+                                //Regex para validar Telefone.
                                 if (Regex.IsMatch(telefone, "^[(]{1}[11-99]{2}[)]{1}[0|9]{1}[0-9]{4}-[0-9]{4}"))
                                 {
                                     VerificarTicket(placa, nome, telefone);
@@ -506,40 +515,40 @@ namespace Teste
         {
             PopularComboMarca();
         }
-        private void PopularComboMarca()
+        public void PopularComboMarca()
         {
-            string tipo = cmbTipo.Text;
-            //Verifica se tem algum Tipo que foi carregando do banco.
-            if (cmbTipo.Items.Count > 0)
-            {
-                cmbMarca.Enabled = true;
-                DataTable dt = new DataTable();
-                //Limpa o DataTable
-                dt.Clear();
-                //Chama a função que executa a query no banco de dados
-                try
-                {
-                    List<SqlParameter> sp = new List<SqlParameter>()
-                    {
-                        new SqlParameter(){ParameterName="@Tipo", SqlDbType = SqlDbType.VarChar,Value = tipo}
-                    };
-                    dt = banco.ExecuteProcedureReturnDataTable(NameProcedure: "dbo.ComboBox_Marca", sp: sp);
-                    //Limpar o DataSource do combo
-                    cmbMarca.DataSource = null;
-                    //Seleciona o DataTable como o DataSoucer do combo
-                    cmbMarca.DataSource = dt;
-                    //Preenche o ComboBox com o DataTable
-                    cmbMarca.ValueMember = "Tipo";
-                    cmbMarca.DisplayMember = "Marca";
-                    //Desmacar qualquer seleção pré-selecionada
-                    cmbMarca.SelectedItem = null;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Falha ao carregar Marcas!");
-                }
-            }
 
+            //Verifica se tem algum Tipo que foi carregando do banco.
+            if (cmbTipo.Items.Count > 0 && cmbTipo.SelectedIndex != -1)
+            {
+                    string tipo = cmbTipo.Text;
+                    cmbMarca.Enabled = true;
+                    DataTable dt = new DataTable();
+                    //Limpa o DataTable
+                    dt.Clear();
+                    //Chama a função que executa a query no banco de dados
+                    try
+                    {
+                        List<SqlParameter> sp = new List<SqlParameter>()
+                        {
+                        new SqlParameter(){ParameterName="@Tipo", SqlDbType = SqlDbType.VarChar,Value = tipo}
+                        };
+                        dt = banco.ExecuteProcedureReturnDataTable(NameProcedure: "dbo.ComboBox_Marca", sp: sp);
+                        //Limpar o DataSource do combo
+                        cmbMarca.DataSource = null;
+                        //Seleciona o DataTable como o DataSoucer do combo
+                        cmbMarca.DataSource = dt;
+                        //Preenche o ComboBox com o DataTable
+                        cmbMarca.ValueMember = "Tipo";
+                        cmbMarca.DisplayMember = "Marca";
+                        //Desmacar qualquer seleção pré-selecionada
+                        cmbMarca.SelectedItem = null;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Falha ao carregar Marcas!");
+                    }
+            }
         }
 
         private void btnConfig_Click(object sender, EventArgs e)
@@ -611,8 +620,12 @@ namespace Teste
             bool escolha = (MessageBox.Show(mensagem, titulo, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes);
             if (escolha)
             {
-                //Destroi o Formulario principal e abre o formulario de login
-                CaptureInfo.DisposeCapture();
+                /*
+                if (CaptureInfo.Capturing)
+                {
+                    CaptureInfo.DisposeCapture();
+                }
+                */
                 FrmTelaLogin Frm = new FrmTelaLogin();
                 this.Dispose();
                 Frm.ShowDialog();

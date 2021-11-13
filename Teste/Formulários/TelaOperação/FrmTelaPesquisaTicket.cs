@@ -9,11 +9,11 @@ namespace Teste
     public partial class FrmTelaPesquisaTicket : Form
     {
         Banco banco = new Banco();
-        FrmTelaOperacao form;
-        public FrmTelaPesquisaTicket(FrmTelaOperacao Form)
+        FrmTelaOperacao Form;
+        public FrmTelaPesquisaTicket()
         {
             InitializeComponent();
-            this.form = Form;
+            this.Form = (FrmTelaOperacao)Application.OpenForms["FrmTelaOperacao"];
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -26,7 +26,6 @@ namespace Teste
             cmbStatus.SelectedIndex = 1;
             dtpEntrada.Value = DateTime.Today.AddDays(-7);
             btnPesquisa.PerformClick();
-            //PreencherGrid();
             dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
         }
         private void button3_Click(object sender, EventArgs e)
@@ -35,7 +34,7 @@ namespace Teste
             {
                 dataGridView1.SelectedRows[0].Cells["Status"].Value.ToString();
                 Globais.IdTicket = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
-                FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket(form);
+                FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket();
                 Frm.ShowDialog();
             }
             else
@@ -203,7 +202,7 @@ namespace Teste
         {
             if (dataGridView1.SelectedRows[0].Cells["Status"].Value.ToString() == "Ativo")
             {
-                form.PesquisaTicket(dataGridView1.SelectedRows[0].Cells["Placa"].Value.ToString());
+                Form.PesquisaTicket(dataGridView1.SelectedRows[0].Cells["Placa"].Value.ToString());
                 this.Dispose();
             }
         }
