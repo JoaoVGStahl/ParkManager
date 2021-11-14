@@ -115,20 +115,16 @@ namespace Teste
             string StringBanco = Properties.Settings.Default["StringBanco"].ToString();
             if (StringBanco == "")
             {
+                AtivarCaixas();
                 btnSalvar.Enabled = true;
                 btnEditar.Enabled = false;
-                AtivarCaixas();
             }
             else
             {
                 DataTable dt = new DataTable();
                 try
                 {
-                     List<SqlParameter> sp = new List<SqlParameter>()
-                    {
-                        new SqlParameter(){ParameterName="@IdEstacionamento", SqlDbType = SqlDbType.Int, Value=Properties.Settings.Default["IDEstacionamento"].ToString()}
-                    };
-                    dt = banco.ExecuteProcedureReturnDataTable(NameProcedure: "dbo.Pesquisa_TelaDesenvolvedor" , sp: sp);
+                    dt = banco.ExecuteProcedureReturnDataTable(NameProcedure: "dbo.Pesquisa_TelaDesenvolvedor");
                     if (dt.Rows.Count > 0)
                     {
                         txtID.Text = dt.Rows[0]["id"].ToString();
@@ -147,57 +143,39 @@ namespace Teste
                         btnEditar.Enabled = false;
                         AtivarCaixas();
                     }
-
                 }
                 catch (Exception ex)
                 {
-
                     MessageBox.Show(ex.Message + "\nString Conexão:" + Properties.Settings.Default.StringBanco, "Falha ao se conectar com banco de dados!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
-        private void SalvarSettings()
+        private void SalvarSettings(string StrConn)
         {
-            string servidor = txtServidor.Text;
-            string nomebanco = txtNomeBanco.Text;
-            string usuario = txtUsuario.Text;
-            string senha = txtSenha.Text;
-            string StrConn = "Server=" + servidor + ";Database=" + nomebanco + ";User Id=" + usuario + ";Password=" + senha + ";";
-
             Properties.Settings.Default["StringBanco"] = StrConn;
-            Properties.Settings.Default["ArquivoAuditoria"] = txtCaminho.Text;
-            Properties.Settings.Default["SenhaRoot"] = txtConfirmSenhaRoot.Text;
+            if(txtConfirmSenhaRoot != null)
+            {
+                Properties.Settings.Default["SenhaRoot"] = txtConfirmSenhaRoot.Text;
+            }
             Properties.Settings.Default.Save();
-            if (txtID.Text != "")
-            {
-                SalvarBanco(StrConn, "Edit");
-            }
-            else if (txtID.Text == "")
-            {
-                SalvarBanco(StrConn, "Save");
-            }
-
-
         }
-        private void SalvarBanco(string StrConn, string method)
+        private void SalvarBanco()
         {
             try
             {
+                string StringBanco = Properties.Settings.Default["StringBanco"].ToString();
                 int result;
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
-                    new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value =1},
                     new SqlParameter(){ParameterName = "@Caminho", SqlDbType = SqlDbType.NVarChar, Value = txtCaminho.Text},
                     new SqlParameter(){ParameterName = "@Porta_Arduino", SqlDbType = SqlDbType.NVarChar, Value = txtPortaArduino.Text},
-                    new SqlParameter(){ParameterName = "@String_Conn", SqlDbType = SqlDbType.NVarChar, Value = StrConn}
+                    new SqlParameter(){ParameterName = "@String_Conn", SqlDbType = SqlDbType.NVarChar, Value = StringBanco}
                 };
-                if (method == "Edit")
-                {
-                    sp.Add(new SqlParameter() { ParameterName = "@Id_Estacionamento", SqlDbType = SqlDbType.Int, Value = txtID.Text });
-                }
-                result = banco.ExecuteProcedureReturnInt("dbo.Parametros", sp);
+                result = banco.ExecuteProcedureWithReturnValue("dbo.SalvarDesenvolvedor", sp);
                 if (result > 0)
                 {
+                    Properties.Settings.Default["IDEstacionamento"] = result;
+                    Properties.Settings.Default.Save();
                     txtCaminho.Enabled = false;
                     txtPortaArduino.Enabled = false;
                     txtServidor.Enabled = false;
@@ -208,7 +186,7 @@ namespace Teste
                     txtConfirmSenhaRoot.Enabled = false;
                     btnSalvar.Enabled = false;
                     btnSelecionar.Enabled = false;
-                    MessageBox.Show("Parâmetros Editados com Sucesso!", "Configurações Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Parâmetros Salvos com Sucesso!", "Configurações Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
@@ -246,44 +224,55 @@ namespace Teste
         }
         private void ValidarCaixas()
         {
-            if (Regex.IsMatch(txtPortaArduino.Text, "^[A-Z]{3}[0-9]{1}"))
+            if (Regex.IsMatch(txtServidor.Text, @"^[\S]+$"))
             {
-                if (Regex.IsMatch(txtServidor.Text, @"^[\S]+$"))
+                if (Regex.IsMatch(txtNomeBanco.Text, @"^[\S]+$"))
                 {
-                    if (Regex.IsMatch(txtNomeBanco.Text, @"^[\S]+$"))
+                    if (Regex.IsMatch(txtUsuario.Text, @"^[\S]+$"))
                     {
-                        if (Regex.IsMatch(txtUsuario.Text, @"^[\S]+$"))
+                        if (txtSenhaRoot.Text == txtConfirmSenhaRoot.Text)
                         {
-                            if (txtSenhaRoot.Text == txtConfirmSenhaRoot.Text)
-                            {
-                                SalvarSettings();
-                            }
-                            else
-                            {
-                                MessageBox.Show("As senhas root são diferentes!", "Configurações NÃO Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
+                            TestarConexao();
                         }
                         else
                         {
-                            MessageBox.Show("Nome de Usuário Inválido!", "Configurações NÃO Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("As senhas root são diferentes!", "Configurações NÃO Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Banco de Dados Inválido!", "Configurações NÃO Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Nome de Usuário Inválido!", "Configurações NÃO Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Servidor Inválido!", "Configurações NÃO Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Banco de Dados Inválido!", "Configurações NÃO Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Porta Arduino Inválida!", "Configurações NÃO Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Servidor Inválido!", "Configurações NÃO Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        private void TestarConexao()
+        {
+            string servidor = txtServidor.Text;
+            string nomebanco = txtNomeBanco.Text;
+            string usuario = txtUsuario.Text;
+            string senha = txtSenha.Text;
+            string StrConn = "Server=" + servidor + ";Database=" + nomebanco + ";User Id=" + usuario + ";Password=" + senha + ";";
+            try
+            {
+                banco.TestarConexao(StrConn);
+                SalvarSettings(StrConn);
+                SalvarBanco();
+                CarregarInformacoes();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Falha ao se conectar com banco de dados!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void FrmTelaDesenvolvedor_Load_1(object sender, EventArgs e)
         {
             CarregarInformacoes();
@@ -294,7 +283,6 @@ namespace Teste
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
                 txtCaminho.Text = folderBrowserDialog1.SelectedPath;
-
             }
         }
 

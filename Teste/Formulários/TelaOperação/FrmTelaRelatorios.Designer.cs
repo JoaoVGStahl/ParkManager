@@ -305,6 +305,7 @@ namespace Teste
             this.chart1.Size = new System.Drawing.Size(1052, 268);
             this.chart1.TabIndex = 30;
             this.chart1.Text = "chart1";
+            this.chart1.Click += new System.EventHandler(this.chart1_Click);
             // 
             // panel4
             // 
@@ -446,6 +447,7 @@ namespace Teste
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(1055, 309);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // panel6
             // 

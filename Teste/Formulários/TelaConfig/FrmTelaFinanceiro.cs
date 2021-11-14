@@ -18,15 +18,24 @@ namespace Teste
         }
         private void FrmTelaFinanceiro_Load(object sender, EventArgs e)
         {
-            CarregarValores();
-            if (Convert.ToBoolean(Properties.Settings.Default["ModoUnico"]))
+            if(Properties.Settings.Default["StringBanco"].ToString() != null)
             {
-                AtivarModoUnico();
+                CarregarValores();
+                if (Convert.ToBoolean(Properties.Settings.Default["ModoUnico"]))
+                {
+                    AtivarModoUnico();
+                }
+                else
+                {
+                    DesativarModoUnico();
+                }
             }
             else
             {
-                DesativarModoUnico();
+                MessageBox.Show("É necessário configurar um banco de dados primeiro!", "Sem fonte de dados!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Dispose();
             }
+            
 
         }
         private void CarregarValores()
@@ -34,12 +43,13 @@ namespace Teste
             try
             {
                 decimal PrecoHora, PrecoMin, PrecoUnico;
+                string id = Properties.Settings.Default["IDEstacionamento"].ToString();
                 DataTable dt = new DataTable();
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
-                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 14}
+                    new SqlParameter(){ParameterName="@IdEstacionamento", SqlDbType = SqlDbType.Int, Value = id}
                 };
-                dt = banco.ExecuteProcedureReturnDataTable("dbo.Funcoes_Pesquisa", sp);
+                dt = banco.ExecuteProcedureReturnDataTable("dbo.CarregarValores", sp);
                 if (dt.Rows.Count > 0)
                 {
                     txtId.Text = dt.Rows[0]["ID"].ToString();
@@ -77,6 +87,7 @@ namespace Teste
                     btnEditar.Enabled = false;
                     dt.Dispose();
                     MessageBox.Show("Cadastre seu estacionamento primeiro!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Dispose();
                 }
             }
             catch (Exception ex)

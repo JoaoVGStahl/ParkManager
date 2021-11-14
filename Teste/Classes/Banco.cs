@@ -67,7 +67,6 @@ namespace Teste
             finally
             {
                 conexao.Close();
-                cmd.Dispose();
             }
         }
         public int ExecuteProcedureWithReturnValue(string NameProcedure, List<SqlParameter> sp = null)
@@ -94,8 +93,24 @@ namespace Teste
             finally
             {
                 conexao.Close();
-                cmd.Dispose();
             }
+        }
+        public void TestarConexao(string StrConn)
+        {
+            SqlConnection conn = new SqlConnection(StrConn);
+            try
+            {
+                conn.Open();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            
         }
     }
 }
