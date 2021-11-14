@@ -27,7 +27,15 @@ namespace Teste
 
         private void FrmTelaUsuario_Load(object sender, EventArgs e)
         {
-            PreencherGrid();
+            if(Properties.Settings.Default["IdEstacionamento"].ToString() != null)
+            {
+                PreencherGrid();
+            }
+            else
+            {
+                MessageBox.Show("Conecte-se a um banco de dados primeiro!", "Sem fonte de dados!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Dispose();
+            }
         }
         private void PreencherGrid()
         {
@@ -49,7 +57,6 @@ namespace Teste
             {
                 dt.Dispose();
             }
-
         }
         private void LimparCaixas()
         {
@@ -81,7 +88,6 @@ namespace Teste
                 e.Handled = true;
             }
         }
-
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -117,7 +123,7 @@ namespace Teste
                 }
                 else
                 {
-                    MessageBox.Show("As senhas são diferentes! Verifiquei e tente novamente!", "Falha ao salvar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("As senhas são diferentes! Verifique e tente novamente!", "Falha ao salvar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else

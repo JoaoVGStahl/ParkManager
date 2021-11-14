@@ -18,15 +18,29 @@ namespace Teste
         private void FrmTelaEstacionamento_Load(object sender, EventArgs e)
         {
             panel4.VerticalScroll.Value = 0;
-            CarregarIdentificacao();
+            if(Properties.Settings.Default["IdEstacionamento"].ToString() != null)
+            {
+                CarregarIdentificacao();
+            }
+            else
+            {
+                MessageBox.Show("Conecte-se a um banco de dados primeiro!", "Sem fonte de dados!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Dispose();
+            }
 
         }
         private void CarregarIdentificacao()
         {
+            
             DataTable dt = new DataTable();
             try
             {
-                dt = banco.ExecuteProcedureReturnDataTable("dbo.Info_Estacionamento");
+                string id = Properties.Settings.Default["IdEstacionamento"].ToString();
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
+                    new SqlParameter(){ParameterName="@IdEstacionamento", SqlDbType = SqlDbType.Int, Value = id}
+                };
+                dt = banco.ExecuteProcedureReturnDataTable("dbo.Info_Estacionamento", sp);
                 if (dt.Rows.Count > 0)
                 {
                     PreencherCampos(dt);

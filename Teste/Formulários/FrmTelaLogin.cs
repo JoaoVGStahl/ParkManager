@@ -26,7 +26,29 @@ namespace Teste
 
         private void button1_Click(object sender, EventArgs e)
         {
-            EfetuarLogin();
+            if (txtUsuario.Text == Properties.Settings.Default["UserRoot"].ToString() && txtSenha.Text == Properties.Settings.Default["SenhaRoot"].ToString())
+            {
+                Globais.IdUsuario = 1;
+                Globais.Login = txtUsuario.Text;
+                Globais.Nivel = 3;
+                Globais.UserStatus = 1;
+                FrmTelaConfig Form = new FrmTelaConfig(this);
+                this.Hide();
+                Form.ShowDialog();
+            }
+            else
+            {
+                if (Properties.Settings.Default["IdEstacionamento"].ToString() != null)
+                {
+                    EfetuarLogin();
+                }
+                else
+                {
+                    MessageBox.Show("É necessário configurar um banco de dados primeiro!", "Sem fonte de dados!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+
         }
 
         private void EfetuarLogin()
@@ -35,55 +57,42 @@ namespace Teste
             string usuario = txtUsuario.Text, senha = txtSenha.Text;
             if (usuario != "" && senha != "")
             {
-                if(usuario == Properties.Settings.Default["UserRoot"].ToString() && senha == Properties.Settings.Default["SenhaRoot"].ToString())
+                try
                 {
-                    Globais.IdUsuario = 1;
-                    Globais.Login = usuario;
-                    Globais.Nivel = 3;
-                    Globais.UserStatus = 1;
-                    FrmTelaConfig Form = new FrmTelaConfig(this);
-                    this.Hide();
-                    Form.ShowDialog();
-                }
-                else
-                {
-                    try
-                    {
-                        List<SqlParameter> sp = new List<SqlParameter>()
+                    List<SqlParameter> sp = new List<SqlParameter>()
                         {
                             new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 4},
                             new SqlParameter(){ParameterName="@Login", SqlDbType = SqlDbType.VarChar, Value = usuario},
                             new SqlParameter(){ParameterName="@Senha", SqlDbType = SqlDbType.VarChar, Value = senha}
                         };
-                        dt = banco.ExecuteProcedureReturnDataTable("dbo.Gerencia_Usuario", sp);
-                        if (dt.Rows.Count > 0)
+                    dt = banco.ExecuteProcedureReturnDataTable("dbo.Gerencia_Usuario", sp);
+                    if (dt.Rows.Count > 0)
+                    {
+                        int status = Convert.ToInt32(dt.Rows[0]["Status"].ToString());
+                        if (status != 0)
                         {
-                            int status = Convert.ToInt32(dt.Rows[0]["Status"].ToString());
-                            if (status != 0)
-                            {
-                                PreencherGlobais(dt);
-                                Globais.RegistrarLog(Globais.Login + " Efetuou Login.");
-                                AbrirForm();
-                            }
-                            else
-                            {
-                                txtSenha.Clear();
-                                txtUsuario.Select();
-                                MessageBox.Show("Este usuário está inativo, contate o administrador do sistema!", "Falha no login!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
+                            PreencherGlobais(dt);
+                            Globais.RegistrarLog(Globais.Login + " Efetuou Login.");
+                            AbrirForm();
                         }
                         else
                         {
                             txtSenha.Clear();
                             txtUsuario.Select();
-                            MessageBox.Show("Usuário e/ou senha incorretos ou não existem!", "Falha no login!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                            MessageBox.Show("Este usuário está inativo, contate o administrador do sistema!", "Falha no login!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        MessageBox.Show(ex.Message, "Falha no login!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtSenha.Clear();
+                        txtUsuario.Select();
+                        MessageBox.Show("Usuário e/ou senha incorretos ou não existem!", "Falha no login!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                     }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Falha no login!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
