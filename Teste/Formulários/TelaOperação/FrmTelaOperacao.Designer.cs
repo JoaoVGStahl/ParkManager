@@ -84,6 +84,7 @@ namespace Teste
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picImagem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCam)).BeginInit();
@@ -290,6 +291,7 @@ namespace Teste
             this.button2.Text = "Saída";
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // button1
             // 
@@ -770,6 +772,10 @@ namespace Teste
             this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTip1.ToolTipTitle = "Dica:";
             // 
+            // serialPort1
+            // 
+            this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
+            // 
             // FrmTelaOperacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
@@ -869,6 +875,7 @@ namespace Teste
         private System.Windows.Forms.PictureBox picCam;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ComboBox cmbTipo;
+        public System.IO.Ports.SerialPort serialPort1;
     }
 }
 

@@ -56,7 +56,7 @@ namespace Teste
                 cbPortaArduino.Items.Add(s);
             }
             //seleciona a primeira posição da lista
-            cbPortaArduino.SelectedIndex = 0;
+            //cbPortaArduino.SelectedIndex = 0;
         }
 
         //Novo
@@ -68,6 +68,7 @@ namespace Teste
                 {
                     serialPort1.PortName = cbPortaArduino.Items[cbPortaArduino.SelectedIndex].ToString();
                     serialPort1.Open();
+                   // Arduino.PortaCOM = cbPortaArduino.Items[cbPortaArduino.SelectedIndex].ToString();
 
                 }
                 catch
@@ -133,7 +134,7 @@ namespace Teste
                     {
                         txtID.Text = dt.Rows[0]["id"].ToString();
                         txtCaminho.Text = dt.Rows[0]["Caminho Log"].ToString();
-                        txtPortaArduino.Text = dt.Rows[0]["Porta Arduino"].ToString();
+                        cbPortaArduino.Text = dt.Rows[0]["Porta Arduino"].ToString();
                         string Connection = dt.Rows[0]["String Conexão"].ToString();
                         var split = Connection.Split(new string[] { "Server=", "Database=", "User Id=", "Password=", ";" }, StringSplitOptions.RemoveEmptyEntries);
                         txtServidor.Text = split[0];
@@ -188,7 +189,7 @@ namespace Teste
                 {
                     new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value =1},
                     new SqlParameter(){ParameterName = "@Caminho", SqlDbType = SqlDbType.NVarChar, Value = txtCaminho.Text},
-                    new SqlParameter(){ParameterName = "@Porta_Arduino", SqlDbType = SqlDbType.NVarChar, Value = txtPortaArduino.Text},
+                    new SqlParameter(){ParameterName = "@Porta_Arduino", SqlDbType = SqlDbType.NVarChar, Value = cbPortaArduino.Text},
                     new SqlParameter(){ParameterName = "@String_Conn", SqlDbType = SqlDbType.NVarChar, Value = StrConn}
                 };
                 if (method == "Edit")
@@ -199,7 +200,7 @@ namespace Teste
                 if (result > 0)
                 {
                     txtCaminho.Enabled = false;
-                    txtPortaArduino.Enabled = false;
+                    cbPortaArduino.Enabled = false;
                     txtServidor.Enabled = false;
                     txtNomeBanco.Enabled = false;
                     txtUsuario.Enabled = false;
@@ -227,7 +228,7 @@ namespace Teste
         private void AtivarCaixas()
         {
             txtCaminho.Enabled = true;
-            txtPortaArduino.Enabled = true;
+            cbPortaArduino.Enabled = true;
             txtServidor.Enabled = true;
             txtNomeBanco.Enabled = true;
             txtUsuario.Enabled = true;
@@ -245,9 +246,7 @@ namespace Teste
             btnSalvar.Enabled = false;
         }
         private void ValidarCaixas()
-        {
-            if (Regex.IsMatch(txtPortaArduino.Text, "^[A-Z]{3}[0-9]{1}"))
-            {
+        {            
                 if (Regex.IsMatch(txtServidor.Text, @"^[\S]+$"))
                 {
                     if (Regex.IsMatch(txtNomeBanco.Text, @"^[\S]+$"))
@@ -277,11 +276,7 @@ namespace Teste
                 {
                     MessageBox.Show("Servidor Inválido!", "Configurações NÃO Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
-            else
-            {
-                MessageBox.Show("Porta Arduino Inválida!", "Configurações NÃO Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            
         }
 
         private void FrmTelaDesenvolvedor_Load_1(object sender, EventArgs e)
@@ -350,6 +345,23 @@ namespace Teste
         private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
 
+        }
+
+        private void txtPortaArduino_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            if (serialPort1.IsOpen == true)
+            {
+                serialPort1.Write("A");
+
+            }
+            else {
+                MessageBox.Show("nao conectado");
+            }
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.IO.Ports;
 
 namespace Teste
 {
@@ -19,6 +20,7 @@ namespace Teste
         Image capturaImagem;
 
         Banco banco = new Banco();
+        
         public FrmTelaOperacao()
         {
             InitializeComponent();
@@ -61,7 +63,6 @@ namespace Teste
                 PopularComboTipo();
                 ContadorTicket();
                 CarregarParametros();
-                /*
                 if (!IniciaCamera())
                 {
                     picCam.Visible = false;
@@ -74,8 +75,30 @@ namespace Teste
                     picImagem.Visible = false;
                     picCam.Visible = true;
                 }
-                */
+                Arduino.Port = serialPort1;
+                Arduino.PortaCom = Properties.Settings.Default["PortaArduino"].ToString();
+                Arduino.OpenCom();
+
             }
+
+            //Conexão Serial
+            /*
+            if (serialPort1.IsOpen == false)
+            {
+                try
+                {
+                    serialPort1.PortName = Properties.Settings.Default["PortaArduino"].ToString();
+                    serialPort1.Open();                   
+
+                }
+                catch
+                {
+                    return;
+
+                }
+            }
+            */
+
         }
         private void CarregarBarraStatus()
         {
@@ -133,12 +156,14 @@ namespace Teste
                 dt = banco.ExecuteProcedureReturnDataTable("dbo.Parametros_Sistema");
                 if (dt.Rows.Count > 0)
                 {
+
                     Globais.ValorHora = Convert.ToDecimal(dt.Rows[0]["Valor Hora"]);
                     Globais.ValorMinimo = Convert.ToDecimal(dt.Rows[0]["Valor Minimo"]);
                     Globais.ValorUnico = Convert.ToDecimal(dt.Rows[0]["Valor Unico"]);
                     TimeSpan ts = Convert.ToDateTime(dt.Rows[0]["Tolerancia"].ToString()) - Convert.ToDateTime("00:00:00");
                     Globais.Tolerencia = ts;
                     Properties.Settings.Default["ArquivoAuditoria"] = dt.Rows[0]["Caminho Log"].ToString();
+                    Properties.Settings.Default["PortaArduino"] = dt.Rows[0]["Porta Arduino"].ToString();
                     Properties.Settings.Default.Save();
                 }
                 else
@@ -160,12 +185,12 @@ namespace Teste
             try
             {
                 CamContainer = new DirectX.Capture.Filters();
-                int quantCam;
-
-                if ((quantCam = CamContainer.VideoInputDevices.Count) > 0)
+                int quantCam = CamContainer.VideoInputDevices.Count;
+                if (quantCam > 0)
                 {
                     for (int i = 0; i < quantCam; i++)
                     {
+
                         // obtém o dispositivo de entrada do vídeo
                         Camera = CamContainer.VideoInputDevices[i];
 
@@ -303,9 +328,9 @@ namespace Teste
             try
             {
                 List<SqlParameter> sp = new List<SqlParameter>()
-                {
-                    new SqlParameter(){ParameterName= "@Placa", SqlDbType = SqlDbType.VarChar, Value = txtPlaca.Text}
-                };
+                    {
+                        new SqlParameter(){ParameterName= "@Placa", SqlDbType = SqlDbType.VarChar, Value = txtPlaca.Text}
+                    };
                 DataTable dt = new DataTable();
                 dt = banco.ExecuteProcedureReturnDataTable("dbo.Pesquisa_Info_Placa", sp);
                 if (dt.Rows.Count > 0)
@@ -519,8 +544,10 @@ namespace Teste
         {
 
             //Verifica se tem algum Tipo que foi carregando do banco.
-            if (cmbTipo.Items.Count > 0 && cmbTipo.SelectedIndex != -1)
+            if (cmbTipo.Items.Count > 0)
             {
+                if (cmbTipo.SelectedIndex != -1)
+                {
                     string tipo = cmbTipo.Text;
                     cmbMarca.Enabled = true;
                     DataTable dt = new DataTable();
@@ -548,7 +575,10 @@ namespace Teste
                     {
                         MessageBox.Show(ex.Message, "Falha ao carregar Marcas!");
                     }
+                }
+
             }
+
         }
 
         private void btnConfig_Click(object sender, EventArgs e)
@@ -620,12 +650,12 @@ namespace Teste
             bool escolha = (MessageBox.Show(mensagem, titulo, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes);
             if (escolha)
             {
-                /*
+                //Destroi o Formulario principal e abre o formulario de login
                 if (CaptureInfo.Capturing)
                 {
                     CaptureInfo.DisposeCapture();
                 }
-                */
+                Arduino.CloseCom();
                 FrmTelaLogin Frm = new FrmTelaLogin();
                 this.Dispose();
                 Frm.ShowDialog();
@@ -767,6 +797,16 @@ namespace Teste
 
         private void button1_Click(object sender, EventArgs e)
         {
+            string method = "E";
+            try
+            {
+                Arduino.WriteCom(method);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
 
         }
 
@@ -787,6 +827,38 @@ namespace Teste
         {
             FrmTelaRelatorios Frm = new FrmTelaRelatorios();
             AbrirForm(2, Frm);
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            string method = "S";
+            try
+            {
+                Arduino.WriteCom(method);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            string resp = serialPort1.ReadExisting();
+
+            switch (resp)
+            {
+                case "E":
+                    MessageBox.Show("Cancela Entrada Fechada");
+                break;
+
+                case "S":
+                    MessageBox.Show("Cancela Saida Fechada");
+                break;
+
+                default:
+                    break;
+            }
         }
     }
 }
