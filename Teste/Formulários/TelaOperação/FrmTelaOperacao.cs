@@ -20,6 +20,7 @@ namespace Teste
         Image capturaImagem;
 
         Banco banco = new Banco();
+        GeraPDF geradorPdf = new GeraPDF();
         
         public FrmTelaOperacao()
         {
@@ -78,27 +79,7 @@ namespace Teste
                 Arduino.Port = serialPort1;
                 Arduino.PortaCom = Properties.Settings.Default["PortaArduino"].ToString();
                 Arduino.OpenCom();
-
             }
-
-            //Conexão Serial
-            /*
-            if (serialPort1.IsOpen == false)
-            {
-                try
-                {
-                    serialPort1.PortName = Properties.Settings.Default["PortaArduino"].ToString();
-                    serialPort1.Open();                   
-
-                }
-                catch
-                {
-                    return;
-
-                }
-            }
-            */
-
         }
         private void CarregarBarraStatus()
         {
@@ -128,7 +109,6 @@ namespace Teste
             {
                 MessageBox.Show(ex.Message, "Falha ao carregar Tipo de veiculos!");
             }
-
         }
         public void ContadorTicket()
         {
@@ -461,11 +441,13 @@ namespace Teste
                 }
                 else
                 {
+                    /*
                     if (Camera != null && CamContainer.VideoInputDevices.Count > 0)
                     {
                         Inicializacao = 0;
                         SalvarImagem(placa);
                     }
+                    */
                     InserirTicket(placa, nome, telefone);
                 }
             }
@@ -501,11 +483,25 @@ namespace Teste
                 //Verifica se houve algum retorno da procedure
                 if (idTicket > 0)
                 {
+                    AbrirCancelaEntrada();
                     ContadorTicket();
                     LimparCaixas();
                     Globais.RegistrarLog(Globais.Login + " Inicou o Ticket #" + idTicket);
                     sp.Clear();
                     MessageBox.Show("Ticket Iniciado com sucesso! \n #Ticket:" + idTicket, "Ticket Iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    try
+                    {
+                        string caminho = geradorPdf.TicketEntrada();
+                        if (caminho != null)
+                        {
+                            System.Diagnostics.Process.Start(caminho);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show(ex.Message);
+                    }
                 }
                 else
                 {
@@ -608,9 +604,6 @@ namespace Teste
             {
                 picImagem.Image = picImagem.InitialImage;
             }
-            //Novo
-            //Adicionar na Procedure (String da foto) 
-            //picImagem.Image = Image.FromFile(Convert.ToString(dt.Rows[0].ItemArray[]));
         }
         private void AlinharLabels()
         {
@@ -748,6 +741,7 @@ namespace Teste
                         LimparCaixas();
                         btnEncerrar.Enabled = true;
                         btnIniciar.Enabled = false;
+                        
                     }
                     else
                     {
@@ -797,17 +791,18 @@ namespace Teste
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string method = "E";
+            AbrirCancelaEntrada();
+        }
+        private void AbrirCancelaEntrada()
+        {
             try
             {
-                Arduino.WriteCom(method);
+                Arduino.WriteCom("E");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
-
         }
 
         //Novo
@@ -831,10 +826,13 @@ namespace Teste
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            string method = "S";
+            AbrirCancelaSaida();
+        }
+        private void AbrirCancelaSaida()
+        {
             try
             {
-                Arduino.WriteCom(method);
+                Arduino.WriteCom("S");
             }
             catch (Exception ex)
             {
