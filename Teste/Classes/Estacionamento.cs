@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Teste.Classes
+namespace Teste
 {
-    public static class Estacionamento
+    public class Estacionamento
     {
         public static string cnpj { get; set; }
 
@@ -20,6 +20,7 @@ namespace Teste.Classes
 
         public static string cidade { get; set; }
 
+        public static string estado { get; set; }
         public static string cep { get; set; }
 
         public static string telefone { get; set; }

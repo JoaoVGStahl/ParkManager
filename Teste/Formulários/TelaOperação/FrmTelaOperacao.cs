@@ -136,14 +136,22 @@ namespace Teste
                 dt = banco.ExecuteProcedureReturnDataTable("dbo.Parametros_Sistema");
                 if (dt.Rows.Count > 0)
                 {
-
-                    Globais.ValorHora = Convert.ToDecimal(dt.Rows[0]["Valor Hora"]);
-                    Globais.ValorMinimo = Convert.ToDecimal(dt.Rows[0]["Valor Minimo"]);
-                    Globais.ValorUnico = Convert.ToDecimal(dt.Rows[0]["Valor Unico"]);
-                    TimeSpan ts = Convert.ToDateTime(dt.Rows[0]["Tolerancia"].ToString()) - Convert.ToDateTime("00:00:00");
-                    Globais.Tolerencia = ts;
-                    Properties.Settings.Default["ArquivoAuditoria"] = dt.Rows[0]["Caminho Log"].ToString();
-                    Properties.Settings.Default["PortaArduino"] = dt.Rows[0]["Porta Arduino"].ToString();
+                    Estacionamento.valor_hr = Convert.ToDecimal(dt.Rows[0]["valor_hr"]);
+                    Estacionamento.tolerancia = Convert.ToDateTime(dt.Rows[0]["Tolerancia"].ToString()) - Convert.ToDateTime("00:00:00");
+                    Estacionamento.cnpj = dt.Rows[0]["cnpj"].ToString();
+                    Estacionamento.razao_social = dt.Rows[0]["razao_social"].ToString();
+                    Estacionamento.endereco = dt.Rows[0]["endereco"].ToString();
+                    Estacionamento.bairro = dt.Rows[0]["bairro"].ToString();
+                    Estacionamento.numero = Convert.ToInt32(dt.Rows[0]["numero"]);
+                    Estacionamento.cidade = dt.Rows[0]["cidade"].ToString();
+                    Estacionamento.estado = dt.Rows[0]["estado"].ToString();
+                    Estacionamento.cep = dt.Rows[0]["cep"].ToString();
+                    Estacionamento.telefone = dt.Rows[0]["telefone"].ToString();
+                    Estacionamento.valor_min = Convert.ToDecimal(dt.Rows[0]["valor_min"]);
+                    Estacionamento.valor_unico = Convert.ToDecimal(dt.Rows[0]["valor_unico"]);
+                    Estacionamento.caminho_foto_padrao = dt.Rows[0]["caminho_foto_padrao"].ToString();
+                    Properties.Settings.Default["ArquivoAuditoria"] = dt.Rows[0]["caminho_log"].ToString();
+                    Properties.Settings.Default["PortaArduino"] = dt.Rows[0]["porta_arduino"].ToString();
                     Properties.Settings.Default.Save();
                 }
                 else
@@ -464,6 +472,7 @@ namespace Teste
         private void InserirTicket(string placa, string nome, string telefone)
         {
             string marca = cmbMarca.Text, tipo = cmbTipo.Text;
+            string hr = DateTime.Now.ToLongTimeString(), data = DateTime.Now.ToShortDateString();
             try
             {
                 List<SqlParameter> sp = new List<SqlParameter>()
@@ -474,8 +483,8 @@ namespace Teste
                     new SqlParameter(){ParameterName = "@Placa",SqlDbType = SqlDbType.NVarChar, Value = placa },
                     new SqlParameter(){ParameterName = "@Marca", SqlDbType = SqlDbType.NVarChar, Value = marca },
                     new SqlParameter(){ParameterName = "@Tipo", SqlDbType = SqlDbType.NVarChar, Value = tipo },
-                    new SqlParameter(){ParameterName = "@Hr_Entrada", SqlDbType = SqlDbType.Time, Value = DateTime.Now.ToLongTimeString() },
-                    new SqlParameter(){ParameterName = "@Data_Entrada", SqlDbType = SqlDbType.DateTime, Value = DateTime.Now.ToShortDateString() },
+                    new SqlParameter(){ParameterName = "@Hr_Entrada", SqlDbType = SqlDbType.Time, Value = hr },
+                    new SqlParameter(){ParameterName = "@Data_Entrada", SqlDbType = SqlDbType.DateTime, Value = data },
                     new SqlParameter() { ParameterName = "@Caminho_Foto", SqlDbType = SqlDbType.NVarChar, Value = Globais.CaminhoFoto }
 
                 };
@@ -486,22 +495,16 @@ namespace Teste
                     AbrirCancelaEntrada();
                     ContadorTicket();
                     LimparCaixas();
+                    Ticket.cliente = nome;
+                    Ticket.telefone = telefone;
+                    Ticket.placa = placa;
+                    Ticket.marca = marca;
+                    Ticket.tipo = tipo;
+                    Ticket.hora_entrada = data + hr;
+                    Ticket.Usuario_entrada = Globais.Login;
                     Globais.RegistrarLog(Globais.Login + " Inicou o Ticket #" + idTicket);
-                    sp.Clear();
                     MessageBox.Show("Ticket Iniciado com sucesso! \n #Ticket:" + idTicket, "Ticket Iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                    try
-                    {
-                        string caminho = geradorPdf.TicketEntrada();
-                        if (caminho != null)
-                        {
-                            System.Diagnostics.Process.Start(caminho);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-
-                        MessageBox.Show(ex.Message);
-                    }
+                    Imprimir();  
                 }
                 else
                 {
@@ -515,6 +518,23 @@ namespace Teste
             finally
             {
                 Globais.CaminhoFoto = @"c:\ParkManager\fotos";
+            }
+        }
+        private void Imprimir()
+        {
+            try
+            {
+                
+                string caminho = geradorPdf.TicketEntrada();
+                if (caminho != null)
+                {
+                    System.Diagnostics.Process.Start(caminho);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
             }
         }
         private void LimparCaixas()

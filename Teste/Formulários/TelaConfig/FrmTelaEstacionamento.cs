@@ -26,7 +26,11 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                dt = banco.ExecuteProcedureReturnDataTable("dbo.Info_Estacionamento");
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
+                    new SqlParameter(){ParameterName = @"IdEstacionamento", SqlDbType = SqlDbType.Int, Value = Properties.Settings.Default.IDEstacionamento }
+                };
+                dt = banco.ExecuteProcedureReturnDataTable("dbo.Info_Estacionamento", sp);
                 if (dt.Rows.Count > 0)
                 {
                     PreencherCampos(dt);

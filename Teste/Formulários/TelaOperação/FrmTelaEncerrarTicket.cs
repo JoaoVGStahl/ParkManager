@@ -92,11 +92,11 @@ namespace Teste
                 ts = DataEntrada - DataSaida;
             }
 
-            decimal Total = 0, Valor = Globais.ValorHora, ValorMinimo = Globais.ValorMinimo, ValorUnico = Globais.ValorUnico;
+            decimal Total = 0, Valor = Estacionamento.valor_hr, ValorMinimo = Estacionamento.valor_min, ValorUnico = Estacionamento.valor_unico;
             int dias = ts.Days;
             int horas = ts.Hours;
             int minutos = ts.Minutes;
-            int tolerancia = Globais.Tolerencia.Minutes;
+            int tolerancia = Estacionamento.tolerancia.Minutes;
             if (!Globais.ModoUnico)
             {
                 if (dias > 0)

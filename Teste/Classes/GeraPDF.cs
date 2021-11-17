@@ -78,29 +78,29 @@ namespace Teste
                     GeraLabels(cb);
 
                     cb.SetTextMatrix(145f, 650f);
-                    cb.ShowText("João Vitor Girardi Stahl");
+                    cb.ShowText(Ticket.cliente);
 
                     cb.SetTextMatrix(130f, 585f);
-                    cb.ShowText("ABC-1234");
+                    cb.ShowText(Ticket.placa);
 
 
                     cb.SetTextMatrix(120f, 520f);
-                    cb.ShowText("Carro");
+                    cb.ShowText(Ticket.tipo);
 
 
                     cb.SetTextMatrix(135f, 455f);
-                    cb.ShowText("Audi");
+                    cb.ShowText(Ticket.marca);
 
 
                     cb.SetTextMatrix(150f, 390f);
-                    cb.ShowText("40");
+                    cb.ShowText(Ticket.idTicket.ToString());
 
 
                     cb.SetTextMatrix(185f, 325f);
-                    cb.ShowText("Joao.Girardi");
+                    cb.ShowText(Ticket.Usuario_entrada);
 
                     cb.SetTextMatrix(150f, 230f);
-                    cb.ShowText("13:40:00 16/11/2021");
+                    cb.ShowText(Ticket.hora_entrada);
 
                     cb.SetFontAndSize(GetMyFont("Calibri Bold", "calibrib.ttf").BaseFont, 40);
 
@@ -175,7 +175,7 @@ namespace Teste
             Linha.WidthPercentage = 100;
             Linha.DefaultCell.BorderWidth = 0;
 
-            Chunk c1 = new Chunk("", FontFactory.GetFont("Calibri"));
+            Chunk c1 = new Chunk(Estacionamento.razao_social, FontFactory.GetFont("Calibri"));
             c1.Font.Color = new iTextSharp.text.BaseColor(0, 0, 0);
             c1.Font.SetStyle(1);
             c1.Font.Size = 24;
@@ -184,7 +184,7 @@ namespace Teste
             p1.Add(c1);
             Title.AddCell(p1);
 
-            Chunk c2 = new Chunk("\nCNPJ: ", FontFactory.GetFont("Bahnschrift SemiCondensed"));
+            Chunk c2 = new Chunk("\nCNPJ: "+ Estacionamento.cnpj, FontFactory.GetFont("Bahnschrift SemiCondensed"));
             c2.Font.Color = new iTextSharp.text.BaseColor(0, 0, 0);
 
             c2.Font.SetStyle(0);//0 For Normal Font
@@ -193,7 +193,15 @@ namespace Teste
             p2.Add(c2);
             Cnpj.AddCell(p2);
 
-            Chunk c3 = new Chunk("Teste", FontFactory.GetFont("Bahnschrift SemiCondensed"));
+            Chunk c3 = new Chunk(
+                Estacionamento.endereco + ", " +
+                Estacionamento.numero.ToString() + ", " +
+                Estacionamento.bairro + ", " +
+                Estacionamento.cidade + "/" +
+                Estacionamento.estado + " - " +
+                Estacionamento.cep + " - " +
+                Estacionamento.telefone
+                , FontFactory.GetFont("Bahnschrift SemiCondensed"));
             c3.Font.Color = new iTextSharp.text.BaseColor(0, 0, 0);
             c3.Font.SetStyle(0);
             c3.Font.Size = 14;

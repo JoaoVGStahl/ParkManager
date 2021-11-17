@@ -39,28 +39,7 @@ namespace Teste
             get { return userstatus; }
             set { userstatus = value; }
         }
-        //Obtem o Valor da Hora
-        private static decimal valorhora;
-
-        public static decimal ValorHora
-        {
-            get { return valorhora; }
-            set { valorhora = value; }
-        }
-        private static decimal valorminmo;
-
-        public static decimal ValorMinimo
-        {
-            get { return valorminmo; }
-            set { valorminmo = value; }
-        }
-        private static decimal valorunico;
-
-        public static decimal ValorUnico
-        {
-            get { return valorunico; }
-            set { valorunico = value; }
-        }
+        
         //Obtem o tempo de tolerancia
         private static TimeSpan tolerancia;
 
