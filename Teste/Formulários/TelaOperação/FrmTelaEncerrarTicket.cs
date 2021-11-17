@@ -305,7 +305,7 @@ namespace Teste
                 int result = banco.ExecuteProcedureWithReturnValue("dbo.Encerrar_Ticket", sp);
                 if(result > 0)
                 {
-                    MessageBox.Show("Ticket " + result + "encerrado com sucesso!", "Ticket encerrado!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Ticket #" + result + " encerrado com sucesso!", "Ticket encerrado!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Dispose();
                 }
                 else
