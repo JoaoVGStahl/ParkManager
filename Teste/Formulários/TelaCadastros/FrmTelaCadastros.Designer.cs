@@ -166,6 +166,7 @@
             this.ClientSize = new System.Drawing.Size(1101, 679);
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1117, 718);

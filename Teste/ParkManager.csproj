@@ -149,12 +149,21 @@
     <Compile Include="Formulários\TelaCadastros\FrmTelaMarca.Designer.cs">
       <DependentUpon>FrmTelaMarca.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formulários\TelaConfig\FrmTelaGeral.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulários\TelaConfig\FrmTelaGeral.Designer.cs">
+      <DependentUpon>FrmTelaGeral.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Formulários\TelaCadastros\FrmTelaCliente.resx">
       <DependentUpon>FrmTelaCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formulários\TelaCadastros\FrmTelaVeiculos.resx">
       <DependentUpon>FrmTelaVeiculos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulários\TelaConfig\FrmTelaGeral.resx">
+      <DependentUpon>FrmTelaGeral.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formulários\TelaOperação\FrmTelaEncerrarTicket.resx">
       <DependentUpon>FrmTelaEncerrarTicket.cs</DependentUpon>

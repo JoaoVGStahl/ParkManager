@@ -76,6 +76,10 @@ namespace Teste
         private void btnGeral_Click(object sender, EventArgs e)
         {
             FundoBotao(btnGeral);
+
+            FecharFormulariosFilhos();
+            FrmTelaGeral Frm = new FrmTelaGeral();
+            AbreFormParent(2, Frm);
         }
         private void btnEstacionamento_Click(object sender, EventArgs e)
         {
