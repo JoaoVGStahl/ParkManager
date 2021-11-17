@@ -1,24 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Teste
 {
     public partial class FrmTelaPesquisaTicket : Form
     {
         Banco banco = new Banco();
-        FrmTelaOperacao form;
-        public FrmTelaPesquisaTicket(FrmTelaOperacao Form)
+        FrmTelaOperacao Form;
+        public FrmTelaPesquisaTicket()
         {
             InitializeComponent();
-            this.form = Form;
+            this.Form = (FrmTelaOperacao)Application.OpenForms["FrmTelaOperacao"];
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -31,16 +26,15 @@ namespace Teste
             cmbStatus.SelectedIndex = 1;
             dtpEntrada.Value = DateTime.Today.AddDays(-7);
             btnPesquisa.PerformClick();
-            //PreencherGrid();
             dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows[0].Cells["Status"].Value.ToString() == "Ativo" )
+            if (dataGridView1.SelectedRows[0].Cells["Status"].Value.ToString() == "Ativo")
             {
                 dataGridView1.SelectedRows[0].Cells["Status"].Value.ToString();
                 Globais.IdTicket = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
-                FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket(form);
+                FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket();
                 Frm.ShowDialog();
             }
             else
@@ -174,16 +168,16 @@ namespace Teste
         }
         private void DefinirParametros()
         {
-            if(txtIdTicket.Text == "")
+            if (txtIdTicket.Text == "")
             {
-                PesquisarTicket(placa: txtPlaca.Text, DataEntrada: dtpEntrada.Value.ToString(), DataSaida: dtpSaida.Value.ToString(), status:cmbStatus.SelectedIndex.ToString());
+                PesquisarTicket(placa: txtPlaca.Text, DataEntrada: dtpEntrada.Value.ToString(), DataSaida: dtpSaida.Value.ToString(), status: cmbStatus.SelectedIndex.ToString());
             }
             else
             {
                 PesquisarTicket(IdTicket: txtIdTicket.Text, status: cmbStatus.SelectedIndex.ToString());
             }
         }
-        private void PesquisarTicket(string IdTicket = null,string placa = null, string DataEntrada = null,string DataSaida = null, string status = null )
+        private void PesquisarTicket(string IdTicket = null, string placa = null, string DataEntrada = null, string DataSaida = null, string status = null)
         {
             DataTable dt = new DataTable();
             try
@@ -196,7 +190,7 @@ namespace Teste
                     new SqlParameter(){ParameterName="@DataSaida", SqlDbType = SqlDbType.DateTime, Value = DataSaida},
                     new SqlParameter(){ParameterName = "@Status", SqlDbType = SqlDbType.Int, Value = status}
                 };
-                dt = banco.InsertData("dbo.Select_Tela_Pesquisa", sp);
+                dt = banco.ExecuteProcedureReturnDataTable("dbo.Select_Tela_Pesquisa", sp);
                 dataGridView1.DataSource = dt;
             }
             catch (Exception ex)
@@ -208,7 +202,7 @@ namespace Teste
         {
             if (dataGridView1.SelectedRows[0].Cells["Status"].Value.ToString() == "Ativo")
             {
-                form.PesquisaTicket(dataGridView1.SelectedRows[0].Cells["Placa"].Value.ToString());
+                Form.PesquisaTicket(dataGridView1.SelectedRows[0].Cells["Placa"].Value.ToString());
                 this.Dispose();
             }
         }

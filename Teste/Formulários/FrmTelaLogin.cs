@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Data;
-using System.Windows.Forms;
-using System.Data.SqlClient;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Teste
 {
@@ -35,7 +35,17 @@ namespace Teste
             string usuario = txtUsuario.Text, senha = txtSenha.Text;
             if (usuario != "" && senha != "")
             {
-                if (usuario != Properties.Settings.Default["UserRoot"].ToString() && senha != Properties.Settings.Default["SenhaRoot"].ToString())
+                if(usuario == Properties.Settings.Default["UserRoot"].ToString() && senha == Properties.Settings.Default["SenhaRoot"].ToString())
+                {
+                    Globais.IdUsuario = 1;
+                    Globais.Login = usuario;
+                    Globais.Nivel = 3;
+                    Globais.UserStatus = 1;
+                    FrmTelaConfig Form = new FrmTelaConfig(this);
+                    this.Hide();
+                    Form.ShowDialog();
+                }
+                else
                 {
                     try
                     {
@@ -45,7 +55,7 @@ namespace Teste
                             new SqlParameter(){ParameterName="@Login", SqlDbType = SqlDbType.VarChar, Value = usuario},
                             new SqlParameter(){ParameterName="@Senha", SqlDbType = SqlDbType.VarChar, Value = senha}
                         };
-                        dt = banco.InsertData("dbo.Gerencia_Usuario", sp);
+                        dt = banco.ExecuteProcedureReturnDataTable("dbo.Gerencia_Usuario", sp);
                         if (dt.Rows.Count > 0)
                         {
                             int status = Convert.ToInt32(dt.Rows[0]["Status"].ToString());
@@ -75,15 +85,6 @@ namespace Teste
                         MessageBox.Show(ex.Message, "Falha no login!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                else if (usuario == Properties.Settings.Default["UserRoot"].ToString() && senha == Properties.Settings.Default["SenhaRoot"].ToString())
-                {
-                    Globais.IdUsuario = 1;
-                    Globais.Login = usuario;
-                    Globais.Nivel = 3;
-                    Globais.UserStatus = 1;
-                    FrmTelaConfig Form = new FrmTelaConfig(this);
-                    AbrirForm();
-                }
             }
             else
             {
@@ -91,7 +92,6 @@ namespace Teste
                 MessageBox.Show("Preencha todos os campos!", "Falha no login!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             dt.Dispose();
-
         }
 
         private void AbrirForm()

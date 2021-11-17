@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
-using System.Text;
 using System.Net;
+using System.Text;
 
 namespace Teste
 {
@@ -104,16 +104,8 @@ namespace Teste
                 string texto = data + " " + hora + " " + "(" + maquina + "):" + Action;
 
                 string arquivo = Properties.Settings.Default["ArquivoAuditoria"].ToString() + @"\" + data.Replace("/", "-") + ".dat";
-                bool modo = false;
-                if (File.Exists(arquivo))
-                {
-                    modo = true;
-                }
-                else
-                {
-                    modo = false;
-                }
-                using (StreamWriter tw = new StreamWriter(arquivo, modo))
+
+                using (StreamWriter tw = new StreamWriter(arquivo, File.Exists(arquivo) ? true : false))
                 {
                     byte[] utf8String = Encoding.UTF8.GetBytes(texto);
                     tw.WriteLine(BitConverter.ToString(utf8String));
@@ -121,7 +113,7 @@ namespace Teste
                 }
 
             }
-            
+
         }
 
     }

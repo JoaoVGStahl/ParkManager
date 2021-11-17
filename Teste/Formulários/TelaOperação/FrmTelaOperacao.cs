@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
-using System.Windows.Forms;
 using System.Data.SqlClient;
-using System.Text.RegularExpressions;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
+using System.IO.Ports;
 
 namespace Teste
 {
@@ -19,10 +20,22 @@ namespace Teste
         Image capturaImagem;
 
         Banco banco = new Banco();
+        
         public FrmTelaOperacao()
         {
             InitializeComponent();
-            CarregarCores();
+        }
+        public string NomeCli
+        {
+            set { txtNome.Text = value; }
+        }
+        public string TelCli
+        {
+            set { mskTelefone.Text = value; }
+        }
+        public string Placa
+        {
+            set { txtPlaca.Text = value; }
         }
         private void AbrirForm(int nivel, Form F)
         {
@@ -62,10 +75,29 @@ namespace Teste
                     picImagem.Visible = false;
                     picCam.Visible = true;
                 }
+                Arduino.Port = serialPort1;
+                Arduino.PortaCom = Properties.Settings.Default["PortaArduino"].ToString();
+                Arduino.OpenCom();
+
             }
-        }
-        private void CarregarCores()
-        {
+
+            //Conexão Serial
+            /*
+            if (serialPort1.IsOpen == false)
+            {
+                try
+                {
+                    serialPort1.PortName = Properties.Settings.Default["PortaArduino"].ToString();
+                    serialPort1.Open();                   
+
+                }
+                catch
+                {
+                    return;
+
+                }
+            }
+            */
 
         }
         private void CarregarBarraStatus()
@@ -84,7 +116,7 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                dt = banco.InsertData(NameProcedure: "dbo.ComboBox_Tipo");
+                dt = banco.ExecuteProcedureReturnDataTable(NameProcedure: "dbo.ComboBox_Tipo");
                 cmbTipo.DataSource = null;
                 cmbTipo.DataSource = dt;
                 cmbTipo.ValueMember = "id_automovel";
@@ -103,7 +135,7 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                dt = banco.InsertData(NameProcedure: "dbo.Tickets_Abertos");
+                dt = banco.ExecuteProcedureReturnDataTable(NameProcedure: "dbo.Tickets_Abertos");
                 lblQtdTicket.Text = dt.Rows[0]["Ticket's Abertos"].ToString();
             }
             catch (Exception ex)
@@ -121,7 +153,7 @@ namespace Teste
             try
             {
                 DataTable dt = new DataTable();
-                dt = banco.InsertData("dbo.Parametros_Sistema");
+                dt = banco.ExecuteProcedureReturnDataTable("dbo.Parametros_Sistema");
                 if (dt.Rows.Count > 0)
                 {
 
@@ -131,6 +163,7 @@ namespace Teste
                     TimeSpan ts = Convert.ToDateTime(dt.Rows[0]["Tolerancia"].ToString()) - Convert.ToDateTime("00:00:00");
                     Globais.Tolerencia = ts;
                     Properties.Settings.Default["ArquivoAuditoria"] = dt.Rows[0]["Caminho Log"].ToString();
+                    Properties.Settings.Default["PortaArduino"] = dt.Rows[0]["Porta Arduino"].ToString();
                     Properties.Settings.Default.Save();
                 }
                 else
@@ -255,13 +288,13 @@ namespace Teste
         private void button6_Click(object sender, EventArgs e)
         {
 
-            FrmTelaPesquisaTicket Frm = new FrmTelaPesquisaTicket(this);
+            FrmTelaPesquisaTicket Frm = new FrmTelaPesquisaTicket();
             AbrirForm(0, Frm);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket(this);
+            FrmTelaEncerrarTicket Frm = new FrmTelaEncerrarTicket();
             AbrirForm(0, Frm);
         }
 
@@ -275,7 +308,7 @@ namespace Teste
                 txtNome.Enabled = true;
                 mskTelefone.Enabled = true;
                 CarregarVeiculo();
-                
+
             }
             else
             {
@@ -299,7 +332,7 @@ namespace Teste
                         new SqlParameter(){ParameterName= "@Placa", SqlDbType = SqlDbType.VarChar, Value = txtPlaca.Text}
                     };
                 DataTable dt = new DataTable();
-                dt = banco.InsertData("dbo.Pesquisa_Info_Placa", sp);
+                dt = banco.ExecuteProcedureReturnDataTable("dbo.Pesquisa_Info_Placa", sp);
                 if (dt.Rows.Count > 0)
                 {
                     cmbTipo.Text = dt.Rows[0]["Tipo"].ToString();
@@ -377,9 +410,10 @@ namespace Teste
                         }
                         else
                         {
-                            //Regex para validar Telefone.
+                            //Regex para validar Nome.   
                             if (Regex.IsMatch(nome, @"^[A-Za-záàâãéèêíïóôõöúçÁÀÂÃÉÈÍÏÓÔÕÖÚÇ ]+$"))
                             {
+                                //Regex para validar Telefone.
                                 if (Regex.IsMatch(telefone, "^[(]{1}[11-99]{2}[)]{1}[0|9]{1}[0-9]{4}-[0-9]{4}"))
                                 {
                                     VerificarTicket(placa, nome, telefone);
@@ -419,7 +453,7 @@ namespace Teste
                 {
                     new SqlParameter(){ParameterName="@Placa", SqlDbType = SqlDbType.VarChar, Value = placa}
                 };
-                dt = banco.InsertData(NameProcedure: "dbo.Pesquisa_TicketAberto_Placa", sp: sp);
+                dt = banco.ExecuteProcedureReturnDataTable(NameProcedure: "dbo.Pesquisa_TicketAberto_Placa", sp: sp);
                 if (Convert.ToInt32(dt.Rows[0]["QTD"]) > 0)
                 {
                     MessageBox.Show("Já existe um ticket em andamento para este veiculo!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -450,8 +484,6 @@ namespace Teste
             string marca = cmbMarca.Text, tipo = cmbTipo.Text;
             try
             {
-                int idTicket;
-                DataTable dt = new DataTable();
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
                     new SqlParameter(){ParameterName = "@idUsuario", SqlDbType = SqlDbType.Int, Value = Globais.IdUsuario},
@@ -465,32 +497,20 @@ namespace Teste
                     new SqlParameter() { ParameterName = "@Caminho_Foto", SqlDbType = SqlDbType.NVarChar, Value = Globais.CaminhoFoto }
 
                 };
-
-                dt = banco.InsertData("dbo.InsertTicket", sp);
+                int idTicket = banco.ExecuteProcedureWithReturnValue(NameProcedure: "dbo.InsertTicket", sp: sp);
                 //Verifica se houve algum retorno da procedure
-                if (dt.Rows.Count > 0)
+                if (idTicket > 0)
                 {
-                    idTicket = Convert.ToInt32(dt.Rows[0].ItemArray[0]);
-                    if (idTicket > 0)
-                    {
-
-                        ContadorTicket();
-                        LimparCaixas();
-                        Globais.RegistrarLog(Globais.Login + " Inicou o Ticket #" + idTicket);
-                        dt.Dispose();
-                        sp.Clear();
-                        MessageBox.Show("Ticket Iniciado com sucesso! \n #Ticket:" + idTicket, "Ticket Iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Falha ao iniciar Ticket!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    ContadorTicket();
+                    LimparCaixas();
+                    Globais.RegistrarLog(Globais.Login + " Inicou o Ticket #" + idTicket);
+                    sp.Clear();
+                    MessageBox.Show("Ticket Iniciado com sucesso! \n #Ticket:" + idTicket, "Ticket Iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                 }
                 else
                 {
                     MessageBox.Show("Falha ao iniciar Ticket!", "Ticket não iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
             }
             catch (Exception ex)
             {
@@ -520,38 +540,43 @@ namespace Teste
         {
             PopularComboMarca();
         }
-        private void PopularComboMarca()
+        public void PopularComboMarca()
         {
-            string tipo = cmbTipo.Text;
+
             //Verifica se tem algum Tipo que foi carregando do banco.
             if (cmbTipo.Items.Count > 0)
             {
-                cmbMarca.Enabled = true;
-                DataTable dt = new DataTable();
-                //Limpa o DataTable
-                dt.Clear();
-                //Chama a função que executa a query no banco de dados
-                try
+                if (cmbTipo.SelectedIndex != -1)
                 {
-                    List<SqlParameter> sp = new List<SqlParameter>()
+                    string tipo = cmbTipo.Text;
+                    cmbMarca.Enabled = true;
+                    DataTable dt = new DataTable();
+                    //Limpa o DataTable
+                    dt.Clear();
+                    //Chama a função que executa a query no banco de dados
+                    try
                     {
+                        List<SqlParameter> sp = new List<SqlParameter>()
+                        {
                         new SqlParameter(){ParameterName="@Tipo", SqlDbType = SqlDbType.VarChar,Value = tipo}
-                    };
-                    dt = banco.InsertData(NameProcedure: "dbo.ComboBox_Marca", sp: sp);
-                    //Limpar o DataSource do combo
-                    cmbMarca.DataSource = null;
-                    //Seleciona o DataTable como o DataSoucer do combo
-                    cmbMarca.DataSource = dt;
-                    //Preenche o ComboBox com o DataTable
-                    cmbMarca.ValueMember = "Tipo";
-                    cmbMarca.DisplayMember = "Marca";
-                    //Desmacar qualquer seleção pré-selecionada
-                    cmbMarca.SelectedItem = null;
+                        };
+                        dt = banco.ExecuteProcedureReturnDataTable(NameProcedure: "dbo.ComboBox_Marca", sp: sp);
+                        //Limpar o DataSource do combo
+                        cmbMarca.DataSource = null;
+                        //Seleciona o DataTable como o DataSoucer do combo
+                        cmbMarca.DataSource = dt;
+                        //Preenche o ComboBox com o DataTable
+                        cmbMarca.ValueMember = "Tipo";
+                        cmbMarca.DisplayMember = "Marca";
+                        //Desmacar qualquer seleção pré-selecionada
+                        cmbMarca.SelectedItem = null;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Falha ao carregar Marcas!");
+                    }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Falha ao carregar Marcas!");
-                }
+
             }
 
         }
@@ -626,7 +651,11 @@ namespace Teste
             if (escolha)
             {
                 //Destroi o Formulario principal e abre o formulario de login
-                CaptureInfo.DisposeCapture();
+                if (CaptureInfo.Capturing)
+                {
+                    CaptureInfo.DisposeCapture();
+                }
+                Arduino.CloseCom();
                 FrmTelaLogin Frm = new FrmTelaLogin();
                 this.Dispose();
                 Frm.ShowDialog();
@@ -710,7 +739,7 @@ namespace Teste
                     {
                         new SqlParameter(){ParameterName="@Placa", SqlDbType = SqlDbType.VarChar, Value = placa}
                     };
-                    dt = banco.InsertData(NameProcedure: "dbo.Pesquisa_Ticket_TelaOperacao", sp: sp);
+                    dt = banco.ExecuteProcedureReturnDataTable(NameProcedure: "dbo.Pesquisa_Ticket_TelaOperacao", sp: sp);
                     //Verifica se houve algum retorno no DataTable
                     if (dt.Rows.Count > 0)
                     {
@@ -768,6 +797,16 @@ namespace Teste
 
         private void button1_Click(object sender, EventArgs e)
         {
+            string method = "E";
+            try
+            {
+                Arduino.WriteCom(method);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
 
         }
 
@@ -788,6 +827,38 @@ namespace Teste
         {
             FrmTelaRelatorios Frm = new FrmTelaRelatorios();
             AbrirForm(2, Frm);
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            string method = "S";
+            try
+            {
+                Arduino.WriteCom(method);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            string resp = serialPort1.ReadExisting();
+
+            switch (resp)
+            {
+                case "E":
+                    MessageBox.Show("Cancela Entrada Fechada");
+                break;
+
+                case "S":
+                    MessageBox.Show("Cancela Saida Fechada");
+                break;
+
+                default:
+                    break;
+            }
         }
     }
 }

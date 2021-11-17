@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Teste
 {
-    public partial class FrmTelaCadastros: Form
+    public partial class FrmTelaCadastros : Form
     {
         public FrmTelaCadastros()
         {
@@ -28,6 +22,8 @@ namespace Teste
             btnVeiculos.ForeColor = Color.Black;
             btnCliente.BackColor = Color.WhiteSmoke;
             btnCliente.ForeColor = Color.Black;
+            btnMarca.BackColor = Color.WhiteSmoke;
+            btnMarca.ForeColor = Color.Black;
             botao.BackColor = Color.DarkBlue;
             botao.ForeColor = Color.White;
         }
@@ -58,7 +54,6 @@ namespace Teste
                 }
             }
         }
-
         private void btnVeiculos_Click(object sender, EventArgs e)
         {
             FundoBotao(btnVeiculos);
