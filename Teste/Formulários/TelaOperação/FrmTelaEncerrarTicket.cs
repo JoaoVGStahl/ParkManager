@@ -12,6 +12,7 @@ namespace Teste
         Banco banco = new Banco();
         DateTime DataFormatada;
         FrmTelaOperacao Form;
+        TimeSpan ts;
         public FrmTelaEncerrarTicket()
         {
             InitializeComponent();
@@ -58,14 +59,37 @@ namespace Teste
                 dt = banco.ExecuteProcedureReturnDataTable(NameProcedure: "dbo.Carregar_Tela_Encerrar", sp: sp);
                 if (dt.Rows.Count > 0)
                 {
-                    lblIdTicket.Text = "#" + dt.Rows[0]["#Ticket"].ToString();//ID Ticket
+                    try
+                    {
+                        lblIdTicket.Text = "#" + dt.Rows[0]["#Ticket"].ToString();//ID Ticket
 
-                    DataEntrada = Convert.ToDateTime(dt.Rows[0]["Data Entrada"].ToString());
-                    HoraEntrada = Convert.ToDateTime(dt.Rows[0]["Hora Entrada"].ToString());
-                    lblHoraEntrada.Text = HoraEntrada.ToLongTimeString() + " " + DataEntrada.ToShortDateString();
-                    DataFormatada = Convert.ToDateTime(DataEntrada.ToString("dd/MM/yyyy") + " " + HoraEntrada.ToString("HH:mm:ss"));
-                    timer1.Enabled = true;
-                    CalcularPreco(DataFormatada);
+                        DataEntrada = Convert.ToDateTime(dt.Rows[0]["Data Entrada"].ToString());
+                        HoraEntrada = Convert.ToDateTime(dt.Rows[0]["Hora Entrada"].ToString());
+                        lblHoraEntrada.Text = HoraEntrada.ToLongTimeString() + " " + DataEntrada.ToShortDateString();
+                        DataFormatada = Convert.ToDateTime(DataEntrada.ToString("dd/MM/yyyy") + " " + HoraEntrada.ToString("HH:mm:ss"));
+
+                        Ticket.idTicket = Convert.ToInt32(dt.Rows[0]["#Ticket"]);
+                        Ticket.hora_entrada = DataFormatada.ToString();
+                        Ticket.Usuario_entrada = dt.Rows[0]["UsuarioEntrada"].ToString();
+                        Ticket.placa = dt.Rows[0]["Placa"].ToString();
+                        Ticket.tipo = dt.Rows[0]["Tipo"].ToString();
+                        Ticket.marca = dt.Rows[0]["Marca"].ToString();
+                        Ticket.cliente = dt.Rows[0]["Nome Cliente"].ToString();
+                        Ticket.telefone = dt.Rows[0]["Telefone"].ToString();
+                        timer1.Enabled = true;
+                        CalcularPreco(DataFormatada);
+                    }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show(ex.Message, "Erro ao carregar ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        this.Dispose();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Ticket já encerrado ou inexistente!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Dispose();
                 }
             }
             catch (Exception ex)
@@ -82,7 +106,6 @@ namespace Teste
         {
             DateTime DataSaida = Convert.ToDateTime(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
             lblHoraSaida.Text = DataSaida.ToString("HH:mm:ss dd/MM/yyyy");
-            TimeSpan ts;
             if (DataSaida > DataEntrada)
             {
                 ts = DataSaida - DataEntrada;
@@ -260,7 +283,41 @@ namespace Teste
             if (troco < 0)
                 MessageBox.Show("Não é possivel encerrar este ticket porque está faltando parte do pagamento!", "Falha ao encerrar ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
-                MessageBox.Show("Ticket Encerrado com sucesso!", "Ticket Encerrardo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                EncerrarTicket(); 
+        }
+        private void EncerrarTicket()
+        {
+            string DataSaida = DateTime.Now.ToShortDateString(), HoraSaida = DateTime.Now.ToLongTimeString();
+            
+            try
+            {
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
+                    new SqlParameter(){ParameterName = "@IdTicket", SqlDbType = SqlDbType.Int, Value = Ticket.idTicket},
+                    new SqlParameter(){ParameterName = "@IdUsuario", SqlDbType = SqlDbType.Int, Value = Globais.IdUsuario},
+                    new SqlParameter(){ParameterName = "@HoraSaida", SqlDbType = SqlDbType.Time, Value = HoraSaida},
+                    new SqlParameter(){ParameterName = "@DataSaida", SqlDbType = SqlDbType.DateTime, Value = DataSaida},
+                    new SqlParameter(){ParameterName = "@Forma_Pgt", SqlDbType = SqlDbType.VarChar, Value = cmbFormaPagamento.Text},
+                    new SqlParameter(){ParameterName = "@Total", SqlDbType = SqlDbType.Decimal, Value = txtTotal.Text},
+                    new SqlParameter(){ParameterName = "@Troco", SqlDbType = SqlDbType.Decimal, Value = txtTroco.Text},
+                    new SqlParameter(){ParameterName = "@Permanencia", SqlDbType = SqlDbType.Time, Value = ts}
+                };
+                int result = banco.ExecuteProcedureWithReturnValue("dbo.Encerrar_Ticket", sp);
+                if(result > 0)
+                {
+                    MessageBox.Show("Ticket " + result + "encerrado com sucesso!", "Ticket encerrado!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Dispose();
+                }
+                else
+                {
+                    MessageBox.Show("Ticket não encerrado!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
