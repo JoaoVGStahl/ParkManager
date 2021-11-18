@@ -512,7 +512,7 @@ namespace Teste
                     Ticket.placa = placa;
                     Ticket.marca = marca;
                     Ticket.tipo = tipo;
-                    Ticket.hora_entrada = data + " " + hr;
+                    Ticket.hora_entrada = hr + " " + data;
                     Ticket.Usuario_entrada = Globais.Login;
                     if (Properties.Settings.Default.GerarPDF)
                     {
