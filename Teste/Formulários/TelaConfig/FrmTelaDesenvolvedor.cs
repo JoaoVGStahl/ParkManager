@@ -62,52 +62,23 @@ namespace Teste
         //Novo
         private void button1_Click_1(object sender, EventArgs e)
         {
-            if (serialPort1.IsOpen == false)
+
+            try
             {
-                try
-                {
-                    serialPort1.PortName = cbPortaArduino.Items[cbPortaArduino.SelectedIndex].ToString();
-                    serialPort1.Open();
-                   // Arduino.PortaCOM = cbPortaArduino.Items[cbPortaArduino.SelectedIndex].ToString();
-
-                }
-                catch
-                {
-                    return;
-
-                }
-                if (serialPort1.IsOpen)
-                {
-                    btConectar.Text = "Desconectar";
-                    cbPortaArduino.Enabled = false;
-
-                }
+                serialPort1.PortName = cbPortaArduino.Items[cbPortaArduino.SelectedIndex].ToString();
+                serialPort1.Open();
+                // Arduino.PortaCOM = cbPortaArduino.Items[cbPortaArduino.SelectedIndex].ToString();
+                MessageBox.Show("Arduino conectado com sucesso!", "Conectado!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            else
+            catch (Exception ex)
             {
-
-                try
-                {
-                    serialPort1.Close();
-                    cbPortaArduino.Enabled = true;
-                    btConectar.Text = "Conectar";
-                }
-                catch
-                {
-                    return;
-                }
-
+                MessageBox.Show(ex.Message, "Conectado!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            finally
+            {
+                serialPort1.Close();
             }
         }
-
-        /* Para Fechar Porta COM        
-        if(serialPort1.IsOpen == true)
-        {
-         serialPort1.Close();
-        }
-        */
-
-
 
         private void CarregarInformacoes()
         {
@@ -125,11 +96,11 @@ namespace Teste
                 DataTable dt = new DataTable();
                 try
                 {
-                     List<SqlParameter> sp = new List<SqlParameter>()
+                    List<SqlParameter> sp = new List<SqlParameter>()
                     {
                         new SqlParameter(){ParameterName="@IdEstacionamento", SqlDbType = SqlDbType.Int, Value=Properties.Settings.Default["IDEstacionamento"].ToString()}
                     };
-                    dt = banco.ExecuteProcedureReturnDataTable(NameProcedure: "dbo.Pesquisa_TelaDesenvolvedor" , sp: sp);
+                    dt = banco.ExecuteProcedureReturnDataTable(NameProcedure: "dbo.Pesquisa_TelaDesenvolvedor", sp: sp);
                     if (dt.Rows.Count > 0)
                     {
                         txtID.Text = dt.Rows[0]["id"].ToString();
@@ -246,37 +217,37 @@ namespace Teste
             btnSalvar.Enabled = false;
         }
         private void ValidarCaixas()
-        {            
-                if (Regex.IsMatch(txtServidor.Text, @"^[\S]+$"))
+        {
+            if (Regex.IsMatch(txtServidor.Text, @"^[\S]+$"))
+            {
+                if (Regex.IsMatch(txtNomeBanco.Text, @"^[\S]+$"))
                 {
-                    if (Regex.IsMatch(txtNomeBanco.Text, @"^[\S]+$"))
+                    if (Regex.IsMatch(txtUsuario.Text, @"^[\S]+$"))
                     {
-                        if (Regex.IsMatch(txtUsuario.Text, @"^[\S]+$"))
+                        if (txtSenhaRoot.Text == txtConfirmSenhaRoot.Text)
                         {
-                            if (txtSenhaRoot.Text == txtConfirmSenhaRoot.Text)
-                            {
-                                SalvarSettings();
-                            }
-                            else
-                            {
-                                MessageBox.Show("As senhas root são diferentes!", "Configurações NÃO Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
+                            SalvarSettings();
                         }
                         else
                         {
-                            MessageBox.Show("Nome de Usuário Inválido!", "Configurações NÃO Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("As senhas root são diferentes!", "Configurações NÃO Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Banco de Dados Inválido!", "Configurações NÃO Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Nome de Usuário Inválido!", "Configurações NÃO Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Servidor Inválido!", "Configurações NÃO Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Banco de Dados Inválido!", "Configurações NÃO Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            
+            }
+            else
+            {
+                MessageBox.Show("Servidor Inválido!", "Configurações NÃO Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void FrmTelaDesenvolvedor_Load_1(object sender, EventArgs e)
