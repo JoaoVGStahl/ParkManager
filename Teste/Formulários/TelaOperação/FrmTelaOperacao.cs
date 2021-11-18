@@ -922,7 +922,9 @@ namespace Teste
                 case "S":
                     MessageBox.Show("Cancela Saida Fechada");
                     break;
-
+                case "1":
+                    MessageBox.Show("Erro!");
+                    break;
                 default:
                     break;
             }
