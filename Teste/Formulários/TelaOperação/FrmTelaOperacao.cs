@@ -683,7 +683,7 @@ namespace Teste
             if (escolha)
             {
                 //Destroi o Formulario principal e abre o formulario de login
-                if (Camera != null && CaptureInfo.Capturing)
+                if (Camera != null)
                 {
                     CaptureInfo.DisposeCapture();
                 }
