@@ -62,7 +62,6 @@ namespace Teste
         //Novo
         private void button1_Click_1(object sender, EventArgs e)
         {
-
             try
             {
                 serialPort1.PortName = cbPortaArduino.Text;
