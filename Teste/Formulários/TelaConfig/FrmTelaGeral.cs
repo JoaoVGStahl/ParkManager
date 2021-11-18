@@ -187,6 +187,9 @@ namespace Teste
                 if(dt.Rows.Count > 0)
                 {
                     txtCaminho.Text = dt.Rows[0]["caminho_foto_padrao"].ToString();
+                    lblAtivos.Text = dt.Rows[0]["Ativos"].ToString();
+                    lblInativos.Text = dt.Rows[0]["Inativos"].ToString();
+                    lblTotal.Text = dt.Rows[0]["Total"].ToString();
                 }
             }
             catch (Exception ex)

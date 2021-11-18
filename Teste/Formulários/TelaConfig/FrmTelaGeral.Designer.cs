@@ -43,30 +43,30 @@ namespace Teste
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.rbPdfAtiv = new System.Windows.Forms.RadioButton();
+            this.rbPdfDes = new System.Windows.Forms.RadioButton();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.rbCancelaAtiv = new System.Windows.Forms.RadioButton();
+            this.rbCancelaDes = new System.Windows.Forms.RadioButton();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.rbFotoDes = new System.Windows.Forms.RadioButton();
             this.rbFotoAtiv = new System.Windows.Forms.RadioButton();
-            this.rbCancelaDes = new System.Windows.Forms.RadioButton();
-            this.rbCancelaAtiv = new System.Windows.Forms.RadioButton();
-            this.rbPdfDes = new System.Windows.Forms.RadioButton();
-            this.rbPdfAtiv = new System.Windows.Forms.RadioButton();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.lblInativos = new System.Windows.Forms.Label();
+            this.lblAtivos = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -217,10 +217,10 @@ namespace Teste
             this.groupBox1.Controls.Add(this.panel7);
             this.groupBox1.Controls.Add(this.panel6);
             this.groupBox1.Controls.Add(this.panel5);
-            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.lblTotal);
             this.groupBox1.Controls.Add(this.label14);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.lblInativos);
+            this.groupBox1.Controls.Add(this.lblAtivos);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label4);
@@ -232,6 +232,104 @@ namespace Teste
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Gerenciamento";
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.label5);
+            this.panel7.Controls.Add(this.rbPdfAtiv);
+            this.panel7.Controls.Add(this.rbPdfDes);
+            this.panel7.Location = new System.Drawing.Point(488, 157);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(304, 100);
+            this.panel7.TabIndex = 40;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.label5.Location = new System.Drawing.Point(30, 9);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(172, 25);
+            this.label5.TabIndex = 31;
+            this.label5.Text = "Geração de PDF";
+            // 
+            // rbPdfAtiv
+            // 
+            this.rbPdfAtiv.AutoSize = true;
+            this.rbPdfAtiv.Checked = true;
+            this.rbPdfAtiv.Enabled = false;
+            this.rbPdfAtiv.Location = new System.Drawing.Point(37, 52);
+            this.rbPdfAtiv.Name = "rbPdfAtiv";
+            this.rbPdfAtiv.Size = new System.Drawing.Size(90, 28);
+            this.rbPdfAtiv.TabIndex = 32;
+            this.rbPdfAtiv.TabStop = true;
+            this.rbPdfAtiv.Text = "Ativado";
+            this.rbPdfAtiv.UseVisualStyleBackColor = true;
+            // 
+            // rbPdfDes
+            // 
+            this.rbPdfDes.AutoSize = true;
+            this.rbPdfDes.Enabled = false;
+            this.rbPdfDes.Location = new System.Drawing.Point(183, 52);
+            this.rbPdfDes.Name = "rbPdfDes";
+            this.rbPdfDes.Size = new System.Drawing.Size(120, 28);
+            this.rbPdfDes.TabIndex = 33;
+            this.rbPdfDes.Text = "Desativado";
+            this.rbPdfDes.UseVisualStyleBackColor = true;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.label3);
+            this.panel6.Controls.Add(this.rbCancelaAtiv);
+            this.panel6.Controls.Add(this.rbCancelaDes);
+            this.panel6.Location = new System.Drawing.Point(494, 28);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(298, 100);
+            this.panel6.TabIndex = 39;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.label3.Location = new System.Drawing.Point(25, 13);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(244, 25);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Abrir e Fechar Cancelas";
+            // 
+            // rbCancelaAtiv
+            // 
+            this.rbCancelaAtiv.AutoSize = true;
+            this.rbCancelaAtiv.Checked = true;
+            this.rbCancelaAtiv.Enabled = false;
+            this.rbCancelaAtiv.Location = new System.Drawing.Point(30, 59);
+            this.rbCancelaAtiv.Name = "rbCancelaAtiv";
+            this.rbCancelaAtiv.Size = new System.Drawing.Size(90, 28);
+            this.rbCancelaAtiv.TabIndex = 34;
+            this.rbCancelaAtiv.TabStop = true;
+            this.rbCancelaAtiv.Text = "Ativado";
+            this.rbCancelaAtiv.UseVisualStyleBackColor = true;
+            // 
+            // rbCancelaDes
+            // 
+            this.rbCancelaDes.AutoSize = true;
+            this.rbCancelaDes.Enabled = false;
+            this.rbCancelaDes.Location = new System.Drawing.Point(176, 59);
+            this.rbCancelaDes.Name = "rbCancelaDes";
+            this.rbCancelaDes.Size = new System.Drawing.Size(120, 28);
+            this.rbCancelaDes.TabIndex = 35;
+            this.rbCancelaDes.Text = "Desativado";
+            this.rbCancelaDes.UseVisualStyleBackColor = true;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.label2);
+            this.panel5.Controls.Add(this.rbFotoDes);
+            this.panel5.Controls.Add(this.rbFotoAtiv);
+            this.panel5.Location = new System.Drawing.Point(6, 28);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(281, 100);
+            this.panel5.TabIndex = 38;
             // 
             // rbFotoDes
             // 
@@ -259,73 +357,15 @@ namespace Teste
             this.rbFotoAtiv.UseVisualStyleBackColor = true;
             this.rbFotoAtiv.CheckedChanged += new System.EventHandler(this.rbFotoAtiv_CheckedChanged);
             // 
-            // rbCancelaDes
+            // lblTotal
             // 
-            this.rbCancelaDes.AutoSize = true;
-            this.rbCancelaDes.Enabled = false;
-            this.rbCancelaDes.Location = new System.Drawing.Point(176, 59);
-            this.rbCancelaDes.Name = "rbCancelaDes";
-            this.rbCancelaDes.Size = new System.Drawing.Size(120, 28);
-            this.rbCancelaDes.TabIndex = 35;
-            this.rbCancelaDes.Text = "Desativado";
-            this.rbCancelaDes.UseVisualStyleBackColor = true;
-            // 
-            // rbCancelaAtiv
-            // 
-            this.rbCancelaAtiv.AutoSize = true;
-            this.rbCancelaAtiv.Checked = true;
-            this.rbCancelaAtiv.Enabled = false;
-            this.rbCancelaAtiv.Location = new System.Drawing.Point(30, 59);
-            this.rbCancelaAtiv.Name = "rbCancelaAtiv";
-            this.rbCancelaAtiv.Size = new System.Drawing.Size(90, 28);
-            this.rbCancelaAtiv.TabIndex = 34;
-            this.rbCancelaAtiv.TabStop = true;
-            this.rbCancelaAtiv.Text = "Ativado";
-            this.rbCancelaAtiv.UseVisualStyleBackColor = true;
-            // 
-            // rbPdfDes
-            // 
-            this.rbPdfDes.AutoSize = true;
-            this.rbPdfDes.Enabled = false;
-            this.rbPdfDes.Location = new System.Drawing.Point(183, 52);
-            this.rbPdfDes.Name = "rbPdfDes";
-            this.rbPdfDes.Size = new System.Drawing.Size(120, 28);
-            this.rbPdfDes.TabIndex = 33;
-            this.rbPdfDes.Text = "Desativado";
-            this.rbPdfDes.UseVisualStyleBackColor = true;
-            // 
-            // rbPdfAtiv
-            // 
-            this.rbPdfAtiv.AutoSize = true;
-            this.rbPdfAtiv.Checked = true;
-            this.rbPdfAtiv.Enabled = false;
-            this.rbPdfAtiv.Location = new System.Drawing.Point(37, 52);
-            this.rbPdfAtiv.Name = "rbPdfAtiv";
-            this.rbPdfAtiv.Size = new System.Drawing.Size(90, 28);
-            this.rbPdfAtiv.TabIndex = 32;
-            this.rbPdfAtiv.TabStop = true;
-            this.rbPdfAtiv.Text = "Ativado";
-            this.rbPdfAtiv.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
-            this.label5.Location = new System.Drawing.Point(30, 9);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(172, 25);
-            this.label5.TabIndex = 31;
-            this.label5.Text = "Geração de PDF";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
-            this.label15.Location = new System.Drawing.Point(236, 236);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(24, 25);
-            this.label15.TabIndex = 30;
-            this.label15.Text = "0";
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.lblTotal.Location = new System.Drawing.Point(236, 236);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(24, 25);
+            this.lblTotal.TabIndex = 30;
+            this.lblTotal.Text = "0";
             // 
             // label14
             // 
@@ -337,25 +377,25 @@ namespace Teste
             this.label14.TabIndex = 29;
             this.label14.Text = "Total";
             // 
-            // label10
+            // lblInativos
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
-            this.label10.Location = new System.Drawing.Point(136, 236);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(24, 25);
-            this.label10.TabIndex = 28;
-            this.label10.Text = "0";
+            this.lblInativos.AutoSize = true;
+            this.lblInativos.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.lblInativos.Location = new System.Drawing.Point(136, 236);
+            this.lblInativos.Name = "lblInativos";
+            this.lblInativos.Size = new System.Drawing.Size(24, 25);
+            this.lblInativos.TabIndex = 28;
+            this.lblInativos.Text = "0";
             // 
-            // label11
+            // lblAtivos
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
-            this.label11.Location = new System.Drawing.Point(36, 235);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(24, 25);
-            this.label11.TabIndex = 27;
-            this.label11.Text = "0";
+            this.lblAtivos.AutoSize = true;
+            this.lblAtivos.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.lblAtivos.Location = new System.Drawing.Point(36, 235);
+            this.lblAtivos.Name = "lblAtivos";
+            this.lblAtivos.Size = new System.Drawing.Size(24, 25);
+            this.lblAtivos.TabIndex = 27;
+            this.lblAtivos.Text = "0";
             // 
             // label12
             // 
@@ -387,46 +427,6 @@ namespace Teste
             this.label4.TabIndex = 15;
             this.label4.Text = "Cadastros Ativos e Inativos";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
-            this.label3.Location = new System.Drawing.Point(25, 13);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(244, 25);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Abrir e Fechar Cancelas";
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.label2);
-            this.panel5.Controls.Add(this.rbFotoDes);
-            this.panel5.Controls.Add(this.rbFotoAtiv);
-            this.panel5.Location = new System.Drawing.Point(6, 28);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(281, 100);
-            this.panel5.TabIndex = 38;
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.label3);
-            this.panel6.Controls.Add(this.rbCancelaAtiv);
-            this.panel6.Controls.Add(this.rbCancelaDes);
-            this.panel6.Location = new System.Drawing.Point(494, 28);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(298, 100);
-            this.panel6.TabIndex = 39;
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.label5);
-            this.panel7.Controls.Add(this.rbPdfAtiv);
-            this.panel7.Controls.Add(this.rbPdfDes);
-            this.panel7.Location = new System.Drawing.Point(488, 157);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(304, 100);
-            this.panel7.TabIndex = 40;
-            // 
             // FrmTelaGeral
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -450,12 +450,12 @@ namespace Teste
             this.panel2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -478,10 +478,10 @@ namespace Teste
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblInativos;
+        private System.Windows.Forms.Label lblAtivos;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.RadioButton rbFotoDes;
