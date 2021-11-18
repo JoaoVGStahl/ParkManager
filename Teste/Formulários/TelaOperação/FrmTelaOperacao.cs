@@ -221,14 +221,20 @@ namespace Teste
         //Novo
         private void AtualizaImagem(PictureBox frame)
         {
-            try
+            if(Inicializacao == 0)
             {
-                this.picImagem.Image = frame.Image;
+                try
+                {
+                    this.picImagem.Image = frame.Image;
+                    SalvarImagem(txtPlaca.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro " + ex.Message);
+                }
+                
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro " + ex.Message);
-            }
+            
         }
 
         //Novo
@@ -298,7 +304,6 @@ namespace Teste
                 txtNome.Enabled = true;
                 mskTelefone.Enabled = true;
                 CarregarVeiculo();
-
             }
             else
             {
@@ -372,10 +377,7 @@ namespace Teste
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (Properties.Settings.Default.Foto)
-            {
-                CapturarFoto();
-            }
+
             VerificarCaixas();
         }
         private void VerificarCaixas()
@@ -458,8 +460,8 @@ namespace Teste
                 {
                     if (Properties.Settings.Default.Foto)
                     {
+                        CapturarFoto();
                         Inicializacao = 0;
-                        SalvarImagem(txtPlaca.Text);
                     }
                     InserirTicket(placa, nome, telefone);
                 }
@@ -535,6 +537,7 @@ namespace Teste
         {
             try
             {
+                geradorPdf.filename = "Ticket_Entrada_" + Ticket.idTicket.ToString() + "_" + Ticket.placa + ".pdf";
                 string caminho = geradorPdf.TicketEntrada();
                 if (caminho != null)
                 {

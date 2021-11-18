@@ -10,7 +10,7 @@ namespace Teste
     {
         public Document pdfDoc;
         public string folderPath = @"c:\ParkManager\ticket\";
-        public string filename = "teste.pdf";
+        public string filename;
 
         public string TicketEntrada()
         {
