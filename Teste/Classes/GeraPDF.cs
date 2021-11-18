@@ -12,26 +12,7 @@ namespace Teste
         public string folderPath = @"c:\ParkManager\ticket\";
         public string filename;
 
-        public string TicketEntrada()
-        {
-            pdfDoc = new Document(PageSize.A4, 1.27f, 1.27f, 20, 80);
-            try
-            {
-                if (!Directory.Exists(folderPath))
-                {
-                    Directory.CreateDirectory(folderPath);
-                }
-
-                FileStream stream = new FileStream(folderPath + filename, FileMode.Create);
-                stream.Dispose();
-                ConstroiPdf();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return folderPath + filename;
-        }
+        
         public Font GetMyFont(string font, string path)
         {
             if (!FontFactory.IsRegistered(font))
@@ -56,92 +37,6 @@ namespace Teste
             jpg.SetAbsolutePosition(x, y);
             pdfDoc.Add(jpg);
         }
-        private void ConstroiPdf()
-        {
-            try
-            {
-                using (FileStream stream = new FileStream(folderPath + filename, FileMode.Append))
-                {
-                    var w = PdfWriter.GetInstance(pdfDoc, stream);
-                    pdfDoc.Open();
-                    InserirImg(@"c:\ParkManager\assets\CarIcon.png", 45, 765);
-                    InserirImg(@"c:\ParkManager\assets\warning.png", 260, 70);
-
-                    Header();
-
-                    PdfContentByte cb = w.DirectContent;
-                    BaseFont bf = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
-                    cb.SetFontAndSize(bf, 28f);
-                    cb.SaveState();
-                    cb.BeginText();
-
-                    GeraLabels(cb);
-
-                    cb.SetTextMatrix(145f, 650f);
-                    cb.ShowText(Ticket.cliente);
-
-                    cb.SetTextMatrix(130f, 585f);
-                    cb.ShowText(Ticket.placa);
-
-
-                    cb.SetTextMatrix(120f, 520f);
-                    cb.ShowText(Ticket.tipo);
-
-
-                    cb.SetTextMatrix(135f, 455f);
-                    cb.ShowText(Ticket.marca);
-
-
-                    cb.SetTextMatrix(150f, 390f);
-                    cb.ShowText(Ticket.idTicket.ToString());
-
-
-                    cb.SetTextMatrix(185f, 325f);
-                    cb.ShowText(Ticket.Usuario_entrada);
-
-                    cb.SetTextMatrix(150f, 230f);
-                    cb.ShowText(Ticket.hora_entrada);
-
-                    cb.SetFontAndSize(GetMyFont("Calibri Bold", "calibrib.ttf").BaseFont, 40);
-
-                    AdicionarLinha(cb);
-
-                    cb.EndText();
-                    cb.RestoreState();
-                    pdfDoc.Close();
-                    stream.Dispose();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        private void GeraLabels(PdfContentByte cb)
-        {
-            cb.SetTextMatrix(45f, 650f);
-            cb.ShowText("Cliente:");
-
-            cb.SetTextMatrix(45f, 585f);
-            cb.ShowText("Placa:");
-
-            cb.SetTextMatrix(45f, 520f);
-            cb.ShowText("Tipo:");
-
-            cb.SetTextMatrix(45f, 455f);
-            cb.ShowText("Marca:");
-
-            cb.SetTextMatrix(45f, 390f);
-            cb.ShowText("#Ticket:");
-
-            cb.SetTextMatrix(45f, 325f);
-            cb.ShowText("Atendente:");
-
-            cb.SetTextMatrix(150f, 45f);
-            cb.ShowText("Não deixe seu ticket no carro!");
-        }
-
         private void Header()
         {
             PdfPTable Title = new PdfPTable(1);//Here 1 is Used For Count of Column
@@ -183,7 +78,7 @@ namespace Teste
             p1.Add(c1);
             Title.AddCell(p1);
 
-            Chunk c2 = new Chunk("\nCNPJ: "+ Estacionamento.cnpj, FontFactory.GetFont("Bahnschrift SemiCondensed"));
+            Chunk c2 = new Chunk("\nCNPJ: " + Estacionamento.cnpj, FontFactory.GetFont("Bahnschrift SemiCondensed"));
             c2.Font.Color = new iTextSharp.text.BaseColor(0, 0, 0);
 
             c2.Font.SetStyle(0);//0 For Normal Font
@@ -212,14 +107,253 @@ namespace Teste
             pdfDoc.Add(Cnpj);
             pdfDoc.Add(Localizacao);
         }
-
         private void AdicionarLinha(PdfContentByte cb)
         {
+            cb.SetFontAndSize(GetMyFont("Calibri Bold", "calibrib.ttf").BaseFont, 40);
+
             cb.SetTextMatrix(0f, 720f);
             cb.ShowText("-------------------------------------------------");
 
             cb.SetTextMatrix(0f, 142f);
             cb.ShowText("-------------------------------------------------");
         }
+        public string TicketEntrada()
+        {
+            pdfDoc = new Document(PageSize.A4, 1.27f, 1.27f, 20, 80);
+            try
+            {
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                FileStream stream = new FileStream(folderPath + filename, FileMode.Create);
+                stream.Dispose();
+                ConstroiPdfEntrada();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return folderPath + filename;
+        }
+        private void ConstroiPdfEntrada()
+        {
+            try
+            {
+                using (FileStream stream = new FileStream(folderPath + filename, FileMode.Append))
+                {
+                    var w = PdfWriter.GetInstance(pdfDoc, stream);
+                    pdfDoc.Open();
+                    InserirImg(@"c:\ParkManager\assets\CarIcon.png", 45, 765);
+                    InserirImg(@"c:\ParkManager\assets\warning.png", 260, 70);
+
+                    Header();
+
+                    PdfContentByte cb = w.DirectContent;
+                    BaseFont bf = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
+                    cb.SetFontAndSize(bf, 28f);
+                    cb.SaveState();
+                    cb.BeginText();
+                    GeraLabelsEntrada(cb);
+                    PreencherDadosEntrada(cb);
+                    AdicionarLinha(cb);
+                    cb.EndText();
+                    cb.RestoreState();
+                    pdfDoc.Close();
+                    stream.Dispose();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        private void GeraLabelsEntrada(PdfContentByte cb)
+        {
+            cb.SetTextMatrix(45f, 650f);
+            cb.ShowText("Cliente:");
+
+            cb.SetTextMatrix(45f, 585f);
+            cb.ShowText("Placa:");
+
+            cb.SetTextMatrix(45f, 520f);
+            cb.ShowText("Tipo:");
+
+            cb.SetTextMatrix(45f, 455f);
+            cb.ShowText("Marca:");
+
+            cb.SetTextMatrix(45f, 390f);
+            cb.ShowText("#Ticket:");
+
+            cb.SetTextMatrix(45f, 325f);
+            cb.ShowText("Atendente:");
+
+            cb.SetTextMatrix(150f, 45f);
+            cb.ShowText("Não deixe seu ticket no carro!");
+        }
+
+        private static void PreencherDadosEntrada(PdfContentByte cb)
+        {
+            cb.SetTextMatrix(145f, 650f);
+            cb.ShowText(Ticket.cliente);
+
+            cb.SetTextMatrix(130f, 585f);
+            cb.ShowText(Ticket.placa);
+
+
+            cb.SetTextMatrix(120f, 520f);
+            cb.ShowText(Ticket.tipo);
+
+
+            cb.SetTextMatrix(135f, 455f);
+            cb.ShowText(Ticket.marca);
+
+
+            cb.SetTextMatrix(150f, 390f);
+            cb.ShowText(Ticket.idTicket.ToString());
+
+
+            cb.SetTextMatrix(185f, 325f);
+            cb.ShowText(Ticket.Usuario_entrada);
+
+            cb.SetTextMatrix(150f, 230f);
+            cb.ShowText(Ticket.hora_entrada);
+        }
+
+        
+        public string TicketSaida()
+        {
+            pdfDoc = new Document(PageSize.A4, 1.27f, 1.27f, 20, 80);
+            try
+            {
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                FileStream stream = new FileStream(folderPath + filename, FileMode.Create);
+                stream.Dispose();
+                ConstroiPdfSaida();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return folderPath + filename;
+        }
+        private void ConstroiPdfSaida()
+        {
+            try
+            {
+                using (FileStream stream = new FileStream(folderPath + filename, FileMode.Append))
+                {
+                    var w = PdfWriter.GetInstance(pdfDoc, stream);
+                    pdfDoc.Open();
+                    InserirImg(@"c:\ParkManager\assets\Icon.png", 45, 765);
+                    InserirImg(@"c:\ParkManager\assets\smiley.png", 260, 70);
+
+                    Header();
+
+                    PdfContentByte cb = w.DirectContent;
+                    BaseFont bf = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
+                    cb.SetFontAndSize(bf, 28f);
+                    cb.SaveState();
+                    cb.BeginText();
+
+                    GeraLabelsSaida(cb);
+                    PreencheDadosSaida(cb);
+
+                    
+                    AdicionarLinha(cb);
+
+                    cb.EndText();
+                    cb.RestoreState();
+                    pdfDoc.Close();
+                    stream.Dispose();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private static void PreencheDadosSaida(PdfContentByte cb)
+        {
+            cb.SetTextMatrix(145f, 700f);
+            cb.ShowText(Ticket.cliente);
+
+            cb.SetTextMatrix(130f, 650f);
+            cb.ShowText(Ticket.placa);
+
+
+            cb.SetTextMatrix(115f, 600);
+            cb.ShowText(Ticket.tipo);
+
+
+            cb.SetTextMatrix(135f, 550f);
+            cb.ShowText(Ticket.marca);
+
+
+            cb.SetTextMatrix(150f, 500f);
+            cb.ShowText(Ticket.idTicket.ToString());
+
+            cb.SetTextMatrix(185f, 450f);
+            cb.ShowText(Ticket.usuario_saida);
+
+            cb.SetTextMatrix(290f, 400f);
+            cb.ShowText(Ticket.forma_pgt);
+
+            cb.SetTextMatrix(120f, 350f);
+            cb.ShowText("R$" + Ticket.total.ToString());
+
+            cb.SetTextMatrix(130f, 300f);
+            cb.ShowText("R$" + Ticket.troco.ToString());
+
+            cb.SetTextMatrix(225f, 250f);
+            cb.ShowText(Ticket.permanencia);
+
+            cb.SetTextMatrix(180f, 190f);
+            cb.ShowText(Ticket.hr_saida);
+        }
+
+        private void GeraLabelsSaida(PdfContentByte cb)
+        {
+            cb.SetTextMatrix(45f, 700f);
+            cb.ShowText("Cliente:");
+
+            cb.SetTextMatrix(45f, 650f);
+            cb.ShowText("Placa:");
+
+            cb.SetTextMatrix(45f, 600f);
+            cb.ShowText("Tipo:");
+
+            cb.SetTextMatrix(45f, 550f);
+            cb.ShowText("Marca:");
+
+            cb.SetTextMatrix(45f, 500f);
+            cb.ShowText("#Ticket:");
+
+            cb.SetTextMatrix(45f, 450f);
+            cb.ShowText("Atendente:");
+
+            cb.SetTextMatrix(45f, 400f);
+            cb.ShowText("Forma Pagamento:");
+
+            cb.SetTextMatrix(45f, 350f);
+            cb.ShowText("Total:");
+
+            cb.SetTextMatrix(45f, 300f);
+            cb.ShowText("Troco:");
+
+            cb.SetTextMatrix(45f, 250f);
+            cb.ShowText("Permanência:");
+
+            cb.SetTextMatrix(145f, 45f);
+            cb.ShowText("Obrigado pela preferência!");
+        }
+
+
     }
 }

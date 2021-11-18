@@ -305,7 +305,21 @@ namespace Teste
                 int result = banco.ExecuteProcedureWithReturnValue("dbo.Encerrar_Ticket", sp);
                 if(result > 0)
                 {
+                    Ticket.usuario_saida = Globais.Login;
+                    Ticket.forma_pgt = cmbFormaPagamento.Text;
+                    Ticket.total = Convert.ToDecimal(txtTotal.Text);
+                    Ticket.troco = Convert.ToDecimal(txtTroco.Text);
+                    Ticket.permanencia = ts.ToString();
+                    Ticket.hr_saida = HoraSaida + " " + DataSaida;
                     MessageBox.Show("Ticket #" + result + " encerrado com sucesso!", "Ticket encerrado!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if(Properties.Settings.Default.GerarPDF)
+                    {
+                        Imprimir();
+                    }
+                    if (Properties.Settings.Default.Cancelas)
+                    {
+                        Arduino.WriteCom("S");
+                    }
                     this.Dispose();
                 }
                 else
@@ -317,6 +331,16 @@ namespace Teste
             {
 
                 MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void Imprimir()
+        {
+            GeraPDF gerador = new GeraPDF();
+            gerador.filename = "Ticket_Saida_" + Ticket.idTicket.ToString() + "_" + Ticket.placa + ".pdf";
+            string caminho = gerador.TicketSaida();
+            if(caminho != null)
+            {
+                System.Diagnostics.Process.Start(caminho);
             }
         }
     }
