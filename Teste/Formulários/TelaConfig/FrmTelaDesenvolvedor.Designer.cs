@@ -41,7 +41,7 @@ namespace Teste
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.btConectar = new System.Windows.Forms.Button();
+            this.btnTestar = new System.Windows.Forms.Button();
             this.cbPortaArduino = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -186,7 +186,7 @@ namespace Teste
             this.panel5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel5.AutoScroll = true;
             this.panel5.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel5.Controls.Add(this.btConectar);
+            this.panel5.Controls.Add(this.btnTestar);
             this.panel5.Controls.Add(this.cbPortaArduino);
             this.panel5.Controls.Add(this.groupBox2);
             this.panel5.Controls.Add(this.groupBox1);
@@ -199,15 +199,15 @@ namespace Teste
             this.panel5.Size = new System.Drawing.Size(830, 452);
             this.panel5.TabIndex = 7;
             // 
-            // btConectar
+            // btnTestar
             // 
-            this.btConectar.Location = new System.Drawing.Point(359, 53);
-            this.btConectar.Name = "btConectar";
-            this.btConectar.Size = new System.Drawing.Size(75, 32);
-            this.btConectar.TabIndex = 12;
-            this.btConectar.Text = "Conectar";
-            this.btConectar.UseVisualStyleBackColor = true;
-            this.btConectar.Click += new System.EventHandler(this.button1_Click_1);
+            this.btnTestar.Location = new System.Drawing.Point(359, 53);
+            this.btnTestar.Name = "btnTestar";
+            this.btnTestar.Size = new System.Drawing.Size(75, 32);
+            this.btnTestar.TabIndex = 12;
+            this.btnTestar.Text = "Testar";
+            this.btnTestar.UseVisualStyleBackColor = true;
+            this.btnTestar.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // cbPortaArduino
             // 
@@ -526,7 +526,7 @@ namespace Teste
         private System.Windows.Forms.ComboBox cbPortaArduino;
         private System.IO.Ports.SerialPort serialPort1;
         private System.Windows.Forms.Timer timerCOM;
-        private System.Windows.Forms.Button btConectar;
+        private System.Windows.Forms.Button btnTestar;
         private System.Windows.Forms.TextBox txtID;
     }
 }
