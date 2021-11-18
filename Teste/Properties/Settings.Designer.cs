@@ -106,5 +106,41 @@ namespace Teste.Properties {
                 this["IDEstacionamento"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool GerarPDF {
+            get {
+                return ((bool)(this["GerarPDF"]));
+            }
+            set {
+                this["GerarPDF"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool Foto {
+            get {
+                return ((bool)(this["Foto"]));
+            }
+            set {
+                this["Foto"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool Cancelas {
+            get {
+                return ((bool)(this["Cancelas"]));
+            }
+            set {
+                this["Cancelas"] = value;
+            }
+        }
     }
 }

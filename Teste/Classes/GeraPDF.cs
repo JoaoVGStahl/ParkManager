@@ -110,7 +110,6 @@ namespace Teste
                     cb.RestoreState();
                     pdfDoc.Close();
                     stream.Dispose();
-                    System.Diagnostics.Process.Start(folderPath + filename);
                 }
             }
             catch (Exception)

@@ -17,11 +17,10 @@ namespace Teste
         public DirectX.Capture.Capture CaptureInfo;
         public DirectX.Capture.Filters CamContainer;
         public int Inicializacao;
-        Image capturaImagem;
 
         Banco banco = new Banco();
         GeraPDF geradorPdf = new GeraPDF();
-        
+
         public FrmTelaOperacao()
         {
             InitializeComponent();
@@ -56,7 +55,6 @@ namespace Teste
 
         private void FrmTelaOperacao_Load(object sender, EventArgs e)
         {
-            Globais.CaminhoFoto = @"c:\ParkManager\fotos";
             if (!(Globais.Login == Properties.Settings.Default.UserRoot) || (Properties.Settings.Default["StringBanco"].ToString() == ""))
             {
                 txtPlaca.Select();
@@ -64,21 +62,28 @@ namespace Teste
                 PopularComboTipo();
                 ContadorTicket();
                 CarregarParametros();
-                if (!IniciaCamera())
+                if (Properties.Settings.Default.Foto)
                 {
-                    picCam.Visible = false;
-                    picImagem.Image = picImagem.InitialImage;
-                    picImagem.Visible = true;
-                    MessageBox.Show("Câmera não encontrada!", "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    if (!IniciaCamera())
+                    {
+                        picCam.Visible = false;
+                        picImagem.Image = picImagem.InitialImage;
+                        picImagem.Visible = true;
+                        MessageBox.Show("Câmera não encontrada!", "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        picImagem.Visible = false;
+                        picCam.Visible = true;
+                    }
                 }
-                else
+                if (Properties.Settings.Default.Cancelas)
                 {
-                    picImagem.Visible = false;
-                    picCam.Visible = true;
+                    Arduino.Port = serialPort1;
+                    Arduino.PortaCom = Properties.Settings.Default["PortaArduino"].ToString();
+                    Arduino.OpenCom();
                 }
-                Arduino.Port = serialPort1;
-                Arduino.PortaCom = Properties.Settings.Default["PortaArduino"].ToString();
-                Arduino.OpenCom();
+
             }
         }
         private void CarregarBarraStatus()
@@ -161,7 +166,6 @@ namespace Teste
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Falha ao carregar as informações!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -215,12 +219,11 @@ namespace Teste
         }
 
         //Novo
-        public void AtualizaImagem(PictureBox frame)
+        private void AtualizaImagem(PictureBox frame)
         {
             try
             {
-                capturaImagem = frame.Image;
-                this.picImagem.Image = capturaImagem;
+                this.picImagem.Image = frame.Image;
             }
             catch (Exception ex)
             {
@@ -246,12 +249,11 @@ namespace Teste
         {
             if (Inicializacao == 0)
             {
-                string caminhoImagemSalva = @"c:\ParkManager\fotos\";
-                caminhoImagemSalva += "veiculo_" + placa + "_" + DateTime.Now.ToShortDateString().Replace("/", "-") + "_" + DateTime.Now.ToLongTimeString().Replace(":", "-") + ".jpg";
+                string caminhoImagemSalva = Estacionamento.caminho_foto_padrao;
+                caminhoImagemSalva += @"\veiculo_" + placa + "_" + DateTime.Now.ToShortDateString().Replace("/", "-") + "_" + DateTime.Now.ToLongTimeString().Replace(":", "-") + ".jpg";
                 Globais.CaminhoFoto = caminhoImagemSalva;
                 try
                 {
-                    CapturarFoto();
                     if (picImagem.Image != null)
                     {
                         picImagem.Image.Save(Globais.CaminhoFoto, ImageFormat.Jpeg);
@@ -370,6 +372,10 @@ namespace Teste
 
         private void button2_Click(object sender, EventArgs e)
         {
+            if (Properties.Settings.Default.Foto)
+            {
+                CapturarFoto();
+            }
             VerificarCaixas();
         }
         private void VerificarCaixas()
@@ -404,6 +410,7 @@ namespace Teste
                                 //Regex para validar Telefone.
                                 if (Regex.IsMatch(telefone, "^[(]{1}[11-99]{2}[)]{1}[0|9]{1}[0-9]{4}-[0-9]{4}"))
                                 {
+
                                     VerificarTicket(placa, nome, telefone);
                                 }
                                 else
@@ -449,13 +456,11 @@ namespace Teste
                 }
                 else
                 {
-                    /*
-                    if (Camera != null && CamContainer.VideoInputDevices.Count > 0)
+                    if (Properties.Settings.Default.Foto)
                     {
                         Inicializacao = 0;
-                        SalvarImagem(placa);
+                        SalvarImagem(txtPlaca.Text);
                     }
-                    */
                     InserirTicket(placa, nome, telefone);
                 }
             }
@@ -486,25 +491,31 @@ namespace Teste
                     new SqlParameter(){ParameterName = "@Hr_Entrada", SqlDbType = SqlDbType.Time, Value = hr },
                     new SqlParameter(){ParameterName = "@Data_Entrada", SqlDbType = SqlDbType.DateTime, Value = data },
                     new SqlParameter() { ParameterName = "@Caminho_Foto", SqlDbType = SqlDbType.NVarChar, Value = Globais.CaminhoFoto }
-
                 };
                 int idTicket = banco.ExecuteProcedureWithReturnValue(NameProcedure: "dbo.InsertTicket", sp: sp);
                 //Verifica se houve algum retorno da procedure
                 if (idTicket > 0)
                 {
-                    AbrirCancelaEntrada();
+                    if (Properties.Settings.Default.Cancelas)
+                    {
+                        AbrirCancelaEntrada();
+                    }
                     ContadorTicket();
                     LimparCaixas();
+                    Globais.RegistrarLog(Globais.Login + " Inicou o Ticket #" + idTicket);
+                    MessageBox.Show("Ticket Iniciado com sucesso! \n #Ticket:" + idTicket, "Ticket Iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    Ticket.idTicket = idTicket;
                     Ticket.cliente = nome;
                     Ticket.telefone = telefone;
                     Ticket.placa = placa;
                     Ticket.marca = marca;
                     Ticket.tipo = tipo;
-                    Ticket.hora_entrada = data + hr;
+                    Ticket.hora_entrada = data + " " + hr;
                     Ticket.Usuario_entrada = Globais.Login;
-                    Globais.RegistrarLog(Globais.Login + " Inicou o Ticket #" + idTicket);
-                    MessageBox.Show("Ticket Iniciado com sucesso! \n #Ticket:" + idTicket, "Ticket Iniciado!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                    Imprimir();  
+                    if (Properties.Settings.Default.GerarPDF)
+                    {
+                        Imprimir();
+                    }
                 }
                 else
                 {
@@ -517,14 +528,13 @@ namespace Teste
             }
             finally
             {
-                Globais.CaminhoFoto = @"c:\ParkManager\fotos";
+                Globais.CaminhoFoto = Estacionamento.caminho_foto_padrao;
             }
         }
         private void Imprimir()
         {
             try
             {
-                
                 string caminho = geradorPdf.TicketEntrada();
                 if (caminho != null)
                 {
@@ -664,7 +674,7 @@ namespace Teste
             if (escolha)
             {
                 //Destroi o Formulario principal e abre o formulario de login
-                if (CaptureInfo.Capturing)
+                if (Camera != null && CaptureInfo.Capturing)
                 {
                     CaptureInfo.DisposeCapture();
                 }
@@ -761,7 +771,7 @@ namespace Teste
                         LimparCaixas();
                         btnEncerrar.Enabled = true;
                         btnIniciar.Enabled = false;
-                        
+
                     }
                     else
                     {
@@ -868,11 +878,11 @@ namespace Teste
             {
                 case "E":
                     MessageBox.Show("Cancela Entrada Fechada");
-                break;
+                    break;
 
                 case "S":
                     MessageBox.Show("Cancela Saida Fechada");
-                break;
+                    break;
 
                 default:
                     break;

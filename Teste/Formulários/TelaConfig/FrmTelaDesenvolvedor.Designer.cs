@@ -66,7 +66,6 @@ namespace Teste
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.timerCOM = new System.Windows.Forms.Timer(this.components);
-            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -187,7 +186,6 @@ namespace Teste
             this.panel5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel5.AutoScroll = true;
             this.panel5.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel5.Controls.Add(this.button1);
             this.panel5.Controls.Add(this.btConectar);
             this.panel5.Controls.Add(this.cbPortaArduino);
             this.panel5.Controls.Add(this.groupBox2);
@@ -203,9 +201,9 @@ namespace Teste
             // 
             // btConectar
             // 
-            this.btConectar.Location = new System.Drawing.Point(359, 62);
+            this.btConectar.Location = new System.Drawing.Point(359, 53);
             this.btConectar.Name = "btConectar";
-            this.btConectar.Size = new System.Drawing.Size(75, 23);
+            this.btConectar.Size = new System.Drawing.Size(75, 32);
             this.btConectar.TabIndex = 12;
             this.btConectar.Text = "Conectar";
             this.btConectar.UseVisualStyleBackColor = true;
@@ -213,10 +211,11 @@ namespace Teste
             // 
             // cbPortaArduino
             // 
+            this.cbPortaArduino.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
             this.cbPortaArduino.FormattingEnabled = true;
-            this.cbPortaArduino.Location = new System.Drawing.Point(215, 62);
+            this.cbPortaArduino.Location = new System.Drawing.Point(215, 53);
             this.cbPortaArduino.Name = "cbPortaArduino";
-            this.cbPortaArduino.Size = new System.Drawing.Size(121, 21);
+            this.cbPortaArduino.Size = new System.Drawing.Size(121, 33);
             this.cbPortaArduino.TabIndex = 11;
             this.cbPortaArduino.SelectedIndexChanged += new System.EventHandler(this.cbPortaArduino_SelectedIndexChanged);
             // 
@@ -463,16 +462,6 @@ namespace Teste
             this.timerCOM.Interval = 1000;
             this.timerCOM.Tick += new System.EventHandler(this.timerCOM_Tick);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(479, 62);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_2);
-            // 
             // FrmTelaDesenvolvedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -539,6 +528,5 @@ namespace Teste
         private System.Windows.Forms.Timer timerCOM;
         private System.Windows.Forms.Button btConectar;
         private System.Windows.Forms.TextBox txtID;
-        private System.Windows.Forms.Button button1;
     }
 }

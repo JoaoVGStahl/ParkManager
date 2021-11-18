@@ -351,17 +351,5 @@ namespace Teste
         {
 
         }
-
-        private void button1_Click_2(object sender, EventArgs e)
-        {
-            if (serialPort1.IsOpen == true)
-            {
-                serialPort1.Write("A");
-
-            }
-            else {
-                MessageBox.Show("nao conectado");
-            }
-        }
     }
 }

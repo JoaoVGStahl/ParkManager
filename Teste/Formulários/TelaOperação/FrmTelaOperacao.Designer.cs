@@ -33,7 +33,6 @@ namespace Teste
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTelaOperacao));
             this.cmbTipo = new System.Windows.Forms.ComboBox();
             this.txtPlaca = new System.Windows.Forms.TextBox();
-            this.cmbMarca = new System.Windows.Forms.ComboBox();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -78,6 +77,7 @@ namespace Teste
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.cmbMarca = new System.Windows.Forms.ComboBox();
             this.btnPesquisaTicket = new System.Windows.Forms.Button();
             this.mskTelefone = new System.Windows.Forms.MaskedTextBox();
             this.splitter3 = new System.Windows.Forms.Splitter();
@@ -100,7 +100,7 @@ namespace Teste
             // cmbTipo
             // 
             this.cmbTipo.BackColor = System.Drawing.Color.White;
-            this.cmbTipo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbTipo.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.cmbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipo.Enabled = false;
             this.cmbTipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -123,24 +123,6 @@ namespace Teste
             this.toolTip1.SetToolTip(this.txtPlaca, "Insira uma Placa!");
             this.txtPlaca.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.txtPlaca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPlaca_KeyPress);
-            // 
-            // cmbMarca
-            // 
-            this.cmbMarca.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.cmbMarca.BackColor = System.Drawing.Color.White;
-            this.cmbMarca.Cursor = System.Windows.Forms.Cursors.WaitCursor;
-            this.cmbMarca.Enabled = false;
-            this.cmbMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbMarca.FormattingEnabled = true;
-            this.cmbMarca.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cmbMarca.IntegralHeight = false;
-            this.cmbMarca.Location = new System.Drawing.Point(484, 41);
-            this.cmbMarca.Name = "cmbMarca";
-            this.cmbMarca.Size = new System.Drawing.Size(240, 37);
-            this.cmbMarca.TabIndex = 3;
-            this.toolTip1.SetToolTip(this.cmbMarca, "Selecione um Marca do veiculo!");
-            this.cmbMarca.UseWaitCursor = true;
-            this.cmbMarca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbMarca_KeyPress);
             // 
             // txtNome
             // 
@@ -239,6 +221,7 @@ namespace Teste
             this.button5.Size = new System.Drawing.Size(27, 23);
             this.button5.TabIndex = 42;
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Visible = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // picCam
@@ -687,10 +670,10 @@ namespace Teste
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.Color.Silver;
+            this.panel7.Controls.Add(this.cmbMarca);
             this.panel7.Controls.Add(this.btnPesquisaTicket);
             this.panel7.Controls.Add(this.mskTelefone);
             this.panel7.Controls.Add(this.cmbTipo);
-            this.panel7.Controls.Add(this.cmbMarca);
             this.panel7.Controls.Add(this.txtNome);
             this.panel7.Controls.Add(this.label1);
             this.panel7.Controls.Add(this.label3);
@@ -703,6 +686,19 @@ namespace Teste
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(1346, 88);
             this.panel7.TabIndex = 33;
+            // 
+            // cmbMarca
+            // 
+            this.cmbMarca.BackColor = System.Drawing.Color.White;
+            this.cmbMarca.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMarca.Enabled = false;
+            this.cmbMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbMarca.Location = new System.Drawing.Point(482, 41);
+            this.cmbMarca.Name = "cmbMarca";
+            this.cmbMarca.Size = new System.Drawing.Size(234, 37);
+            this.cmbMarca.TabIndex = 12;
+            this.toolTip1.SetToolTip(this.cmbMarca, "Selecione um tipo de veiculo!");
             // 
             // btnPesquisaTicket
             // 
@@ -822,7 +818,6 @@ namespace Teste
         }
 
         #endregion
-        private System.Windows.Forms.ComboBox cmbMarca;
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -876,6 +871,7 @@ namespace Teste
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ComboBox cmbTipo;
         public System.IO.Ports.SerialPort serialPort1;
+        private System.Windows.Forms.ComboBox cmbMarca;
     }
 }
 

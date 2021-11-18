@@ -39,10 +39,17 @@ namespace Teste
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnSelecionar = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtCaminho = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rbFotoDes = new System.Windows.Forms.RadioButton();
+            this.rbFotoAtiv = new System.Windows.Forms.RadioButton();
+            this.rbCancelaDes = new System.Windows.Forms.RadioButton();
+            this.rbCancelaAtiv = new System.Windows.Forms.RadioButton();
+            this.rbPdfDes = new System.Windows.Forms.RadioButton();
+            this.rbPdfAtiv = new System.Windows.Forms.RadioButton();
+            this.label5 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -51,15 +58,15 @@ namespace Teste
             this.label13 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -100,6 +107,7 @@ namespace Teste
             this.btnEditar.Text = "Editar";
             this.btnEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEditar.UseVisualStyleBackColor = false;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnSalvar
             // 
@@ -120,6 +128,7 @@ namespace Teste
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSalvar.UseVisualStyleBackColor = false;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // splitter1
             // 
@@ -171,14 +180,16 @@ namespace Teste
             this.btnSelecionar.TabIndex = 6;
             this.btnSelecionar.Text = "...";
             this.btnSelecionar.UseVisualStyleBackColor = true;
+            this.btnSelecionar.Click += new System.EventHandler(this.btnSelecionar_Click);
             // 
-            // textBox1
+            // txtCaminho
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
-            this.textBox1.Location = new System.Drawing.Point(233, 146);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(488, 31);
-            this.textBox1.TabIndex = 7;
+            this.txtCaminho.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.txtCaminho.Location = new System.Drawing.Point(233, 146);
+            this.txtCaminho.Name = "txtCaminho";
+            this.txtCaminho.ReadOnly = true;
+            this.txtCaminho.Size = new System.Drawing.Size(488, 31);
+            this.txtCaminho.TabIndex = 7;
             // 
             // label1
             // 
@@ -194,7 +205,7 @@ namespace Teste
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
-            this.label2.Location = new System.Drawing.Point(12, 46);
+            this.label2.Location = new System.Drawing.Point(3, 14);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(255, 25);
             this.label2.TabIndex = 9;
@@ -203,13 +214,9 @@ namespace Teste
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.groupBox1.Controls.Add(this.radioButton5);
-            this.groupBox1.Controls.Add(this.radioButton6);
-            this.groupBox1.Controls.Add(this.radioButton3);
-            this.groupBox1.Controls.Add(this.radioButton4);
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.panel7);
+            this.groupBox1.Controls.Add(this.panel6);
+            this.groupBox1.Controls.Add(this.panel5);
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.label10);
@@ -217,8 +224,6 @@ namespace Teste
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(0, 219);
@@ -227,6 +232,90 @@ namespace Teste
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Gerenciamento";
+            // 
+            // rbFotoDes
+            // 
+            this.rbFotoDes.AutoSize = true;
+            this.rbFotoDes.Enabled = false;
+            this.rbFotoDes.Location = new System.Drawing.Point(156, 60);
+            this.rbFotoDes.Name = "rbFotoDes";
+            this.rbFotoDes.Size = new System.Drawing.Size(120, 28);
+            this.rbFotoDes.TabIndex = 37;
+            this.rbFotoDes.Text = "Desativado";
+            this.rbFotoDes.UseVisualStyleBackColor = true;
+            this.rbFotoDes.CheckedChanged += new System.EventHandler(this.radioButton5_CheckedChanged);
+            // 
+            // rbFotoAtiv
+            // 
+            this.rbFotoAtiv.AutoSize = true;
+            this.rbFotoAtiv.Checked = true;
+            this.rbFotoAtiv.Enabled = false;
+            this.rbFotoAtiv.Location = new System.Drawing.Point(10, 60);
+            this.rbFotoAtiv.Name = "rbFotoAtiv";
+            this.rbFotoAtiv.Size = new System.Drawing.Size(90, 28);
+            this.rbFotoAtiv.TabIndex = 36;
+            this.rbFotoAtiv.TabStop = true;
+            this.rbFotoAtiv.Text = "Ativado";
+            this.rbFotoAtiv.UseVisualStyleBackColor = true;
+            this.rbFotoAtiv.CheckedChanged += new System.EventHandler(this.rbFotoAtiv_CheckedChanged);
+            // 
+            // rbCancelaDes
+            // 
+            this.rbCancelaDes.AutoSize = true;
+            this.rbCancelaDes.Enabled = false;
+            this.rbCancelaDes.Location = new System.Drawing.Point(176, 59);
+            this.rbCancelaDes.Name = "rbCancelaDes";
+            this.rbCancelaDes.Size = new System.Drawing.Size(120, 28);
+            this.rbCancelaDes.TabIndex = 35;
+            this.rbCancelaDes.Text = "Desativado";
+            this.rbCancelaDes.UseVisualStyleBackColor = true;
+            // 
+            // rbCancelaAtiv
+            // 
+            this.rbCancelaAtiv.AutoSize = true;
+            this.rbCancelaAtiv.Checked = true;
+            this.rbCancelaAtiv.Enabled = false;
+            this.rbCancelaAtiv.Location = new System.Drawing.Point(30, 59);
+            this.rbCancelaAtiv.Name = "rbCancelaAtiv";
+            this.rbCancelaAtiv.Size = new System.Drawing.Size(90, 28);
+            this.rbCancelaAtiv.TabIndex = 34;
+            this.rbCancelaAtiv.TabStop = true;
+            this.rbCancelaAtiv.Text = "Ativado";
+            this.rbCancelaAtiv.UseVisualStyleBackColor = true;
+            // 
+            // rbPdfDes
+            // 
+            this.rbPdfDes.AutoSize = true;
+            this.rbPdfDes.Enabled = false;
+            this.rbPdfDes.Location = new System.Drawing.Point(183, 52);
+            this.rbPdfDes.Name = "rbPdfDes";
+            this.rbPdfDes.Size = new System.Drawing.Size(120, 28);
+            this.rbPdfDes.TabIndex = 33;
+            this.rbPdfDes.Text = "Desativado";
+            this.rbPdfDes.UseVisualStyleBackColor = true;
+            // 
+            // rbPdfAtiv
+            // 
+            this.rbPdfAtiv.AutoSize = true;
+            this.rbPdfAtiv.Checked = true;
+            this.rbPdfAtiv.Enabled = false;
+            this.rbPdfAtiv.Location = new System.Drawing.Point(37, 52);
+            this.rbPdfAtiv.Name = "rbPdfAtiv";
+            this.rbPdfAtiv.Size = new System.Drawing.Size(90, 28);
+            this.rbPdfAtiv.TabIndex = 32;
+            this.rbPdfAtiv.TabStop = true;
+            this.rbPdfAtiv.Text = "Ativado";
+            this.rbPdfAtiv.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.label5.Location = new System.Drawing.Point(30, 9);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(172, 25);
+            this.label5.TabIndex = 31;
+            this.label5.Text = "Geração de PDF";
             // 
             // label15
             // 
@@ -302,87 +391,41 @@ namespace Teste
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
-            this.label3.Location = new System.Drawing.Point(504, 46);
+            this.label3.Location = new System.Drawing.Point(25, 13);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(244, 25);
             this.label3.TabIndex = 12;
             this.label3.Text = "Abrir e Fechar Cancelas";
             // 
-            // label5
+            // panel5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
-            this.label5.Location = new System.Drawing.Point(502, 157);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(172, 25);
-            this.label5.TabIndex = 31;
-            this.label5.Text = "Geração de PDF";
+            this.panel5.Controls.Add(this.label2);
+            this.panel5.Controls.Add(this.rbFotoDes);
+            this.panel5.Controls.Add(this.rbFotoAtiv);
+            this.panel5.Location = new System.Drawing.Point(6, 28);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(281, 100);
+            this.panel5.TabIndex = 38;
             // 
-            // radioButton1
+            // panel6
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(509, 200);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(90, 28);
-            this.radioButton1.TabIndex = 32;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Ativado";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.panel6.Controls.Add(this.label3);
+            this.panel6.Controls.Add(this.rbCancelaAtiv);
+            this.panel6.Controls.Add(this.rbCancelaDes);
+            this.panel6.Location = new System.Drawing.Point(494, 28);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(298, 100);
+            this.panel6.TabIndex = 39;
             // 
-            // radioButton2
+            // panel7
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(655, 200);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(120, 28);
-            this.radioButton2.TabIndex = 33;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Desativado";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton3
-            // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(655, 92);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(120, 28);
-            this.radioButton3.TabIndex = 35;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Desativado";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            // 
-            // radioButton4
-            // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(509, 92);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(90, 28);
-            this.radioButton4.TabIndex = 34;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Ativado";
-            this.radioButton4.UseVisualStyleBackColor = true;
-            // 
-            // radioButton5
-            // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(165, 92);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(120, 28);
-            this.radioButton5.TabIndex = 37;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "Desativado";
-            this.radioButton5.UseVisualStyleBackColor = true;
-            // 
-            // radioButton6
-            // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Location = new System.Drawing.Point(19, 92);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(90, 28);
-            this.radioButton6.TabIndex = 36;
-            this.radioButton6.TabStop = true;
-            this.radioButton6.Text = "Ativado";
-            this.radioButton6.UseVisualStyleBackColor = true;
+            this.panel7.Controls.Add(this.label5);
+            this.panel7.Controls.Add(this.rbPdfAtiv);
+            this.panel7.Controls.Add(this.rbPdfDes);
+            this.panel7.Location = new System.Drawing.Point(488, 157);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(304, 100);
+            this.panel7.TabIndex = 40;
             // 
             // FrmTelaGeral
             // 
@@ -392,7 +435,7 @@ namespace Teste
             this.ClientSize = new System.Drawing.Size(798, 628);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtCaminho);
             this.Controls.Add(this.btnSelecionar);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
@@ -403,9 +446,16 @@ namespace Teste
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmTelaGeral";
             this.Text = "FrmTelaGeral";
+            this.Load += new System.EventHandler(this.FrmTelaGeral_Load);
             this.panel2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -422,7 +472,7 @@ namespace Teste
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnSelecionar;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtCaminho;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -434,12 +484,16 @@ namespace Teste
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.RadioButton radioButton6;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rbFotoDes;
+        private System.Windows.Forms.RadioButton rbFotoAtiv;
+        private System.Windows.Forms.RadioButton rbCancelaDes;
+        private System.Windows.Forms.RadioButton rbCancelaAtiv;
+        private System.Windows.Forms.RadioButton rbPdfDes;
+        private System.Windows.Forms.RadioButton rbPdfAtiv;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel5;
     }
 }
