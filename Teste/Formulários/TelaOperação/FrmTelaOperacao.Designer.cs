@@ -45,8 +45,8 @@ namespace Teste
             this.picCam = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
             this.lblQtdTicket = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnSaida = new System.Windows.Forms.Button();
+            this.btnEntrada = new System.Windows.Forms.Button();
             this.btnIniciar = new System.Windows.Forms.Button();
             this.btnEncerrar = new System.Windows.Forms.Button();
             this.lblPlaca = new System.Windows.Forms.Label();
@@ -195,8 +195,8 @@ namespace Teste
             this.panel1.Controls.Add(this.picCam);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.lblQtdTicket);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btnSaida);
+            this.panel1.Controls.Add(this.btnEntrada);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -258,43 +258,45 @@ namespace Teste
             this.lblQtdTicket.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblQtdTicket.Click += new System.EventHandler(this.lblQtdTicket_Click);
             // 
-            // button2
+            // btnSaida
             // 
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(394, 411);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(182, 85);
-            this.button2.TabIndex = 37;
-            this.button2.TabStop = false;
-            this.button2.Text = "Saída";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            this.btnSaida.BackColor = System.Drawing.Color.Transparent;
+            this.btnSaida.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnSaida.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSaida.FlatAppearance.BorderSize = 0;
+            this.btnSaida.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaida.ForeColor = System.Drawing.Color.Black;
+            this.btnSaida.Image = ((System.Drawing.Image)(resources.GetObject("btnSaida.Image")));
+            this.btnSaida.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSaida.Location = new System.Drawing.Point(394, 411);
+            this.btnSaida.Name = "btnSaida";
+            this.btnSaida.Size = new System.Drawing.Size(182, 85);
+            this.btnSaida.TabIndex = 37;
+            this.btnSaida.TabStop = false;
+            this.btnSaida.Text = "Saída";
+            this.btnSaida.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSaida.UseVisualStyleBackColor = false;
+            this.btnSaida.Click += new System.EventHandler(this.button2_Click_1);
             // 
-            // button1
+            // btnEntrada
             // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(81, 411);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(182, 85);
-            this.button1.TabIndex = 28;
-            this.button1.TabStop = false;
-            this.button1.Text = "Entrada";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnEntrada.BackColor = System.Drawing.Color.Transparent;
+            this.btnEntrada.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnEntrada.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEntrada.FlatAppearance.BorderSize = 0;
+            this.btnEntrada.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEntrada.ForeColor = System.Drawing.Color.Black;
+            this.btnEntrada.Image = ((System.Drawing.Image)(resources.GetObject("btnEntrada.Image")));
+            this.btnEntrada.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEntrada.Location = new System.Drawing.Point(81, 411);
+            this.btnEntrada.Name = "btnEntrada";
+            this.btnEntrada.Size = new System.Drawing.Size(182, 85);
+            this.btnEntrada.TabIndex = 28;
+            this.btnEntrada.TabStop = false;
+            this.btnEntrada.Text = "Entrada";
+            this.btnEntrada.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEntrada.UseVisualStyleBackColor = false;
+            this.btnEntrada.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnIniciar
             // 
@@ -865,8 +867,8 @@ namespace Teste
         private System.Windows.Forms.Label lblPlacal1;
         private System.Windows.Forms.ToolTip toolTip1;
         public System.Windows.Forms.TextBox txtPlaca;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSaida;
+        private System.Windows.Forms.Button btnEntrada;
         private System.Windows.Forms.PictureBox picImagem;
         private System.Windows.Forms.PictureBox picCam;
         private System.Windows.Forms.Button button5;

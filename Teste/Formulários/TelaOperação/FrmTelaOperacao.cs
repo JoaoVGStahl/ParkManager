@@ -852,6 +852,8 @@ namespace Teste
             try
             {
                 Arduino.WriteCom("E");
+                btnEntrada.BackColor = Color.DarkBlue;
+                btnEntrada.ForeColor = Color.White;
             }
             catch (Exception ex)
             {
@@ -885,6 +887,8 @@ namespace Teste
                 if (serialPort1.IsOpen)
                 {
                     AbrirCancelaSaida();
+                    btnSaida.BackColor = Color.DarkBlue;
+                    btnSaida.ForeColor = Color.White;
                 }else
                 {
                     MessageBox.Show("Falha na comunicação serial", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -923,13 +927,20 @@ namespace Teste
                     MessageBox.Show("Cancela Saida Fechada");
                     break;
                 case "1":
-                    MessageBox.Show("Erro!");
+                    PintaBotao(btnEntrada);
+                    break;
+                case "2":
+                    PintaBotao(btnSaida);
                     break;
                 default:
                     break;
             }
         }
-
+        private void PintaBotao(Button btn)
+        {
+            btn.BackColor = Color.Transparent;
+            btn.ForeColor = Color.Black;
+        }
         private void picImagem_Click(object sender, EventArgs e)
         {
 
