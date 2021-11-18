@@ -230,17 +230,12 @@ namespace Teste
                 {
                     capturaImagem = frame.Image;
                     this.picImagem.Image = capturaImagem;
-                    SalvarImagem(txtPlaca.Text);
-                    
+                    SalvaArquivo();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Erro " + ex.Message);
                 }
-
-                
-            
-            
         }
 
         //Novo
@@ -257,31 +252,35 @@ namespace Teste
         }
 
         //Novo
-        private void SalvarImagem(string placa)
+        private void SalvarImagem()
         {
             if (Inicializacao == 0)
             {
                 string caminhoImagemSalva = Estacionamento.caminho_foto_padrao;
-                caminhoImagemSalva += @"\veiculo_" + placa + "_" + DateTime.Now.ToShortDateString().Replace("/", "-") + "_" + DateTime.Now.ToLongTimeString().Replace(":", "-") + ".jpg";
+                caminhoImagemSalva += @"\veiculo_" + txtPlaca.Text + "_" + DateTime.Now.ToShortDateString().Replace("/", "-") + "_" + DateTime.Now.ToLongTimeString().Replace(":", "-") + ".jpg";
                 Globais.CaminhoFoto = caminhoImagemSalva;
-                try
-                {
-                    if (picImagem.Image != null)
-                    {
-                        picImagem.Image.Save(Globais.CaminhoFoto, ImageFormat.Jpeg);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro " + ex.Message);
-                }
-                finally
-                {
-                    Inicializacao = 1;
-                }
+                CapturarFoto();
+                
             }
         }
-
+        private void SalvaArquivo()
+        {
+            try
+            {
+                if (picImagem.Image != null)
+                {
+                    picImagem.Image.Save(Globais.CaminhoFoto, ImageFormat.Jpeg);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro " + ex.Message);
+            }
+            finally
+            {
+                Inicializacao = 1;
+            }
+        }
         private void button4_Click(object sender, EventArgs e)
         {
             FecharForm();
@@ -467,7 +466,7 @@ namespace Teste
                     if (Properties.Settings.Default.Foto)
                     {
                         Inicializacao = 0;
-                        CapturarFoto();                        
+                        SalvarImagem();                        
                     }
                     InserirTicket(placa, nome, telefone);
                 }
