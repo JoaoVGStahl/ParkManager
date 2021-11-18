@@ -300,7 +300,7 @@ namespace Teste
                     new SqlParameter(){ParameterName = "@Forma_Pgt", SqlDbType = SqlDbType.VarChar, Value = cmbFormaPagamento.Text},
                     new SqlParameter(){ParameterName = "@Total", SqlDbType = SqlDbType.Decimal, Value = txtTotal.Text},
                     new SqlParameter(){ParameterName = "@Troco", SqlDbType = SqlDbType.Decimal, Value = txtTroco.Text},
-                    new SqlParameter(){ParameterName = "@Permanencia", SqlDbType = SqlDbType.Time, Value = ts}
+                    new SqlParameter(){ParameterName = "@Permanencia", SqlDbType = SqlDbType.VarChar, Value = ts.ToString()}
                 };
                 int result = banco.ExecuteProcedureWithReturnValue("dbo.Encerrar_Ticket", sp);
                 if(result > 0)
