@@ -65,10 +65,10 @@ namespace Teste
 
             try
             {
-                serialPort1.PortName = cbPortaArduino.Items[cbPortaArduino.SelectedIndex].ToString();
+                serialPort1.PortName = cbPortaArduino.Text;
                 serialPort1.Open();
                 // Arduino.PortaCOM = cbPortaArduino.Items[cbPortaArduino.SelectedIndex].ToString();
-                MessageBox.Show("Arduino conectado com sucesso!", "Conectado!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Arduino conectado com sucesso!", "Conectado!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
