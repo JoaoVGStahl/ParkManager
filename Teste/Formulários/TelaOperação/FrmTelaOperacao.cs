@@ -265,21 +265,25 @@ namespace Teste
         }
         private void SalvaArquivo()
         {
-            try
+            if (Inicializacao == 0)
             {
-                if (picImagem.Image != null)
+                try
                 {
-                    picImagem.Image.Save(Globais.CaminhoFoto, ImageFormat.Jpeg);
+                    if (picImagem.Image != null)
+                    {
+                        picImagem.Image.Save(Globais.CaminhoFoto, ImageFormat.Jpeg);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro " + ex.Message);
+                }
+                finally
+                {
+                    Inicializacao = 1;
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro " + ex.Message);
-            }
-            finally
-            {
-                Inicializacao = 1;
-            }
+            
         }
         private void button4_Click(object sender, EventArgs e)
         {
