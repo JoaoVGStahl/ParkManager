@@ -48,15 +48,16 @@ namespace Teste
         }
         public static void WriteCom(string method)
         {
-            try
-            {
-                port.Write(method);
-            }
-            catch (Exception)
-            {
+                try
+                {
+                    port.Write(method);
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
 
-                throw;
-            }
+            
 
         }
     }

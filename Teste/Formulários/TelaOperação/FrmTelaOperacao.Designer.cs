@@ -213,6 +213,7 @@ namespace Teste
             this.picImagem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picImagem.TabIndex = 38;
             this.picImagem.TabStop = false;
+            this.picImagem.Click += new System.EventHandler(this.picImagem_Click);
             // 
             // button5
             // 

@@ -830,7 +830,22 @@ namespace Teste
 
         private void button1_Click(object sender, EventArgs e)
         {
-            AbrirCancelaEntrada();
+            if (Properties.Settings.Default.Cancelas)
+            {
+                if (serialPort1.IsOpen)
+                {
+                    AbrirCancelaEntrada();
+                }
+                else
+                {
+                    MessageBox.Show("Falha na comunicação serial", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Ative o gerenciamento de Cancelas na configurações!", "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            
         }
         private void AbrirCancelaEntrada()
         {
@@ -865,7 +880,22 @@ namespace Teste
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            AbrirCancelaSaida();
+            if (Properties.Settings.Default.Cancelas)
+            {
+                if (serialPort1.IsOpen)
+                {
+                    AbrirCancelaSaida();
+                }else
+                {
+                    MessageBox.Show("Falha na comunicação serial", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
+            }
+            else
+            {
+                MessageBox.Show("Ative o gerenciamento de Cancelas na configurações!", "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            
         }
         private void AbrirCancelaSaida()
         {
@@ -875,7 +905,7 @@ namespace Teste
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -896,6 +926,11 @@ namespace Teste
                 default:
                     break;
             }
+        }
+
+        private void picImagem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
