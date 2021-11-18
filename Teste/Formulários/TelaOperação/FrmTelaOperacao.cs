@@ -11,12 +11,14 @@ using System.IO.Ports;
 
 namespace Teste
 {
+
     public partial class FrmTelaOperacao : Form
     {
         public DirectX.Capture.Filter Camera;
         public DirectX.Capture.Capture CaptureInfo;
         public DirectX.Capture.Filters CamContainer;
         public int Inicializacao;
+        Image capturaImagem;
 
         Banco banco = new Banco();
         GeraPDF geradorPdf = new GeraPDF();
@@ -55,6 +57,7 @@ namespace Teste
 
         private void FrmTelaOperacao_Load(object sender, EventArgs e)
         {
+            
             if (!(Globais.Login == Properties.Settings.Default.UserRoot) || (Properties.Settings.Default["StringBanco"].ToString() == ""))
             {
                 txtPlaca.Select();
@@ -155,6 +158,7 @@ namespace Teste
                     Estacionamento.valor_min = Convert.ToDecimal(dt.Rows[0]["valor_min"]);
                     Estacionamento.valor_unico = Convert.ToDecimal(dt.Rows[0]["valor_unico"]);
                     Estacionamento.caminho_foto_padrao = dt.Rows[0]["caminho_foto_padrao"].ToString();
+                    Globais.CaminhoFoto = Estacionamento.caminho_foto_padrao;
                     Properties.Settings.Default["ArquivoAuditoria"] = dt.Rows[0]["caminho_log"].ToString();
                     Properties.Settings.Default["PortaArduino"] = dt.Rows[0]["porta_arduino"].ToString();
                     Properties.Settings.Default.Save();
@@ -220,20 +224,22 @@ namespace Teste
 
         //Novo
         private void AtualizaImagem(PictureBox frame)
-        {
-            if(Inicializacao == 0)
-            {
+        {         
+            
                 try
                 {
-                    this.picImagem.Image = frame.Image;
+                    capturaImagem = frame.Image;
+                    this.picImagem.Image = capturaImagem;
                     SalvarImagem(txtPlaca.Text);
+                    
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Erro " + ex.Message);
                 }
+
                 
-            }
+            
             
         }
 
@@ -460,8 +466,8 @@ namespace Teste
                 {
                     if (Properties.Settings.Default.Foto)
                     {
-                        CapturarFoto();
                         Inicializacao = 0;
+                        CapturarFoto();                        
                     }
                     InserirTicket(placa, nome, telefone);
                 }
