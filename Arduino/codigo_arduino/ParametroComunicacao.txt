@@ -20,4 +20,4 @@ Parametros Saida:
 
     Quando Sensor Detectar Veiculo Saida => 7
     Quando Sensor Para Detectar Veiculo Saida=>8 
-
+test

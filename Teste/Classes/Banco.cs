@@ -17,11 +17,11 @@ namespace Teste
             }
             catch (Exception)
             {
-                conexao = new SqlConnection(Properties.Settings.Default.StringBanco);
                 throw;
             }
             finally
             {
+                conexao = new SqlConnection(Properties.Settings.Default.StringBanco);
                 conexao.Close();
             }
         }

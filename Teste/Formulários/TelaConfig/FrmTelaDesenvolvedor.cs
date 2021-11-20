@@ -118,12 +118,11 @@ namespace Teste
                         btnEditar.Enabled = false;
                         AtivarCaixas();
                     }
-
                 }
                 catch (Exception ex)
                 {
 
-                    MessageBox.Show(ex.Message + "\nString Conexão:" + Properties.Settings.Default.StringBanco, "Falha ao se conectar com banco de dados!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Falha ao se conectar com banco de dados!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -158,6 +157,8 @@ namespace Teste
                     Properties.Settings.Default.IDEstacionamento = result;
                     Properties.Settings.Default.Save();
                     MessageBox.Show("Parâmetros Editados com Sucesso!", "Configurações Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    btnEditar.Enabled = true;
+                    btnSalvar.Enabled = false;
                     CarregarInformacoes();
                 }
                 else
@@ -191,8 +192,7 @@ namespace Teste
         private void btnSalvar_Click_1(object sender, EventArgs e)
         {
             ValidarCaixas();
-            btnEditar.Enabled = true;
-            btnSalvar.Enabled = false;
+
         }
         private void ValidarCaixas()
         {

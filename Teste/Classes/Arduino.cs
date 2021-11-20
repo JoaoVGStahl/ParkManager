@@ -7,6 +7,9 @@ namespace Teste
         private static SerialPort port;
         private static string portacom;
 
+        public static bool entrada { get; set; }
+
+        public static bool saida { get; set; }
         public static string PortaCom
         {
             set { portacom = value; }
@@ -26,10 +29,43 @@ namespace Teste
                 }
                 catch
                 {
-                    return;
+                    throw;
                 }
             }
 
+        }
+        public static void Inicializar()
+        {
+            try
+            {
+                OpenCom();
+                WriteCom("I");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+        public static void Parar()
+        {
+            try
+            {
+                if(port != null)
+                {
+                    if (port.IsOpen)
+                    {
+                        CloseCom();
+                        WriteCom("P");
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
         }
         public static void CloseCom()
         {
@@ -42,22 +78,22 @@ namespace Teste
                 }
                 catch
                 {
-                    return;
+                    throw;
                 }
             }
         }
         public static void WriteCom(string method)
         {
-                try
-                {
-                    port.Write(method);
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
+            try
+            {
+                port.Write(method);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
 
-            
+
 
         }
     }
