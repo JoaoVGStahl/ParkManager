@@ -63,8 +63,8 @@ namespace Teste
             this.btnFinanceiro = new System.Windows.Forms.Button();
             this.btnVeiculo = new System.Windows.Forms.Button();
             this.btnFluxo = new System.Windows.Forms.Button();
-            this.DataInicial = new System.Windows.Forms.DateTimePicker();
-            this.DataFinal = new System.Windows.Forms.DateTimePicker();
+            this.dtpInicial = new System.Windows.Forms.DateTimePicker();
+            this.dtpFinal = new System.Windows.Forms.DateTimePicker();
             this.panel5 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -330,8 +330,8 @@ namespace Teste
             this.panel4.Controls.Add(this.lblNada);
             this.panel4.Controls.Add(this.btnGerar);
             this.panel4.Controls.Add(this.panel7);
-            this.panel4.Controls.Add(this.DataInicial);
-            this.panel4.Controls.Add(this.DataFinal);
+            this.panel4.Controls.Add(this.dtpInicial);
+            this.panel4.Controls.Add(this.dtpFinal);
             this.panel4.Controls.Add(this.chtRelatorio);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(265, 0);
@@ -455,27 +455,27 @@ namespace Teste
             this.btnFluxo.UseVisualStyleBackColor = true;
             this.btnFluxo.Click += new System.EventHandler(this.btnFluxo_Click);
             // 
-            // DataInicial
+            // dtpInicial
             // 
-            this.DataInicial.CustomFormat = "dd \'de\'MMMM\'de\' yyyy";
-            this.DataInicial.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DataInicial.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DataInicial.Location = new System.Drawing.Point(201, 77);
-            this.DataInicial.Name = "DataInicial";
-            this.DataInicial.Size = new System.Drawing.Size(238, 29);
-            this.DataInicial.TabIndex = 38;
-            this.DataInicial.Value = new System.DateTime(2021, 11, 20, 0, 0, 0, 0);
+            this.dtpInicial.CustomFormat = "dd \'de\'MMMM\'de\' yyyy";
+            this.dtpInicial.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpInicial.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpInicial.Location = new System.Drawing.Point(201, 77);
+            this.dtpInicial.Name = "dtpInicial";
+            this.dtpInicial.Size = new System.Drawing.Size(238, 29);
+            this.dtpInicial.TabIndex = 38;
+            this.dtpInicial.Value = new System.DateTime(2021, 11, 20, 0, 0, 0, 0);
             // 
-            // DataFinal
+            // dtpFinal
             // 
-            this.DataFinal.CustomFormat = "dd \'de\'MMMM\'de\' yyyy";
-            this.DataFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DataFinal.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DataFinal.Location = new System.Drawing.Point(513, 77);
-            this.DataFinal.Name = "DataFinal";
-            this.DataFinal.Size = new System.Drawing.Size(238, 29);
-            this.DataFinal.TabIndex = 37;
-            this.DataFinal.Value = new System.DateTime(2021, 11, 20, 0, 0, 0, 0);
+            this.dtpFinal.CustomFormat = "dd \'de\'MMMM\'de\' yyyy";
+            this.dtpFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFinal.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFinal.Location = new System.Drawing.Point(513, 77);
+            this.dtpFinal.Name = "dtpFinal";
+            this.dtpFinal.Size = new System.Drawing.Size(238, 29);
+            this.dtpFinal.TabIndex = 37;
+            this.dtpFinal.Value = new System.DateTime(2021, 11, 20, 0, 0, 0, 0);
             // 
             // panel5
             // 
@@ -565,8 +565,8 @@ namespace Teste
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label lblTotal;
-        private System.Windows.Forms.DateTimePicker DataInicial;
-        private System.Windows.Forms.DateTimePicker DataFinal;
+        private System.Windows.Forms.DateTimePicker dtpInicial;
+        private System.Windows.Forms.DateTimePicker dtpFinal;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Button btnCliente;

@@ -10,6 +10,7 @@ namespace Teste
 {
     public partial class FrmTelaRelatorios : Form
     {
+        int graphic = 0;
         Banco banco = new Banco();
         public FrmTelaRelatorios()
         {
@@ -89,19 +90,72 @@ namespace Teste
 
         private void btnGerar_Click(object sender, EventArgs e)
         {
-            DataTable TabelaGrafico = new DataTable();
-            DataTable TabelaGrid = new DataTable();
+            if(dtpInicial.Value <= dtpFinal.Value)
+            {
+                switch (graphic)
+                {
+                    case 1:
+                        RelatorioFluxo();
+                        break;
+                    case 2:
+                        RelatotorioFinanceiro();
+                        break;
+                    case 3:
+                        RelatorioCliente();
+                        break;
+                    case 4:
+                        RelatorioCarroDiario();
+                        break;
+                    default:
+                        MessageBox.Show("Selecione um tipo de Gráfico primeiro!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                }
+            }
+            else
+            {
+                MessageBox.Show("A Data final não pode ser Inferior que a data inicial!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dtpInicial.Focus();
+            }
+        }
+        private void RelatorioFluxo()
+        {
+            if (chtRelatorio.Series.Count > 0)
+            {
+                chtRelatorio.Series.Clear();
+            }
+        }
+        private void RelatotorioFinanceiro()
+        {
+            if (chtRelatorio.Series.Count > 0)
+            {
+                chtRelatorio.Series.Clear();
+            }
+        }
+        private void RelatorioCliente()
+        {
+            if (chtRelatorio.Series.Count > 0)
+            {
+                chtRelatorio.Series.Clear();
+            }
+        }
+        private void RelatorioCarroDiario()
+        {
             DataSet ds = new DataSet();
             List<SqlParameter> sp = new List<SqlParameter>()
             {
-                new SqlParameter(){ParameterName= "@DataInicial", SqlDbType = SqlDbType.DateTime, Value = DataInicial.Value},
-                new SqlParameter(){ParameterName= "@DataFinal", SqlDbType = SqlDbType.DateTime, Value = DataFinal.Value}
+                new SqlParameter(){ParameterName= "@DataInicial", SqlDbType = SqlDbType.DateTime, Value = dtpInicial.Value},
+                new SqlParameter(){ParameterName= "@DataFinal", SqlDbType = SqlDbType.DateTime, Value = dtpFinal.Value}
             };
-            ds = banco.ExecuteProcedureWithReturnMultipleTables("Relatorio_Carro_Diario", sp);
-            if(ds.Tables.Count == 2)
+            ds = banco.ExecuteProcedureWithReturnMultipleTables("dbo.Relatorio_Carro_Diario", sp);
+            CriarGrafico(ds, SeriesChartType.StackedColumn);
+        }
+
+        private void CriarGrafico(DataSet ds, SeriesChartType Type, int interval = 1, int angle = 90)
+        {
+            if (ds.Tables.Count == 2)
             {
-                TabelaGrafico = ds.Tables[0];
-                TabelaGrid = ds.Tables[1];
+                DataTable TabelaGrafico = ds.Tables[0];
+                DataTable TabelaGrid = ds.Tables[1];
                 lblNada.Visible = false;
                 if (chtRelatorio.Series.Count > 0)
                 {
@@ -114,10 +168,10 @@ namespace Teste
                     {
                         string Series = TabelaGrafico.Rows[l].ItemArray[0].ToString();
                         chtRelatorio.Series.Add(Series);
-                        chtRelatorio.Series[Series].ChartType = SeriesChartType.StackedColumn;
+                        chtRelatorio.Series[Series].ChartType = Type;
 
-                        chtRelatorio.ChartAreas["ChartArea1"].AxisX.LabelStyle.Angle = 90;
-                        chtRelatorio.ChartAreas["ChartArea1"].AxisX.Interval = 1;
+                        chtRelatorio.ChartAreas["ChartArea1"].AxisX.LabelStyle.Angle = angle;
+                        chtRelatorio.ChartAreas["ChartArea1"].AxisX.Interval = interval;
 
                         for (int c = 1; c < TabelaGrafico.Columns.Count; c++)
                         {
@@ -149,19 +203,19 @@ namespace Teste
         private void btnFluxo_Click(object sender, EventArgs e)
         {
             FundoBotao(btnFluxo);
+            graphic = 1;
         }
 
         private void btnFinanceiro_Click(object sender, EventArgs e)
         {
             FundoBotao(btnFinanceiro);
+            graphic = 2;
         }
 
         private void btnCliente_Click(object sender, EventArgs e)
         {
             FundoBotao(btnCliente);
-
-           
-
+            graphic = 3;
         }
 
         private void LimparGrafico()
@@ -175,6 +229,7 @@ namespace Teste
         private void btnVeiculo_Click(object sender, EventArgs e)
         {
             FundoBotao(btnVeiculo);
+            graphic = 4;
         }
     }
 }
