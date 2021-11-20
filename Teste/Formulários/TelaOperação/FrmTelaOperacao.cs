@@ -57,7 +57,7 @@ namespace Teste
 
         private void FrmTelaOperacao_Load(object sender, EventArgs e)
         {
-            
+
             if (!(Globais.Login == Properties.Settings.Default.UserRoot) || (Properties.Settings.Default["StringBanco"].ToString() == ""))
             {
                 txtPlaca.Select();
