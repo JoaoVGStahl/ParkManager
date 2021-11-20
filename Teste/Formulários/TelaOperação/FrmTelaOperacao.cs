@@ -82,9 +82,17 @@ namespace Teste
                 }
                 if (Properties.Settings.Default.Cancelas)
                 {
-                    Arduino.Port = serialPort1;
-                    Arduino.PortaCom = Properties.Settings.Default["PortaArduino"].ToString();
-                    Arduino.OpenCom();
+                    try
+                    {
+                        Arduino.Port = serialPort1;
+                        Arduino.PortaCom = Properties.Settings.Default["PortaArduino"].ToString();
+                        Arduino.Inicializar();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    
                 }
 
             }
@@ -386,8 +394,23 @@ namespace Teste
 
         private void button2_Click(object sender, EventArgs e)
         {
-
-            VerificarCaixas();
+            if (Properties.Settings.Default.Cancelas)
+            {
+                if (Arduino.entrada)
+                {
+                    VerificarCaixas();
+                }
+                else
+                {
+                    MessageBox.Show("Não é possivel iniciar um Ticket, pois não há veiculos na entrada!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                VerificarCaixas();
+            }
+            
+            
         }
         private void VerificarCaixas()
         {
@@ -614,11 +637,8 @@ namespace Teste
                         MessageBox.Show(ex.Message, "Falha ao carregar Marcas!");
                     }
                 }
-
             }
-
         }
-
         private void btnConfig_Click(object sender, EventArgs e)
         {
             FrmTelaConfig Frm = new FrmTelaConfig(this);
@@ -675,7 +695,6 @@ namespace Teste
         private void FrmTelaOperacao_FormClosing(object sender, FormClosingEventArgs e)
         {
             Globais.RegistrarLog(Globais.Login + " Efetuou logout.");
-            this.Dispose();
             Application.Exit();
         }
         private void FecharForm()
@@ -690,7 +709,7 @@ namespace Teste
                 {
                     CaptureInfo.DisposeCapture();
                 }
-                Arduino.CloseCom();
+                Arduino.Parar();
                 FrmTelaLogin Frm = new FrmTelaLogin();
                 this.Dispose();
                 Frm.ShowDialog();
@@ -837,7 +856,7 @@ namespace Teste
             {
                 if (serialPort1.IsOpen)
                 {
-                    AbrirCancelaEntrada();
+                    AbrirCancelaEntrada("N");
                 }
                 else
                 {
@@ -850,13 +869,11 @@ namespace Teste
             }
             
         }
-        private void AbrirCancelaEntrada()
+        private void AbrirCancelaEntrada(string method = "E")
         {
             try
             {
-                Arduino.WriteCom("E");
-                btnEntrada.BackColor = Color.DarkBlue;
-                btnEntrada.ForeColor = Color.White;
+                Arduino.WriteCom(method);
             }
             catch (Exception ex)
             {
@@ -889,9 +906,7 @@ namespace Teste
             {
                 if (serialPort1.IsOpen)
                 {
-                    AbrirCancelaSaida();
-                    btnSaida.BackColor = Color.DarkBlue;
-                    btnSaida.ForeColor = Color.White;
+                    AbrirCancelaSaida("M");
                 }else
                 {
                     MessageBox.Show("Falha na comunicação serial", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -904,11 +919,11 @@ namespace Teste
             }
             
         }
-        private void AbrirCancelaSaida()
+        private void AbrirCancelaSaida(string method = "S")
         {
             try
             {
-                Arduino.WriteCom("S");
+                Arduino.WriteCom(method);
             }
             catch (Exception ex)
             {
@@ -918,28 +933,45 @@ namespace Teste
 
         private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            string resp = serialPort1.ReadExisting();
+            int resp = Convert.ToInt32(serialPort1.ReadExisting());
 
             switch (resp)
             {
-                case "E":
-                    MessageBox.Show("Cancela Entrada Fechada");
+                case 1:
+                    PintaBotaoAbrir(btnEntrada);
                     break;
 
-                case "S":
-                    MessageBox.Show("Cancela Saida Fechada");
+                case 2:
+                    PintaBotaoFechar(btnEntrada);
                     break;
-                case "1":
-                    PintaBotao(btnEntrada);
+                case 3:
+                    PintaBotaoAbrir(btnSaida);
                     break;
-                case "2":
-                    PintaBotao(btnSaida);
+                case 4:
+                    PintaBotaoFechar(btnSaida);
+                    break;
+                case 5:
+                    Arduino.entrada = true;
+                    break;
+                case 6:
+                    Arduino.entrada = false;
+                    break;
+                case 7:
+                    Arduino.saida = true;
+                    break;
+                case 8:
+                    Arduino.saida = false;
                     break;
                 default:
                     break;
             }
         }
-        private void PintaBotao(Button btn)
+        private void PintaBotaoAbrir(Button btn)
+        {
+            btn.BackColor = Color.DarkBlue;
+            btn.ForeColor = Color.White;
+        }
+        private void PintaBotaoFechar(Button btn)
         {
             btn.BackColor = Color.Transparent;
             btn.ForeColor = Color.Black;
