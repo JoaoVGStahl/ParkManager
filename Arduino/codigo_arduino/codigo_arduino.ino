@@ -1,29 +1,44 @@
-// C++ code
-//
+// Inicializa os Servos.
 #include <Servo.h>
 Servo servo_ent;
 Servo servo_sai;
 
-bool bcancelaENT = false;
-bool bcancelaSAI = false;
-const int distancia_min = 5; //Configuração de Distancia Mínima em centimetros
+//Bool de controle das cancelas (aberto ou fechado).
+bool cancelaENT = false;
+bool cancelaSAI = false;
 
-//Sensor
-const int TRIG_SAI = 5;
-const int ECHO_SAI = 4;
-const int TRIG_ENT = 3;
+//Bool de controle. Detecção de veiculo
+bool haVeiculoENT = false;
+bool haVeiculoSAI = false;
+//dsad
+
+//Define se o sistema esta operando (I= Inicia - P= Para)
+char inicio = "P";
+
+//Configuração de Distancia Mínima em centimetros.
+const int distancia_min = 10;
+int distancia_ENT = 81;
+int distancia_SAI = 81;
+
+//Sensor ultrasonico (Definição de portas para cada pino do sensor)
 const int ECHO_ENT = 2;
+const int TRIG_ENT = 3;
+const int ECHO_SAI = 4;
+const int TRIG_SAI = 5;
 
 void setup()
 {
   Serial.begin(9600);
+
+  //Servo entrada
   servo_ent.attach(11, 500, 2500);
   servo_ent.write(90);
 
-  servo_sai.attach(12, 500, 2500);
+  //Servo saida
+  servo_sai.attach(10, 500, 2500);
   servo_sai.write(90);
 
-  // Configurações do Sensor
+  //Configurações do Sensor
   pinMode(TRIG_ENT, OUTPUT);
   pinMode(ECHO_ENT, INPUT);
   pinMode(TRIG_SAI, OUTPUT);
@@ -32,55 +47,109 @@ void setup()
 
 void loop()
 {
-  int distancia_ENT = sensor_morcego(TRIG_ENT, ECHO_ENT);
-  int distancia_SAI = sensor_morcego(TRIG_SAI, ECHO_SAI);
-  if (distancia_ENT >= distancia_min)
+  if (inicio == "I")
   {
-    if(bcancelaENT){
-      cancelaENT(90);
-      bcancelaENT = false;
-      Serial.write("B");
-    }
+    distancia_ENT = calculaDistancia(TRIG_ENT, ECHO_ENT);
+    distancia_SAI = calculaDistancia(TRIG_SAI, ECHO_SAI);
 
-  }
-
-  if (distancia_SAI >= distancia_min)
-  {
-    if(bcancelaSAI){
-      cancelaSAI(90);
-      bcancelaSAI = false;
-      Serial.write("B");
-    } 
-
-  }
-
-  //---ABERTURA VIA SISTEMA-----
-  if (Serial.available())
-  {
-    switch (Serial.read())
+    //Fecha cancela Entrada *AUTOMATICO*
+    if (distancia_ENT >= distancia_min)
     {
-    case 'E':
-      cancelaENT(180);
-      bcancelaENT = true;
-      break;
-    case 'S':
-      cancelaSAI(180);
-      bcancelaSAI = true;
-      break;
+      if (cancelaENT)
+      {
+        moveCancelaEnt('F');
+      }
     }
+    else
+    {
+      Serial.write(5); //Informa o sistema que HÁ veiculo na cancela ENTRADA
+    }
+
+    //Fecha cancela Saida *AUTOMATICO*
+    if (distancia_SAI >= distancia_min)
+    {
+      if (cancelaSAI)
+      {
+        moveCancelaSai('F');
+      }
+    }
+    else
+    {
+      Serial.write(7); //Informa o sistema que HÁ veiculo na cancela SAIDA
+    }
+
+    //---ABERTURA VIA COMUNICAÇÃO SERIAL---//
+    if (Serial.available())
+    {
+      switch (Serial.read())
+      {
+      case 'E': // E - Abre a cancela ENTRADA
+        moveCancelaEnt('A');
+        break;
+      case 'S': // S - Abre a cancela SAIDA
+        moveCancelaSai('A');        
+        break;
+      }
+    }
+  }
+  else
+  {
+    //Sistema Parado
   }
 }
 
-void cancelaENT(int pos)
+void moveCancelaEnt(char flag)
 {
-  servo_ent.write(pos);
-}
-void cancelaSAI(int pos)
-{
-  servo_sai.write(pos);
+  switch (flag)
+  {
+  case 'A':
+    if (!(distancia_ENT >= distancia_min))
+    {
+      servo_ent.write(0);
+      Serial.write(1); //Informa o sistema sobre a abertura da cancela ENTRADA
+    }
+    else
+    {
+      Serial.write(6); //Informa o sistema que NÃO há veiculo na cancela ENTRADA
+    }
+    break;
+
+  case 'F':
+    delay(3000);
+    servo_ent.write(90);
+    Serial.write(2); //Informa o sistema sobre o fechamento da cancela ENTRADA
+    cancelaENT = false;
+    break;
+  }
 }
 
-int sensor_morcego(int pinotrig, int pinoecho)
+void moveCancelaSai(char flag)
+{
+  switch (flag)
+  {
+  case 'A':
+    if (!(distancia_SAI >= distancia_min))
+    {
+      servo_sai.write(0);
+      Serial.write(3); //Informa o sistema sobre a abertura da cancela SAIDA
+      cancelaSAI = true;
+    }
+    else
+    {
+      Serial.write(8); //Informa o sistema que não há veiculo na cancela SAIDA
+    }
+    break;
+
+  case 'F':
+    delay(3000);
+    servo_sai.write(90);
+    Serial.write(4); //Informa o sistema sobre o fechamento da cancela SAIDA
+    cancelaSAI = false;    
+    break;
+  }
+}
+
+int calculaDistancia(int pinotrig, int pinoecho)
 {
   digitalWrite(pinotrig, LOW);
   delayMicroseconds(2);
