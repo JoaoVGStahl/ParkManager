@@ -102,11 +102,11 @@ namespace Teste
                     {
                         string Series = TabelaGrafico.Rows[l].ItemArray[0].ToString();
                         chart1.Series.Add(Series);
-                        chart1.Series[Series].ChartType = SeriesChartType.StackedColumn;
+                        SeriesChartType Type = SeriesChartType.StackedColumn;
+                        chart1.Series[Series].ChartType = Type;
 
                         chart1.ChartAreas["ChartArea1"].AxisX.LabelStyle.Angle = 90;
                         chart1.ChartAreas["ChartArea1"].AxisX.Interval = 1;
-
                         for (int c = 1; c < TabelaGrafico.Columns.Count; c++)
                         {
                             chart1.Series[Series].Points.AddXY(TabelaGrafico.Columns[c].ColumnName, TabelaGrafico.Rows[l].ItemArray[c].ToString());
@@ -127,8 +127,6 @@ namespace Teste
             {
                 lblNada.Visible = true;
             }
-            
-            
         }
 
         private void label3_Click(object sender, EventArgs e)
