@@ -6,14 +6,24 @@ namespace Teste
 {
     class Banco
     {
-        static SqlConnection conexao;
+        private SqlConnection conexao = new SqlConnection(Properties.Settings.Default.StringBanco);
 
-        private static SqlConnection ConexaoBanco()
+        public void TestConn(string ConnString)
         {
-            //Função que Instancia, abre a conexão e retorna;
-            conexao = new SqlConnection(Properties.Settings.Default.StringBanco);
-            conexao.Open();
-            return conexao;
+            try
+            {
+                conexao = new SqlConnection(ConnString);
+                conexao.Open();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                conexao = new SqlConnection(Properties.Settings.Default.StringBanco);
+                conexao.Close();
+            }
         }
         public DataTable ExecuteProcedureReturnDataTable(string NameProcedure, List<SqlParameter> sp = null)
         {
@@ -22,8 +32,9 @@ namespace Teste
             DataTable dt = new DataTable();
             try
             {
-                var connection = ConexaoBanco();
-                cmd = new SqlCommand(NameProcedure, connection);
+
+                conexao.Open();
+                cmd = new SqlCommand(NameProcedure, conexao);
                 cmd.CommandType = CommandType.StoredProcedure;
                 if (sp != null)
                 {
@@ -50,8 +61,8 @@ namespace Teste
             int LinesAffected = 0;
             try
             {
-                var connection = ConexaoBanco();
-                cmd = new SqlCommand(NameProcedure, connection);
+                conexao.Open();
+                cmd = new SqlCommand(NameProcedure, conexao);
                 cmd.CommandType = CommandType.StoredProcedure;
                 if (sp != null)
                 {
@@ -75,8 +86,8 @@ namespace Teste
             SqlCommand cmd = null;
             try
             {
-                var connection = ConexaoBanco();
-                cmd = new SqlCommand(NameProcedure, connection);
+                conexao.Open();
+                cmd = new SqlCommand(NameProcedure, conexao);
                 cmd.CommandType = CommandType.StoredProcedure;
                 if (sp != null)
                 {
@@ -104,8 +115,8 @@ namespace Teste
             var result = new DataSet();
             try
             {
-                var connection = ConexaoBanco();
-                cmd = new SqlCommand(NameProcedure, connection);
+                conexao.Open();
+                cmd = new SqlCommand(NameProcedure, conexao);
                 cmd.CommandType = CommandType.StoredProcedure;
                 if (sp != null)
                 {
@@ -117,7 +128,6 @@ namespace Teste
             }
             catch (Exception)
             {
-
                 throw;
             }
             finally

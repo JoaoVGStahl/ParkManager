@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Teste
 {
@@ -34,6 +30,5 @@ namespace Teste
         public static decimal valor_unico { get; set; }
 
         public static string caminho_foto_padrao { get; set; }
-
     }
 }

@@ -279,12 +279,32 @@ namespace Teste
 
         private void btnEncerrar_Click(object sender, EventArgs e)
         {
+            if (Properties.Settings.Default.Cancelas)
+            {
+                if (Arduino.saida)
+                {
+                    VerificarCaixas();
+                }
+                else
+                {
+                    MessageBox.Show("Não é encerrar iniciar um Ticket, pois não há veiculos na entrada!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                VerificarCaixas();
+            }
+        }
+
+        private void VerificarCaixas()
+        {
             decimal total = Convert.ToDecimal(txtTotal.Text), troco = Convert.ToDecimal(txtTroco.Text);
             if (troco < 0)
                 MessageBox.Show("Não é possivel encerrar este ticket porque está faltando parte do pagamento!", "Falha ao encerrar ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
-                EncerrarTicket(); 
+                EncerrarTicket();
         }
+
         private void EncerrarTicket()
         {
             string DataSaida = DateTime.Now.ToShortDateString(), HoraSaida = DateTime.Now.ToLongTimeString();
@@ -341,7 +361,7 @@ namespace Teste
             if(caminho != null)
             {
                 System.Diagnostics.Process.Start(caminho);
-            }
+            }        
         }
     }
 }
