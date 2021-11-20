@@ -97,5 +97,33 @@ namespace Teste
                 cmd.Dispose();
             }
         }
+        public DataSet ExecuteProcedureWithReturnMultipleTables(string NameProcedure, List<SqlParameter> sp = null)
+        {
+            SqlDataAdapter da;
+            SqlCommand cmd;
+            var result = new DataSet();
+            try
+            {
+                var connection = ConexaoBanco();
+                cmd = new SqlCommand(NameProcedure, connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                if (sp != null)
+                {
+                    cmd.Parameters.AddRange(sp.ToArray());
+                }
+                da = new SqlDataAdapter(cmd);
+                da.Fill(result);
+                return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conexao.Close();
+            }
+        }
     }
 }
