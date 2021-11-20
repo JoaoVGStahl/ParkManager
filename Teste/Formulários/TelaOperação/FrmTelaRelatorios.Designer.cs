@@ -30,11 +30,12 @@ namespace Teste
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTelaRelatorios));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblMarca = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.lblTop4 = new System.Windows.Forms.Label();
@@ -52,8 +53,10 @@ namespace Teste
             this.btnSair = new System.Windows.Forms.Button();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chtRelatorio = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.lblNada = new System.Windows.Forms.Label();
+            this.btnGerar = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
             this.btnCliente = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -65,12 +68,9 @@ namespace Teste
             this.panel5 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.lblMarca = new System.Windows.Forms.Label();
-            this.btnGerar = new System.Windows.Forms.Button();
-            this.lblNada = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chtRelatorio)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -112,6 +112,17 @@ namespace Teste
             this.panel2.Size = new System.Drawing.Size(252, 459);
             this.panel2.TabIndex = 23;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // lblMarca
+            // 
+            this.lblMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMarca.Location = new System.Drawing.Point(3, 34);
+            this.lblMarca.Name = "lblMarca";
+            this.lblMarca.Size = new System.Drawing.Size(241, 38);
+            this.lblMarca.TabIndex = 14;
+            this.lblMarca.Text = "Marca";
+            this.lblMarca.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblMarca.Click += new System.EventHandler(this.lblMarca_Click);
             // 
             // lblTotal
             // 
@@ -289,26 +300,29 @@ namespace Teste
             this.panel3.Size = new System.Drawing.Size(10, 699);
             this.panel3.TabIndex = 4;
             // 
-            // chart1
+            // chtRelatorio
             // 
-            this.chart1.BackColor = System.Drawing.Color.Transparent;
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(0, 112);
-            this.chart1.Name = "chart1";
-            this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            this.chart1.PaletteCustomColors = new System.Drawing.Color[] {
-        System.Drawing.Color.DarkBlue};
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            series1.YValuesPerPoint = 4;
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(1052, 268);
-            this.chart1.TabIndex = 30;
-            this.chart1.Text = "chart1";
+            this.chtRelatorio.BackColor = System.Drawing.Color.Transparent;
+            chartArea3.Name = "ChartArea1";
+            this.chtRelatorio.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chtRelatorio.Legends.Add(legend3);
+            this.chtRelatorio.Location = new System.Drawing.Point(0, 112);
+            this.chtRelatorio.Name = "chtRelatorio";
+            this.chtRelatorio.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
+            this.chtRelatorio.PaletteCustomColors = new System.Drawing.Color[] {
+        System.Drawing.Color.Crimson,
+        System.Drawing.SystemColors.HotTrack,
+        System.Drawing.Color.DarkBlue,
+        System.Drawing.Color.Red};
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            series3.YValuesPerPoint = 4;
+            this.chtRelatorio.Series.Add(series3);
+            this.chtRelatorio.Size = new System.Drawing.Size(1052, 268);
+            this.chtRelatorio.TabIndex = 30;
+            this.chtRelatorio.Text = "chart1";
             // 
             // panel4
             // 
@@ -318,12 +332,38 @@ namespace Teste
             this.panel4.Controls.Add(this.panel7);
             this.panel4.Controls.Add(this.DataInicial);
             this.panel4.Controls.Add(this.DataFinal);
-            this.panel4.Controls.Add(this.chart1);
+            this.panel4.Controls.Add(this.chtRelatorio);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(265, 0);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1055, 380);
             this.panel4.TabIndex = 34;
+            // 
+            // lblNada
+            // 
+            this.lblNada.AutoSize = true;
+            this.lblNada.BackColor = System.Drawing.Color.Transparent;
+            this.lblNada.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNada.ForeColor = System.Drawing.Color.DarkRed;
+            this.lblNada.Location = new System.Drawing.Point(291, 219);
+            this.lblNada.Name = "lblNada";
+            this.lblNada.Size = new System.Drawing.Size(442, 37);
+            this.lblNada.TabIndex = 24;
+            this.lblNada.Text = "< Não há dados para exibir! >";
+            this.lblNada.Visible = false;
+            // 
+            // btnGerar
+            // 
+            this.btnGerar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGerar.Image = ((System.Drawing.Image)(resources.GetObject("btnGerar.Image")));
+            this.btnGerar.Location = new System.Drawing.Point(776, 70);
+            this.btnGerar.Name = "btnGerar";
+            this.btnGerar.Size = new System.Drawing.Size(125, 36);
+            this.btnGerar.TabIndex = 39;
+            this.btnGerar.Text = "Gerar";
+            this.btnGerar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnGerar.UseVisualStyleBackColor = true;
+            this.btnGerar.Click += new System.EventHandler(this.btnGerar_Click);
             // 
             // panel7
             // 
@@ -352,6 +392,7 @@ namespace Teste
             this.btnCliente.Text = "Cliente";
             this.btnCliente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCliente.UseVisualStyleBackColor = true;
+            this.btnCliente.Click += new System.EventHandler(this.btnCliente_Click);
             // 
             // button5
             // 
@@ -382,6 +423,7 @@ namespace Teste
             this.btnFinanceiro.Text = "Financeiro";
             this.btnFinanceiro.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnFinanceiro.UseVisualStyleBackColor = true;
+            this.btnFinanceiro.Click += new System.EventHandler(this.btnFinanceiro_Click);
             // 
             // btnVeiculo
             // 
@@ -396,6 +438,7 @@ namespace Teste
             this.btnVeiculo.Text = "Veículo";
             this.btnVeiculo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVeiculo.UseVisualStyleBackColor = true;
+            this.btnVeiculo.Click += new System.EventHandler(this.btnVeiculo_Click);
             // 
             // btnFluxo
             // 
@@ -410,6 +453,7 @@ namespace Teste
             this.btnFluxo.Text = "Fluxo";
             this.btnFluxo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnFluxo.UseVisualStyleBackColor = true;
+            this.btnFluxo.Click += new System.EventHandler(this.btnFluxo_Click);
             // 
             // DataInicial
             // 
@@ -462,40 +506,6 @@ namespace Teste
             this.panel6.Size = new System.Drawing.Size(1055, 10);
             this.panel6.TabIndex = 38;
             // 
-            // lblMarca
-            // 
-            this.lblMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMarca.Location = new System.Drawing.Point(3, 34);
-            this.lblMarca.Name = "lblMarca";
-            this.lblMarca.Size = new System.Drawing.Size(241, 38);
-            this.lblMarca.TabIndex = 14;
-            this.lblMarca.Text = "Marca";
-            this.lblMarca.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblMarca.Click += new System.EventHandler(this.lblMarca_Click);
-            // 
-            // btnGerar
-            // 
-            this.btnGerar.Location = new System.Drawing.Point(769, 58);
-            this.btnGerar.Name = "btnGerar";
-            this.btnGerar.Size = new System.Drawing.Size(128, 56);
-            this.btnGerar.TabIndex = 39;
-            this.btnGerar.Text = "Gerar";
-            this.btnGerar.UseVisualStyleBackColor = true;
-            this.btnGerar.Click += new System.EventHandler(this.btnGerar_Click);
-            // 
-            // lblNada
-            // 
-            this.lblNada.AutoSize = true;
-            this.lblNada.BackColor = System.Drawing.Color.Transparent;
-            this.lblNada.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNada.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblNada.Location = new System.Drawing.Point(291, 219);
-            this.lblNada.Name = "lblNada";
-            this.lblNada.Size = new System.Drawing.Size(442, 37);
-            this.lblNada.TabIndex = 24;
-            this.lblNada.Text = "< Não há dados para exibir! >";
-            this.lblNada.Visible = false;
-            // 
             // FrmTelaRelatorios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -519,7 +529,7 @@ namespace Teste
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chtRelatorio)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel7.ResumeLayout(false);
@@ -537,7 +547,7 @@ namespace Teste
         private System.Windows.Forms.Button btnSair;
         private System.Windows.Forms.Label lblTicket;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chtRelatorio;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;

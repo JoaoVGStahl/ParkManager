@@ -4,6 +4,7 @@ using System.Data;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace Teste
 {
@@ -15,6 +16,16 @@ namespace Teste
             InitializeComponent();
         }
 
+        private void FundoBotao(Button Botao)
+        {
+
+            btnFluxo.BackColor = Color.Silver;
+            btnFinanceiro.BackColor = Color.Silver;
+            btnCliente.BackColor = Color.Silver;
+            btnVeiculo.BackColor = Color.Silver;
+            Botao.BackColor = Color.WhiteSmoke;
+        }
+
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
@@ -22,6 +33,7 @@ namespace Teste
 
         private void FrmTelaRelatorios_Load(object sender, EventArgs e)
         {
+            LimparGrafico();
             if (Properties.Settings.Default.StringBanco != null)
             {
                 DataSet ds = new DataSet();
@@ -91,9 +103,9 @@ namespace Teste
                 TabelaGrafico = ds.Tables[0];
                 TabelaGrid = ds.Tables[1];
                 lblNada.Visible = false;
-                if (chart1.Series.Count > 0)
+                if (chtRelatorio.Series.Count > 0)
                 {
-                    chart1.Series.Clear();
+                    chtRelatorio.Series.Clear();
                 }
 
                 if (TabelaGrafico.Columns.Count > 1)
@@ -101,24 +113,24 @@ namespace Teste
                     for (int l = 0; l < TabelaGrafico.Rows.Count; l++)
                     {
                         string Series = TabelaGrafico.Rows[l].ItemArray[0].ToString();
-                        chart1.Series.Add(Series);
-                        chart1.Series[Series].ChartType = SeriesChartType.StackedColumn;
+                        chtRelatorio.Series.Add(Series);
+                        chtRelatorio.Series[Series].ChartType = SeriesChartType.StackedColumn;
 
-                        chart1.ChartAreas["ChartArea1"].AxisX.LabelStyle.Angle = 90;
-                        chart1.ChartAreas["ChartArea1"].AxisX.Interval = 1;
+                        chtRelatorio.ChartAreas["ChartArea1"].AxisX.LabelStyle.Angle = 90;
+                        chtRelatorio.ChartAreas["ChartArea1"].AxisX.Interval = 1;
 
                         for (int c = 1; c < TabelaGrafico.Columns.Count; c++)
                         {
-                            chart1.Series[Series].Points.AddXY(TabelaGrafico.Columns[c].ColumnName, TabelaGrafico.Rows[l].ItemArray[c].ToString());
+                            chtRelatorio.Series[Series].Points.AddXY(TabelaGrafico.Columns[c].ColumnName, TabelaGrafico.Rows[l].ItemArray[c].ToString());
                         }
                     }
                     dataGridView1.DataSource = TabelaGrid;
                 }
                 else
                 {
-                    if (chart1.Series.Count > 0)
+                    if (chtRelatorio.Series.Count > 0)
                     {
-                        chart1.Series.Clear();
+                        chtRelatorio.Series.Clear();
                     }
                     lblTicket.Visible = true;
                 }
@@ -134,6 +146,37 @@ namespace Teste
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnFluxo_Click(object sender, EventArgs e)
+        {
+            FundoBotao(btnFluxo);
+        }
+
+        private void btnFinanceiro_Click(object sender, EventArgs e)
+        {
+            FundoBotao(btnFinanceiro);
+        }
+
+        private void btnCliente_Click(object sender, EventArgs e)
+        {
+            FundoBotao(btnCliente);
+
+           
+
+        }
+
+        private void LimparGrafico()
+        {
+            if (chtRelatorio.Series.Count > 0)
+            {
+                chtRelatorio.Series.Clear();
+            }
+        }
+
+        private void btnVeiculo_Click(object sender, EventArgs e)
+        {
+            FundoBotao(btnVeiculo);
         }
     }
 }
