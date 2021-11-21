@@ -360,12 +360,8 @@ namespace Teste
             this.btnGerar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGerar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGerar.Image = ((System.Drawing.Image)(resources.GetObject("btnGerar.Image")));
-<<<<<<< HEAD
             this.btnGerar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGerar.Location = new System.Drawing.Point(791, 70);
-=======
             this.btnGerar.Location = new System.Drawing.Point(769, 70);
->>>>>>> f6b65a510334140800c674225bf2448b09584c9c
             this.btnGerar.Name = "btnGerar";
             this.btnGerar.Size = new System.Drawing.Size(132, 36);
             this.btnGerar.TabIndex = 39;
