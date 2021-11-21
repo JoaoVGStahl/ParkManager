@@ -203,6 +203,7 @@ namespace Teste
             // 
             // picImagem
             // 
+            this.picImagem.ErrorImage = ((System.Drawing.Image)(resources.GetObject("picImagem.ErrorImage")));
             this.picImagem.Image = ((System.Drawing.Image)(resources.GetObject("picImagem.Image")));
             this.picImagem.InitialImage = ((System.Drawing.Image)(resources.GetObject("picImagem.InitialImage")));
             this.picImagem.Location = new System.Drawing.Point(3, 67);
