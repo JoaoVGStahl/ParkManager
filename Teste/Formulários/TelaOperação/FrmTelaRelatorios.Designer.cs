@@ -345,7 +345,7 @@ namespace Teste
             this.lblNada.BackColor = System.Drawing.Color.Transparent;
             this.lblNada.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNada.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblNada.Location = new System.Drawing.Point(291, 219);
+            this.lblNada.Location = new System.Drawing.Point(309, 218);
             this.lblNada.Name = "lblNada";
             this.lblNada.Size = new System.Drawing.Size(442, 37);
             this.lblNada.TabIndex = 24;

@@ -19,7 +19,6 @@ namespace Teste
 
         private void FundoBotao(Button Botao)
         {
-
             btnFluxo.BackColor = Color.Silver;
             btnFinanceiro.BackColor = Color.Silver;
             btnCliente.BackColor = Color.Silver;
@@ -140,7 +139,7 @@ namespace Teste
         }
         private void RelatorioCarroDiario()
         {
-            DataSet ds = new DataSet();
+            DataSet ds;
             List<SqlParameter> sp = new List<SqlParameter>()
             {
                 new SqlParameter(){ParameterName= "@DataInicial", SqlDbType = SqlDbType.DateTime, Value = dtpInicial.Value},
