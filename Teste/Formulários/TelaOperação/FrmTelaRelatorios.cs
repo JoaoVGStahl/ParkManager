@@ -34,6 +34,8 @@ namespace Teste
         private void FrmTelaRelatorios_Load(object sender, EventArgs e)
         {
             LimparGrafico();
+            dtpFinal.Value = DateTime.Now;
+            dtpInicial.Value = DateTime.Now.AddDays(-7);
             if (Properties.Settings.Default.StringBanco != null)
             {
                 DataSet ds = new DataSet();
@@ -89,7 +91,7 @@ namespace Teste
 
         private void btnGerar_Click(object sender, EventArgs e)
         {
-            if(dtpInicial.Value <= dtpFinal.Value)
+            if (dtpInicial.Value <= dtpFinal.Value)
             {
                 switch (graphic)
                 {
@@ -129,6 +131,15 @@ namespace Teste
             {
                 chtRelatorio.Series.Clear();
             }
+            DataSet ds;
+            List<SqlParameter> sp = new List<SqlParameter>()
+            {
+                new SqlParameter(){ParameterName= "@DataInicial", SqlDbType = SqlDbType.DateTime, Value = dtpInicial.Value},
+                new SqlParameter(){ParameterName= "@DataFinal", SqlDbType = SqlDbType.DateTime, Value = dtpFinal.Value}
+            };
+            ds = banco.ExecuteProcedureWithReturnMultipleTables("dbo.Relatorio_Financeiro_Diario", sp);
+            CriaGraficoPie(ds.Tables[0], "Financeiro");
+            PopulaGrid(ds.Tables[1]);
         }
         private void RelatorioCliente()
         {
@@ -136,7 +147,50 @@ namespace Teste
             {
                 chtRelatorio.Series.Clear();
             }
+            DataSet ds;
+            List<SqlParameter> sp = new List<SqlParameter>()
+            {
+                new SqlParameter(){ParameterName= "@DataInicial", SqlDbType = SqlDbType.DateTime, Value = dtpInicial.Value},
+                new SqlParameter(){ParameterName= "@DataFinal", SqlDbType = SqlDbType.DateTime, Value = dtpFinal.Value}
+            };
+            ds = banco.ExecuteProcedureWithReturnMultipleTables("dbo.Relatorio_Cliente", sp);
+            DataTable dt = CriaDataTable();
+            int total = Convert.ToInt32(ds.Tables[0].Rows[0].ItemArray[0]);
+            int ident = Convert.ToInt32(ds.Tables[0].Rows[0].ItemArray[1]);
+            int Nid = Convert.ToInt32(ds.Tables[0].Rows[0].ItemArray[2]);
+            int voltaram = 0;
+            for (int i = 0; i < ds.Tables[1].Rows.Count; i++)
+            {
+                if (Convert.ToInt32(ds.Tables[1].Rows[i]["qtd"]) != 1)
+                {
+                    voltaram += Convert.ToInt32(ds.Tables[1].Rows[i]["qtd"]);
+                }
+                else
+                {
+                    break;
+                }
+            }
+            dt.Rows.Add(
+                total,
+                ident,
+                Nid,
+                total - voltaram,
+                voltaram
+                );
+            CriaGraficoCliente(dt, "Relatório Clientes");
         }
+
+        private DataTable CriaDataTable()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Total", typeof(int));
+            dt.Columns.Add("Cadastrados", typeof(int));
+            dt.Columns.Add("Não Cadastrados", typeof(int));
+            dt.Columns.Add("Visita Única", typeof(int));
+            dt.Columns.Add("Retornaram", typeof(int));
+            return dt;
+        }
+
         private void RelatorioCarroDiario()
         {
             DataSet ds;
@@ -146,38 +200,54 @@ namespace Teste
                 new SqlParameter(){ParameterName= "@DataFinal", SqlDbType = SqlDbType.DateTime, Value = dtpFinal.Value}
             };
             ds = banco.ExecuteProcedureWithReturnMultipleTables("dbo.Relatorio_Carro_Diario", sp);
-            CriarGrafico(ds, SeriesChartType.StackedColumn);
+            CriarGraficoStackedColumn(ds.Tables[0], "Tipos de Veículos");
+            PopulaGrid(ds.Tables[1]);
         }
 
-        private void CriarGrafico(DataSet ds, SeriesChartType Type, int interval = 1, int angle = 90)
+        private void PopulaGrid(DataTable TabelaGrid)
         {
-            if (ds.Tables.Count == 2)
+            try
             {
-                DataTable TabelaGrafico = ds.Tables[0];
-                DataTable TabelaGrid = ds.Tables[1];
-                lblNada.Visible = false;
-                if (chtRelatorio.Series.Count > 0)
+                if(TabelaGrid.Columns.Count > 1)
                 {
-                    chtRelatorio.Series.Clear();
+                    SrcGrafico.DataSource = TabelaGrid;
                 }
+            }
+            catch (Exception ex)
+            {
 
+                MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CriarGraficoStackedColumn(DataTable TabelaGrafico, string legendTitle,int interval = 1, int angle = 90, bool Style3d = true, int border = 5)
+        {
+            try
+            {
                 if (TabelaGrafico.Columns.Count > 1)
                 {
+                    lblNada.Visible = false;
+                    if (chtRelatorio.Series.Count > 0)
+                    {
+                        chtRelatorio.Series.Clear();
+                    }
+
                     for (int l = 0; l < TabelaGrafico.Rows.Count; l++)
                     {
                         string Series = TabelaGrafico.Rows[l].ItemArray[0].ToString();
                         chtRelatorio.Series.Add(Series);
-                        chtRelatorio.Series[Series].ChartType = Type;
-
+                        chtRelatorio.Series[Series].ChartType = SeriesChartType.StackedColumn;
+                        chtRelatorio.Legends[0].Title = legendTitle;
                         chtRelatorio.ChartAreas["ChartArea1"].AxisX.LabelStyle.Angle = angle;
                         chtRelatorio.ChartAreas["ChartArea1"].AxisX.Interval = interval;
+                        chtRelatorio.Series[Series].BorderWidth = border;
 
                         for (int c = 1; c < TabelaGrafico.Columns.Count; c++)
                         {
                             chtRelatorio.Series[Series].Points.AddXY(TabelaGrafico.Columns[c].ColumnName, TabelaGrafico.Rows[l].ItemArray[c].ToString());
+
                         }
                     }
-                    dataGridView1.DataSource = TabelaGrid;
                 }
                 else
                 {
@@ -186,12 +256,109 @@ namespace Teste
                         chtRelatorio.Series.Clear();
                     }
                     lblTicket.Visible = true;
+                    lblNada.Visible = true;
                 }
             }
-            else
+            catch (Exception ex)
             {
-                lblNada.Visible = true;
+                MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
+        }
+        private void CriaGraficoPie(DataTable TabelaGrafico, string name)
+        {
+            try
+            {
+                if (TabelaGrafico.Columns.Count > 1)
+                {
+                    if (chtRelatorio.Series.Count > 0)
+                    {
+                        chtRelatorio.Series.Clear();
+                    }
+                    decimal soma = 0;
+                    chtRelatorio.Series.Add(name);
+                    chtRelatorio.Legends[0].Title = "Forma Pagamento";
+                    chtRelatorio.Series[name].ChartType = SeriesChartType.Doughnut;
+                    for (int l = 0; l < TabelaGrafico.Rows.Count; l++)
+                    {
+                        string PointsName = TabelaGrafico.Rows[l].ItemArray[0].ToString();
+                        for (int c = 1; c < TabelaGrafico.Columns.Count; c++)
+                        {
+                            soma += Convert.ToDecimal(TabelaGrafico.Rows[l].ItemArray[c]);
+                        }
+                        chtRelatorio.Series[name].Points.AddXY(PointsName, soma);
+                        chtRelatorio.Series[name].Points[l].LegendText = PointsName + " - R$" + soma.ToString();
+                        chtRelatorio.Series[name].Points[l].Label = "#PERCENT{P2}";
+                        chtRelatorio.Series[name].Points[l].LabelForeColor = Color.White;
+                        soma = 0;
+                    }
+                }
+                else
+                {
+                    if (chtRelatorio.Series.Count > 0)
+                    {
+                        chtRelatorio.Series.Clear();
+                    }
+                    lblTicket.Visible = true;
+                    lblNada.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+        }
+        private void CriaGraficoCliente(DataTable TabelaGrafico, string name)
+        {
+            try
+            {
+                if (TabelaGrafico.Columns.Count > 1)
+                {
+                    if (chtRelatorio.Series.Count > 0)
+                    {
+                        chtRelatorio.Series.Clear();
+                    }
+                    chtRelatorio.Series.Add(name);
+                    chtRelatorio.Legends[0].Title = "Legenda";
+                    chtRelatorio.Series[name].ChartType = SeriesChartType.Pie;
+                    for (int l = 1; l < TabelaGrafico.Columns.Count; l++)
+                    {
+                        string PointsName = TabelaGrafico.Columns[l].ColumnName.ToString();
+                        chtRelatorio.Series[name].Points.AddXY(PointsName, TabelaGrafico.Rows[0].ItemArray[l]);
+                        chtRelatorio.Series[name].Points[l - 1].LegendText = PointsName + " - " + TabelaGrafico.Rows[0].ItemArray[l].ToString();
+                        chtRelatorio.Series[name].Points[l - 1].Label = "#PERCENT{P2}";
+                        chtRelatorio.Series[name].Points[l - 1].LabelForeColor = Color.White;
+                    }
+                }
+                else
+                {
+                    if (chtRelatorio.Series.Count > 0)
+                    {
+                        chtRelatorio.Series.Clear();
+                    }
+                    lblTicket.Visible = true;
+                    lblNada.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+
+        private void Legends()
+        {
+            chtRelatorio.Legends.Clear();
+            chtRelatorio.Legends.Add("Legenda");
+            chtRelatorio.Legends[0].LegendStyle = LegendStyle.Table;
+            chtRelatorio.Legends[0].Docking = Docking.Right;
+            chtRelatorio.Legends[0].Alignment = StringAlignment.Center;
+            chtRelatorio.Legends[0].BorderColor = Color.Black;
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -222,6 +389,9 @@ namespace Teste
 
         private void LimparGrafico()
         {
+            chtRelatorio.ChartAreas["ChartArea1"].BackColor = Color.Transparent;
+            chtRelatorio.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = true;
+            Legends();
             if (chtRelatorio.Series.Count > 0)
             {
                 chtRelatorio.Series.Clear();

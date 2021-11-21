@@ -30,9 +30,10 @@ namespace Teste
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTelaRelatorios));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(10D, "0,0,0,0");
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblMarca = new System.Windows.Forms.Label();
@@ -66,7 +67,7 @@ namespace Teste
             this.dtpInicial = new System.Windows.Forms.DateTimePicker();
             this.dtpFinal = new System.Windows.Forms.DateTimePicker();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.SrcGrafico = new System.Windows.Forms.DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -74,7 +75,7 @@ namespace Teste
             this.panel4.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SrcGrafico)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -303,10 +304,10 @@ namespace Teste
             // chtRelatorio
             // 
             this.chtRelatorio.BackColor = System.Drawing.Color.Transparent;
-            chartArea3.Name = "ChartArea1";
-            this.chtRelatorio.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chtRelatorio.Legends.Add(legend3);
+            chartArea2.Name = "ChartArea1";
+            this.chtRelatorio.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chtRelatorio.Legends.Add(legend2);
             this.chtRelatorio.Location = new System.Drawing.Point(0, 112);
             this.chtRelatorio.Name = "chtRelatorio";
             this.chtRelatorio.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
@@ -315,11 +316,16 @@ namespace Teste
         System.Drawing.SystemColors.HotTrack,
         System.Drawing.Color.DarkBlue,
         System.Drawing.Color.Red};
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            series3.YValuesPerPoint = 4;
-            this.chtRelatorio.Series.Add(series3);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series2.IsVisibleInLegend = false;
+            series2.Legend = "Legend1";
+            series2.LegendToolTip = "#PERCENT";
+            series2.Name = "Series1";
+            series2.Points.Add(dataPoint2);
+            series2.YValueMembers = "#PERCENT";
+            series2.YValuesPerPoint = 4;
+            this.chtRelatorio.Series.Add(series2);
             this.chtRelatorio.Size = new System.Drawing.Size(1052, 268);
             this.chtRelatorio.TabIndex = 30;
             this.chtRelatorio.Text = "chart1";
@@ -483,27 +489,27 @@ namespace Teste
             this.dtpFinal.Name = "dtpFinal";
             this.dtpFinal.Size = new System.Drawing.Size(269, 29);
             this.dtpFinal.TabIndex = 37;
-            this.dtpFinal.Value = new System.DateTime(2021, 11, 20, 0, 0, 0, 0);
+            this.dtpFinal.Value = new System.DateTime(2021, 11, 21, 16, 49, 19, 0);
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.dataGridView1);
+            this.panel5.Controls.Add(this.SrcGrafico);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel5.Location = new System.Drawing.Point(265, 390);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1055, 309);
             this.panel5.TabIndex = 35;
             // 
-            // dataGridView1
+            // SrcGrafico
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1055, 309);
-            this.dataGridView1.TabIndex = 0;
+            this.SrcGrafico.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.SrcGrafico.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.SrcGrafico.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.SrcGrafico.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.SrcGrafico.Location = new System.Drawing.Point(0, 0);
+            this.SrcGrafico.Name = "SrcGrafico";
+            this.SrcGrafico.Size = new System.Drawing.Size(1055, 309);
+            this.SrcGrafico.TabIndex = 0;
             // 
             // panel6
             // 
@@ -542,7 +548,7 @@ namespace Teste
             this.panel4.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SrcGrafico)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -571,7 +577,7 @@ namespace Teste
         private System.Windows.Forms.Label lblTop1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView SrcGrafico;
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.DateTimePicker dtpInicial;
         private System.Windows.Forms.DateTimePicker dtpFinal;
