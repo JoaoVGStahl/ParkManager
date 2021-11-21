@@ -30,10 +30,10 @@ namespace Teste
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTelaRelatorios));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(10D, "0,0,0,0");
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(10D, "0,0,0,0");
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblMarca = new System.Windows.Forms.Label();
@@ -56,6 +56,7 @@ namespace Teste
             this.panel3 = new System.Windows.Forms.Panel();
             this.chtRelatorio = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.btnLimpaP = new System.Windows.Forms.Button();
             this.lblNada = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.btnGerar = new System.Windows.Forms.Button();
@@ -69,7 +70,6 @@ namespace Teste
             this.panel5 = new System.Windows.Forms.Panel();
             this.SrcGrafico = new System.Windows.Forms.DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.btnLimpaP = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chtRelatorio)).BeginInit();
@@ -305,10 +305,10 @@ namespace Teste
             // chtRelatorio
             // 
             this.chtRelatorio.BackColor = System.Drawing.Color.Transparent;
-            chartArea2.Name = "ChartArea1";
-            this.chtRelatorio.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chtRelatorio.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chtRelatorio.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chtRelatorio.Legends.Add(legend1);
             this.chtRelatorio.Location = new System.Drawing.Point(0, 112);
             this.chtRelatorio.Name = "chtRelatorio";
             this.chtRelatorio.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
@@ -317,16 +317,16 @@ namespace Teste
         System.Drawing.SystemColors.HotTrack,
         System.Drawing.Color.DarkBlue,
         System.Drawing.Color.Red};
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series2.IsVisibleInLegend = false;
-            series2.Legend = "Legend1";
-            series2.LegendToolTip = "#PERCENT";
-            series2.Name = "Series1";
-            series2.Points.Add(dataPoint2);
-            series2.YValueMembers = "#PERCENT";
-            series2.YValuesPerPoint = 4;
-            this.chtRelatorio.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.IsVisibleInLegend = false;
+            series1.Legend = "Legend1";
+            series1.LegendToolTip = "#PERCENT";
+            series1.Name = "Series1";
+            series1.Points.Add(dataPoint1);
+            series1.YValueMembers = "#PERCENT";
+            series1.YValuesPerPoint = 4;
+            this.chtRelatorio.Series.Add(series1);
             this.chtRelatorio.Size = new System.Drawing.Size(1052, 268);
             this.chtRelatorio.TabIndex = 30;
             this.chtRelatorio.Text = "chart1";
@@ -347,6 +347,21 @@ namespace Teste
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1055, 380);
             this.panel4.TabIndex = 34;
+            // 
+            // btnLimpaP
+            // 
+            this.btnLimpaP.BackColor = System.Drawing.Color.Transparent;
+            this.btnLimpaP.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLimpaP.Enabled = false;
+            this.btnLimpaP.FlatAppearance.BorderSize = 0;
+            this.btnLimpaP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpaP.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpaP.Image")));
+            this.btnLimpaP.Location = new System.Drawing.Point(150, 68);
+            this.btnLimpaP.Name = "btnLimpaP";
+            this.btnLimpaP.Size = new System.Drawing.Size(42, 48);
+            this.btnLimpaP.TabIndex = 40;
+            this.btnLimpaP.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnLimpaP.UseVisualStyleBackColor = false;
             // 
             // lblNada
             // 
@@ -521,21 +536,6 @@ namespace Teste
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1055, 10);
             this.panel6.TabIndex = 38;
-            // 
-            // btnLimpaP
-            // 
-            this.btnLimpaP.BackColor = System.Drawing.Color.Transparent;
-            this.btnLimpaP.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLimpaP.Enabled = false;
-            this.btnLimpaP.FlatAppearance.BorderSize = 0;
-            this.btnLimpaP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLimpaP.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpaP.Image")));
-            this.btnLimpaP.Location = new System.Drawing.Point(150, 76);
-            this.btnLimpaP.Name = "btnLimpaP";
-            this.btnLimpaP.Size = new System.Drawing.Size(42, 38);
-            this.btnLimpaP.TabIndex = 40;
-            this.btnLimpaP.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnLimpaP.UseVisualStyleBackColor = false;
             // 
             // FrmTelaRelatorios
             // 

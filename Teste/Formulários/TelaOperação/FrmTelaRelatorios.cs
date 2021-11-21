@@ -96,7 +96,7 @@ namespace Teste
                 switch (graphic)
                 {
                     case 1:
-                        RelatorioFluxo();
+                        RelatorioTickets();
                         break;
                     case 2:
                         RelatotorioFinanceiro();
@@ -118,12 +118,26 @@ namespace Teste
                 dtpInicial.Focus();
             }
         }
-        private void RelatorioFluxo()
+        private void RelatorioTickets()
         {
             if (chtRelatorio.Series.Count > 0)
             {
                 chtRelatorio.Series.Clear();
             }
+            if (chtRelatorio.Series.Count > 0)
+            {
+                chtRelatorio.Series.Clear();
+            }
+            DataSet ds;
+            List<SqlParameter> sp = new List<SqlParameter>()
+            {
+                new SqlParameter(){ParameterName= "@DataInicial", SqlDbType = SqlDbType.DateTime, Value = dtpInicial.Value},
+                new SqlParameter(){ParameterName= "@DataFinal", SqlDbType = SqlDbType.DateTime, Value = dtpFinal.Value}
+            };
+            ds = banco.ExecuteProcedureWithReturnMultipleTables("dbo.Relatorio_Ticket_Diario", sp);
+            DataTable dt = ds.Tables[0];
+            CriarGraficoStackedColumn(dt, "Tickets", Style: SeriesChartType.Column,Style3d : false, labels: true);
+
         }
         private void RelatotorioFinanceiro()
         {
@@ -143,41 +157,54 @@ namespace Teste
         }
         private void RelatorioCliente()
         {
-            if (chtRelatorio.Series.Count > 0)
-            {
-                chtRelatorio.Series.Clear();
-            }
+            DataTable dt = CriaDataTable();
             DataSet ds;
-            List<SqlParameter> sp = new List<SqlParameter>()
+            try
             {
+                if (chtRelatorio.Series.Count > 0)
+                {
+                    chtRelatorio.Series.Clear();
+                }
+
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
                 new SqlParameter(){ParameterName= "@DataInicial", SqlDbType = SqlDbType.DateTime, Value = dtpInicial.Value},
                 new SqlParameter(){ParameterName= "@DataFinal", SqlDbType = SqlDbType.DateTime, Value = dtpFinal.Value}
-            };
-            ds = banco.ExecuteProcedureWithReturnMultipleTables("dbo.Relatorio_Cliente", sp);
-            DataTable dt = CriaDataTable();
-            int total = Convert.ToInt32(ds.Tables[0].Rows[0].ItemArray[0]);
-            int ident = Convert.ToInt32(ds.Tables[0].Rows[0].ItemArray[1]);
-            int Nid = Convert.ToInt32(ds.Tables[0].Rows[0].ItemArray[2]);
-            int voltaram = 0;
-            for (int i = 0; i < ds.Tables[1].Rows.Count; i++)
-            {
-                if (Convert.ToInt32(ds.Tables[1].Rows[i]["qtd"]) != 1)
+                };
+                ds = banco.ExecuteProcedureWithReturnMultipleTables("dbo.Relatorio_Cliente", sp);
+                if (ds.Tables.Count == 3)
                 {
-                    voltaram += Convert.ToInt32(ds.Tables[1].Rows[i]["qtd"]);
+                    int total = Convert.ToInt32(ds.Tables[0].Rows[0].ItemArray[0]);
+                    int ident = Convert.ToInt32(ds.Tables[0].Rows[0].ItemArray[1]);
+                    int Nid = Convert.ToInt32(ds.Tables[0].Rows[0].ItemArray[2]);
+                    int voltaram = 0;
+                    for (int i = 0; i < ds.Tables[1].Rows.Count; i++)
+                    {
+                        if (Convert.ToInt32(ds.Tables[1].Rows[i]["qtd"]) != 1)
+                        {
+                            voltaram += Convert.ToInt32(ds.Tables[1].Rows[i]["qtd"]);
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    dt.Rows.Add(
+                        total,
+                        ident,
+                        Nid,
+                        total - voltaram,
+                        voltaram
+                        );
+                    CriaGraficoCliente(dt, "Relatório Clientes");
+                    PopulaGrid(ds.Tables[2]);
                 }
-                else
-                {
-                    break;
-                }
+
             }
-            dt.Rows.Add(
-                total,
-                ident,
-                Nid,
-                total - voltaram,
-                voltaram
-                );
-            CriaGraficoCliente(dt, "Relatório Clientes");
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private DataTable CriaDataTable()
@@ -208,8 +235,9 @@ namespace Teste
         {
             try
             {
-                if(TabelaGrid.Columns.Count > 1)
+                if (TabelaGrid.Columns.Count > 1)
                 {
+                    SrcGrafico.DataSource = null;
                     SrcGrafico.DataSource = TabelaGrid;
                 }
             }
@@ -220,7 +248,7 @@ namespace Teste
             }
         }
 
-        private void CriarGraficoStackedColumn(DataTable TabelaGrafico, string legendTitle,int interval = 1, int angle = 90, bool Style3d = true, int border = 5)
+        private void CriarGraficoStackedColumn(DataTable TabelaGrafico, string legendTitle, bool labels = false,SeriesChartType Style = SeriesChartType.StackedColumn, int interval = 1, int angle = 90, bool Style3d = true, int border = 5)
         {
             try
             {
@@ -235,17 +263,26 @@ namespace Teste
                     for (int l = 0; l < TabelaGrafico.Rows.Count; l++)
                     {
                         string Series = TabelaGrafico.Rows[l].ItemArray[0].ToString();
+                        if(Series == "0")
+                        {
+                            Series = "Encerrados";
+                        }
+                        if(Series == "1")
+                        {
+                            Series = "Iniciados";
+                        }
                         chtRelatorio.Series.Add(Series);
-                        chtRelatorio.Series[Series].ChartType = SeriesChartType.StackedColumn;
+                        chtRelatorio.Series[Series].ChartType = Style;
                         chtRelatorio.Legends[0].Title = legendTitle;
                         chtRelatorio.ChartAreas["ChartArea1"].AxisX.LabelStyle.Angle = angle;
                         chtRelatorio.ChartAreas["ChartArea1"].AxisX.Interval = interval;
+                        chtRelatorio.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = Style3d;
+                        chtRelatorio.Series[Series].IsValueShownAsLabel = labels;
                         chtRelatorio.Series[Series].BorderWidth = border;
 
                         for (int c = 1; c < TabelaGrafico.Columns.Count; c++)
                         {
                             chtRelatorio.Series[Series].Points.AddXY(TabelaGrafico.Columns[c].ColumnName, TabelaGrafico.Rows[l].ItemArray[c].ToString());
-
                         }
                     }
                 }
@@ -263,7 +300,7 @@ namespace Teste
             {
                 MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
         private void CriaGraficoPie(DataTable TabelaGrafico, string name)
         {
@@ -308,7 +345,7 @@ namespace Teste
 
                 MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
         private void CriaGraficoCliente(DataTable TabelaGrafico, string name)
         {
@@ -349,8 +386,7 @@ namespace Teste
             }
 
         }
-
-
+       
         private void Legends()
         {
             chtRelatorio.Legends.Clear();
