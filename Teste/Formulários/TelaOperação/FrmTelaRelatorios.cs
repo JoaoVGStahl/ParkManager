@@ -203,18 +203,21 @@ namespace Teste
         {
             FundoBotao(btnFluxo);
             graphic = 1;
+            AtiveFuncoes();
         }
 
         private void btnFinanceiro_Click(object sender, EventArgs e)
         {
             FundoBotao(btnFinanceiro);
             graphic = 2;
+            AtiveFuncoes();
         }
 
         private void btnCliente_Click(object sender, EventArgs e)
         {
             FundoBotao(btnCliente);
             graphic = 3;
+            AtiveFuncoes();
         }
 
         private void LimparGrafico()
@@ -229,6 +232,14 @@ namespace Teste
         {
             FundoBotao(btnVeiculo);
             graphic = 4;
+            AtiveFuncoes();
+        }
+
+        private void AtiveFuncoes()
+        {
+            btnGerar.Enabled = true;
+            dtpFinal.Enabled = true;
+            dtpInicial.Enabled = true;
         }
     }
 }

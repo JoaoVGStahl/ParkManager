@@ -30,9 +30,9 @@ namespace Teste
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTelaRelatorios));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblMarca = new System.Windows.Forms.Label();
@@ -303,10 +303,6 @@ namespace Teste
             // chtRelatorio
             // 
             this.chtRelatorio.BackColor = System.Drawing.Color.Transparent;
-            chartArea3.Name = "ChartArea1";
-            this.chtRelatorio.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chtRelatorio.Legends.Add(legend3);
             this.chtRelatorio.Location = new System.Drawing.Point(0, 112);
             this.chtRelatorio.Name = "chtRelatorio";
             this.chtRelatorio.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
@@ -315,11 +311,6 @@ namespace Teste
         System.Drawing.SystemColors.HotTrack,
         System.Drawing.Color.DarkBlue,
         System.Drawing.Color.Red};
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            series3.YValuesPerPoint = 4;
-            this.chtRelatorio.Series.Add(series3);
             this.chtRelatorio.Size = new System.Drawing.Size(1052, 268);
             this.chtRelatorio.TabIndex = 30;
             this.chtRelatorio.Text = "chart1";
@@ -328,6 +319,7 @@ namespace Teste
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel4.Controls.Add(this.lblNada);
+            this.panel4.Controls.Add(this.button5);
             this.panel4.Controls.Add(this.btnGerar);
             this.panel4.Controls.Add(this.panel7);
             this.panel4.Controls.Add(this.dtpInicial);
@@ -354,18 +346,19 @@ namespace Teste
             // 
             // btnGerar
             // 
+            this.btnGerar.Enabled = false;
             this.btnGerar.FlatAppearance.BorderSize = 0;
             this.btnGerar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
             this.btnGerar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
             this.btnGerar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGerar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGerar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
             this.btnGerar.Image = ((System.Drawing.Image)(resources.GetObject("btnGerar.Image")));
-            this.btnGerar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGerar.Location = new System.Drawing.Point(769, 70);
+            this.btnGerar.Location = new System.Drawing.Point(808, 68);
             this.btnGerar.Name = "btnGerar";
-            this.btnGerar.Size = new System.Drawing.Size(132, 36);
+            this.btnGerar.Size = new System.Drawing.Size(116, 48);
             this.btnGerar.TabIndex = 39;
             this.btnGerar.Text = "Gerar";
+            this.btnGerar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnGerar.UseVisualStyleBackColor = true;
             this.btnGerar.Click += new System.EventHandler(this.btnGerar_Click);
             // 
@@ -373,7 +366,6 @@ namespace Teste
             // 
             this.panel7.BackColor = System.Drawing.Color.Silver;
             this.panel7.Controls.Add(this.btnCliente);
-            this.panel7.Controls.Add(this.button5);
             this.panel7.Controls.Add(this.btnFinanceiro);
             this.panel7.Controls.Add(this.btnVeiculo);
             this.panel7.Controls.Add(this.btnFluxo);
@@ -389,7 +381,7 @@ namespace Teste
             this.btnCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCliente.Image = ((System.Drawing.Image)(resources.GetObject("btnCliente.Image")));
-            this.btnCliente.Location = new System.Drawing.Point(467, 0);
+            this.btnCliente.Location = new System.Drawing.Point(525, 0);
             this.btnCliente.Name = "btnCliente";
             this.btnCliente.Size = new System.Drawing.Size(133, 52);
             this.btnCliente.TabIndex = 44;
@@ -402,13 +394,14 @@ namespace Teste
             // 
             this.button5.BackColor = System.Drawing.Color.Transparent;
             this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button5.Enabled = false;
             this.button5.FlatAppearance.BorderSize = 0;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
-            this.button5.Location = new System.Drawing.Point(892, 2);
+            this.button5.Location = new System.Drawing.Point(924, 68);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(149, 48);
+            this.button5.Size = new System.Drawing.Size(127, 48);
             this.button5.TabIndex = 39;
             this.button5.Text = "Imprimir";
             this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -420,7 +413,7 @@ namespace Teste
             this.btnFinanceiro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFinanceiro.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFinanceiro.Image = ((System.Drawing.Image)(resources.GetObject("btnFinanceiro.Image")));
-            this.btnFinanceiro.Location = new System.Drawing.Point(334, 0);
+            this.btnFinanceiro.Location = new System.Drawing.Point(392, 0);
             this.btnFinanceiro.Name = "btnFinanceiro";
             this.btnFinanceiro.Size = new System.Drawing.Size(133, 52);
             this.btnFinanceiro.TabIndex = 45;
@@ -435,7 +428,7 @@ namespace Teste
             this.btnVeiculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVeiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVeiculo.Image = ((System.Drawing.Image)(resources.GetObject("btnVeiculo.Image")));
-            this.btnVeiculo.Location = new System.Drawing.Point(600, 0);
+            this.btnVeiculo.Location = new System.Drawing.Point(658, 0);
             this.btnVeiculo.Name = "btnVeiculo";
             this.btnVeiculo.Size = new System.Drawing.Size(133, 52);
             this.btnVeiculo.TabIndex = 46;
@@ -450,7 +443,7 @@ namespace Teste
             this.btnFluxo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFluxo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFluxo.Image = ((System.Drawing.Image)(resources.GetObject("btnFluxo.Image")));
-            this.btnFluxo.Location = new System.Drawing.Point(201, 0);
+            this.btnFluxo.Location = new System.Drawing.Point(259, 0);
             this.btnFluxo.Name = "btnFluxo";
             this.btnFluxo.Size = new System.Drawing.Size(133, 52);
             this.btnFluxo.TabIndex = 43;
@@ -461,23 +454,25 @@ namespace Teste
             // 
             // dtpInicial
             // 
-            this.dtpInicial.CustomFormat = "dd \'de\'MMMM\'de\' yyyy";
+            this.dtpInicial.CustomFormat = "dd \'de \'MMMM\' de\' yyyy";
+            this.dtpInicial.Enabled = false;
             this.dtpInicial.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpInicial.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpInicial.Location = new System.Drawing.Point(201, 77);
+            this.dtpInicial.Location = new System.Drawing.Point(250, 77);
             this.dtpInicial.Name = "dtpInicial";
-            this.dtpInicial.Size = new System.Drawing.Size(238, 29);
+            this.dtpInicial.Size = new System.Drawing.Size(269, 29);
             this.dtpInicial.TabIndex = 38;
             this.dtpInicial.Value = new System.DateTime(2021, 11, 20, 0, 0, 0, 0);
             // 
             // dtpFinal
             // 
-            this.dtpFinal.CustomFormat = "dd \'de\'MMMM\'de\' yyyy";
+            this.dtpFinal.CustomFormat = "dd \'de \'MMMM\' de\' yyyy";
+            this.dtpFinal.Enabled = false;
             this.dtpFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpFinal.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFinal.Location = new System.Drawing.Point(513, 77);
+            this.dtpFinal.Location = new System.Drawing.Point(531, 77);
             this.dtpFinal.Name = "dtpFinal";
-            this.dtpFinal.Size = new System.Drawing.Size(238, 29);
+            this.dtpFinal.Size = new System.Drawing.Size(269, 29);
             this.dtpFinal.TabIndex = 37;
             this.dtpFinal.Value = new System.DateTime(2021, 11, 20, 0, 0, 0, 0);
             // 
