@@ -157,10 +157,10 @@
     <Compile Include="Formulários\TelaConfig\FrmTelaGeral.Designer.cs">
       <DependentUpon>FrmTelaGeral.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmTelaLog.cs">
+    <Compile Include="Formulários\TelaConfig\FrmTelaLog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmTelaLog.Designer.cs">
+    <Compile Include="Formulários\TelaConfig\FrmTelaLog.Designer.cs">
       <DependentUpon>FrmTelaLog.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -209,7 +209,7 @@
     <EmbeddedResource Include="Formulários\TelaCadastros\FrmTelaMarca.resx">
       <DependentUpon>FrmTelaMarca.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmTelaLog.resx">
+    <EmbeddedResource Include="Formulários\TelaConfig\FrmTelaLog.resx">
       <DependentUpon>FrmTelaLog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
