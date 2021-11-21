@@ -882,17 +882,6 @@ namespace Teste
         }
 
         //Novo
-        private void button5_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                CaptureInfo.CaptureFrame();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro " + ex.Message);
-            }
-        }
 
         private void button8_Click(object sender, EventArgs e)
         {

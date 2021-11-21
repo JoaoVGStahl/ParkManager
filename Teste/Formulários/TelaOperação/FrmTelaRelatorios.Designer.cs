@@ -30,9 +30,9 @@ namespace Teste
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTelaRelatorios));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblMarca = new System.Windows.Forms.Label();
@@ -56,10 +56,10 @@ namespace Teste
             this.chtRelatorio = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel4 = new System.Windows.Forms.Panel();
             this.lblNada = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
             this.btnGerar = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
             this.btnCliente = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.btnFinanceiro = new System.Windows.Forms.Button();
             this.btnVeiculo = new System.Windows.Forms.Button();
             this.btnFluxo = new System.Windows.Forms.Button();
@@ -68,6 +68,7 @@ namespace Teste
             this.panel5 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.btnLimpaP = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chtRelatorio)).BeginInit();
@@ -303,6 +304,10 @@ namespace Teste
             // chtRelatorio
             // 
             this.chtRelatorio.BackColor = System.Drawing.Color.Transparent;
+            chartArea4.Name = "ChartArea1";
+            this.chtRelatorio.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chtRelatorio.Legends.Add(legend4);
             this.chtRelatorio.Location = new System.Drawing.Point(0, 112);
             this.chtRelatorio.Name = "chtRelatorio";
             this.chtRelatorio.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
@@ -311,6 +316,11 @@ namespace Teste
         System.Drawing.SystemColors.HotTrack,
         System.Drawing.Color.DarkBlue,
         System.Drawing.Color.Red};
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            series4.YValuesPerPoint = 4;
+            this.chtRelatorio.Series.Add(series4);
             this.chtRelatorio.Size = new System.Drawing.Size(1052, 268);
             this.chtRelatorio.TabIndex = 30;
             this.chtRelatorio.Text = "chart1";
@@ -318,6 +328,7 @@ namespace Teste
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel4.Controls.Add(this.btnLimpaP);
             this.panel4.Controls.Add(this.lblNada);
             this.panel4.Controls.Add(this.button5);
             this.panel4.Controls.Add(this.btnGerar);
@@ -343,6 +354,23 @@ namespace Teste
             this.lblNada.TabIndex = 24;
             this.lblNada.Text = "< Não há dados para exibir! >";
             this.lblNada.Visible = false;
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.Transparent;
+            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button5.Enabled = false;
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
+            this.button5.Location = new System.Drawing.Point(920, 68);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(131, 48);
+            this.button5.TabIndex = 39;
+            this.button5.Text = "Imprimir";
+            this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button5.UseVisualStyleBackColor = false;
             // 
             // btnGerar
             // 
@@ -389,23 +417,6 @@ namespace Teste
             this.btnCliente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCliente.UseVisualStyleBackColor = true;
             this.btnCliente.Click += new System.EventHandler(this.btnCliente_Click);
-            // 
-            // button5
-            // 
-            this.button5.BackColor = System.Drawing.Color.Transparent;
-            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button5.Enabled = false;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
-            this.button5.Location = new System.Drawing.Point(924, 68);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(127, 48);
-            this.button5.TabIndex = 39;
-            this.button5.Text = "Imprimir";
-            this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button5.UseVisualStyleBackColor = false;
             // 
             // btnFinanceiro
             // 
@@ -505,6 +516,21 @@ namespace Teste
             this.panel6.Size = new System.Drawing.Size(1055, 10);
             this.panel6.TabIndex = 38;
             // 
+            // btnLimpaP
+            // 
+            this.btnLimpaP.BackColor = System.Drawing.Color.Transparent;
+            this.btnLimpaP.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLimpaP.Enabled = false;
+            this.btnLimpaP.FlatAppearance.BorderSize = 0;
+            this.btnLimpaP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpaP.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpaP.Image")));
+            this.btnLimpaP.Location = new System.Drawing.Point(150, 76);
+            this.btnLimpaP.Name = "btnLimpaP";
+            this.btnLimpaP.Size = new System.Drawing.Size(42, 38);
+            this.btnLimpaP.TabIndex = 40;
+            this.btnLimpaP.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnLimpaP.UseVisualStyleBackColor = false;
+            // 
             // FrmTelaRelatorios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -575,5 +601,6 @@ namespace Teste
         private System.Windows.Forms.Label lblMarca;
         private System.Windows.Forms.Button btnGerar;
         private System.Windows.Forms.Label lblNada;
+        private System.Windows.Forms.Button btnLimpaP;
     }
 }
