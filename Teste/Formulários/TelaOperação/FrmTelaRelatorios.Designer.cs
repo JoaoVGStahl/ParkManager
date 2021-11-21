@@ -30,9 +30,9 @@ namespace Teste
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTelaRelatorios));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblMarca = new System.Windows.Forms.Label();
@@ -148,7 +148,7 @@ namespace Teste
             // lblTop4
             // 
             this.lblTop4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTop4.Location = new System.Drawing.Point(140, 277);
+            this.lblTop4.Location = new System.Drawing.Point(154, 277);
             this.lblTop4.Name = "lblTop4";
             this.lblTop4.Size = new System.Drawing.Size(86, 24);
             this.lblTop4.TabIndex = 10;
@@ -157,7 +157,7 @@ namespace Teste
             // lblTop3
             // 
             this.lblTop3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTop3.Location = new System.Drawing.Point(140, 241);
+            this.lblTop3.Location = new System.Drawing.Point(154, 241);
             this.lblTop3.Name = "lblTop3";
             this.lblTop3.Size = new System.Drawing.Size(86, 24);
             this.lblTop3.TabIndex = 9;
@@ -167,7 +167,7 @@ namespace Teste
             // lblTop2
             // 
             this.lblTop2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTop2.Location = new System.Drawing.Point(140, 205);
+            this.lblTop2.Location = new System.Drawing.Point(154, 205);
             this.lblTop2.Name = "lblTop2";
             this.lblTop2.Size = new System.Drawing.Size(86, 24);
             this.lblTop2.TabIndex = 8;
@@ -177,9 +177,9 @@ namespace Teste
             // lblMarca2
             // 
             this.lblMarca2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMarca2.Location = new System.Drawing.Point(9, 204);
+            this.lblMarca2.Location = new System.Drawing.Point(-7, 204);
             this.lblMarca2.Name = "lblMarca2";
-            this.lblMarca2.Size = new System.Drawing.Size(121, 25);
+            this.lblMarca2.Size = new System.Drawing.Size(154, 25);
             this.lblMarca2.TabIndex = 7;
             this.lblMarca2.Text = "TOP 2:";
             this.lblMarca2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -187,9 +187,9 @@ namespace Teste
             // lblMarca1
             // 
             this.lblMarca1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMarca1.Location = new System.Drawing.Point(9, 169);
+            this.lblMarca1.Location = new System.Drawing.Point(-4, 169);
             this.lblMarca1.Name = "lblMarca1";
-            this.lblMarca1.Size = new System.Drawing.Size(121, 25);
+            this.lblMarca1.Size = new System.Drawing.Size(151, 25);
             this.lblMarca1.TabIndex = 6;
             this.lblMarca1.Text = "TOP 1:";
             this.lblMarca1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -197,9 +197,9 @@ namespace Teste
             // lblMarca3
             // 
             this.lblMarca3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMarca3.Location = new System.Drawing.Point(9, 240);
+            this.lblMarca3.Location = new System.Drawing.Point(-4, 240);
             this.lblMarca3.Name = "lblMarca3";
-            this.lblMarca3.Size = new System.Drawing.Size(121, 25);
+            this.lblMarca3.Size = new System.Drawing.Size(151, 25);
             this.lblMarca3.TabIndex = 5;
             this.lblMarca3.Text = "TOP 3:";
             this.lblMarca3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -218,9 +218,9 @@ namespace Teste
             // lblMarca4
             // 
             this.lblMarca4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMarca4.Location = new System.Drawing.Point(9, 276);
+            this.lblMarca4.Location = new System.Drawing.Point(-7, 276);
             this.lblMarca4.Name = "lblMarca4";
-            this.lblMarca4.Size = new System.Drawing.Size(121, 25);
+            this.lblMarca4.Size = new System.Drawing.Size(154, 25);
             this.lblMarca4.TabIndex = 3;
             this.lblMarca4.Text = "TOP 4:";
             this.lblMarca4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -228,7 +228,7 @@ namespace Teste
             // lblTop1
             // 
             this.lblTop1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTop1.Location = new System.Drawing.Point(140, 170);
+            this.lblTop1.Location = new System.Drawing.Point(154, 170);
             this.lblTop1.Name = "lblTop1";
             this.lblTop1.Size = new System.Drawing.Size(86, 24);
             this.lblTop1.TabIndex = 2;
@@ -303,10 +303,10 @@ namespace Teste
             // chtRelatorio
             // 
             this.chtRelatorio.BackColor = System.Drawing.Color.Transparent;
-            chartArea1.Name = "ChartArea1";
-            this.chtRelatorio.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chtRelatorio.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            this.chtRelatorio.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chtRelatorio.Legends.Add(legend3);
             this.chtRelatorio.Location = new System.Drawing.Point(0, 112);
             this.chtRelatorio.Name = "chtRelatorio";
             this.chtRelatorio.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
@@ -315,11 +315,11 @@ namespace Teste
         System.Drawing.SystemColors.HotTrack,
         System.Drawing.Color.DarkBlue,
         System.Drawing.Color.Red};
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            series1.YValuesPerPoint = 4;
-            this.chtRelatorio.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            series3.YValuesPerPoint = 4;
+            this.chtRelatorio.Series.Add(series3);
             this.chtRelatorio.Size = new System.Drawing.Size(1052, 268);
             this.chtRelatorio.TabIndex = 30;
             this.chtRelatorio.Text = "chart1";
