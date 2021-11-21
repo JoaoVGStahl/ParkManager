@@ -62,6 +62,9 @@ namespace Teste
             this.label13 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -174,7 +177,7 @@ namespace Teste
             // 
             this.btnSelecionar.Enabled = false;
             this.btnSelecionar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSelecionar.Location = new System.Drawing.Point(727, 142);
+            this.btnSelecionar.Location = new System.Drawing.Point(728, 120);
             this.btnSelecionar.Name = "btnSelecionar";
             this.btnSelecionar.Size = new System.Drawing.Size(48, 38);
             this.btnSelecionar.TabIndex = 6;
@@ -185,7 +188,7 @@ namespace Teste
             // txtCaminho
             // 
             this.txtCaminho.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
-            this.txtCaminho.Location = new System.Drawing.Point(233, 146);
+            this.txtCaminho.Location = new System.Drawing.Point(234, 124);
             this.txtCaminho.Name = "txtCaminho";
             this.txtCaminho.ReadOnly = true;
             this.txtCaminho.Size = new System.Drawing.Size(488, 31);
@@ -195,7 +198,7 @@ namespace Teste
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
-            this.label1.Location = new System.Drawing.Point(6, 146);
+            this.label1.Location = new System.Drawing.Point(7, 124);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(204, 25);
             this.label1.TabIndex = 8;
@@ -427,12 +430,50 @@ namespace Teste
             this.label4.TabIndex = 15;
             this.label4.Text = "Cadastros Ativos e Inativos";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.label6.Location = new System.Drawing.Point(9, 169);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(0, 25);
+            this.label6.TabIndex = 13;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.label7.Location = new System.Drawing.Point(7, 194);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(213, 25);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Registro de Auditoria";
+            // 
+            // button1
+            // 
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(226, 184);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(119, 44);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "Ver";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FrmTelaGeral
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(798, 628);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtCaminho);
@@ -495,5 +536,8 @@ namespace Teste
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -197,5 +197,11 @@ namespace Teste
                 MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FrmTelaLog Frm = new FrmTelaLog();
+            Frm.Show();
+        }
     }
 }

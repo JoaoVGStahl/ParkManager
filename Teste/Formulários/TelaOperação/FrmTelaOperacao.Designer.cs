@@ -41,7 +41,6 @@ namespace Teste
             this.label5 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.picImagem = new System.Windows.Forms.PictureBox();
-            this.button5 = new System.Windows.Forms.Button();
             this.picCam = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
             this.lblQtdTicket = new System.Windows.Forms.Label();
@@ -191,7 +190,6 @@ namespace Teste
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.picImagem);
-            this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.picCam);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.lblQtdTicket);
@@ -205,25 +203,16 @@ namespace Teste
             // 
             // picImagem
             // 
+            this.picImagem.ErrorImage = ((System.Drawing.Image)(resources.GetObject("picImagem.ErrorImage")));
             this.picImagem.Image = ((System.Drawing.Image)(resources.GetObject("picImagem.Image")));
             this.picImagem.InitialImage = ((System.Drawing.Image)(resources.GetObject("picImagem.InitialImage")));
             this.picImagem.Location = new System.Drawing.Point(3, 67);
             this.picImagem.Name = "picImagem";
-            this.picImagem.Size = new System.Drawing.Size(647, 338);
+            this.picImagem.Size = new System.Drawing.Size(647, 371);
             this.picImagem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picImagem.TabIndex = 38;
             this.picImagem.TabStop = false;
             this.picImagem.Click += new System.EventHandler(this.picImagem_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(623, 411);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(27, 23);
-            this.button5.TabIndex = 42;
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Visible = false;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // picCam
             // 
@@ -265,12 +254,13 @@ namespace Teste
             this.btnSaida.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSaida.FlatAppearance.BorderSize = 0;
             this.btnSaida.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaida.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaida.ForeColor = System.Drawing.Color.Black;
             this.btnSaida.Image = ((System.Drawing.Image)(resources.GetObject("btnSaida.Image")));
             this.btnSaida.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSaida.Location = new System.Drawing.Point(394, 411);
+            this.btnSaida.Location = new System.Drawing.Point(354, 446);
             this.btnSaida.Name = "btnSaida";
-            this.btnSaida.Size = new System.Drawing.Size(182, 85);
+            this.btnSaida.Size = new System.Drawing.Size(117, 40);
             this.btnSaida.TabIndex = 37;
             this.btnSaida.TabStop = false;
             this.btnSaida.Text = "Saída";
@@ -285,12 +275,13 @@ namespace Teste
             this.btnEntrada.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEntrada.FlatAppearance.BorderSize = 0;
             this.btnEntrada.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEntrada.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEntrada.ForeColor = System.Drawing.Color.Black;
             this.btnEntrada.Image = ((System.Drawing.Image)(resources.GetObject("btnEntrada.Image")));
             this.btnEntrada.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEntrada.Location = new System.Drawing.Point(81, 411);
+            this.btnEntrada.Location = new System.Drawing.Point(198, 447);
             this.btnEntrada.Name = "btnEntrada";
-            this.btnEntrada.Size = new System.Drawing.Size(182, 85);
+            this.btnEntrada.Size = new System.Drawing.Size(134, 38);
             this.btnEntrada.TabIndex = 28;
             this.btnEntrada.TabStop = false;
             this.btnEntrada.Text = "Entrada";
@@ -871,7 +862,6 @@ namespace Teste
         private System.Windows.Forms.Button btnEntrada;
         private System.Windows.Forms.PictureBox picImagem;
         private System.Windows.Forms.PictureBox picCam;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ComboBox cmbTipo;
         public System.IO.Ports.SerialPort serialPort1;
         private System.Windows.Forms.ComboBox cmbMarca;

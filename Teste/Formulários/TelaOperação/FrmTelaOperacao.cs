@@ -658,13 +658,13 @@ namespace Teste
             lblHrEntrada.Text = dt.Rows[0]["Hora Entrada"].ToString() + " " + dt.Rows[0]["Data Entrada"].ToString();// Hora + Data
             picCam.Visible = false;
             picImagem.Visible = true;
-            if (CaminhoFoto != @"c:\ParkManager\fotos" && File.Exists(CaminhoFoto))
+            if (CaminhoFoto != Estacionamento.caminho_foto_padrao && File.Exists(CaminhoFoto))
             {
                 picImagem.Image = Image.FromFile(CaminhoFoto);
             }
             else
             {
-                picImagem.Image = picImagem.InitialImage;
+                picImagem.Image = picImagem.ErrorImage;
             }
         }
         private void AlinharLabels()
@@ -882,17 +882,6 @@ namespace Teste
         }
 
         //Novo
-        private void button5_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                CaptureInfo.CaptureFrame();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro " + ex.Message);
-            }
-        }
 
         private void button8_Click(object sender, EventArgs e)
         {

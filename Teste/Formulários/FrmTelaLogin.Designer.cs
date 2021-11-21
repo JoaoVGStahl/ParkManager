@@ -63,7 +63,7 @@ namespace Teste
             this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(400, 530);
+            this.panel1.Size = new System.Drawing.Size(401, 530);
             this.panel1.TabIndex = 0;
             // 
             // panel7
@@ -88,7 +88,7 @@ namespace Teste
             this.panel6.Controls.Add(this.btnEntrar);
             this.panel6.Location = new System.Drawing.Point(-2, 390);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(400, 140);
+            this.panel6.Size = new System.Drawing.Size(402, 140);
             this.panel6.TabIndex = 8;
             // 
             // btnEntrar
@@ -127,7 +127,7 @@ namespace Teste
             this.panel5.Controls.Add(this.btnFechar);
             this.panel5.Location = new System.Drawing.Point(-2, -2);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(400, 140);
+            this.panel5.Size = new System.Drawing.Size(402, 146);
             this.panel5.TabIndex = 7;
             // 
             // panel4
@@ -202,6 +202,7 @@ namespace Teste
             this.ClientSize = new System.Drawing.Size(400, 530);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "FrmTelaLogin";

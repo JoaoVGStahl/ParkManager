@@ -57,10 +57,10 @@ namespace Teste
             this.chtRelatorio = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel4 = new System.Windows.Forms.Panel();
             this.lblNada = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
             this.btnGerar = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
             this.btnCliente = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.btnFinanceiro = new System.Windows.Forms.Button();
             this.btnVeiculo = new System.Windows.Forms.Button();
             this.btnFluxo = new System.Windows.Forms.Button();
@@ -69,6 +69,7 @@ namespace Teste
             this.panel5 = new System.Windows.Forms.Panel();
             this.SrcGrafico = new System.Windows.Forms.DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.btnLimpaP = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chtRelatorio)).BeginInit();
@@ -149,7 +150,7 @@ namespace Teste
             // lblTop4
             // 
             this.lblTop4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTop4.Location = new System.Drawing.Point(140, 277);
+            this.lblTop4.Location = new System.Drawing.Point(154, 277);
             this.lblTop4.Name = "lblTop4";
             this.lblTop4.Size = new System.Drawing.Size(86, 24);
             this.lblTop4.TabIndex = 10;
@@ -158,7 +159,7 @@ namespace Teste
             // lblTop3
             // 
             this.lblTop3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTop3.Location = new System.Drawing.Point(140, 241);
+            this.lblTop3.Location = new System.Drawing.Point(154, 241);
             this.lblTop3.Name = "lblTop3";
             this.lblTop3.Size = new System.Drawing.Size(86, 24);
             this.lblTop3.TabIndex = 9;
@@ -168,7 +169,7 @@ namespace Teste
             // lblTop2
             // 
             this.lblTop2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTop2.Location = new System.Drawing.Point(140, 205);
+            this.lblTop2.Location = new System.Drawing.Point(154, 205);
             this.lblTop2.Name = "lblTop2";
             this.lblTop2.Size = new System.Drawing.Size(86, 24);
             this.lblTop2.TabIndex = 8;
@@ -178,9 +179,9 @@ namespace Teste
             // lblMarca2
             // 
             this.lblMarca2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMarca2.Location = new System.Drawing.Point(9, 204);
+            this.lblMarca2.Location = new System.Drawing.Point(-7, 204);
             this.lblMarca2.Name = "lblMarca2";
-            this.lblMarca2.Size = new System.Drawing.Size(121, 25);
+            this.lblMarca2.Size = new System.Drawing.Size(154, 25);
             this.lblMarca2.TabIndex = 7;
             this.lblMarca2.Text = "TOP 2:";
             this.lblMarca2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -188,9 +189,9 @@ namespace Teste
             // lblMarca1
             // 
             this.lblMarca1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMarca1.Location = new System.Drawing.Point(9, 169);
+            this.lblMarca1.Location = new System.Drawing.Point(-4, 169);
             this.lblMarca1.Name = "lblMarca1";
-            this.lblMarca1.Size = new System.Drawing.Size(121, 25);
+            this.lblMarca1.Size = new System.Drawing.Size(151, 25);
             this.lblMarca1.TabIndex = 6;
             this.lblMarca1.Text = "TOP 1:";
             this.lblMarca1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -198,9 +199,9 @@ namespace Teste
             // lblMarca3
             // 
             this.lblMarca3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMarca3.Location = new System.Drawing.Point(9, 240);
+            this.lblMarca3.Location = new System.Drawing.Point(-4, 240);
             this.lblMarca3.Name = "lblMarca3";
-            this.lblMarca3.Size = new System.Drawing.Size(121, 25);
+            this.lblMarca3.Size = new System.Drawing.Size(151, 25);
             this.lblMarca3.TabIndex = 5;
             this.lblMarca3.Text = "TOP 3:";
             this.lblMarca3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -219,9 +220,9 @@ namespace Teste
             // lblMarca4
             // 
             this.lblMarca4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMarca4.Location = new System.Drawing.Point(9, 276);
+            this.lblMarca4.Location = new System.Drawing.Point(-7, 276);
             this.lblMarca4.Name = "lblMarca4";
-            this.lblMarca4.Size = new System.Drawing.Size(121, 25);
+            this.lblMarca4.Size = new System.Drawing.Size(154, 25);
             this.lblMarca4.TabIndex = 3;
             this.lblMarca4.Text = "TOP 4:";
             this.lblMarca4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -229,7 +230,7 @@ namespace Teste
             // lblTop1
             // 
             this.lblTop1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTop1.Location = new System.Drawing.Point(140, 170);
+            this.lblTop1.Location = new System.Drawing.Point(154, 170);
             this.lblTop1.Name = "lblTop1";
             this.lblTop1.Size = new System.Drawing.Size(86, 24);
             this.lblTop1.TabIndex = 2;
@@ -333,6 +334,7 @@ namespace Teste
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel4.Controls.Add(this.btnLimpaP);
             this.panel4.Controls.Add(this.lblNada);
             this.panel4.Controls.Add(this.button5);
             this.panel4.Controls.Add(this.btnGerar);
@@ -358,6 +360,23 @@ namespace Teste
             this.lblNada.TabIndex = 24;
             this.lblNada.Text = "< Não há dados para exibir! >";
             this.lblNada.Visible = false;
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.Transparent;
+            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button5.Enabled = false;
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
+            this.button5.Location = new System.Drawing.Point(920, 68);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(131, 48);
+            this.button5.TabIndex = 39;
+            this.button5.Text = "Imprimir";
+            this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button5.UseVisualStyleBackColor = false;
             // 
             // btnGerar
             // 
@@ -404,23 +423,6 @@ namespace Teste
             this.btnCliente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCliente.UseVisualStyleBackColor = true;
             this.btnCliente.Click += new System.EventHandler(this.btnCliente_Click);
-            // 
-            // button5
-            // 
-            this.button5.BackColor = System.Drawing.Color.Transparent;
-            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button5.Enabled = false;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
-            this.button5.Location = new System.Drawing.Point(920, 68);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(131, 48);
-            this.button5.TabIndex = 39;
-            this.button5.Text = "Imprimir";
-            this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button5.UseVisualStyleBackColor = false;
             // 
             // btnFinanceiro
             // 
@@ -520,6 +522,21 @@ namespace Teste
             this.panel6.Size = new System.Drawing.Size(1055, 10);
             this.panel6.TabIndex = 38;
             // 
+            // btnLimpaP
+            // 
+            this.btnLimpaP.BackColor = System.Drawing.Color.Transparent;
+            this.btnLimpaP.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLimpaP.Enabled = false;
+            this.btnLimpaP.FlatAppearance.BorderSize = 0;
+            this.btnLimpaP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpaP.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpaP.Image")));
+            this.btnLimpaP.Location = new System.Drawing.Point(150, 76);
+            this.btnLimpaP.Name = "btnLimpaP";
+            this.btnLimpaP.Size = new System.Drawing.Size(42, 38);
+            this.btnLimpaP.TabIndex = 40;
+            this.btnLimpaP.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnLimpaP.UseVisualStyleBackColor = false;
+            // 
             // FrmTelaRelatorios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -590,5 +607,6 @@ namespace Teste
         private System.Windows.Forms.Label lblMarca;
         private System.Windows.Forms.Button btnGerar;
         private System.Windows.Forms.Label lblNada;
+        private System.Windows.Forms.Button btnLimpaP;
     }
 }
