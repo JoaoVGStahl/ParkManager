@@ -15,7 +15,6 @@ namespace Teste
         public FrmTelaLogin()
         {
             InitializeComponent();
-            
             Globais.ArquivoAud = Properties.Settings.Default["ArquivoAuditoria"].ToString() + @"\" + DateTime.Now.ToShortDateString().Replace("/", "-") + ".txt";
             Globais.GerenciarLogs();
         }
@@ -23,7 +22,6 @@ namespace Teste
         private void button2_Click(object sender, EventArgs e)
         {
             //Destroi o form, registra log e encerra a aplicação
-            Globais.RegistrarLog("Sistema foi encerrado");
             Frm.Dispose();
             this.Dispose();
             Application.Exit();
@@ -116,8 +114,7 @@ namespace Teste
 
         private void FrmTelaLogin_Load(object sender, EventArgs e)
         {
-            //Registra no Log que o sistema foi Inicializado
-            Globais.RegistrarLog("Sistema foi Inicializado.");
+
         }
 
         private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)

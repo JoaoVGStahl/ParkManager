@@ -36,5 +36,7 @@ namespace Teste
 
         public static decimal troco { get; set; }
 
+        public static int status { get; set; }
+
     }
 }

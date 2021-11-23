@@ -689,8 +689,17 @@ namespace Teste
             txtNomeP.Text = "Nome";
             txtTelefoneP.Text = "Telefone";
             btnEncerrar.Enabled = false;
-            picCam.Visible = true;
-            picImagem.Visible = false;
+            if (Properties.Settings.Default.Foto)
+            {
+                picCam.Visible = true;
+                picImagem.Visible = false;
+            }
+            else
+            {
+                picImagem.Visible = true;
+                picImagem.Image = picImagem.InitialImage;
+            }
+            
         }
 
         private void FrmTelaOperacao_FormClosing(object sender, FormClosingEventArgs e)

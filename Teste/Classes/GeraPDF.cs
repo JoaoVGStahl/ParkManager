@@ -11,6 +11,7 @@ namespace Teste
         public Document pdfDoc;
         public string folderPath = @"c:\ParkManager\ticket\";
         public string filename;
+        
 
         
         public Font GetMyFont(string font, string path)
@@ -117,7 +118,11 @@ namespace Teste
             cb.SetTextMatrix(0f, 142f);
             cb.ShowText("-------------------------------------------------");
         }
-        public string TicketEntrada()
+        private void AddSegundaVia(PdfContentByte cb)
+        {
+            cb.SetFontAndSize(GetMyFont("Calibri Bold", "calibrib.ttf").BaseFont, 12);
+        }
+        public string TicketEntrada(bool SegundaVia = false)
         {
             pdfDoc = new Document(PageSize.A4, 1.27f, 1.27f, 20, 80);
             try
@@ -129,7 +134,8 @@ namespace Teste
 
                 FileStream stream = new FileStream(folderPath + filename, FileMode.Create);
                 stream.Dispose();
-                ConstroiPdfEntrada();
+                
+                ConstroiPdfEntrada(SegundaVia);
             }
             catch (Exception)
             {
@@ -137,7 +143,7 @@ namespace Teste
             }
             return folderPath + filename;
         }
-        private void ConstroiPdfEntrada()
+        private void ConstroiPdfEntrada(bool SegundaVia)
         {
             try
             {
@@ -157,6 +163,10 @@ namespace Teste
                     cb.BeginText();
                     GeraLabelsEntrada(cb);
                     PreencherDadosEntrada(cb);
+                    if (SegundaVia)
+                    {
+                        AddSegundaVia(cb);
+                    }
                     AdicionarLinha(cb);
                     cb.EndText();
                     cb.RestoreState();
@@ -222,7 +232,7 @@ namespace Teste
         }
 
         
-        public string TicketSaida()
+        public string TicketSaida(bool SegundaVia = false)
         {
             pdfDoc = new Document(PageSize.A4, 1.27f, 1.27f, 20, 80);
             try
@@ -234,7 +244,7 @@ namespace Teste
 
                 FileStream stream = new FileStream(folderPath + filename, FileMode.Create);
                 stream.Dispose();
-                ConstroiPdfSaida();
+                ConstroiPdfSaida(SegundaVia);
             }
             catch (Exception)
             {
@@ -242,7 +252,7 @@ namespace Teste
             }
             return folderPath + filename;
         }
-        private void ConstroiPdfSaida()
+        private void ConstroiPdfSaida(bool SegundaVia)
         {
             try
             {
@@ -260,11 +270,12 @@ namespace Teste
                     cb.SetFontAndSize(bf, 28f);
                     cb.SaveState();
                     cb.BeginText();
-
                     GeraLabelsSaida(cb);
                     PreencheDadosSaida(cb);
-
-                    
+                    if (SegundaVia)
+                    {
+                        AddSegundaVia(cb);
+                    }
                     AdicionarLinha(cb);
 
                     cb.EndText();

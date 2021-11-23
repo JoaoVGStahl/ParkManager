@@ -89,15 +89,39 @@ namespace Teste
 
                     using (StreamWriter tw = new StreamWriter(ArquivoAud, true))
                     {
-                        byte[] TextEncoded = EncodeToUtf8(texto);
-                        tw.WriteLine(BitConverter.ToString(TextEncoded));
+                        string TextEncoded = EncodeToUtf8(texto);
+                        tw.WriteLine(TextEncoded);
                         tw.Close();
                     }
 
                 }
+                else
+                {
+                    VerificaDiretorio();
+                }
             }
 
         }
+        public static void VerificaDiretorio()
+        {
+            if (!Directory.Exists(Properties.Settings.Default.ArquivoAuditoria) && Properties.Settings.Default.ArquivoAuditoria != null)
+            {
+                Directory.CreateDirectory(Properties.Settings.Default.ArquivoAuditoria);
+            }
+            if (!Directory.Exists(@"C:\ParkManager\ticket"))
+            {
+                Directory.CreateDirectory(@"C:\ParkManager\ticket");
+            }
+            if (!Directory.Exists(@"C:\ParkManager\assets"))
+            {
+                Directory.CreateDirectory(@"C:\ParkManager\assets");
+            }
+            if (!Directory.Exists(Estacionamento.caminho_foto_padrao) && Estacionamento.caminho_foto_padrao != null)
+            {
+                Directory.CreateDirectory(Estacionamento.caminho_foto_padrao);
+            }
+        }
+
         public static void GerenciarLogs()
         {
             if (!File.Exists(ArquivoAud))
@@ -105,19 +129,23 @@ namespace Teste
                 using (StreamWriter tw = File.CreateText(ArquivoAud))
                 {
                     string InitialTexto = "Criado em: " + DateTime.Now.ToShortDateString();
-                    byte[] TextEncoded = EncodeToUtf8(InitialTexto);
-                    tw.WriteLine(BitConverter.ToString(TextEncoded));
+                    string TextEncoded = EncodeToUtf8(InitialTexto);
+                    tw.WriteLine(TextEncoded);
                     tw.Close();
-
                 }
             }
             ApagarAntigos();
 
         }
-        public static byte[] EncodeToUtf8(string texto)
+        public static string EncodeToUtf8(string texto)
         {
-            byte[] utf8String = Encoding.UTF8.GetBytes(texto);
-            return utf8String;
+            var utf8String = Encoding.UTF8.GetBytes(texto);
+            return Convert.ToBase64String(utf8String);
+        }
+        public static string DecodeToString(string value)
+        {
+            var Decode = Convert.FromBase64String(value);
+            return Encoding.UTF8.GetString(Decode);
         }
         private static void ApagarAntigos()
         {

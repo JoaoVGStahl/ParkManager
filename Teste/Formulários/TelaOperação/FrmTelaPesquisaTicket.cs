@@ -206,5 +206,38 @@ namespace Teste
                 this.Dispose();
             }
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                VerificarStatus();
+            }
+            else
+            {
+                MessageBox.Show("Selecione um Ticket Primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void VerificarStatus()
+        {
+            string status = dataGridView1.SelectedRows[0].Cells["Status"].Value.ToString();
+            if (status == "Ativo")
+            {
+                ImprimirTicketAberto();
+            }
+            if (status == "Encerrado")
+            {
+                ImprimirTicketEncerrado();
+            }
+        }
+        private void ImprimirTicketEncerrado()
+        {
+
+        }
+        private void ImprimirTicketAberto()
+        {
+
+        }
+        
     }
 }
