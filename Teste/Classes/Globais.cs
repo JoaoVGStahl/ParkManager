@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Teste
@@ -39,7 +40,7 @@ namespace Teste
             get { return userstatus; }
             set { userstatus = value; }
         }
-        
+
         //Obtem o tempo de tolerancia
         private static TimeSpan tolerancia;
 
@@ -69,6 +70,7 @@ namespace Teste
             get { return caminhoFoto; }
             set { caminhoFoto = value; }
         }
+        public static string ArquivoAud { get; set; }
 
 
         //Função generica para registrar as ações do usuario
@@ -82,17 +84,52 @@ namespace Teste
                 //Escreve no arquivo
                 string texto = data + " " + hora + " " + "(" + maquina + "):" + Action;
 
-                string arquivo = Properties.Settings.Default["ArquivoAuditoria"].ToString() + @"\" + data.Replace("/", "-") + ".dat";
-
-                using (StreamWriter tw = new StreamWriter(arquivo, File.Exists(arquivo) ? true : false))
+                if (File.Exists(ArquivoAud))
                 {
-                    byte[] utf8String = Encoding.UTF8.GetBytes(texto);
-                    tw.WriteLine(BitConverter.ToString(utf8String));
-                    tw.Close();
-                }
 
+                    using (StreamWriter tw = new StreamWriter(ArquivoAud, true))
+                    {
+                        byte[] TextEncoded = EncodeToUtf8(texto);
+                        tw.WriteLine(BitConverter.ToString(TextEncoded));
+                        tw.Close();
+                    }
+
+                }
             }
 
+        }
+        public static void GerenciarLogs()
+        {
+            if (!File.Exists(ArquivoAud))
+            {
+                using (StreamWriter tw = File.CreateText(ArquivoAud))
+                {
+                    string InitialTexto = "Criado em: " + DateTime.Now.ToShortDateString();
+                    byte[] TextEncoded = EncodeToUtf8(InitialTexto);
+                    tw.WriteLine(BitConverter.ToString(TextEncoded));
+                    tw.Close();
+
+                }
+            }
+            ApagarAntigos();
+
+        }
+        public static byte[] EncodeToUtf8(string texto)
+        {
+            byte[] utf8String = Encoding.UTF8.GetBytes(texto);
+            return utf8String;
+        }
+        private static void ApagarAntigos()
+        {
+            DirectoryInfo di = new DirectoryInfo(Properties.Settings.Default["ArquivoAuditoria"].ToString());
+
+            foreach (FileInfo file in di.GetFiles())
+            {
+                if (file.CreationTime < DateTime.Now.AddDays(-7))
+                {
+                    file.Delete();
+                }
+            }
         }
 
     }

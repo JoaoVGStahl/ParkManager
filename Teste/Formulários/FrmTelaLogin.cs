@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Windows.Forms;
+using System.Security.Cryptography;
 
 namespace Teste
 {
@@ -13,6 +15,9 @@ namespace Teste
         public FrmTelaLogin()
         {
             InitializeComponent();
+            
+            Globais.ArquivoAud = Properties.Settings.Default["ArquivoAuditoria"].ToString() + @"\" + DateTime.Now.ToShortDateString().Replace("/", "-") + ".txt";
+            Globais.GerenciarLogs();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -35,7 +40,7 @@ namespace Teste
             string usuario = txtUsuario.Text, senha = txtSenha.Text;
             if (usuario != "" && senha != "")
             {
-                if(usuario == Properties.Settings.Default["UserRoot"].ToString() && senha == Properties.Settings.Default["SenhaRoot"].ToString())
+                if (usuario == Properties.Settings.Default["UserRoot"].ToString() && senha == Properties.Settings.Default["SenhaRoot"].ToString())
                 {
                     Globais.IdUsuario = 1;
                     Globais.Login = usuario;

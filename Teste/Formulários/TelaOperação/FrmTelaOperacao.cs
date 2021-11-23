@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.IO.Ports;
 
+
 namespace Teste
 {
 
@@ -695,6 +696,7 @@ namespace Teste
         private void FrmTelaOperacao_FormClosing(object sender, FormClosingEventArgs e)
         {
             Globais.RegistrarLog(Globais.Login + " Efetuou logout.");
+            
             Application.Exit();
         }
         private void FecharForm()
