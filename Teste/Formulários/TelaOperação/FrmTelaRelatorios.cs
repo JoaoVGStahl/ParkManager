@@ -136,7 +136,7 @@ namespace Teste
             };
             ds = banco.ExecuteProcedureWithReturnMultipleTables("dbo.Relatorio_Ticket_Diario", sp);
             DataTable dt = ds.Tables[0];
-            CriarGraficoStackedColumn(dt, "Tickets", Style: SeriesChartType.Column,Style3d : false, labels: true);
+            CriarGraficoTicket(dt);
 
         }
         private void RelatotorioFinanceiro()
@@ -248,7 +248,7 @@ namespace Teste
             }
         }
 
-        private void CriarGraficoStackedColumn(DataTable TabelaGrafico, string legendTitle, bool labels = false,SeriesChartType Style = SeriesChartType.StackedColumn, int interval = 1, int angle = 90, bool Style3d = true, int border = 5)
+        private void CriarGraficoStackedColumn(DataTable TabelaGrafico, string legendTitle, bool labels = false, SeriesChartType Style = SeriesChartType.StackedColumn, int interval = 1, int angle = 90, bool Style3d = true, int border = 5)
         {
             try
             {
@@ -263,11 +263,11 @@ namespace Teste
                     for (int l = 0; l < TabelaGrafico.Rows.Count; l++)
                     {
                         string Series = TabelaGrafico.Rows[l].ItemArray[0].ToString();
-                        if(Series == "0")
+                        if (Series == "0")
                         {
                             Series = "Encerrados";
                         }
-                        if(Series == "1")
+                        if (Series == "1")
                         {
                             Series = "Iniciados";
                         }
@@ -283,6 +283,51 @@ namespace Teste
                         for (int c = 1; c < TabelaGrafico.Columns.Count; c++)
                         {
                             chtRelatorio.Series[Series].Points.AddXY(TabelaGrafico.Columns[c].ColumnName, TabelaGrafico.Rows[l].ItemArray[c].ToString());
+                        }
+                    }
+                }
+                else
+                {
+                    if (chtRelatorio.Series.Count > 0)
+                    {
+                        chtRelatorio.Series.Clear();
+                    }
+                    lblTicket.Visible = true;
+                    lblNada.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+        private void CriarGraficoTicket(DataTable TabelaGrafico)
+        {
+            try
+            {
+                if (TabelaGrafico.Columns.Count > 1)
+                {
+                    lblNada.Visible = false;
+                    if (chtRelatorio.Series.Count > 0)
+                    {
+                        chtRelatorio.Series.Clear();
+                    }
+                    for (int i = 1; i < TabelaGrafico.Columns.Count; i++)
+                    {
+                        string Series = TabelaGrafico.Columns[i].ColumnName;
+                        chtRelatorio.Series.Add(Series);
+                        chtRelatorio.Series[Series].ChartType = SeriesChartType.StackedColumn;
+                        chtRelatorio.Legends[0].Title = "Tickets";
+                        chtRelatorio.ChartAreas["ChartArea1"].AxisX.LabelStyle.Angle = 90;
+                        chtRelatorio.ChartAreas["ChartArea1"].AxisX.Interval = 1;
+                        chtRelatorio.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = true; ;
+                        chtRelatorio.Series[Series].IsValueShownAsLabel = false;
+                        chtRelatorio.Series[Series].BorderWidth = 5;
+                        for (int l = 0; l < TabelaGrafico.Rows.Count; l++)
+                        {
+                            chtRelatorio.Series[Series].Points.AddXY(TabelaGrafico.Rows[l].ItemArray[0], TabelaGrafico.Rows[l].ItemArray[i]);
+                            
                         }
                     }
                 }
@@ -386,7 +431,7 @@ namespace Teste
             }
 
         }
-       
+
         private void Legends()
         {
             chtRelatorio.Legends.Clear();
