@@ -1,0 +1,50 @@
+USE [db_estacionamento-2021-11-22-19-25]
+GO
+/****** Object:  StoredProcedure [dbo].[Relatorio_Ticket_Diario_3]    Script Date: 22/11/2021 20:00:54 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER   PROCEDURE [dbo].[Relatorio_Ticket_Diario](
+@DataInicial datetime = null,
+@DataFinal datetime = null
+)
+AS
+	BEGIN
+		select
+	data_entrada
+	,COUNT(data_entrada) qtdEntrada
+into #tbEntrada
+from
+	tb_entrada
+group by
+	data_entrada
+
+select
+	data_saida
+	,COUNT(data_saida) qtdsaida
+into #tbSaida
+from
+	tb_saida
+group by
+	data_saida
+
+select
+	sequence.data
+	,ISNULL(#tbEntrada.qtdEntrada,0)
+	,ISNULL(#tbSaida.qtdsaida,0)
+from
+	sequence
+left join
+	#tbEntrada on sequence.data = #tbEntrada.data_entrada
+left join
+	#tbSaida on sequence.data = #tbSaida.data_saida
+where
+	#tbEntrada.data_entrada is not null or #tbSaida.data_saida is not null
+
+
+
+DROP TABLE #tbSaida
+DROP TABLE #tbEntrada
+
+	END
