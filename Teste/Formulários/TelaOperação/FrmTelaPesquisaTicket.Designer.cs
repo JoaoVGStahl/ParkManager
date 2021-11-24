@@ -35,9 +35,9 @@ namespace Teste
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnPesquisa2 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnImprimir = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnEncerrar = new System.Windows.Forms.Button();
@@ -79,56 +79,54 @@ namespace Teste
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // btnPesquisa2
             // 
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.Enabled = false;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(693, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(218, 82);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Pesquisar Ticket(F6)";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnPesquisa2.BackColor = System.Drawing.Color.Transparent;
+            this.btnPesquisa2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPesquisa2.FlatAppearance.BorderSize = 0;
+            this.btnPesquisa2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPesquisa2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPesquisa2.Image = ((System.Drawing.Image)(resources.GetObject("btnPesquisa2.Image")));
+            this.btnPesquisa2.Location = new System.Drawing.Point(693, 3);
+            this.btnPesquisa2.Name = "btnPesquisa2";
+            this.btnPesquisa2.Size = new System.Drawing.Size(218, 82);
+            this.btnPesquisa2.TabIndex = 9;
+            this.btnPesquisa2.Text = "Pesquisar Ticket(F6)";
+            this.btnPesquisa2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnPesquisa2.UseVisualStyleBackColor = false;
+            this.btnPesquisa2.Click += new System.EventHandler(this.button2_Click);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Silver;
-            this.panel1.Controls.Add(this.button5);
+            this.panel1.Controls.Add(this.btnImprimir);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.btnEncerrar);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.btnPesquisa2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 607);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1316, 88);
             this.panel1.TabIndex = 5;
             // 
-            // button5
+            // btnImprimir
             // 
-            this.button5.BackColor = System.Drawing.Color.Transparent;
-            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button5.Enabled = false;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
-            this.button5.Location = new System.Drawing.Point(436, 3);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(218, 82);
-            this.button5.TabIndex = 8;
-            this.button5.Text = "Imprimir";
-            this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button5.UseVisualStyleBackColor = false;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.btnImprimir.BackColor = System.Drawing.Color.Transparent;
+            this.btnImprimir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnImprimir.FlatAppearance.BorderSize = 0;
+            this.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnImprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImprimir.Image = ((System.Drawing.Image)(resources.GetObject("btnImprimir.Image")));
+            this.btnImprimir.Location = new System.Drawing.Point(436, 3);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(218, 82);
+            this.btnImprimir.TabIndex = 8;
+            this.btnImprimir.Text = "Imprimir";
+            this.btnImprimir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnImprimir.UseVisualStyleBackColor = false;
+            this.btnImprimir.Click += new System.EventHandler(this.button5_Click);
             // 
             // label6
             // 
@@ -431,7 +429,7 @@ namespace Teste
 
         #endregion
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnPesquisa2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnEncerrar;
         private System.Windows.Forms.Label label6;
@@ -447,7 +445,7 @@ namespace Teste
         private System.Windows.Forms.DateTimePicker dtpSaida;
         private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Button btnPesquisa;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnImprimir;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel panel2;

@@ -10,6 +10,7 @@ namespace Teste
     {
         Banco banco = new Banco();
         FrmTelaOperacao Form;
+        GeraPDF gerador = new GeraPDF();
         public FrmTelaPesquisaTicket()
         {
             InitializeComponent();
@@ -49,7 +50,7 @@ namespace Teste
         }
         private void button2_Click(object sender, EventArgs e)
         {
-
+            btnPesquisa.PerformClick();
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -153,14 +154,23 @@ namespace Teste
         }
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            if (cmbStatus.Text == "Ativo" || cmbStatus.Text == "Todos")
+            if (dataGridView1.SelectedRows.Count > 0)
             {
-                btnEncerrar.Enabled = true;
+                btnImprimir.Enabled = true;
+                if (cmbStatus.Text == "Ativo" || cmbStatus.Text == "Todos")
+                {
+                    btnEncerrar.Enabled = true;
+                }
+                else
+                {
+                    btnEncerrar.Enabled = false;
+                }
             }
             else
             {
-                btnEncerrar.Enabled = false;
+                btnImprimir.Enabled = false;
             }
+            
         }
         private void button4_Click(object sender, EventArgs e)
         {
@@ -205,6 +215,13 @@ namespace Teste
                 Form.PesquisaTicket(dataGridView1.SelectedRows[0].Cells["Placa"].Value.ToString());
                 this.Dispose();
             }
+            else
+            {
+                Ticket.idTicket = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["#Ticket"].Value.ToString());
+                Ticket.status = 0;
+                Form.PesquisaTicketID();
+                this.Dispose();
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -221,22 +238,101 @@ namespace Teste
         private void VerificarStatus()
         {
             string status = dataGridView1.SelectedRows[0].Cells["Status"].Value.ToString();
+            int type = 0;
             if (status == "Ativo")
             {
                 ImprimirTicketAberto();
             }
             if (status == "Encerrado")
             {
-                ImprimirTicketEncerrado();
+                type = 0;
+                ImprimirTicketEncerrado(type);
             }
         }
-        private void ImprimirTicketEncerrado()
+        private void ImprimirTicketEncerrado(int status)
         {
+            try
+            {
+                DataTable dt = new DataTable();
+                var id = dataGridView1.SelectedRows[0].Cells["#Ticket"].Value.ToString();
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
+                    new SqlParameter(){ParameterName="@idTicket", SqlDbType = SqlDbType.Int, Value= id},
+                    new SqlParameter(){ParameterName="@Status", SqlDbType = SqlDbType.Int, Value = status}
+                };
+                dt = banco.ExecuteProcedureReturnDataTable("dbo.Select_Tela_Pesquisa", sp);
+                if(dt.Rows.Count > 0)
+                {
+                    Ticket.idTicket = Convert.ToInt32(dt.Rows[0]["#Ticket"]);
+                    Ticket.cliente = dt.Rows[0]["Nome Cliente"].ToString();
+                    Ticket.placa = dt.Rows[0]["Placa"].ToString();
+                    Ticket.marca = dt.Rows[0]["Marca"].ToString();
+                    Ticket.tipo = dt.Rows[0]["Tipo"].ToString();
+                    Ticket.usuario_saida = dt.Rows[0]["Usuario Saida"].ToString();
+                    Ticket.forma_pgt = dt.Rows[0]["Forma Pagamento"].ToString();
+                    Ticket.total = Convert.ToDecimal(dt.Rows[0]["Total"]);
+                    Ticket.troco = Convert.ToDecimal(dt.Rows[0]["Troco"]);
+                    Ticket.permanencia = dt.Rows[0]["Permanência"].ToString();
+                    Ticket.hr_saida =  dt.Rows[0]["Hora Saida"].ToString() + " " + dt.Rows[0]["Data Saida"].ToString();// Hora + Data
+                    
+                    gerador.filename = "Ticket_Saida_" + Ticket.idTicket.ToString() + "_" + Ticket.placa + "_2_Via" +".pdf";
+                    string caminho = gerador.TicketSaida(true);
+                    if (caminho != null)
+                    {
+                        System.Diagnostics.Process.Start(caminho);
+                    }
 
+                }
+                else
+                {
+                    MessageBox.Show("Falha ao tentar carregar Ticket!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void ImprimirTicketAberto()
         {
+            try
+            {
+                DataTable dt = new DataTable();
+                var id = dataGridView1.SelectedRows[0].Cells["#Ticket"].Value.ToString();
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
+                    new SqlParameter(){ParameterName="@IdTicket", SqlDbType = SqlDbType.Int, Value = id}
+                };
+                dt = banco.ExecuteProcedureReturnDataTable(NameProcedure: "dbo.Carregar_Tela_Encerrar", sp: sp);
+                if (dt.Rows.Count > 0)
+                {
+                        Ticket.idTicket = Convert.ToInt32(dt.Rows[0]["#Ticket"]);
+                        Ticket.hora_entrada = dt.Rows[0]["Hora Entrada"].ToString() + " " + dt.Rows[0]["Data Entrada"].ToString();// Hora + Data
+                        Ticket.Usuario_entrada = dt.Rows[0]["UsuarioEntrada"].ToString();
+                        Ticket.placa = dt.Rows[0]["Placa"].ToString();
+                        Ticket.tipo = dt.Rows[0]["Tipo"].ToString();
+                        Ticket.marca = dt.Rows[0]["Marca"].ToString();
+                        Ticket.cliente = dt.Rows[0]["Nome Cliente"].ToString();
+                        gerador.filename = "Ticket_Entrada_" + Ticket.idTicket.ToString() + "_" + Ticket.placa + "_2_Via " + ".pdf";
+                        string caminho = gerador.TicketEntrada(true);
+                        if (caminho != null)
+                        {
+                            System.Diagnostics.Process.Start(caminho);
+                        }
+                    
 
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao carregar Ticket!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
         }
         
     }

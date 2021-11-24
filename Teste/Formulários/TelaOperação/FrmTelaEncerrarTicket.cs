@@ -248,6 +248,7 @@ namespace Teste
             decimal troco;
             if (txtRecebido.TextLength >= 1)
             {
+                btnEncerrar.Enabled = true;
                 decimal Total = Convert.ToDecimal(txtTotal.Text), Recebido = Convert.ToDecimal(txtRecebido.Text);
                 if (Recebido > Total)
                 {
@@ -262,6 +263,7 @@ namespace Teste
             }
             else
             {
+                btnEncerrar.Enabled = false;
                 troco = 0;
                 txtTroco.Text = Convert.ToDecimal(troco).ToString("N2");
             }
@@ -364,6 +366,11 @@ namespace Teste
             {
                 System.Diagnostics.Process.Start(caminho);
             }        
+        }
+
+        private void txtTroco_TextChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

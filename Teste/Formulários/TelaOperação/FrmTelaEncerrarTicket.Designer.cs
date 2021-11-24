@@ -111,6 +111,7 @@ namespace Teste
             this.txtTroco.TabIndex = 52;
             this.txtTroco.TabStop = false;
             this.txtTroco.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTroco.TextChanged += new System.EventHandler(this.txtTroco_TextChanged);
             // 
             // label5
             // 
@@ -278,6 +279,7 @@ namespace Teste
             // 
             this.btnEncerrar.BackColor = System.Drawing.Color.Transparent;
             this.btnEncerrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEncerrar.Enabled = false;
             this.btnEncerrar.FlatAppearance.BorderSize = 0;
             this.btnEncerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEncerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

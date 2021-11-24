@@ -121,6 +121,10 @@ namespace Teste
         private void AddSegundaVia(PdfContentByte cb)
         {
             cb.SetFontAndSize(GetMyFont("Calibri Bold", "calibrib.ttf").BaseFont, 12);
+
+            cb.SetTextMatrix(10f, 10f);
+            cb.ShowText("Segunda Via Gerada em: " + DateTime.Now.ToString());
+
         }
         public string TicketEntrada(bool SegundaVia = false)
         {

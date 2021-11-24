@@ -835,7 +835,39 @@ namespace Teste
                 MessageBox.Show("Preencha o campo 'Placa'!", "Ticket não existe!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        public void PesquisaTicketID()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
+                    new SqlParameter(){ParameterName="@idTicket", SqlDbType = SqlDbType.Int, Value = Ticket.idTicket}
+                };
+                dt = banco.ExecuteProcedureReturnDataTable(NameProcedure: "dbo.Select_Ticket_Encerrado", sp: sp);
+                if (dt.Rows.Count > 0)
+                {
+                    try
+                    {
+                        PreencherLabels(dt);
+                    }
+                    catch (Exception ex)
+                    {
 
+                        MessageBox.Show(ex.Message, "Erro ao carregar ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Ticket inexistente!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Houve uma falha ao carregar o ticket! \nRealize a pesquisa e tente novamente!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void label8_Click(object sender, EventArgs e)
         {
 
