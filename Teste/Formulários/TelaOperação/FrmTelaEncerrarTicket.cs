@@ -287,7 +287,8 @@ namespace Teste
                 }
                 else
                 {
-                    MessageBox.Show("Não é encerrar iniciar um Ticket, pois não há veiculos na entrada!", "Falha ao iniciar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Globais.RegistrarLog(Globais.Login + " Tentou encerrar o #Ticket " + Ticket.idTicket + " sem um veiculo na saida!");
+                    MessageBox.Show("Não é possivel encerrar um Ticket, pois não há veiculos na saida!", "Falha ao encerrar Ticket!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -332,7 +333,8 @@ namespace Teste
                     Ticket.permanencia = ts.ToString();
                     Ticket.hr_saida = HoraSaida + " " + DataSaida;
                     MessageBox.Show("Ticket #" + result + " encerrado com sucesso!", "Ticket encerrado!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    if(Properties.Settings.Default.GerarPDF)
+                    Globais.RegistrarLog(Globais.Login + " encerrou o #Ticket " + Ticket.idTicket);
+                    if (Properties.Settings.Default.GerarPDF)
                     {
                         Imprimir();
                     }

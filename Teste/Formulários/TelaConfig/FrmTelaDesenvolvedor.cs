@@ -242,6 +242,7 @@ namespace Teste
             }
             catch (Exception ex)
             {
+                Globais.RegistrarLog(Globais.Login + " Tentou Alterar o Banco de dados!");
                 MessageBox.Show(ex.Message, "Configurações NÃO Salvas!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
