@@ -659,6 +659,7 @@ namespace Teste
             lblHrEntrada.Text = dt.Rows[0]["Hora Entrada"].ToString() + " " + dt.Rows[0]["Data Entrada"].ToString();// Hora + Data
             picCam.Visible = false;
             picImagem.Visible = true;
+            btnLimpaP.Enabled = true;
             if (CaminhoFoto != Estacionamento.caminho_foto_padrao && File.Exists(CaminhoFoto))
             {
                 picImagem.Image = Image.FromFile(CaminhoFoto);
@@ -849,6 +850,7 @@ namespace Teste
                 {
                     try
                     {
+                        lblHoraEntradaVisual.Visible = true;
                         PreencherLabels(dt);
                     }
                     catch (Exception ex)

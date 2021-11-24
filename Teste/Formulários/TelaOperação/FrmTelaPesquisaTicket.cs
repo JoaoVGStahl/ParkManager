@@ -28,6 +28,10 @@ namespace Teste
             dtpEntrada.Value = DateTime.Today.AddDays(-7);
             btnPesquisa.PerformClick();
             dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
+            if (!Properties.Settings.Default.GerarPDF)
+            {
+                btnImprimir.Enabled = false;
+            }
         }
         private void button3_Click(object sender, EventArgs e)
         {
@@ -170,7 +174,7 @@ namespace Teste
             {
                 btnImprimir.Enabled = false;
             }
-            
+
         }
         private void button4_Click(object sender, EventArgs e)
         {
@@ -261,7 +265,7 @@ namespace Teste
                     new SqlParameter(){ParameterName="@Status", SqlDbType = SqlDbType.Int, Value = status}
                 };
                 dt = banco.ExecuteProcedureReturnDataTable("dbo.Select_Tela_Pesquisa", sp);
-                if(dt.Rows.Count > 0)
+                if (dt.Rows.Count > 0)
                 {
                     Ticket.idTicket = Convert.ToInt32(dt.Rows[0]["#Ticket"]);
                     Ticket.cliente = dt.Rows[0]["Nome Cliente"].ToString();
@@ -273,14 +277,15 @@ namespace Teste
                     Ticket.total = Convert.ToDecimal(dt.Rows[0]["Total"]);
                     Ticket.troco = Convert.ToDecimal(dt.Rows[0]["Troco"]);
                     Ticket.permanencia = dt.Rows[0]["Permanência"].ToString();
-                    Ticket.hr_saida =  dt.Rows[0]["Hora Saida"].ToString() + " " + dt.Rows[0]["Data Saida"].ToString();// Hora + Data
-                    
-                    gerador.filename = "Ticket_Saida_" + Ticket.idTicket.ToString() + "_" + Ticket.placa + "_2_Via" +".pdf";
+                    Ticket.hr_saida = dt.Rows[0]["Hora Saida"].ToString() + " " + dt.Rows[0]["Data Saida"].ToString();// Hora + Data
+
+                    gerador.filename = "Ticket_Saida_" + Ticket.idTicket.ToString() + "_" + Ticket.placa + "_2_Via" + ".pdf";
                     string caminho = gerador.TicketSaida(true);
                     if (caminho != null)
                     {
                         System.Diagnostics.Process.Start(caminho);
                     }
+                    Globais.RegistrarLog(Globais.Login + " Gerou 2ª Via de saida do #Ticket " + Ticket.idTicket);
 
                 }
                 else
@@ -307,21 +312,20 @@ namespace Teste
                 dt = banco.ExecuteProcedureReturnDataTable(NameProcedure: "dbo.Carregar_Tela_Encerrar", sp: sp);
                 if (dt.Rows.Count > 0)
                 {
-                        Ticket.idTicket = Convert.ToInt32(dt.Rows[0]["#Ticket"]);
-                        Ticket.hora_entrada = dt.Rows[0]["Hora Entrada"].ToString() + " " + dt.Rows[0]["Data Entrada"].ToString();// Hora + Data
-                        Ticket.Usuario_entrada = dt.Rows[0]["UsuarioEntrada"].ToString();
-                        Ticket.placa = dt.Rows[0]["Placa"].ToString();
-                        Ticket.tipo = dt.Rows[0]["Tipo"].ToString();
-                        Ticket.marca = dt.Rows[0]["Marca"].ToString();
-                        Ticket.cliente = dt.Rows[0]["Nome Cliente"].ToString();
-                        gerador.filename = "Ticket_Entrada_" + Ticket.idTicket.ToString() + "_" + Ticket.placa + "_2_Via " + ".pdf";
-                        string caminho = gerador.TicketEntrada(true);
-                        if (caminho != null)
-                        {
-                            System.Diagnostics.Process.Start(caminho);
-                        }
-                    
-
+                    Ticket.idTicket = Convert.ToInt32(dt.Rows[0]["#Ticket"]);
+                    Ticket.hora_entrada = dt.Rows[0]["Hora Entrada"].ToString() + " " + dt.Rows[0]["Data Entrada"].ToString();// Hora + Data
+                    Ticket.Usuario_entrada = dt.Rows[0]["UsuarioEntrada"].ToString();
+                    Ticket.placa = dt.Rows[0]["Placa"].ToString();
+                    Ticket.tipo = dt.Rows[0]["Tipo"].ToString();
+                    Ticket.marca = dt.Rows[0]["Marca"].ToString();
+                    Ticket.cliente = dt.Rows[0]["Nome Cliente"].ToString();
+                    gerador.filename = "Ticket_Entrada_" + Ticket.idTicket.ToString() + "_" + Ticket.placa + "_2_Via " + ".pdf";
+                    string caminho = gerador.TicketEntrada(true);
+                    if (caminho != null)
+                    {
+                        System.Diagnostics.Process.Start(caminho);
+                    }
+                    Globais.RegistrarLog(Globais.Login + " Gerou 2ª Via de entrada do #Ticket " + Ticket.idTicket);
                 }
                 else
                 {
@@ -334,6 +338,6 @@ namespace Teste
 
             }
         }
-        
+
     }
 }
