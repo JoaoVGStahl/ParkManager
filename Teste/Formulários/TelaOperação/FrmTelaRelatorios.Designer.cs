@@ -30,10 +30,10 @@ namespace Teste
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTelaRelatorios));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(10D, "0,0,0,0");
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea17 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend17 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series17 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint17 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(10D, "0,0,0,0");
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblMarca = new System.Windows.Forms.Label();
@@ -305,10 +305,10 @@ namespace Teste
             // chtRelatorio
             // 
             this.chtRelatorio.BackColor = System.Drawing.Color.Transparent;
-            chartArea1.Name = "ChartArea1";
-            this.chtRelatorio.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chtRelatorio.Legends.Add(legend1);
+            chartArea17.Name = "ChartArea1";
+            this.chtRelatorio.ChartAreas.Add(chartArea17);
+            legend17.Name = "Legend1";
+            this.chtRelatorio.Legends.Add(legend17);
             this.chtRelatorio.Location = new System.Drawing.Point(0, 112);
             this.chtRelatorio.Name = "chtRelatorio";
             this.chtRelatorio.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
@@ -317,16 +317,16 @@ namespace Teste
         System.Drawing.SystemColors.HotTrack,
         System.Drawing.Color.DarkBlue,
         System.Drawing.Color.Red};
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.IsVisibleInLegend = false;
-            series1.Legend = "Legend1";
-            series1.LegendToolTip = "#PERCENT";
-            series1.Name = "Series1";
-            series1.Points.Add(dataPoint1);
-            series1.YValueMembers = "#PERCENT";
-            series1.YValuesPerPoint = 4;
-            this.chtRelatorio.Series.Add(series1);
+            series17.ChartArea = "ChartArea1";
+            series17.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series17.IsVisibleInLegend = false;
+            series17.Legend = "Legend1";
+            series17.LegendToolTip = "#PERCENT";
+            series17.Name = "Series1";
+            series17.Points.Add(dataPoint17);
+            series17.YValueMembers = "#PERCENT";
+            series17.YValuesPerPoint = 4;
+            this.chtRelatorio.Series.Add(series17);
             this.chtRelatorio.Size = new System.Drawing.Size(1052, 268);
             this.chtRelatorio.TabIndex = 30;
             this.chtRelatorio.Text = "chart1";
@@ -519,14 +519,29 @@ namespace Teste
             // 
             // SrcGrafico
             // 
+            this.SrcGrafico.AllowUserToAddRows = false;
+            this.SrcGrafico.AllowUserToDeleteRows = false;
+            this.SrcGrafico.AllowUserToOrderColumns = true;
+            this.SrcGrafico.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.SrcGrafico.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.SrcGrafico.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.SrcGrafico.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.SrcGrafico.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.SrcGrafico.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.SrcGrafico.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.SrcGrafico.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SrcGrafico.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SrcGrafico.GridColor = System.Drawing.Color.WhiteSmoke;
             this.SrcGrafico.Location = new System.Drawing.Point(0, 0);
+            this.SrcGrafico.MultiSelect = false;
             this.SrcGrafico.Name = "SrcGrafico";
+            this.SrcGrafico.ReadOnly = true;
+            this.SrcGrafico.RowHeadersVisible = false;
+            this.SrcGrafico.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
+            this.SrcGrafico.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.SrcGrafico.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.SrcGrafico.ShowEditingIcon = false;
             this.SrcGrafico.Size = new System.Drawing.Size(1055, 309);
             this.SrcGrafico.TabIndex = 0;
+            this.SrcGrafico.TabStop = false;
             // 
             // panel6
             // 
