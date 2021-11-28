@@ -19,7 +19,6 @@ namespace Teste
         {
             panel4.VerticalScroll.Value = 0;
             CarregarIdentificacao();
-
         }
         private void CarregarIdentificacao()
         {
@@ -42,8 +41,9 @@ namespace Teste
             }
             catch (Exception ex)
             {
-
+                btnEditar.Enabled = false;
                 MessageBox.Show(ex.Message, "Falha ao carregar a identificação!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
             }
         }
         private void PreencherCampos(DataTable dt)
@@ -202,8 +202,8 @@ namespace Teste
                 {
                     DesativarCaixas();
                     btnEditar.Enabled = true;
-                    Globais.RegistrarLog(Globais.Login + " Alterou a Identificação do estacionamento!.");
-                    MessageBox.Show("Alterações Salvas com Sucesso!\n É necessário reiniciar a aplicação para surtir as alterações!", "Salvamento Concluído!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Registar();
+                    MessageBox.Show("Alterações Salvas com Sucesso!", "Salvamento Concluído!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
@@ -212,8 +212,55 @@ namespace Teste
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Falha ao Salvar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void Registar()
+        {
+            if(Estacionamento.razao_social != txtRazaoSocial.Text)
+            {
+                Globais.RegistrarLog(Globais.Login + " Alterou de Razão Social de: "+ Estacionamento.razao_social + " para: " + txtRazaoSocial.Text + ".");
+                Estacionamento.razao_social = txtRazaoSocial.Text;
+            }
+            if(Estacionamento.cnpj != mskCnpj.Text)
+            {
+                Globais.RegistrarLog(Globais.Login + " Alterou o CNPJ de: " + Estacionamento.cnpj + " para: " + mskCnpj.Text + ".");
+                Estacionamento.cnpj = mskCnpj.Text;
+            }
+            if(Estacionamento.telefone != mskTelefone.Text)
+            {
+                Globais.RegistrarLog(Globais.Login + " Alterou Telefone de: " + Estacionamento.telefone + " para: " + mskTelefone.Text + ".");
+                Estacionamento.telefone = mskTelefone.Text;
+            }
+            if(Estacionamento.cep != mskCEP.Text)
+            {
+                Globais.RegistrarLog(Globais.Login + " Alterou CEP de: " + Estacionamento.cep + " para: " + mskCEP.Text + ".");
+                Estacionamento.cep = mskCEP.Text;
+            }
+            if(Estacionamento.numero.ToString() != txtNumero.Text)
+            {
+                Globais.RegistrarLog(Globais.Login + " Alterou Número de: " + Estacionamento.numero.ToString() + " para: " + txtNumero.Text + ".");
+                Estacionamento.numero = Convert.ToInt32(txtNumero.Text);
+            }
+            if(Estacionamento.endereco != txtEndereco.Text)
+            {
+                Globais.RegistrarLog(Globais.Login + " Alterou Endereço de:" + Estacionamento.endereco + " para: " + txtEndereco.Text + ".");
+                Estacionamento.endereco = txtEndereco.Text;
+            }
+            if (Estacionamento.bairro != txtBairro.Text)
+            {
+                Globais.RegistrarLog(Globais.Login + " Alterou Bairro de:" + Estacionamento.bairro + " para: " + txtBairro.Text + ".");
+                Estacionamento.bairro = txtBairro.Text;
+            }
+            if (Estacionamento.cidade != txtCidade.Text)
+            {
+                Globais.RegistrarLog(Globais.Login + " Alterou Cidade de:" + Estacionamento.cidade + " para: " + txtCidade.Text + ".");
+                Estacionamento.cidade = txtCidade.Text;
+            }
+            if (Estacionamento.estado != txtEstado.Text)
+            {
+                Globais.RegistrarLog(Globais.Login + " Alterou Endereço de:" + Estacionamento.estado + " para: " + txtEstado.Text + ".");
+                Estacionamento.estado = txtEstado.Text;
             }
         }
         private void DesativarCaixas()

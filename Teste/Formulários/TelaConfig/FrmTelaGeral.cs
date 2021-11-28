@@ -167,8 +167,8 @@ namespace Teste
             }
             else
             {
+                btnEditar.Enabled = false;
                 MessageBox.Show("Conecte-se a um banco de dados primeiro!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Dispose();
             }
         }
         private void CarregarRB()

@@ -18,6 +18,7 @@ namespace Teste
         }
         private void FrmTelaFinanceiro_Load(object sender, EventArgs e)
         {
+            txtId.Text = Properties.Settings.Default.IDEstacionamento.ToString();
             CarregarValores();
             if (Convert.ToBoolean(Properties.Settings.Default["ModoUnico"]))
             {
@@ -37,9 +38,9 @@ namespace Teste
                 DataTable dt = new DataTable();
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
-                    new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 14}
+                    new SqlParameter(){ParameterName="@IdEstacionamento", SqlDbType = SqlDbType.Int, Value = txtId.Text}
                 };
-                dt = banco.ExecuteProcedureReturnDataTable("dbo.Funcoes_Pesquisa", sp);
+                dt = banco.ExecuteProcedureReturnDataTable("dbo.CarregarValores", sp);
                 if (dt.Rows.Count > 0)
                 {
                     txtId.Text = dt.Rows[0]["ID"].ToString();
@@ -81,6 +82,7 @@ namespace Teste
             }
             catch (Exception ex)
             {
+                btnEditar.Enabled = false;
                 MessageBox.Show(ex.Message, "Falha carregar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -258,10 +260,6 @@ namespace Teste
                     return;
                 }
             }
-            else
-            {
-                PHora = -1;
-            }
             if (txtCobrancaMinima.Text != "")
             {
                 if (Regex.IsMatch(txtCobrancaMinima.Text, @"^\d+,\d{2}"))
@@ -273,10 +271,6 @@ namespace Teste
                     MessageBox.Show("Cobrança Minima Inválido!", "Falha carregar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-            }
-            else
-            {
-                CMinima = -1;
             }
             if (txtValorUnico.Text != "")
             {
@@ -290,26 +284,10 @@ namespace Teste
                     return;
                 }
             }
-            else
-            {
-                VUnico = -1;
-            }
-            if (PHora != 0 || CMinima != 0 || VUnico != 0 || tbTolerancia.Value != Convert.ToInt32(lblTolerancia.Text.Replace(" Minutos", "")))
-            {
-                SalvarValores(PHora, CMinima, VUnico);
-            }
-            else if (ckValorUnico.Checked != Convert.ToBoolean(Properties.Settings.Default["ModoUnico"]))
-            {
-                AttModoUnico();
-                MessageBox.Show("Modo Unico" + ckValorUnico.Text + "!", "Alteração!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("Não Há alterações a serem salvas!", "Falha carregar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            SalvarValores();
             DesativarCaixas();
         }
-        private void SalvarValores(decimal PHora, decimal CMinimo, decimal VUnico)
+        private void SalvarValores()
         {
             try
             {
@@ -317,20 +295,29 @@ namespace Teste
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
                     new SqlParameter(){ParameterName="@Id_Estacionamento", SqlDbType = SqlDbType.Int, Value =  txtId.Text},
-                    new SqlParameter(){ParameterName="@Valor_Hora", SqlDbType = SqlDbType.Decimal, Value = PHora},
-                    new SqlParameter(){ParameterName="@Valor_Minimo", SqlDbType = SqlDbType.Decimal, Value = CMinimo},
-                    new SqlParameter(){ParameterName="@Valor_Unico", SqlDbType = SqlDbType.Decimal, Value = VUnico},
                     new SqlParameter(){ParameterName="@Tolerancia", SqlDbType = SqlDbType.Time, Value = "00:" + tbTolerancia.Value + ":00"}
                 };
+                if(txtPrecoHora.Text != "")
+                {
+                    sp.Add(new SqlParameter() { ParameterName = "@Valor_Hora", SqlDbType = SqlDbType.Decimal, Value = Convert.ToDecimal(txtPrecoHora.Text) });
+                }
+                if(txtCobrancaMinima.Text != "")
+                {
+                    sp.Add(new SqlParameter() { ParameterName = "@Valor_Minimo", SqlDbType = SqlDbType.Decimal, Value = Convert.ToDecimal(txtCobrancaMinima.Text) });
+                }
+                if(txtValorUnico.Text != "")
+                {
+                    sp.Add(new SqlParameter() { ParameterName = "@Valor_Unico", SqlDbType = SqlDbType.Decimal, Value = Convert.ToDecimal(txtValorUnico.Text) });
+                }
                 LinhasAfetadas = banco.ExecuteProcedureReturnInt("dbo.Salvar_Valor", sp);
                 if (LinhasAfetadas > 0)
                 {
                     try
                     {
+                        Registrar();
                         AttModoUnico();
                         CarregarValores();
                         DesativarCaixas();
-                        Globais.RegistrarLog(Globais.Login + " Alterou os Valores.");
                         MessageBox.Show("Alterações Salvas com sucesso!", "Salvamento concluido!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
@@ -349,6 +336,48 @@ namespace Teste
                 MessageBox.Show(ex.Message, "Falha ao Salvar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void Registrar()
+        {
+            try
+            {
+                if (txtPrecoHora.Text != "" && Estacionamento.valor_hr != Convert.ToDecimal(txtPrecoHora.Text))
+                {
+                    Globais.RegistrarLog(Globais.Login + " Alterou o Preço da Hora de: " + Estacionamento.valor_hr.ToString() + " para: " + txtPrecoHora.Text);
+                    Estacionamento.valor_hr = Convert.ToDecimal(txtPrecoHora.Text);
+                }
+                if (txtCobrancaMinima.Text != "" && Estacionamento.valor_min != Convert.ToDecimal(txtCobrancaMinima.Text))
+                {
+                    Globais.RegistrarLog(Globais.Login + " Alterou Cobrança Mínima de: " + Estacionamento.valor_min.ToString() + " para: " + txtCobrancaMinima.Text);
+                    Estacionamento.valor_min = Convert.ToDecimal(txtCobrancaMinima.Text);
+                }
+                if (txtValorUnico.Text!= "" && Estacionamento.valor_unico != Convert.ToDecimal(txtValorUnico.Text))
+                {
+                    Globais.RegistrarLog(Globais.Login + " Valor único de: " + Estacionamento.valor_unico.ToString() + " para: " + txtValorUnico.Text);
+                    Estacionamento.valor_unico = Convert.ToDecimal(txtValorUnico.Text);
+                }
+                if (!(Properties.Settings.Default.ModoUnico.Equals(ckValorUnico.Checked)))
+                {
+                    if (ckValorUnico.Checked)
+                    {
+                        Globais.RegistrarLog(Globais.Login + " Ativou o Modo Unico");
+                        Properties.Settings.Default.ModoUnico = true;
+                        Globais.ModoUnico = true;
+                    }
+                    else
+                    {
+                        Globais.RegistrarLog(Globais.Login + " Desativou Modo Unico");
+                        Properties.Settings.Default.ModoUnico = false;
+                        Globais.ModoUnico = false;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Falha ao Salvar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+        }
         private void AttModoUnico()
         {
             if (ckValorUnico.Checked)
@@ -363,7 +392,6 @@ namespace Teste
                 Globais.ModoUnico = false;
                 Properties.Settings.Default.Save();
             }
-            Globais.RegistrarLog(Globais.Login + " Atualizou Modo Unico para " + ckValorUnico.Text + ".");
         }
         private void DesativarCaixas()
         {

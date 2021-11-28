@@ -36,6 +36,7 @@ namespace Teste
             dataGridView1.SelectionChanged -= dataGridView1_SelectionChanged;
             CarregarComboTipo();
             CarregarComboFiltro();
+            LimparCaixas();
         }
         private void CarregarComboTipo()
         {
@@ -120,6 +121,8 @@ namespace Teste
             txtId.Clear();
             cmbTipo.SelectedIndex = -1;
             txtMarca.Clear();
+            txtMarca.Enabled = false;
+            cmbTipo.Enabled = false;
             btnSalvar.Enabled = false;
             btnLimpar.Enabled = false;
             btnExcluir.Enabled = false;
@@ -329,6 +332,11 @@ namespace Teste
 
                 MessageBox.Show(ex.Message, "Falha!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

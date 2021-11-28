@@ -29,18 +29,28 @@ namespace Teste
         }
         private void AbreFormParent(int nivel, Form Frm)
         {
+
             if (Properties.Settings.Default["StringBanco"].ToString() != null)
             {
-                if (Globais.Nivel >= nivel)
+                try
                 {
-                    Frm.MdiParent = this;
-                    Frm.Dock = DockStyle.Fill;
-                    Frm.Show();
+                    if (Globais.Nivel >= nivel)
+                    {
+                        Frm.MdiParent = this;
+                        Frm.Dock = DockStyle.Fill;
+                        Frm.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Seu usuário não tem permissão para acessar está area!", "Acesso Negado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Seu usuário não tem permissão para acessar está area!", "Acesso Negado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    MessageBox.Show(ex.Message, "Acesso Negado!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+
             }
             else
             {
