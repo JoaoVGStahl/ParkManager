@@ -202,7 +202,8 @@ namespace Teste
                 {
                     DesativarCaixas();
                     btnEditar.Enabled = true;
-                    MessageBox.Show("Alterações Salvas com Sucesso!", "Salvamento Concluído!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Globais.RegistrarLog(Globais.Login + " Alterou a Identificação do estacionamento!.");
+                    MessageBox.Show("Alterações Salvas com Sucesso!\n É necessário reiniciar a aplicação para surtir as alterações!", "Salvamento Concluído!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {

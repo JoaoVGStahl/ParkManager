@@ -73,30 +73,55 @@ namespace Teste
         }
         private void SalvarProps()
         {
-            if (rbFotoAtiv.Checked)
+            if (!(Properties.Settings.Default.Foto.Equals(rbFotoAtiv.Checked)))
             {
-                Properties.Settings.Default.Foto = true;
+
+                if (rbFotoAtiv.Checked)
+                {
+                    Globais.RegistrarLog(Globais.Login + " Ativou a captura de fotos.");
+                    Properties.Settings.Default.Foto = true;
+                }
+                else
+                {
+                    Globais.RegistrarLog(Globais.Login + " Desativou a captura de fotos.");
+                    Properties.Settings.Default.Foto = false;
+                }
+                
             }
-            else
+            if (!(Properties.Settings.Default.Cancelas.Equals(rbCancelaAtiv.Checked)))
             {
-                Properties.Settings.Default.Foto = false;
+                if (rbCancelaAtiv.Checked)
+                {
+                    Globais.RegistrarLog(Globais.Login + " Ativou o gerenciamento de cancelas.");
+                    Properties.Settings.Default.Cancelas = true;
+                }
+                else
+                {
+                    Globais.RegistrarLog(Globais.Login + " Desativou o gerenciamento de cancelas.");
+                    Properties.Settings.Default.Cancelas = false;
+                }
+                
             }
-            if (rbCancelaAtiv.Checked)
+            if (!(Properties.Settings.Default.GerarPDF.Equals(rbPdfAtiv.Checked)))
             {
-                Properties.Settings.Default.Cancelas = true;
+                if (rbPdfAtiv.Checked)
+                {
+                    Globais.RegistrarLog(Globais.Login + " Ativou a geração de Pdf");
+                    Properties.Settings.Default.GerarPDF = true;
+                }
+                else
+                {
+                    Globais.RegistrarLog(Globais.Login + " Desativou a geração de Pdf");
+                    Properties.Settings.Default.GerarPDF = false;
+                }
+                
             }
-            else
+            if(Estacionamento.caminho_foto_padrao != txtCaminho.Text)
             {
-                Properties.Settings.Default.Cancelas = false;
+                Globais.RegistrarLog(Globais.Login + " Alteru o caminho do diretório de Imagen de " + Estacionamento.caminho_foto_padrao + " para " + txtCaminho.Text + ".");
+                Estacionamento.caminho_foto_padrao = txtCaminho.Text;
             }
-            if (rbPdfAtiv.Checked)
-            {
-                Properties.Settings.Default.GerarPDF = true;
-            }
-            else
-            {
-                Properties.Settings.Default.GerarPDF = false;
-            }
+
             Properties.Settings.Default.Save();
         }
         private void SalvarBanco()
