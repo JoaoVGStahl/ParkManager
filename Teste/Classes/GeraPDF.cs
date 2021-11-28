@@ -23,6 +23,9 @@ namespace Teste
             }
             var fontbold = FontFactory.GetFont(font);
             fontbold.SetStyle(0);
+
+            
+
             return fontbold;
         }
         private void InserirImg(string url, float x, float y)

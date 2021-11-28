@@ -131,12 +131,21 @@ namespace Teste
             DataSet ds;
             List<SqlParameter> sp = new List<SqlParameter>()
             {
-                new SqlParameter(){ParameterName= "@DataInicial", SqlDbType = SqlDbType.DateTime, Value = dtpInicial.Value},
+                new SqlParameter(){ParameterName= "@DataInicial", SqlDbType = SqlDbType.DateTime, Value = dtpInicial.Value.AddDays(-1)},
                 new SqlParameter(){ParameterName= "@DataFinal", SqlDbType = SqlDbType.DateTime, Value = dtpFinal.Value}
             };
             ds = banco.ExecuteProcedureWithReturnMultipleTables("dbo.Relatorio_Ticket_Diario", sp);
-            DataTable dt = ds.Tables[0];
-            CriarGraficoTicket(dt);
+            if(ds.Tables.Count > 1)
+            {
+                CriarGraficoTicket(ds.Tables[0]);
+                PopulaGrid(ds.Tables[1]);
+            }
+            else
+            {
+                lblTicket.Visible = true;
+                lblNada.Visible = true;
+            }
+            
 
         }
         private void RelatotorioFinanceiro()
@@ -148,12 +157,21 @@ namespace Teste
             DataSet ds;
             List<SqlParameter> sp = new List<SqlParameter>()
             {
-                new SqlParameter(){ParameterName= "@DataInicial", SqlDbType = SqlDbType.DateTime, Value = dtpInicial.Value},
+                new SqlParameter(){ParameterName= "@DataInicial", SqlDbType = SqlDbType.DateTime, Value = dtpInicial.Value.AddDays(-1)},
                 new SqlParameter(){ParameterName= "@DataFinal", SqlDbType = SqlDbType.DateTime, Value = dtpFinal.Value}
             };
             ds = banco.ExecuteProcedureWithReturnMultipleTables("dbo.Relatorio_Financeiro_Diario", sp);
-            CriaGraficoPie(ds.Tables[0], "Financeiro");
-            PopulaGrid(ds.Tables[1]);
+            if(ds.Tables.Count > 1)
+            {
+                CriaGraficoPie(ds.Tables[0], "Financeiro");
+                PopulaGrid(ds.Tables[1]);
+            }
+            else
+            {
+                lblTicket.Visible = true;
+                lblNada.Visible = true;
+            }
+            
         }
         private void RelatorioCliente()
         {
@@ -168,7 +186,7 @@ namespace Teste
 
                 List<SqlParameter> sp = new List<SqlParameter>()
                 {
-                new SqlParameter(){ParameterName= "@DataInicial", SqlDbType = SqlDbType.DateTime, Value = dtpInicial.Value},
+                new SqlParameter(){ParameterName= "@DataInicial", SqlDbType = SqlDbType.DateTime, Value = dtpInicial.Value.AddDays(-1)},
                 new SqlParameter(){ParameterName= "@DataFinal", SqlDbType = SqlDbType.DateTime, Value = dtpFinal.Value}
                 };
                 ds = banco.ExecuteProcedureWithReturnMultipleTables("dbo.Relatorio_Cliente", sp);
@@ -196,8 +214,14 @@ namespace Teste
                         total - voltaram,
                         voltaram
                         );
+                    
                     CriaGraficoCliente(dt, "Relatório Clientes");
                     PopulaGrid(ds.Tables[2]);
+                }
+                else
+                {
+                    lblTicket.Visible = true;
+                    lblNada.Visible = true;
                 }
 
             }
@@ -223,12 +247,20 @@ namespace Teste
             DataSet ds;
             List<SqlParameter> sp = new List<SqlParameter>()
             {
-                new SqlParameter(){ParameterName= "@DataInicial", SqlDbType = SqlDbType.DateTime, Value = dtpInicial.Value},
+                new SqlParameter(){ParameterName= "@DataInicial", SqlDbType = SqlDbType.DateTime, Value = dtpInicial.Value.AddDays(-1)},
                 new SqlParameter(){ParameterName= "@DataFinal", SqlDbType = SqlDbType.DateTime, Value = dtpFinal.Value}
             };
             ds = banco.ExecuteProcedureWithReturnMultipleTables("dbo.Relatorio_Carro_Diario", sp);
-            CriarGraficoStackedColumn(ds.Tables[0], "Tipos de Veículos");
-            PopulaGrid(ds.Tables[1]);
+            if(ds.Tables.Count > 1)
+            {
+                CriarGraficoStackedColumn(ds.Tables[0], "Tipos de Veículos");
+                PopulaGrid(ds.Tables[1]);
+            }
+            else
+            {
+                lblTicket.Visible = true;
+                lblNada.Visible = true;
+            }
         }
 
         private void PopulaGrid(DataTable TabelaGrid)
@@ -243,7 +275,6 @@ namespace Teste
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -327,7 +358,6 @@ namespace Teste
                         for (int l = 0; l < TabelaGrafico.Rows.Count; l++)
                         {
                             chtRelatorio.Series[Series].Points.AddXY(TabelaGrafico.Rows[l].ItemArray[0], TabelaGrafico.Rows[l].ItemArray[i]);
-                            
                         }
                     }
                 }
