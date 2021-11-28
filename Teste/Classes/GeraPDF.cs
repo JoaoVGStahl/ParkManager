@@ -3,6 +3,7 @@ using iTextSharp.text.pdf;
 using System;
 using System.Data;
 using System.IO;
+using System.Windows.Forms;
 
 namespace Teste
 {
@@ -10,6 +11,7 @@ namespace Teste
     {
         public Document pdfDoc;
         public string folderPath = @"c:\ParkManager\ticket\";
+        public string folderPathRelatorio = @"c:\ParkManager\relatorios\";
         public string filename;
         
 
@@ -67,11 +69,6 @@ namespace Teste
             Localizacao.DefaultCell.VerticalAlignment = Element.ALIGN_CENTER;
             Localizacao.WidthPercentage = 100;
             Localizacao.DefaultCell.BorderWidth = 0;
-
-            Linha.DefaultCell.HorizontalAlignment = Element.ALIGN_CENTER;
-            Linha.DefaultCell.VerticalAlignment = Element.ALIGN_CENTER;
-            Linha.WidthPercentage = 100;
-            Linha.DefaultCell.BorderWidth = 0;
 
             Chunk c1 = new Chunk(Estacionamento.razao_social, FontFactory.GetFont("Calibri"));
             c1.Font.Color = new iTextSharp.text.BaseColor(0, 0, 0);
@@ -370,6 +367,91 @@ namespace Teste
 
             cb.SetTextMatrix(145f, 45f);
             cb.ShowText("Obrigado pela preferência!");
+        }
+        public string GeraRelatorio(string name, DataGridView dados)
+        {
+            pdfDoc = new Document(PageSize.A4.Rotate(), 1.27f, 1.27f, 20, 80);
+            try
+            {
+                if (!Directory.Exists(folderPathRelatorio))
+                {
+                    Directory.CreateDirectory(folderPathRelatorio);
+                }
+
+                FileStream stream = new FileStream(folderPathRelatorio + filename, FileMode.Create);
+                stream.Dispose();
+                ConstroiRelatorio(name,dados);
+                
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return folderPathRelatorio + filename;
+        }
+        private void ConstroiRelatorio(string name, DataGridView dados)
+        {
+            try
+            {
+                using (FileStream stream = new FileStream(folderPathRelatorio + filename, FileMode.Append))
+                {
+                    var w = PdfWriter.GetInstance(pdfDoc, stream);
+                    pdfDoc.Open();
+                    InserirImg(@"c:\ParkManager\assets\graphic.png", 50f, 500f);
+                    Header();
+
+                    PdfPTable table = new PdfPTable(dados.Columns.Count);
+                    table.DefaultCell.Padding = 3;
+                    table.WidthPercentage =95;
+                    PdfPTable Titulo = new PdfPTable(1);
+                    Titulo.WidthPercentage = 100;
+                    Titulo.DefaultCell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    Titulo.DefaultCell.VerticalAlignment = Element.ALIGN_CENTER;
+                    Titulo.DefaultCell.BorderWidth = 0;
+                    Titulo.SpacingBefore = 20;
+                    Titulo.SpacingAfter = 20;
+
+                    Chunk c1 = new Chunk(name, FontFactory.GetFont("Calibri"));
+                    c1.Font.Color = new iTextSharp.text.BaseColor(0, 0, 0);
+                    c1.Font.SetStyle(1);
+                    c1.Font.Size = 24;
+                    
+
+                    Phrase p1 = new Phrase();
+                    
+                    p1.Add(c1);
+                    Titulo.AddCell(p1);   
+                    
+
+                    table.HorizontalAlignment = Element.ALIGN_CENTER;
+                    foreach (DataGridViewColumn column in dados.Columns)
+                    {
+                        PdfPCell pCell = new PdfPCell(new Phrase(column.HeaderText));
+                        pCell.BackgroundColor = BaseColor.LIGHT_GRAY;
+                        table.AddCell(pCell);
+                    }
+                    foreach (DataGridViewRow linha in dados.Rows)
+                    {
+                        foreach (DataGridViewCell cell in linha.Cells)
+                        {
+                            table.AddCell(cell.Value.ToString());
+                        }
+                    }
+                    PdfContentByte cb = w.DirectContent;
+                    cb.SetFontAndSize(GetMyFont("Calibri Bold", "calibrib.ttf").BaseFont, 12);
+
+                    cb.SetTextMatrix(10f, 10f);
+                    cb.ShowText("Relatório gerado em: " + DateTime.Now.ToString());
+                    pdfDoc.Add(Titulo);
+                    pdfDoc.Add(table); 
+                    pdfDoc.Close();
+                    stream.Dispose();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
 

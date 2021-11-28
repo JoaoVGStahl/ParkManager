@@ -30,10 +30,10 @@ namespace Teste
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTelaRelatorios));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea17 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend17 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series17 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint17 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(10D, "0,0,0,0");
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint3 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(10D, "0,0,0,0");
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblMarca = new System.Windows.Forms.Label();
@@ -305,10 +305,10 @@ namespace Teste
             // chtRelatorio
             // 
             this.chtRelatorio.BackColor = System.Drawing.Color.Transparent;
-            chartArea17.Name = "ChartArea1";
-            this.chtRelatorio.ChartAreas.Add(chartArea17);
-            legend17.Name = "Legend1";
-            this.chtRelatorio.Legends.Add(legend17);
+            chartArea3.Name = "ChartArea1";
+            this.chtRelatorio.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chtRelatorio.Legends.Add(legend3);
             this.chtRelatorio.Location = new System.Drawing.Point(0, 112);
             this.chtRelatorio.Name = "chtRelatorio";
             this.chtRelatorio.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
@@ -317,16 +317,16 @@ namespace Teste
         System.Drawing.SystemColors.HotTrack,
         System.Drawing.Color.DarkBlue,
         System.Drawing.Color.Red};
-            series17.ChartArea = "ChartArea1";
-            series17.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series17.IsVisibleInLegend = false;
-            series17.Legend = "Legend1";
-            series17.LegendToolTip = "#PERCENT";
-            series17.Name = "Series1";
-            series17.Points.Add(dataPoint17);
-            series17.YValueMembers = "#PERCENT";
-            series17.YValuesPerPoint = 4;
-            this.chtRelatorio.Series.Add(series17);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series3.IsVisibleInLegend = false;
+            series3.Legend = "Legend1";
+            series3.LegendToolTip = "#PERCENT";
+            series3.Name = "Series1";
+            series3.Points.Add(dataPoint3);
+            series3.YValueMembers = "#PERCENT";
+            series3.YValuesPerPoint = 4;
+            this.chtRelatorio.Series.Add(series3);
             this.chtRelatorio.Size = new System.Drawing.Size(1052, 268);
             this.chtRelatorio.TabIndex = 30;
             this.chtRelatorio.Text = "chart1";
@@ -392,6 +392,7 @@ namespace Teste
             this.button5.Text = "Imprimir";
             this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // btnGerar
             // 

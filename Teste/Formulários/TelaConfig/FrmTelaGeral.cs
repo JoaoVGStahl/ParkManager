@@ -118,7 +118,7 @@ namespace Teste
             }
             if(Estacionamento.caminho_foto_padrao != txtCaminho.Text)
             {
-                Globais.RegistrarLog(Globais.Login + " Alteru o caminho do diretório de Imagen de " + Estacionamento.caminho_foto_padrao + " para " + txtCaminho.Text + ".");
+                Globais.RegistrarLog(Globais.Login + " Alterou o caminho do diretório de Imagen de " + Estacionamento.caminho_foto_padrao + " para " + txtCaminho.Text + ".");
                 Estacionamento.caminho_foto_padrao = txtCaminho.Text;
             }
 

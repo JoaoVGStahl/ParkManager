@@ -120,58 +120,73 @@ namespace Teste
         }
         private void RelatorioTickets()
         {
-            if (chtRelatorio.Series.Count > 0)
+            try
             {
-                chtRelatorio.Series.Clear();
-            }
-            if (chtRelatorio.Series.Count > 0)
-            {
-                chtRelatorio.Series.Clear();
-            }
-            DataSet ds;
-            List<SqlParameter> sp = new List<SqlParameter>()
-            {
+                if (chtRelatorio.Series.Count > 0)
+                {
+                    chtRelatorio.Series.Clear();
+                }
+                if (chtRelatorio.Series.Count > 0)
+                {
+                    chtRelatorio.Series.Clear();
+                }
+                DataSet ds;
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
                 new SqlParameter(){ParameterName= "@DataInicial", SqlDbType = SqlDbType.DateTime, Value = dtpInicial.Value.AddDays(-1)},
                 new SqlParameter(){ParameterName= "@DataFinal", SqlDbType = SqlDbType.DateTime, Value = dtpFinal.Value}
-            };
-            ds = banco.ExecuteProcedureWithReturnMultipleTables("dbo.Relatorio_Ticket_Diario", sp);
-            if(ds.Tables.Count > 1)
-            {
-                CriarGraficoTicket(ds.Tables[0]);
-                PopulaGrid(ds.Tables[1]);
+                };
+                ds = banco.ExecuteProcedureWithReturnMultipleTables("dbo.Relatorio_Ticket_Diario", sp);
+                if (ds.Tables.Count > 1)
+                {
+                    CriarGraficoTicket(ds.Tables[0]);
+                    PopulaGrid(ds.Tables[1]);
+                    Globais.RegistrarLog(Globais.Login + " Gerou um novo relatório de Tickets.");
+                }
+                else
+                {
+                    lblTicket.Visible = true;
+                    lblNada.Visible = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                lblTicket.Visible = true;
-                lblNada.Visible = true;
-            }
-            
 
+                MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void RelatotorioFinanceiro()
         {
-            if (chtRelatorio.Series.Count > 0)
+            try
             {
-                chtRelatorio.Series.Clear();
-            }
-            DataSet ds;
-            List<SqlParameter> sp = new List<SqlParameter>()
-            {
+                if (chtRelatorio.Series.Count > 0)
+                {
+                    chtRelatorio.Series.Clear();
+                }
+                DataSet ds;
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
                 new SqlParameter(){ParameterName= "@DataInicial", SqlDbType = SqlDbType.DateTime, Value = dtpInicial.Value.AddDays(-1)},
                 new SqlParameter(){ParameterName= "@DataFinal", SqlDbType = SqlDbType.DateTime, Value = dtpFinal.Value}
-            };
-            ds = banco.ExecuteProcedureWithReturnMultipleTables("dbo.Relatorio_Financeiro_Diario", sp);
-            if(ds.Tables.Count > 1)
-            {
-                CriaGraficoPie(ds.Tables[0], "Financeiro");
-                PopulaGrid(ds.Tables[1]);
+                };
+                ds = banco.ExecuteProcedureWithReturnMultipleTables("dbo.Relatorio_Financeiro_Diario", sp);
+                if (ds.Tables.Count > 1)
+                {
+                    CriaGraficoPie(ds.Tables[0], "Financeiro");
+                    PopulaGrid(ds.Tables[1]);
+                    Globais.RegistrarLog(Globais.Login + " Gerou um novo relatório de Tickets.");
+                }
+                else
+                {
+                    lblTicket.Visible = true;
+                    lblNada.Visible = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                lblTicket.Visible = true;
-                lblNada.Visible = true;
+
+                MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
         }
         private void RelatorioCliente()
         {
@@ -214,9 +229,10 @@ namespace Teste
                         total - voltaram,
                         voltaram
                         );
-                    
+
                     CriaGraficoCliente(dt, "Relatório Clientes");
                     PopulaGrid(ds.Tables[2]);
+                    Globais.RegistrarLog(Globais.Login + " Gerou um novo relatório de Tickets.");
                 }
                 else
                 {
@@ -244,23 +260,32 @@ namespace Teste
 
         private void RelatorioCarroDiario()
         {
-            DataSet ds;
-            List<SqlParameter> sp = new List<SqlParameter>()
+            try
             {
+                DataSet ds;
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
                 new SqlParameter(){ParameterName= "@DataInicial", SqlDbType = SqlDbType.DateTime, Value = dtpInicial.Value.AddDays(-1)},
                 new SqlParameter(){ParameterName= "@DataFinal", SqlDbType = SqlDbType.DateTime, Value = dtpFinal.Value}
-            };
-            ds = banco.ExecuteProcedureWithReturnMultipleTables("dbo.Relatorio_Carro_Diario", sp);
-            if(ds.Tables.Count > 1)
-            {
-                CriarGraficoStackedColumn(ds.Tables[0], "Tipos de Veículos");
-                PopulaGrid(ds.Tables[1]);
+                };
+                ds = banco.ExecuteProcedureWithReturnMultipleTables("dbo.Relatorio_Carro_Diario", sp);
+                if (ds.Tables.Count > 1)
+                {
+                    CriarGraficoStackedColumn(ds.Tables[0], "Tipos de Veículos");
+                    PopulaGrid(ds.Tables[1]);
+                    Globais.RegistrarLog(Globais.Login + " Gerou um novo relatório de Tickets.");
+                }
+                else
+                {
+                    lblTicket.Visible = true;
+                    lblNada.Visible = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                lblTicket.Visible = true;
-                lblNada.Visible = true;
+                MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
         }
 
         private void PopulaGrid(DataTable TabelaGrid)
@@ -456,10 +481,8 @@ namespace Teste
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         private void Legends()
@@ -521,6 +544,63 @@ namespace Teste
             btnGerar.Enabled = true;
             dtpFinal.Enabled = true;
             dtpInicial.Enabled = true;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (SrcGrafico.Rows.Count > 0)
+            {
+                switch (graphic)
+                {
+                    case 1:
+                        Imprimir("Relatório de Tickets");
+                        break;
+                    case 2:
+                        Imprimir("Relatório Financeiro");
+                        break;
+                    case 3:
+                        Imprimir("Relatório de Clientes");
+                        break;
+                    case 4:
+                        Imprimir("Relatório de Veiculos");
+                        break;
+                    default:
+                        MessageBox.Show("Selecione um tipo de Gráfico primeiro!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Não há dados para imprimir!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void Imprimir(string name)
+        {
+            try
+            {
+                GeraPDF gerador = new GeraPDF();
+                gerador.filename = name +
+                    " - " +
+                    DateTime.Now.ToShortDateString()
+                    .Replace("/", "-") +
+                    "-" +
+                    DateTime.Now.ToLongTimeString()
+                    .Replace(":", "-") + ".pdf";
+                string caminho = gerador.GeraRelatorio(name, SrcGrafico);
+
+                if (caminho != null)
+                {
+                    Globais.RegistrarLog(Globais.Login + " Imprimiu um " + name + ".");
+                    System.Diagnostics.Process.Start(caminho);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
     }
 }
