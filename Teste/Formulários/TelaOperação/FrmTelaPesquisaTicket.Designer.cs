@@ -417,6 +417,7 @@ namespace Teste
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ticket\'s - ParkManager";
             this.Load += new System.EventHandler(this.FrmTelaTicket_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmTelaPesquisaTicket_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel4.ResumeLayout(false);

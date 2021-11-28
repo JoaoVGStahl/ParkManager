@@ -158,6 +158,7 @@ namespace Teste
         }
         private void EditarUsuario()
         {
+            string senha = Globais.EncodeToMd5(txtConfirmSenha.Text);
             int result;
             List<SqlParameter> sp = new List<SqlParameter>()
                 {
@@ -165,7 +166,7 @@ namespace Teste
                     new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 2},
                     new SqlParameter(){ParameterName = "@Id", SqlDbType = SqlDbType.Int, Value = txtId.Text},
                     new SqlParameter(){ParameterName = "@Login", SqlDbType = SqlDbType.NVarChar, Value = txtLogin.Text },
-                    new SqlParameter(){ParameterName = "@Senha", SqlDbType = SqlDbType.NVarChar, Value = txtConfirmSenha.Text },
+                    new SqlParameter(){ParameterName = "@Senha", SqlDbType = SqlDbType.NVarChar, Value = senha },
                     new SqlParameter(){ParameterName = "@Nivel", SqlDbType = SqlDbType.Int, Value = numNivel.Value },
                     new SqlParameter(){ParameterName = "@Status", SqlDbType = SqlDbType.Int, Value = cmbStatus.SelectedIndex }
                 };
@@ -185,13 +186,14 @@ namespace Teste
         }
         private void SalvarUsuario()
         {
+            string senha = Globais.EncodeToMd5(txtConfirmSenha.Text);
             int result;
             List<SqlParameter> sp = new List<SqlParameter>()
                 {
 
                     new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 1},
                     new SqlParameter(){ParameterName = "@Login", SqlDbType = SqlDbType.NVarChar, Value = txtLogin.Text },
-                    new SqlParameter(){ParameterName = "@Senha", SqlDbType = SqlDbType.NVarChar, Value = txtConfirmSenha.Text },
+                    new SqlParameter(){ParameterName = "@Senha", SqlDbType = SqlDbType.NVarChar, Value = senha },
                     new SqlParameter(){ParameterName = "@Nivel", SqlDbType = SqlDbType.Int, Value = numNivel.Value },
                     new SqlParameter(){ParameterName = "@Status", SqlDbType = SqlDbType.Int, Value = cmbStatus.SelectedIndex }
                 };

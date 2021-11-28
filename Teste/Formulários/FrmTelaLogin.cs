@@ -52,7 +52,8 @@ namespace Teste
                 {
                     try
                     {
-                        List<SqlParameter> sp = new List<SqlParameter>()
+                        senha = Globais.EncodeToMd5(txtSenha.Text);
+                        List <SqlParameter> sp = new List<SqlParameter>()
                         {
                             new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value = 4},
                             new SqlParameter(){ParameterName="@Login", SqlDbType = SqlDbType.VarChar, Value = usuario},

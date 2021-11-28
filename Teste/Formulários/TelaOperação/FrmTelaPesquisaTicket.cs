@@ -339,5 +339,19 @@ namespace Teste
             }
         }
 
+        private void FrmTelaPesquisaTicket_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.F6:
+                    btnPesquisa.PerformClick();
+                    break;
+                case Keys.F4:
+                    btnEncerrar.PerformClick();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

@@ -1014,6 +1014,21 @@ namespace Teste
         {
 
         }
+
+        private void FrmTelaOperacao_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.F4:
+                    btnEncerrar.PerformClick();
+                    break;
+                case Keys.F5:
+                    btnIniciar.PerformClick();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
 
