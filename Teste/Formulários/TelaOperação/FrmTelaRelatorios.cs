@@ -142,6 +142,7 @@ namespace Teste
                     CriarGraficoTicket(ds.Tables[0]);
                     PopulaGrid(ds.Tables[1]);
                     Globais.RegistrarLog(Globais.Login + " Gerou um novo relatório de Tickets.");
+                    btnImprimir.Enabled = true;
                 }
                 else
                 {
@@ -175,6 +176,7 @@ namespace Teste
                     CriaGraficoPie(ds.Tables[0], "Financeiro");
                     PopulaGrid(ds.Tables[1]);
                     Globais.RegistrarLog(Globais.Login + " Gerou um novo relatório de Tickets.");
+                    btnImprimir.Enabled = true;
                 }
                 else
                 {
@@ -233,6 +235,7 @@ namespace Teste
                     CriaGraficoCliente(dt, "Relatório Clientes");
                     PopulaGrid(ds.Tables[2]);
                     Globais.RegistrarLog(Globais.Login + " Gerou um novo relatório de Tickets.");
+                    btnImprimir.Enabled = true;
                 }
                 else
                 {
@@ -274,6 +277,7 @@ namespace Teste
                     CriarGraficoStackedColumn(ds.Tables[0], "Tipos de Veículos");
                     PopulaGrid(ds.Tables[1]);
                     Globais.RegistrarLog(Globais.Login + " Gerou um novo relatório de Tickets.");
+                    btnImprimir.Enabled = true;
                 }
                 else
                 {

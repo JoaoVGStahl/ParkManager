@@ -30,10 +30,10 @@ namespace Teste
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTelaRelatorios));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint3 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(10D, "0,0,0,0");
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(10D, "0,0,0,0");
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblMarca = new System.Windows.Forms.Label();
@@ -58,7 +58,7 @@ namespace Teste
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnLimpaP = new System.Windows.Forms.Button();
             this.lblNada = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnImprimir = new System.Windows.Forms.Button();
             this.btnGerar = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
             this.btnCliente = new System.Windows.Forms.Button();
@@ -305,10 +305,10 @@ namespace Teste
             // chtRelatorio
             // 
             this.chtRelatorio.BackColor = System.Drawing.Color.Transparent;
-            chartArea3.Name = "ChartArea1";
-            this.chtRelatorio.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chtRelatorio.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea1";
+            this.chtRelatorio.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chtRelatorio.Legends.Add(legend1);
             this.chtRelatorio.Location = new System.Drawing.Point(0, 112);
             this.chtRelatorio.Name = "chtRelatorio";
             this.chtRelatorio.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
@@ -317,16 +317,16 @@ namespace Teste
         System.Drawing.SystemColors.HotTrack,
         System.Drawing.Color.DarkBlue,
         System.Drawing.Color.Red};
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series3.IsVisibleInLegend = false;
-            series3.Legend = "Legend1";
-            series3.LegendToolTip = "#PERCENT";
-            series3.Name = "Series1";
-            series3.Points.Add(dataPoint3);
-            series3.YValueMembers = "#PERCENT";
-            series3.YValuesPerPoint = 4;
-            this.chtRelatorio.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.IsVisibleInLegend = false;
+            series1.Legend = "Legend1";
+            series1.LegendToolTip = "#PERCENT";
+            series1.Name = "Series1";
+            series1.Points.Add(dataPoint1);
+            series1.YValueMembers = "#PERCENT";
+            series1.YValuesPerPoint = 4;
+            this.chtRelatorio.Series.Add(series1);
             this.chtRelatorio.Size = new System.Drawing.Size(1052, 268);
             this.chtRelatorio.TabIndex = 30;
             this.chtRelatorio.Text = "chart1";
@@ -336,7 +336,7 @@ namespace Teste
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel4.Controls.Add(this.btnLimpaP);
             this.panel4.Controls.Add(this.lblNada);
-            this.panel4.Controls.Add(this.button5);
+            this.panel4.Controls.Add(this.btnImprimir);
             this.panel4.Controls.Add(this.btnGerar);
             this.panel4.Controls.Add(this.panel7);
             this.panel4.Controls.Add(this.dtpInicial);
@@ -376,23 +376,23 @@ namespace Teste
             this.lblNada.Text = "< Não há dados para exibir! >";
             this.lblNada.Visible = false;
             // 
-            // button5
+            // btnImprimir
             // 
-            this.button5.BackColor = System.Drawing.Color.Transparent;
-            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button5.Enabled = false;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
-            this.button5.Location = new System.Drawing.Point(920, 68);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(131, 48);
-            this.button5.TabIndex = 39;
-            this.button5.Text = "Imprimir";
-            this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button5.UseVisualStyleBackColor = false;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.btnImprimir.BackColor = System.Drawing.Color.Transparent;
+            this.btnImprimir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnImprimir.Enabled = false;
+            this.btnImprimir.FlatAppearance.BorderSize = 0;
+            this.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnImprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImprimir.Image = ((System.Drawing.Image)(resources.GetObject("btnImprimir.Image")));
+            this.btnImprimir.Location = new System.Drawing.Point(920, 68);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(131, 48);
+            this.btnImprimir.TabIndex = 39;
+            this.btnImprimir.Text = "Imprimir";
+            this.btnImprimir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnImprimir.UseVisualStyleBackColor = false;
+            this.btnImprimir.Click += new System.EventHandler(this.button5_Click);
             // 
             // btnGerar
             // 
@@ -614,7 +614,7 @@ namespace Teste
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.DateTimePicker dtpInicial;
         private System.Windows.Forms.DateTimePicker dtpFinal;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnImprimir;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Button btnCliente;
         private System.Windows.Forms.Button btnFinanceiro;
