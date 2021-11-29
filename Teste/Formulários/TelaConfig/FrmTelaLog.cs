@@ -38,5 +38,10 @@ namespace Teste
                 }
             }
         }
+
+        private void FrmTelaLog_Load(object sender, EventArgs e)
+        {
+            Globais.RegistrarLog(Globais.Login + " Leu o registro de auditoria");
+        }
     }
 }

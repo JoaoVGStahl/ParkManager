@@ -123,7 +123,7 @@ namespace Teste
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(218, 82);
             this.btnImprimir.TabIndex = 8;
-            this.btnImprimir.Text = "Imprimir";
+            this.btnImprimir.Text = "Imprimir Ticket";
             this.btnImprimir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnImprimir.UseVisualStyleBackColor = false;
             this.btnImprimir.Click += new System.EventHandler(this.button5_Click);
@@ -143,10 +143,10 @@ namespace Teste
             // 
             this.panel3.BackColor = System.Drawing.Color.Transparent;
             this.panel3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel3.BackgroundImage")));
-            this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panel3.Location = new System.Drawing.Point(1139, 0);
+            this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel3.Location = new System.Drawing.Point(1148, -10);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(123, 90);
+            this.panel3.Size = new System.Drawing.Size(147, 116);
             this.panel3.TabIndex = 17;
             // 
             // btnEncerrar
@@ -417,6 +417,7 @@ namespace Teste
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ticket\'s - ParkManager";
             this.Load += new System.EventHandler(this.FrmTelaTicket_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmTelaPesquisaTicket_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel4.ResumeLayout(false);

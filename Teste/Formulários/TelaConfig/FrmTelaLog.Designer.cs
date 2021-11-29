@@ -45,7 +45,7 @@ namespace Teste
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(484, 85);
+            this.panel1.Size = new System.Drawing.Size(778, 85);
             this.panel1.TabIndex = 0;
             // 
             // panel3
@@ -58,7 +58,7 @@ namespace Teste
             this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panel3.Location = new System.Drawing.Point(214, 12);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(62, 64);
+            this.panel3.Size = new System.Drawing.Size(356, 64);
             this.panel3.TabIndex = 0;
             // 
             // splitter1
@@ -68,7 +68,7 @@ namespace Teste
             this.splitter1.Enabled = false;
             this.splitter1.Location = new System.Drawing.Point(0, 85);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(484, 3);
+            this.splitter1.Size = new System.Drawing.Size(778, 3);
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
             // 
@@ -78,7 +78,7 @@ namespace Teste
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 88);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(484, 10);
+            this.panel2.Size = new System.Drawing.Size(778, 10);
             this.panel2.TabIndex = 2;
             // 
             // txtLog
@@ -90,14 +90,14 @@ namespace Teste
             this.txtLog.Name = "txtLog";
             this.txtLog.ReadOnly = true;
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtLog.Size = new System.Drawing.Size(484, 506);
+            this.txtLog.Size = new System.Drawing.Size(778, 506);
             this.txtLog.TabIndex = 3;
             // 
             // FrmTelaLog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 604);
+            this.ClientSize = new System.Drawing.Size(778, 604);
             this.Controls.Add(this.txtLog);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.splitter1);
@@ -106,6 +106,7 @@ namespace Teste
             this.Name = "FrmTelaLog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro de Auditoria";
+            this.Load += new System.EventHandler(this.FrmTelaLog_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

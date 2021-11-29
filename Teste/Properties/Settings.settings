@@ -32,5 +32,8 @@
     <Setting Name="Cancelas" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="UserGuide" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://www.canva.com/design/DAEsKNNve5I/Rry_tsf_nKEXtVG_14MBZA/view?utm_content=DAEsKNNve5I&amp;utm_campaign=designshare&amp;utm_medium=link&amp;utm_source=sharebutton</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

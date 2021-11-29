@@ -58,7 +58,7 @@ namespace Teste
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnLimpaP = new System.Windows.Forms.Button();
             this.lblNada = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnImprimir = new System.Windows.Forms.Button();
             this.btnGerar = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
             this.btnCliente = new System.Windows.Forms.Button();
@@ -336,7 +336,7 @@ namespace Teste
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel4.Controls.Add(this.btnLimpaP);
             this.panel4.Controls.Add(this.lblNada);
-            this.panel4.Controls.Add(this.button5);
+            this.panel4.Controls.Add(this.btnImprimir);
             this.panel4.Controls.Add(this.btnGerar);
             this.panel4.Controls.Add(this.panel7);
             this.panel4.Controls.Add(this.dtpInicial);
@@ -376,22 +376,23 @@ namespace Teste
             this.lblNada.Text = "< Não há dados para exibir! >";
             this.lblNada.Visible = false;
             // 
-            // button5
+            // btnImprimir
             // 
-            this.button5.BackColor = System.Drawing.Color.Transparent;
-            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button5.Enabled = false;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
-            this.button5.Location = new System.Drawing.Point(920, 68);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(131, 48);
-            this.button5.TabIndex = 39;
-            this.button5.Text = "Imprimir";
-            this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button5.UseVisualStyleBackColor = false;
+            this.btnImprimir.BackColor = System.Drawing.Color.Transparent;
+            this.btnImprimir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnImprimir.Enabled = false;
+            this.btnImprimir.FlatAppearance.BorderSize = 0;
+            this.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnImprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImprimir.Image = ((System.Drawing.Image)(resources.GetObject("btnImprimir.Image")));
+            this.btnImprimir.Location = new System.Drawing.Point(920, 68);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(131, 48);
+            this.btnImprimir.TabIndex = 39;
+            this.btnImprimir.Text = "Imprimir";
+            this.btnImprimir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnImprimir.UseVisualStyleBackColor = false;
+            this.btnImprimir.Click += new System.EventHandler(this.button5_Click);
             // 
             // btnGerar
             // 
@@ -519,14 +520,29 @@ namespace Teste
             // 
             // SrcGrafico
             // 
+            this.SrcGrafico.AllowUserToAddRows = false;
+            this.SrcGrafico.AllowUserToDeleteRows = false;
+            this.SrcGrafico.AllowUserToOrderColumns = true;
+            this.SrcGrafico.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.SrcGrafico.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.SrcGrafico.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.SrcGrafico.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.SrcGrafico.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.SrcGrafico.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.SrcGrafico.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.SrcGrafico.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SrcGrafico.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SrcGrafico.GridColor = System.Drawing.Color.WhiteSmoke;
             this.SrcGrafico.Location = new System.Drawing.Point(0, 0);
+            this.SrcGrafico.MultiSelect = false;
             this.SrcGrafico.Name = "SrcGrafico";
+            this.SrcGrafico.ReadOnly = true;
+            this.SrcGrafico.RowHeadersVisible = false;
+            this.SrcGrafico.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
+            this.SrcGrafico.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.SrcGrafico.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.SrcGrafico.ShowEditingIcon = false;
             this.SrcGrafico.Size = new System.Drawing.Size(1055, 309);
             this.SrcGrafico.TabIndex = 0;
+            this.SrcGrafico.TabStop = false;
             // 
             // panel6
             // 
@@ -598,7 +614,7 @@ namespace Teste
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.DateTimePicker dtpInicial;
         private System.Windows.Forms.DateTimePicker dtpFinal;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnImprimir;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Button btnCliente;
         private System.Windows.Forms.Button btnFinanceiro;

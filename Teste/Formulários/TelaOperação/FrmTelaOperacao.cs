@@ -967,33 +967,33 @@ namespace Teste
 
         private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            int resp = Convert.ToInt32(serialPort1.ReadExisting());
+            String resp = serialPort1.ReadExisting().ToString();
 
             switch (resp)
             {
-                case 1:
+                case "1":
                     PintaBotaoAbrir(btnEntrada);
                     break;
 
-                case 2:
+                case "2":
                     PintaBotaoFechar(btnEntrada);
                     break;
-                case 3:
+                case "3":
                     PintaBotaoAbrir(btnSaida);
                     break;
-                case 4:
+                case "4":
                     PintaBotaoFechar(btnSaida);
                     break;
-                case 5:
+                case "5":
                     Arduino.entrada = true;
                     break;
-                case 6:
+                case "6":
                     Arduino.entrada = false;
                     break;
-                case 7:
+                case "7":
                     Arduino.saida = true;
                     break;
-                case 8:
+                case "8":
                     Arduino.saida = false;
                     break;
                 default:
@@ -1013,6 +1013,26 @@ namespace Teste
         private void picImagem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void FrmTelaOperacao_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.F4:
+                    btnEncerrar.PerformClick();
+                    break;
+                case Keys.F5:
+                    btnIniciar.PerformClick();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void manualDoUsuárioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(Properties.Settings.Default.UserGuide);
         }
     }
 }

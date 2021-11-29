@@ -133,10 +133,10 @@ namespace Teste
             // panel4
             // 
             this.panel4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel4.BackgroundImage")));
-            this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panel4.Location = new System.Drawing.Point(84, 1);
+            this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel4.Location = new System.Drawing.Point(105, 1);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(232, 138);
+            this.panel4.Size = new System.Drawing.Size(190, 138);
             this.panel4.TabIndex = 5;
             // 
             // btnFechar

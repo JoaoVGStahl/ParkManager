@@ -238,11 +238,13 @@ namespace Teste
                 {
                     if (method == "Save")
                     {
+                        Globais.RegistrarLog(Globais.Login + " Adicionou o Veiculo : " + txtPlaca.Text + ".");
                         MessageBox.Show("Veiculo Adicionado com Sucesso!", "Veiculo Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         PreencherGrid();
                     }
                     else if (method == "Edit")
                     {
+                        Globais.RegistrarLog(Globais.Login + " Alterou o Veiculo : " + txtId.Text + ".");
                         MessageBox.Show("Veiculo Editado com sucesso!", "Veiculo Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         PreencherGrid();
                     }
@@ -442,6 +444,7 @@ namespace Teste
                 int LinhasAfetadas = banco.ExecuteProcedureReturnInt("dbo.Gerencia_Veiculo", sp);
                 if (LinhasAfetadas > 0)
                 {
+                    Globais.RegistrarLog(Globais.Login + " Excluiu o Veiculo : " + txtPlaca.Text + ".");
                     MessageBox.Show("Veiculo Excluido com sucesso!", "Exclusão bem sucedida!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     PreencherGrid();
                 }

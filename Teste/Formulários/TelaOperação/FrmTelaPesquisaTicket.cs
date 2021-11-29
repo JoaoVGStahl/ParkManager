@@ -161,7 +161,7 @@ namespace Teste
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 btnImprimir.Enabled = true;
-                if (cmbStatus.Text == "Ativo" || cmbStatus.Text == "Todos")
+                if (dataGridView1.SelectedRows[0].Cells["Status"].Value.ToString() == "Ativo")
                 {
                     btnEncerrar.Enabled = true;
                 }
@@ -169,6 +169,7 @@ namespace Teste
                 {
                     btnEncerrar.Enabled = false;
                 }
+
             }
             else
             {
@@ -339,5 +340,19 @@ namespace Teste
             }
         }
 
+        private void FrmTelaPesquisaTicket_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.F6:
+                    btnPesquisa.PerformClick();
+                    break;
+                case Keys.F4:
+                    btnEncerrar.PerformClick();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
