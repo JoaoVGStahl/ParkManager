@@ -331,6 +331,7 @@ namespace Teste
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Confirmar pagamento - Park Manager";
             this.Load += new System.EventHandler(this.FrmTelaEncerrarTicket_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmTelaEncerrarTicket_KeyDown);
             this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);

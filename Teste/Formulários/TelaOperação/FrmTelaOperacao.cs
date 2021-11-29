@@ -1029,6 +1029,11 @@ namespace Teste
                     break;
             }
         }
+
+        private void manualDoUsuárioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(Properties.Settings.Default.UserGuide);
+        }
     }
 }
 

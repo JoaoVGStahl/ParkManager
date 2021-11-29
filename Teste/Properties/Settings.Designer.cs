@@ -12,7 +12,7 @@ namespace Teste.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.10.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -141,6 +141,16 @@ namespace Teste.Properties {
             }
             set {
                 this["Cancelas"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://www.canva.com/design/DAEsKNNve5I/Rry_tsf_nKEXtVG_14MBZA/view?utm_content=" +
+            "DAEsKNNve5I&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton")]
+        public string UserGuide {
+            get {
+                return ((string)(this["UserGuide"]));
             }
         }
     }
