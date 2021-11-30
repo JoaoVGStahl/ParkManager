@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.IO.Ports;
 
 
-namespace Teste
+namespace ParkManager
 {
 
     public partial class FrmTelaOperacao : Form
@@ -1028,6 +1028,11 @@ namespace Teste
                 default:
                     break;
             }
+        }
+
+        private void manualDoUsuárioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(Properties.Settings.Default.UserGuide);
         }
     }
 }

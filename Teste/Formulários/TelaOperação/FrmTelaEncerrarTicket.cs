@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Teste
+namespace ParkManager
 {
     public partial class FrmTelaEncerrarTicket : Form
     {
@@ -371,6 +371,14 @@ namespace Teste
         private void txtTroco_TextChanged(object sender, EventArgs e)
         {
             
+        }
+
+        private void FrmTelaEncerrarTicket_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.F4)
+            {
+                btnEncerrar.PerformClick(); 
+            }
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿
-namespace Teste
+namespace ParkManager
 {
     partial class FrmTelaOperacao
     {
@@ -84,6 +84,8 @@ namespace Teste
             this.panel10 = new System.Windows.Forms.Panel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
+            this.manualDoUsuárioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picImagem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCam)).BeginInit();
@@ -597,7 +599,8 @@ namespace Teste
             this.lblData,
             this.lblHora,
             this.toolStripStatusLabel1,
-            this.lblUsername});
+            this.lblUsername,
+            this.toolStripSplitButton1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 700);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1346, 25);
@@ -766,6 +769,26 @@ namespace Teste
             // 
             this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
             // 
+            // toolStripSplitButton1
+            // 
+            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripSplitButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.manualDoUsuárioToolStripMenuItem});
+            this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
+            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
+            this.toolStripSplitButton1.Size = new System.Drawing.Size(32, 23);
+            this.toolStripSplitButton1.Text = "toolStripSplitButton1";
+            // 
+            // manualDoUsuárioToolStripMenuItem
+            // 
+            this.manualDoUsuárioToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("manualDoUsuárioToolStripMenuItem.Image")));
+            this.manualDoUsuárioToolStripMenuItem.Name = "manualDoUsuárioToolStripMenuItem";
+            this.manualDoUsuárioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.manualDoUsuárioToolStripMenuItem.Text = "Manual do Usuário";
+            this.manualDoUsuárioToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.manualDoUsuárioToolStripMenuItem.Click += new System.EventHandler(this.manualDoUsuárioToolStripMenuItem_Click);
+            // 
             // FrmTelaOperacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
@@ -785,8 +808,8 @@ namespace Teste
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.MaximizeBox = false;
             this.Name = "FrmTelaOperacao";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu Principal - ParkManager";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmTelaOperacao_FormClosing);
             this.Load += new System.EventHandler(this.FrmTelaOperacao_Load);
@@ -866,6 +889,8 @@ namespace Teste
         private System.Windows.Forms.ComboBox cmbTipo;
         public System.IO.Ports.SerialPort serialPort1;
         private System.Windows.Forms.ComboBox cmbMarca;
+        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
+        private System.Windows.Forms.ToolStripMenuItem manualDoUsuárioToolStripMenuItem;
     }
 }
 
