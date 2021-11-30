@@ -4,7 +4,7 @@ using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Teste
+namespace ParkManager
 {
     public static class Globais
     {

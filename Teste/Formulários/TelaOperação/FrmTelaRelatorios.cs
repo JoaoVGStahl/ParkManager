@@ -6,7 +6,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace Teste
+namespace ParkManager
 {
     public partial class FrmTelaRelatorios : Form
     {
@@ -175,7 +175,7 @@ namespace Teste
                 {
                     CriaGraficoPie(ds.Tables[0], "Financeiro");
                     PopulaGrid(ds.Tables[1]);
-                    Globais.RegistrarLog(Globais.Login + " Gerou um novo relatório de Tickets.");
+                    Globais.RegistrarLog(Globais.Login + " Gerou um novo relatório Financeiro.");
                     btnImprimir.Enabled = true;
                 }
                 else
@@ -234,7 +234,7 @@ namespace Teste
 
                     CriaGraficoCliente(dt, "Relatório Clientes");
                     PopulaGrid(ds.Tables[2]);
-                    Globais.RegistrarLog(Globais.Login + " Gerou um novo relatório de Tickets.");
+                    Globais.RegistrarLog(Globais.Login + " Gerou um novo relatório de Clientes.");
                     btnImprimir.Enabled = true;
                 }
                 else
@@ -276,7 +276,7 @@ namespace Teste
                 {
                     CriarGraficoStackedColumn(ds.Tables[0], "Tipos de Veículos");
                     PopulaGrid(ds.Tables[1]);
-                    Globais.RegistrarLog(Globais.Login + " Gerou um novo relatório de Tickets.");
+                    Globais.RegistrarLog(Globais.Login + " Gerou um novo relatório de Veiculos.");
                     btnImprimir.Enabled = true;
                 }
                 else

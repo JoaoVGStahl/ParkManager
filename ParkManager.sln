@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupParkManager", "ParkManagerSetup\SetupParkManager\SetupParkManager.vdproj", "{63D265F2-94D0-48DF-B170-EA1E7C71FB0F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,8 @@ Global
 		{A02C09BE-E09B-47A4-9580-4F00C00BBA65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A02C09BE-E09B-47A4-9580-4F00C00BBA65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A02C09BE-E09B-47A4-9580-4F00C00BBA65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63D265F2-94D0-48DF-B170-EA1E7C71FB0F}.Debug|Any CPU.ActiveCfg = Debug
+		{63D265F2-94D0-48DF-B170-EA1E7C71FB0F}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

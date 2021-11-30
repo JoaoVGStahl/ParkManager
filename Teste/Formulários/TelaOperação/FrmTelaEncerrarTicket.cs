@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Teste
+namespace ParkManager
 {
     public partial class FrmTelaEncerrarTicket : Form
     {

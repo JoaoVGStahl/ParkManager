@@ -6,7 +6,7 @@ using System.IO.Ports;  // necessário para ter acesso as portas
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace Teste
+namespace ParkManager
 {
     public partial class FrmTelaDesenvolvedor : Form
     {
@@ -249,7 +249,7 @@ namespace Teste
 
         private void SaveProps(string StrConn)
         {
-            Properties.Settings.Default["StringBanco"] = StrConn;
+            Properties.Settings.Default.StringBanco = StrConn;
             Properties.Settings.Default["ArquivoAuditoria"] = txtCaminho.Text;
             Properties.Settings.Default["SenhaRoot"] = txtConfirmSenhaRoot.Text;
             Properties.Settings.Default.Save();

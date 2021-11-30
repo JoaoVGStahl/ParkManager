@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Teste
+namespace ParkManager
 {
     public class Estacionamento
     {

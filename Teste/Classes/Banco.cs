@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-namespace Teste
+namespace ParkManager
 {
     class Banco
     {
@@ -105,7 +105,6 @@ namespace Teste
             finally
             {
                 conexao.Close();
-                cmd.Dispose();
             }
         }
         public DataSet ExecuteProcedureWithReturnMultipleTables(string NameProcedure, List<SqlParameter> sp = null)

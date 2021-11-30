@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO.Ports;
-namespace Teste
+namespace ParkManager
 {
     public class Arduino
     {
@@ -24,8 +24,12 @@ namespace Teste
             {
                 try
                 {
-                    port.PortName = portacom;
-                    port.Open();
+                    if(portacom != null)
+                    {
+                        port.PortName = portacom;
+                        port.Open();
+                    }
+                    
                 }
                 catch
                 {

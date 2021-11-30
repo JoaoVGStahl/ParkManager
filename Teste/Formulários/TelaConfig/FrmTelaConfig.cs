@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Teste
+namespace ParkManager
 {
     public partial class FrmTelaConfig : Form
     {

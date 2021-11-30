@@ -1,5 +1,5 @@
 ﻿
-namespace Teste
+namespace ParkManager
 {
     partial class FrmTelaLogin
     {
