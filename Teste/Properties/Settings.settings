@@ -12,7 +12,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="StringBanco" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Server=DESKTOP-K8AJG2A\SERVER151;Database=db_estacionamento-2021-11-22-19-25;Trusted_Connection=True;</Value>
+      <Value Profile="(Default)">Server=DESKTOP-K8AJG2A\SERVER151;Database=db_estacionamento;Trusted_Connection=True;</Value>
     </Setting>
     <Setting Name="ArquivoAuditoria" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

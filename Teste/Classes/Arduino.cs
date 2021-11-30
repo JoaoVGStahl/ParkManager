@@ -73,8 +73,9 @@ namespace Teste
             {
                 try
                 {
-                    port.PortName = portacom;
+                    
                     port.Close();
+                    port.Dispose();
                 }
                 catch
                 {
