@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // As informações gerais sobre um assembly são controladas por
 // conjunto de atributos. Altere estes valores de atributo para modificar as informações
 // associadas a um assembly.
-[assembly: AssemblyTitle("Teste")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Park Manager")]
+[assembly: AssemblyDescription("Sistema Gerenciador de Estacionamento")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Teste")]
+[assembly: AssemblyCompany("3DS Corp")]
+[assembly: AssemblyProduct("Park Manager")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

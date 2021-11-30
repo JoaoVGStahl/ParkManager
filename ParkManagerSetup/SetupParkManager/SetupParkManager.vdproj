@@ -27,6 +27,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_262D59D57C5D4B1693EF523CD28AA695"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_87D4BFE3FF68B8BE6038EFFC60616CD3"
         "OwnerKey" = "8:_15FFC0BBD5C3438CAF69EFFD1B0936BA"
         "MsmSig" = "8:_UNDEFINED"
@@ -70,12 +76,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_87D4BFE3FF68B8BE6038EFFC60616CD3"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_15FFC0BBD5C3438CAF69EFFD1B0936BA"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -103,6 +103,12 @@
         "OwnerKey" = "8:_E12DB0EF69EDBF9342FA1DD710FFAC70"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_87D4BFE3FF68B8BE6038EFFC60616CD3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -121,6 +127,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -137,6 +151,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -170,6 +192,26 @@
             {
             "SourcePath" = "8:..\\..\\Artes & vetores\\Ícone-Park-Managar-novo.ico"
             "TargetName" = "8:Ícone-Park-Managar-novo.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_F1CFDA4A405546068C9ED4587D92F3AF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_262D59D57C5D4B1693EF523CD28AA695"
+            {
+            "SourcePath" = "8:..\\..\\assets\\Ícone-ParkManager-Novo-3.0.ico"
+            "TargetName" = "8:Ícone-ParkManager-Novo-3.0.ico"
             "Tag" = "8:"
             "Folder" = "8:_F1CFDA4A405546068C9ED4587D92F3AF"
             "Condition" = "8:"
@@ -529,7 +571,7 @@
             "Target" = "8:_15FFC0BBD5C3438CAF69EFFD1B0936BA"
             "Folder" = "8:_04F0222D1D234A0CB3ECE306BF9B538A"
             "WorkingFolder" = "8:_F1CFDA4A405546068C9ED4587D92F3AF"
-            "Icon" = "8:_179C9EA9B7264FC0BFDBD6B98F2EA907"
+            "Icon" = "8:_262D59D57C5D4B1693EF523CD28AA695"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_D55EAFED8A084D61A69A59A7EF26C4AC"
@@ -543,7 +585,7 @@
             "Target" = "8:_15FFC0BBD5C3438CAF69EFFD1B0936BA"
             "Folder" = "8:_B63432DB653746539FECEB1E248D1180"
             "WorkingFolder" = "8:_F1CFDA4A405546068C9ED4587D92F3AF"
-            "Icon" = "8:_179C9EA9B7264FC0BFDBD6B98F2EA907"
+            "Icon" = "8:_262D59D57C5D4B1693EF523CD28AA695"
             "Feature" = "8:"
             }
         }
