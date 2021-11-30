@@ -15,19 +15,13 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_0804A38A5C9845C18E3E365ED1166DA4"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_15FFC0BBD5C3438CAF69EFFD1B0936BA"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_179C9EA9B7264FC0BFDBD6B98F2EA907"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_262D59D57C5D4B1693EF523CD28AA695"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -134,6 +128,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -158,6 +160,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -188,30 +198,10 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_179C9EA9B7264FC0BFDBD6B98F2EA907"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0804A38A5C9845C18E3E365ED1166DA4"
             {
-            "SourcePath" = "8:..\\..\\Artes & vetores\\Ícone-Park-Managar-novo.ico"
-            "TargetName" = "8:Ícone-Park-Managar-novo.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_F1CFDA4A405546068C9ED4587D92F3AF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_262D59D57C5D4B1693EF523CD28AA695"
-            {
-            "SourcePath" = "8:..\\..\\assets\\Ícone-ParkManager-Novo-3.0.ico"
-            "TargetName" = "8:Ícone-ParkManager-Novo-3.0.ico"
+            "SourcePath" = "8:..\\..\\assets\\ícone 5.0.ico"
+            "TargetName" = "8:ícone 5.0.ico"
             "Tag" = "8:"
             "Folder" = "8:_F1CFDA4A405546068C9ED4587D92F3AF"
             "Condition" = "8:"
@@ -440,7 +430,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Park Manager"
         "ProductCode" = "8:{7390F977-27D3-49B3-AEC7-84E7170FDC9E}"
-        "PackageCode" = "8:{248DCEEF-8D30-4BBB-B98A-400FFF7F8252}"
+        "PackageCode" = "8:{53A83899-3093-4227-A9B6-70A236207E6A}"
         "UpgradeCode" = "8:{7DE2E86A-271F-47C0-ADC2-F36EE9C8431D}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -571,7 +561,7 @@
             "Target" = "8:_15FFC0BBD5C3438CAF69EFFD1B0936BA"
             "Folder" = "8:_04F0222D1D234A0CB3ECE306BF9B538A"
             "WorkingFolder" = "8:_F1CFDA4A405546068C9ED4587D92F3AF"
-            "Icon" = "8:_262D59D57C5D4B1693EF523CD28AA695"
+            "Icon" = "8:_0804A38A5C9845C18E3E365ED1166DA4"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_D55EAFED8A084D61A69A59A7EF26C4AC"
@@ -585,7 +575,7 @@
             "Target" = "8:_15FFC0BBD5C3438CAF69EFFD1B0936BA"
             "Folder" = "8:_B63432DB653746539FECEB1E248D1180"
             "WorkingFolder" = "8:_F1CFDA4A405546068C9ED4587D92F3AF"
-            "Icon" = "8:_262D59D57C5D4B1693EF523CD28AA695"
+            "Icon" = "8:_0804A38A5C9845C18E3E365ED1166DA4"
             "Feature" = "8:"
             }
         }
