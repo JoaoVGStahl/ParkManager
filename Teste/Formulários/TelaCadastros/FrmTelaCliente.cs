@@ -21,21 +21,15 @@ namespace ParkManager
 
         private void FrmTelaCliente_Load(object sender, EventArgs e)
         {
-            cmbStatus.SelectedIndex = 1;
-            dataGridView1.SelectionChanged -= dataGridView1_SelectionChanged;
-            CarregarGrid();
 
+            dataGridView1.SelectionChanged -= dataGridView1_SelectionChanged;
         }
         private void CarregarGrid()
         {
             try
             {
                 DataTable dt = new DataTable();
-                List<SqlParameter> sp = new List<SqlParameter>()
-                {
-                    new SqlParameter(){ParameterName="@Status", SqlDbType = SqlDbType.Int, Value = cmbStatus.SelectedIndex}
-                };
-                dt = banco.ExecuteProcedureReturnDataTable("dbo.Select_Cliente_Grid", sp);
+                dt = banco.ExecuteProcedureReturnDataTable("dbo.Select_Cliente_Grid");
                 if (dt.Rows.Count > 0)
                 {
                     dataGridView1.DataSource = dt;
@@ -45,7 +39,7 @@ namespace ParkManager
                 }
                 else
                 {
-                    MessageBox.Show("Falha ao carregar a lista de cliente!", "Falha ao carregar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    lblNada.Visible = true;
                 }
             }
             catch (Exception ex)
@@ -61,7 +55,6 @@ namespace ParkManager
                 txtNome.Enabled = true;
                 mskTelefone.Enabled = true;
                 btnSalvar.Enabled = true;
-                btnNovo.Enabled = false;
                 btnLimpar.Enabled = true;
                 btnExcluir.Enabled = true;
                 try
@@ -78,7 +71,6 @@ namespace ParkManager
                         txtID.Text = dt.Rows[0]["ID"].ToString();
                         txtNome.Text = dt.Rows[0]["Nome"].ToString();
                         mskTelefone.Text = dt.Rows[0]["Telefone"].ToString();
-                        cmbStatus.SelectedIndex = Convert.ToInt32(dt.Rows[0]["Status"]);
 
                     }
                     else
@@ -103,19 +95,20 @@ namespace ParkManager
             dataGridView1.ClearSelection();
             LimparCaixas();
             dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
+            if (dataGridView1.Rows.Count > 0)
+            {
+                lblNada.Visible = false;
+            }
         }
         private void LimparCaixas()
         {
-            btnNovo.Enabled = true;
-            btnSalvar.Enabled = false;
-            btnExcluir.Enabled = false;
-            btnLimpar.Enabled = false;
-            txtNome.Clear();
-            txtNome.Enabled = false;
-            mskTelefone.Clear();
-            mskTelefone.Enabled = false;
-            cmbStatus.Enabled = false;
             txtID.Clear();
+            txtNome.Clear();
+            mskTelefone.Clear();
+            txtID.Clear();
+            btnExcluir.Enabled = false;
+            btnSalvar.Enabled = false;
+            btnLimpar.Enabled = false;
             dataGridView1.ClearSelection();
         }
 
@@ -186,32 +179,26 @@ namespace ParkManager
             {
                 if (Regex.IsMatch(mskTelefone.Text, @"^[(]{1}[11-99]{2}[)]{1}[0|9]{1}[0-9]{4}-[0-9]{4}"))
                 {
-                    if (cmbStatus.SelectedIndex >= 0)
+
+                    if (txtID.Text == "")
                     {
-                        if (txtID.Text == "")
-                        {
-                            VerificarCliente();
-                        }
-                        else
-                        {
-                            DataTable dt = new DataTable();
-                            dt = VerificarTicket();
-                            if (dt.Rows.Count > 0)
-                            {
-                                if (Convert.ToInt32(dt.Rows[0]["QTD"]) == 0)
-                                {
-                                    SalvarCliente("Edit");
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Não é possivel Editar este cliente, pois ele possui um Ticket em Aberto!", "Cliente NÃO Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                }
-                            }
-                        }
+                        VerificarCliente();
                     }
                     else
                     {
-                        MessageBox.Show("Selecione Status Válido!", "Falha!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        DataTable dt = new DataTable();
+                        dt = VerificarTicket();
+                        if (dt.Rows.Count > 0)
+                        {
+                            if (Convert.ToInt32(dt.Rows[0]["QTD"]) == 0)
+                            {
+                                SalvarCliente("Edit");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Não é possivel Editar este cliente, pois ele possui um Ticket em Aberto!", "Cliente NÃO Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
                     }
                 }
                 else
@@ -281,7 +268,6 @@ namespace ParkManager
                         new SqlParameter(){ParameterName="@Flag", SqlDbType = SqlDbType.Int, Value= 0},
                         new SqlParameter(){ParameterName="@Nome", SqlDbType = SqlDbType.VarChar, Value = txtNome.Text},
                         new SqlParameter(){ParameterName="@Telefone", SqlDbType = SqlDbType.VarChar, Value = mskTelefone.Text},
-                        new SqlParameter(){ParameterName="@Status", SqlDbType = SqlDbType.Int, Value = cmbStatus.SelectedIndex}
                     };
                 if (txtID.Text != "" && mode == "Edit")
                 {
@@ -321,16 +307,6 @@ namespace ParkManager
                 MessageBox.Show(ex.Message, "Cliente NÃO Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void btnNovo_Click(object sender, EventArgs e)
-        {
-            btnNovo.Enabled = false;
-            btnLimpar.Enabled = true;
-            btnSalvar.Enabled = true;
-            txtNome.Enabled = true;
-            mskTelefone.Enabled = true;
-            cmbStatus.Enabled = true;
-        }
-
         private void FrmTelaCliente_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -339,7 +315,7 @@ namespace ParkManager
                     break;
 
                 case Keys.F3:
-                    btnNovo.PerformClick();
+                    btnPesquisa.PerformClick();
                     break;
 
                 case Keys.F5:
@@ -356,6 +332,85 @@ namespace ParkManager
             FormOp.NomeCli = dataGridView1.SelectedRows[0].Cells["Nome"].Value.ToString();
             FormOp.TelCli = dataGridView1.SelectedRows[0].Cells["Telefone"].Value.ToString();
             FormCad.Dispose();
+        }
+
+        private void btnPesquisa_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                string tel = mskTelefone.Text != "(  )     -" ? mskTelefone.Text : null;
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
+                    new SqlParameter(){ParameterName="@Nome", SqlDbType =  SqlDbType.VarChar, Value = txtNome.Text},
+                    new SqlParameter(){ParameterName="@Telefone", SqlDbType = SqlDbType.VarChar, Value = tel}
+                };
+                dt = banco.ExecuteProcedureReturnDataTable("dbo.Select_Cliente_Grid", sp);
+                if (dt.Rows.Count > 0)
+                {
+                    dataGridView1.DataSource = dt;
+                    dataGridView1.DataSource = dt;
+                    dataGridView1.Columns[0].Width = 48;
+                    dataGridView1.Columns[1].Width = 658;
+                    dataGridView1.Columns[2].Width = 118;
+                }
+                else
+                {
+                    dataGridView1.DataSource = null;
+                    lblNada.Visible = true;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Falha ao realizar pesquisa!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+        }
+
+        private void FrmTelaCliente_KeyDown_1(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void FrmTelaCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (txtNome.Text != "" && mskTelefone.MaskCompleted)
+            {
+                btnSalvar.Enabled = true;
+            }
+            else
+            {
+                btnSalvar.Enabled = false;
+            }
+        }
+
+
+        private void txtNome_TextChanged(object sender, EventArgs e)
+        {
+            if (txtNome.Text != "" && mskTelefone.MaskCompleted)
+            {
+                btnSalvar.Enabled = true;
+            }
+            else
+            {
+                btnSalvar.Enabled = false;
+            }
+        }
+
+        private void mskTelefone_TextChanged(object sender, EventArgs e)
+        {
+            if (txtNome.Text != "" && mskTelefone.MaskCompleted)
+            {
+                btnSalvar.Enabled = true;
+            }
+            else
+            {
+                btnSalvar.Enabled = false;
+            }
         }
     }
 }

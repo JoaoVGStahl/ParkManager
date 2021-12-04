@@ -31,9 +31,9 @@ namespace ParkManager
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTelaCliente));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnPesquisa = new System.Windows.Forms.Button();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
-            this.btnNovo = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.splitter1 = new System.Windows.Forms.Splitter();
@@ -41,10 +41,8 @@ namespace ParkManager
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
-            this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.mskTelefone = new System.Windows.Forms.MaskedTextBox();
             this.txtID = new System.Windows.Forms.TextBox();
@@ -54,6 +52,7 @@ namespace ParkManager
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.splitter4 = new System.Windows.Forms.Splitter();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.lblNada = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -62,15 +61,34 @@ namespace ParkManager
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Silver;
+            this.panel1.Controls.Add(this.btnPesquisa);
             this.panel1.Controls.Add(this.btnLimpar);
             this.panel1.Controls.Add(this.btnExcluir);
-            this.panel1.Controls.Add(this.btnNovo);
             this.panel1.Controls.Add(this.btnSalvar);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 555);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(830, 85);
+            this.panel1.Size = new System.Drawing.Size(865, 85);
             this.panel1.TabIndex = 0;
+            // 
+            // btnPesquisa
+            // 
+            this.btnPesquisa.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnPesquisa.BackColor = System.Drawing.Color.Transparent;
+            this.btnPesquisa.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnPesquisa.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPesquisa.FlatAppearance.BorderSize = 0;
+            this.btnPesquisa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPesquisa.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPesquisa.Image = ((System.Drawing.Image)(resources.GetObject("btnPesquisa.Image")));
+            this.btnPesquisa.Location = new System.Drawing.Point(24, 0);
+            this.btnPesquisa.Name = "btnPesquisa";
+            this.btnPesquisa.Size = new System.Drawing.Size(183, 85);
+            this.btnPesquisa.TabIndex = 7;
+            this.btnPesquisa.Text = "Pesquisar";
+            this.btnPesquisa.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnPesquisa.UseVisualStyleBackColor = false;
+            this.btnPesquisa.Click += new System.EventHandler(this.btnPesquisa_Click);
             // 
             // btnLimpar
             // 
@@ -83,10 +101,9 @@ namespace ParkManager
             this.btnLimpar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpar.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpar.Image")));
-            this.btnLimpar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLimpar.Location = new System.Drawing.Point(618, 3);
+            this.btnLimpar.Location = new System.Drawing.Point(657, 0);
             this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(174, 79);
+            this.btnLimpar.Size = new System.Drawing.Size(183, 85);
             this.btnLimpar.TabIndex = 6;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -104,35 +121,14 @@ namespace ParkManager
             this.btnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExcluir.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExcluir.Image = ((System.Drawing.Image)(resources.GetObject("btnExcluir.Image")));
-            this.btnExcluir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExcluir.Location = new System.Drawing.Point(425, 3);
+            this.btnExcluir.Location = new System.Drawing.Point(446, 0);
             this.btnExcluir.Name = "btnExcluir";
-            this.btnExcluir.Size = new System.Drawing.Size(174, 79);
+            this.btnExcluir.Size = new System.Drawing.Size(183, 85);
             this.btnExcluir.TabIndex = 5;
             this.btnExcluir.Text = "Excluir ";
             this.btnExcluir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnExcluir.UseVisualStyleBackColor = false;
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
-            // 
-            // btnNovo
-            // 
-            this.btnNovo.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnNovo.BackColor = System.Drawing.Color.Transparent;
-            this.btnNovo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnNovo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNovo.FlatAppearance.BorderSize = 0;
-            this.btnNovo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNovo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNovo.Image = ((System.Drawing.Image)(resources.GetObject("btnNovo.Image")));
-            this.btnNovo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNovo.Location = new System.Drawing.Point(39, 3);
-            this.btnNovo.Name = "btnNovo";
-            this.btnNovo.Size = new System.Drawing.Size(174, 79);
-            this.btnNovo.TabIndex = 3;
-            this.btnNovo.Text = "Novo ";
-            this.btnNovo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnNovo.UseVisualStyleBackColor = false;
-            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
             // 
             // btnSalvar
             // 
@@ -145,10 +141,9 @@ namespace ParkManager
             this.btnSalvar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalvar.Image = ((System.Drawing.Image)(resources.GetObject("btnSalvar.Image")));
-            this.btnSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalvar.Location = new System.Drawing.Point(232, 3);
+            this.btnSalvar.Location = new System.Drawing.Point(235, 0);
             this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(174, 79);
+            this.btnSalvar.Size = new System.Drawing.Size(183, 85);
             this.btnSalvar.TabIndex = 4;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -161,7 +156,7 @@ namespace ParkManager
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(830, 85);
+            this.panel2.Size = new System.Drawing.Size(865, 85);
             this.panel2.TabIndex = 1;
             // 
             // splitter1
@@ -170,7 +165,7 @@ namespace ParkManager
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Top;
             this.splitter1.Location = new System.Drawing.Point(0, 85);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(830, 3);
+            this.splitter1.Size = new System.Drawing.Size(865, 3);
             this.splitter1.TabIndex = 2;
             this.splitter1.TabStop = false;
             // 
@@ -180,7 +175,7 @@ namespace ParkManager
             this.splitter2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.splitter2.Location = new System.Drawing.Point(0, 552);
             this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(830, 3);
+            this.splitter2.Size = new System.Drawing.Size(865, 3);
             this.splitter2.TabIndex = 3;
             this.splitter2.TabStop = false;
             // 
@@ -190,7 +185,7 @@ namespace ParkManager
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, 542);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(830, 10);
+            this.panel3.Size = new System.Drawing.Size(865, 10);
             this.panel3.TabIndex = 4;
             // 
             // panel4
@@ -199,7 +194,7 @@ namespace ParkManager
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(0, 88);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(830, 10);
+            this.panel4.Size = new System.Drawing.Size(865, 10);
             this.panel4.TabIndex = 5;
             // 
             // label5
@@ -211,19 +206,6 @@ namespace ParkManager
             this.label5.Size = new System.Drawing.Size(36, 29);
             this.label5.TabIndex = 21;
             this.label5.Text = "ID";
-            // 
-            // cmbStatus
-            // 
-            this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Items.AddRange(new object[] {
-            "Inativo",
-            "Ativo"});
-            this.cmbStatus.Location = new System.Drawing.Point(306, 110);
-            this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(174, 37);
-            this.cmbStatus.TabIndex = 2;
             // 
             // label4
             // 
@@ -245,35 +227,25 @@ namespace ParkManager
             this.label3.TabIndex = 15;
             this.label3.Text = "Telefone";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(301, 79);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 29);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "Status";
-            // 
             // txtNome
             // 
-            this.txtNome.Enabled = false;
-            this.txtNome.Font = new System.Drawing.Font("Arial Narrow", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNome.Location = new System.Drawing.Point(82, 32);
             this.txtNome.MaxLength = 45;
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(745, 38);
+            this.txtNome.Size = new System.Drawing.Size(758, 38);
             this.txtNome.TabIndex = 0;
+            this.txtNome.TextChanged += new System.EventHandler(this.txtNome_TextChanged);
             // 
             // mskTelefone
             // 
-            this.mskTelefone.Enabled = false;
             this.mskTelefone.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mskTelefone.Location = new System.Drawing.Point(8, 111);
             this.mskTelefone.Mask = "(99)00000-0000";
             this.mskTelefone.Name = "mskTelefone";
             this.mskTelefone.Size = new System.Drawing.Size(245, 35);
             this.mskTelefone.TabIndex = 1;
+            this.mskTelefone.TextChanged += new System.EventHandler(this.mskTelefone_TextChanged);
             // 
             // txtID
             // 
@@ -293,13 +265,11 @@ namespace ParkManager
             this.panel5.Controls.Add(this.txtID);
             this.panel5.Controls.Add(this.label3);
             this.panel5.Controls.Add(this.txtNome);
-            this.panel5.Controls.Add(this.label2);
             this.panel5.Controls.Add(this.label4);
-            this.panel5.Controls.Add(this.cmbStatus);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(0, 98);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(830, 160);
+            this.panel5.Size = new System.Drawing.Size(865, 160);
             this.panel5.TabIndex = 27;
             // 
             // lblTicket
@@ -330,7 +300,7 @@ namespace ParkManager
             this.splitter3.Dock = System.Windows.Forms.DockStyle.Top;
             this.splitter3.Location = new System.Drawing.Point(0, 258);
             this.splitter3.Name = "splitter3";
-            this.splitter3.Size = new System.Drawing.Size(830, 3);
+            this.splitter3.Size = new System.Drawing.Size(865, 3);
             this.splitter3.TabIndex = 28;
             this.splitter3.TabStop = false;
             // 
@@ -339,7 +309,7 @@ namespace ParkManager
             this.splitter4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.splitter4.Location = new System.Drawing.Point(0, 539);
             this.splitter4.Name = "splitter4";
-            this.splitter4.Size = new System.Drawing.Size(830, 3);
+            this.splitter4.Size = new System.Drawing.Size(865, 3);
             this.splitter4.TabIndex = 29;
             this.splitter4.TabStop = false;
             // 
@@ -357,19 +327,32 @@ namespace ParkManager
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(830, 278);
+            this.dataGridView1.Size = new System.Drawing.Size(865, 278);
             this.dataGridView1.TabIndex = 30;
             this.dataGridView1.TabStop = false;
             this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             this.dataGridView1.DoubleClick += new System.EventHandler(this.dataGridView1_DoubleClick);
             // 
+            // lblNada
+            // 
+            this.lblNada.AutoSize = true;
+            this.lblNada.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNada.ForeColor = System.Drawing.Color.DarkRed;
+            this.lblNada.Location = new System.Drawing.Point(243, 376);
+            this.lblNada.Name = "lblNada";
+            this.lblNada.Size = new System.Drawing.Size(360, 31);
+            this.lblNada.TabIndex = 27;
+            this.lblNada.Text = "< Não há dados para exibir >";
+            this.lblNada.Visible = false;
+            // 
             // FrmTelaCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(830, 640);
+            this.ClientSize = new System.Drawing.Size(865, 640);
+            this.Controls.Add(this.lblNada);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.splitter4);
             this.Controls.Add(this.splitter3);
@@ -384,11 +367,14 @@ namespace ParkManager
             this.Name = "FrmTelaCliente";
             this.Text = "FrmTelaCliente";
             this.Load += new System.EventHandler(this.FrmTelaCliente_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmTelaCliente_KeyDown_1);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FrmTelaCliente_KeyPress);
             this.panel1.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -402,13 +388,10 @@ namespace ParkManager
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.Button btnExcluir;
-        private System.Windows.Forms.Button btnNovo;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.MaskedTextBox mskTelefone;
         private System.Windows.Forms.TextBox txtID;
@@ -418,5 +401,7 @@ namespace ParkManager
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label lblTicket;
         private System.Windows.Forms.Label lblCaptionTicket;
+        private System.Windows.Forms.Button btnPesquisa;
+        private System.Windows.Forms.Label lblNada;
     }
 }

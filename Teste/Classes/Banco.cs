@@ -83,7 +83,7 @@ namespace ParkManager
         }
         public int ExecuteProcedureWithReturnValue(string NameProcedure, List<SqlParameter> sp = null)
         {
-            SqlCommand cmd = null;
+            SqlCommand cmd;
             try
             {
                 conexao.Open();

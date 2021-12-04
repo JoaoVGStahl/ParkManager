@@ -13,9 +13,7 @@ namespace ParkManager
         public string folderPath = @"c:\ParkManager\ticket\";
         public string folderPathRelatorio = @"c:\ParkManager\relatorios\";
         public string filename;
-        
 
-        
         public Font GetMyFont(string font, string path)
         {
             if (!FontFactory.IsRegistered(font))
