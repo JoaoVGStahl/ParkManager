@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ParkManager.Classes;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -9,7 +10,7 @@ namespace ParkManager
     public partial class FrmTelaUsuario : Form
     {
         Banco banco = new Banco();
-
+        
         public FrmTelaUsuario()
         {
             InitializeComponent();
@@ -113,11 +114,19 @@ namespace ParkManager
             {
                 if (txtSenha.Text == txtConfirmSenha.Text)
                 {
-                    VerificarUsuario();
+                    DataTable dt = VerificarUsuario();
+                    if (dt.Rows.Count > 0)
+                    {
+                        EditarUsuario(dt);
+                    }
+                    else
+                    {
+                        SalvarUsuario(Globais.EncodeToMd5(txtConfirmSenha.Text));
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("As senhas são diferentes! Verifiquei e tente novamente!", "Falha ao salvar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("As senhas são diferentes! Verifique e tente novamente!", "Falha ao salvar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -125,91 +134,104 @@ namespace ParkManager
                 MessageBox.Show("Há campos vazios que precisam ser preenchidos!", "Falha ao salvar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void VerificarUsuario()
+        private DataTable VerificarUsuario()
         {
             DataTable dt = new DataTable();
-            List<SqlParameter> sp = new List<SqlParameter>()
+            try
+            {
+                List<SqlParameter> sp = new List<SqlParameter>()
                 {
                     new SqlParameter(){ParameterName = "@Login", SqlDbType = SqlDbType.NVarChar, Value = txtLogin.Text }
                 };
-            try
-            {
                 dt = banco.ExecuteProcedureReturnDataTable("dbo.Pesquisa_Usuario_Login", sp);
-                if (dt.Rows.Count > 0)
-                {
-                    EditarUsuario();
-                }
-                else
-                {
-                    SalvarUsuario();
-                }
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Falha ao realizar consulta no banco de dados!");
             }
-            finally
-            {
-                dt.Dispose();
-            }
-
-
+            return dt;
         }
-        private void EditarUsuario()
+        private void EditarUsuario(DataTable dt)
         {
-            string senha = Globais.EncodeToMd5(txtConfirmSenha.Text);
-            int result;
-            List<SqlParameter> sp = new List<SqlParameter>()
-                {
+            List<SqlParameter> sp = new List<SqlParameter>();
 
-                    new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 2},
-                    new SqlParameter(){ParameterName = "@Id", SqlDbType = SqlDbType.Int, Value = txtId.Text},
+            Usuario usuarioAtual = new Usuario
+            {
+                Id = Convert.ToInt32(dt.Rows[0]["ID"]),
+                Login = dt.Rows[0]["Login"].ToString(),
+                Senha = dt.Rows[0]["Senha"].ToString(),
+                Nivel = Convert.ToInt32(dt.Rows[0]["Nivel"]),
+                Status = Convert.ToInt32(dt.Rows[0]["Status"])
+            };
+
+            string senha = Globais.EncodeToMd5(txtConfirmSenha.Text);
+
+            if (!usuarioAtual.Login.Equals(txtLogin.Text))
+            {
+                sp.Add(new SqlParameter() { ParameterName = "@Login", SqlDbType = SqlDbType.NVarChar, Value = txtLogin.Text });
+            }
+            if (!usuarioAtual.Senha.Equals(senha))
+            {
+                sp.Add(new SqlParameter() { ParameterName = "@Senha", SqlDbType = SqlDbType.NVarChar, Value = senha });
+            }
+            if (usuarioAtual.Nivel != numNivel.Value)
+            {
+                sp.Add(new SqlParameter() { ParameterName = "@Nivel", SqlDbType = SqlDbType.Int, Value = numNivel.Value });
+            }
+            if (!usuarioAtual.Status.Equals(cmbStatus.SelectedIndex))
+            {
+                sp.Add(new SqlParameter() { ParameterName = "@Status", SqlDbType = SqlDbType.Int, Value = cmbStatus.SelectedIndex });
+            }
+            if(sp.Count > 0)
+            {
+                int result = banco.ExecuteProcedureReturnInt(NameProcedure: "dbo.Gerencia_Usuario", sp: sp);
+
+                if (result > 0)
+                {
+                    Globais.RegistrarLog(Globais.Login + " Alterou o Usuário ->" + txtLogin.Text);
+                    PreencherGrid();
+                    MessageBox.Show("Usuario alterado com sucesso!", "Alteração Salva!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Falha ao Alterar Usuário!", "Falha ao Salvar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Não há alterações a serem salvas!!", "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        private void SalvarUsuario(string senhaEncoded)
+        {
+            try
+            {
+                int result;
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
                     new SqlParameter(){ParameterName = "@Login", SqlDbType = SqlDbType.NVarChar, Value = txtLogin.Text },
-                    new SqlParameter(){ParameterName = "@Senha", SqlDbType = SqlDbType.NVarChar, Value = senha },
+                    new SqlParameter(){ParameterName = "@Senha", SqlDbType = SqlDbType.NVarChar, Value = senhaEncoded },
                     new SqlParameter(){ParameterName = "@Nivel", SqlDbType = SqlDbType.Int, Value = numNivel.Value },
                     new SqlParameter(){ParameterName = "@Status", SqlDbType = SqlDbType.Int, Value = cmbStatus.SelectedIndex }
                 };
 
-            result = banco.ExecuteProcedureReturnInt(NameProcedure: "dbo.Gerencia_Usuario", sp: sp);
-            if (result > 0)
-            {
-                Globais.RegistrarLog(Globais.Login + " Alterou o Usuário ->" + txtLogin.Text);
-                PreencherGrid();
-                MessageBox.Show("Usuario alterado com sucesso!", "Alteração Salva!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("Falha ao Alterar Usuário!", "Falha ao Salvar!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-        }
-        private void SalvarUsuario()
-        {
-            string senha = Globais.EncodeToMd5(txtConfirmSenha.Text);
-            int result;
-            List<SqlParameter> sp = new List<SqlParameter>()
+                result = banco.ExecuteProcedureReturnInt("dbo.Novo_Usuario", sp);
+                if (result > 0)
                 {
-
-                    new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 1},
-                    new SqlParameter(){ParameterName = "@Login", SqlDbType = SqlDbType.NVarChar, Value = txtLogin.Text },
-                    new SqlParameter(){ParameterName = "@Senha", SqlDbType = SqlDbType.NVarChar, Value = senha },
-                    new SqlParameter(){ParameterName = "@Nivel", SqlDbType = SqlDbType.Int, Value = numNivel.Value },
-                    new SqlParameter(){ParameterName = "@Status", SqlDbType = SqlDbType.Int, Value = cmbStatus.SelectedIndex }
-                };
-
-            result = banco.ExecuteProcedureReturnInt("dbo.Gerencia_Usuario", sp);
-            if (result > 0)
-            {
-                MessageBox.Show("Usuario adicionado com sucesso!", "Novo usuário!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Globais.RegistrarLog(Globais.Login + " Adicionou o Usuário ->" + txtLogin.Text);
-                PreencherGrid();
+                    MessageBox.Show("Usuario adicionado com sucesso!", "Novo usuário!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Globais.RegistrarLog(Globais.Login + " Adicionou o Usuário ->" + txtLogin.Text);
+                    PreencherGrid();
+                    LimparCaixas();
+                }
+                else
+                {
+                    MessageBox.Show("Falha ao adicionar Usuário", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Falha ao adicionar Usuário", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         private void FrmTelaUsuario_FormClosing(object sender, FormClosingEventArgs e)
@@ -242,7 +264,6 @@ namespace ParkManager
                 {
                     MessageBox.Show("Usuario selecionado não foi encontrado!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
             }
             txtLogin.Enabled = true;
             txtSenha.Enabled = true;
@@ -270,30 +291,49 @@ namespace ParkManager
 
         private void btnExcluir_Click_1(object sender, EventArgs e)
         {
-            int linha = dataGridView1.SelectedRows.Count;
-            int result;
-            if (linha > 0)
+            if (dataGridView1.SelectedRows.Count > 0)
             {
-                string id = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
-                List<SqlParameter> sp = new List<SqlParameter>()
+                try
                 {
-
-                    new SqlParameter(){ParameterName = "@Flag", SqlDbType = SqlDbType.Int, Value = 3},
-                    new SqlParameter(){ParameterName = "@Id", SqlDbType = SqlDbType.Int, Value = id }
-                };
-                result = banco.ExecuteProcedureReturnInt("dbo.Gerencia_Usuario", sp);
-                if (result > 0)
-                {
+                    int id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["ID"].Value.ToString());
+                    AlterarStatusUsuario(id, 2);
+                    PreencherGrid();
                     MessageBox.Show("Usuário Deletado com Sucesso!", "Usuário Deletado!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Globais.RegistrarLog(Globais.Login + "Deletou o Usuario:" + dataGridView1.SelectedRows[0].Cells[1].Value.ToString());
-                    PreencherGrid();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nenhum usuário selecionado!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void AlterarStatusUsuario(int id, int status)
+        {
+            try
+            {
+                List<SqlParameter> sp = new List<SqlParameter>()
+                {
+                    new SqlParameter(){ParameterName = "@Id", SqlDbType = SqlDbType.Int, Value = id },
+                    new SqlParameter(){ParameterName="@Status", SqlDbType = SqlDbType.Int, Value = status}
+                };
+                int result = banco.ExecuteProcedureReturnInt("dbo.Alterar_Status_Usuario", sp);
+                if (result > 0)
+                {
                     LimparCaixas();
-
                 }
                 else
                 {
                     MessageBox.Show("Falha ao deletar Usuário!", "Falha!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -99,6 +99,7 @@
     <Compile Include="Classes\Banco.cs" />
     <Compile Include="Classes\Estacionamento.cs" />
     <Compile Include="Classes\Ticket.cs" />
+    <Compile Include="Classes\Usuario.cs" />
     <Compile Include="Formulários\TelaOperação\FrmTelaEncerrarTicket.cs">
       <SubType>Form</SubType>
     </Compile>
